@@ -94,15 +94,21 @@
   }
   .work-hero__bg {
     position: absolute; inset: 0;
-    background: url('work-hero.png') center center / cover no-repeat;
+    overflow: hidden;
+  }
+  .work-hero__bg img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
     filter: grayscale(30%);
+    transform: scale(1);
   }
   .work-hero__overlay {
     position: absolute; inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(74, 71, 56, 0.45) 0%,
-      rgba(74, 71, 56, 0.55) 50%,
+      rgba(74, 71, 56, 0.4) 0%,
+      rgba(74, 71, 56, 0.5) 50%,
       rgba(42, 40, 37, 0.65) 100%
     );
   }
@@ -146,7 +152,7 @@
   /* INTRO — two-column, Muse-style */
   .work-intro {
     background: var(--cream-dark);
-    padding: 100px 44px;
+    padding: 140px 44px;
     position: relative;
   }
   .work-intro__inner {
@@ -406,7 +412,7 @@
     .nav__links { display: none; }
     .work-hero__content { padding: 0 24px; }
     .work-hero__title { font-size: clamp(32px, 9vw, 52px); }
-    .work-intro { padding: 60px 24px; }
+    .work-intro { padding: 80px 24px; }
     .work-intro__inner { grid-template-columns: 1fr; gap: 40px; }
     .work-grid { padding: 0 24px; }
     .work-row { grid-template-columns: 1fr; height: auto; gap: 10px; margin-bottom: 10px; }
@@ -437,13 +443,14 @@
 </nav>
 
 <header class="work-hero">
-  <div class="work-hero__bg"></div>
+  <div class="work-hero__bg">
+    <img src="work-hero.jpg" alt="" loading="eager" />
+  </div>
   <div class="work-hero__overlay"></div>
   <div class="work-hero__content reveal">
     <span class="eyebrow work-hero__eyebrow">Senior product designer · Fintech & AI-native products</span>
     <h1 class="work-hero__title">
-      Products designed to move money,<br>
-      <em>automate complexity, and earn trust.</em>
+      I design products that<br><em>move money and earn trust.</em>
     </h1>
     <a href="#work" class="work-hero__cta">View selected work</a>
   </div>
@@ -472,7 +479,7 @@
   <!-- ROW 1 -->
   <div class="work-row reveal">
     <a href="#broadmoney" class="work-item">
-      <div class="work-item__bg" style="background: linear-gradient(135deg, #9D440C 0%, #6B2D06 100%);"></div>
+      <div class="work-item__bg" style="background: url('work-hero.jpg') center center / cover no-repeat;"></div>
       <div class="work-item__overlay"></div>
       <div class="work-item__content">
         <span class="work-item__eyebrow">Fintech · Cross-border payments · 2025</span>
