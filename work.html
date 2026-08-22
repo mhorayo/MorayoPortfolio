@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Work — Akinkunmi Taiwo Morayo</title>
+<meta name="description" content="Selected product design work by Akinkunmi Taiwo Morayo — fintech, AI-native products, cross-border payments, and design systems." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F9F7F2;
+    --cream-dark: #EFEBDF;
+    --ink: #2A2825;
+    --ink-soft: #4A4738;
+    --stone: #8C8676;
+    --meadow: #9D440C;
+    --meadow-light: #C46B2E;
+    --slate: #5A7085;
+    --slate-light: #A8B8C8;
+    --blush: #E8C4C0;
+    --hairline: rgba(42, 40, 37, 0.14);
+    --hairline-strong: rgba(42, 40, 37, 0.32);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--cream);
+    background-image: radial-gradient(circle at 1px 1px, rgba(42, 40, 37, 0.10) 1px, transparent 0);
+    background-size: 24px 24px;
+    color: var(--ink);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-size: 16px; line-height: 1.6; overflow-x: hidden; position: relative;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 200;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.15 0 0 0 0 0.14 0 0 0 0.14 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.5; mix-blend-mode: multiply;
+  }
+  ::selection { background: var(--meadow-light); color: var(--cream); }
+  a { color: inherit; text-decoration: none; }
+  .eyebrow {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--stone); font-weight: 500;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 22px 44px; display: flex; justify-content: space-between; align-items: center;
+    background: var(--cream);
+    backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    transition: box-shadow 0.4s ease;
+  }
+  .nav.scrolled { box-shadow: 0 4px 20px rgba(42, 40, 37, 0.08); }
+  .nav__brand {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 20px;
+    color: var(--ink); font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .nav__brand span { color: var(--meadow); }
+  .nav__links {
+    display: flex; gap: 36px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .nav__links a { position: relative; padding: 4px 0; color: var(--ink-soft); transition: color 0.3s ease; }
+  .nav__links a:hover { color: var(--meadow); }
+  .nav__links a::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+    background: var(--meadow); transform: scaleX(0); transform-origin: right; transition: transform 0.35s ease;
+  }
+  .nav__links a:hover::after { transform: scaleX(1); transform-origin: left; }
+  .nav__links a.is-current { color: var(--meadow); }
+  .nav__links a.is-current::after { transform: scaleX(1); }
+  .nav::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -22px; height: 22px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 22' preserveAspectRatio='xMidYMid slice'><path d='M0 0 L56 0 A28 22 0 0 1 0 0 Z' fill='%23F9F7F2'/></svg>");
+    background-size: 56px 22px; background-repeat: repeat-x; pointer-events: none;
+  }
+
+  /* HERO — Muse 2.0 inspired, full-bleed image */
+  .work-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .work-hero__bg {
+    position: absolute; inset: 0;
+    background: url('work-hero.png') center center / cover no-repeat;
+    filter: grayscale(30%);
+  }
+  .work-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(74, 71, 56, 0.45) 0%,
+      rgba(74, 71, 56, 0.55) 50%,
+      rgba(42, 40, 37, 0.65) 100%
+    );
+  }
+  .work-hero__content {
+    position: relative; z-index: 2;
+    max-width: 960px; padding: 0 44px;
+  }
+  .work-hero__eyebrow {
+    display: block; margin-bottom: 32px;
+    color: rgba(249, 247, 242, 0.6);
+  }
+  .work-hero__title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(42px, 7vw, 80px);
+    line-height: 1.02;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 40;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    margin-bottom: 44px;
+  }
+  .work-hero__title em {
+    font-style: italic; display: block;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .work-hero__cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 34px;
+    background: transparent;
+    border: 1px solid rgba(249, 247, 242, 0.5);
+    color: var(--cream);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500;
+    transition: background 0.4s ease, border-color 0.4s ease, transform 0.35s ease;
+  }
+  .work-hero__cta:hover {
+    background: var(--cream); color: var(--ink);
+    border-color: var(--cream); transform: translateY(-2px);
+  }
+
+  /* INTRO — two-column, Muse-style */
+  .work-intro {
+    background: var(--cream-dark);
+    padding: 100px 44px;
+    position: relative;
+  }
+  .work-intro__inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .work-intro__quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(24px, 2.8vw, 36px);
+    line-height: 1.35;
+    color: var(--ink);
+    font-variation-settings: "opsz" 36, "SOFT" 60;
+    font-weight: 300;
+  }
+  .work-intro__right {}
+  .work-intro__label {
+    margin-bottom: 28px;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .work-intro__list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .work-intro__list li {
+    display: flex; align-items: flex-start; gap: 14px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px; line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .work-intro__list li::before {
+    content: '✓';
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; margin-top: 2px;
+    font-size: 12px; font-weight: 700;
+    color: var(--meadow);
+  }
+
+  /* PROJECT GRID — 3 columns, equal sizes, 100vh rows */
+  .work-grid {
+    max-width: 1680px; margin: 0 auto;
+    padding: 0 44px 0;
+  }
+  .work-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+    height: 100vh;
+  }
+  .work-item {
+    position: relative; overflow: hidden;
+    background: var(--cream-dark);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    text-decoration: none; color: var(--cream);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .work-item:hover { transform: translateY(-4px); }
+  .work-item__bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .work-item:hover .work-item__bg { transform: scale(1.04); }
+  .work-item__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 25%, rgba(0,0,0,0.7) 100%);
+  }
+  .work-item__content {
+    position: relative; z-index: 2;
+    padding: 44px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    height: 100%;
+  }
+  .work-item__eyebrow {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(249,247,242,0.7); margin-bottom: 16px;
+  }
+  .work-item__title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 3vw, 48px); font-weight: 400;
+    line-height: 1.02; letter-spacing: -0.015em; margin-bottom: 18px;
+    font-variation-settings: "SOFT" 30, "opsz" 144;
+  }
+  .work-item__title em {
+    font-style: italic; color: var(--blush);
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+  }
+  .work-item__desc {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px; line-height: 1.65;
+    color: rgba(249,247,242,0.88);
+    max-width: 440px; margin-bottom: 24px;
+  }
+  .work-item__cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 14px;
+    color: var(--cream); padding: 10px 0 0;
+    border-top: 0.5px solid rgba(249,247,242,0.3);
+    width: fit-content; transition: color 0.3s ease;
+  }
+  .work-item:hover .work-item__cta { color: var(--blush); }
+  .work-item__cta svg { width: 14px; height: 14px; transition: transform 0.35s ease; }
+  .work-item:hover .work-item__cta svg { transform: translate(3px, -3px); }
+
+  /* Light card variant */
+  .work-item--light { color: var(--ink); }
+  .work-item--light .work-item__overlay {
+    background: linear-gradient(to bottom, rgba(239,235,223,0) 25%, rgba(239,235,223,0.88) 100%);
+  }
+  .work-item--light .work-item__eyebrow { color: var(--stone); }
+  .work-item--light .work-item__desc { color: var(--ink-soft); }
+  .work-item--light .work-item__title em { color: var(--meadow); }
+  .work-item--light .work-item__cta { color: var(--ink); border-top-color: var(--hairline-strong); }
+  .work-item--light:hover .work-item__cta { color: var(--meadow); }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0; transform: translateY(36px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* CONTACT — same as home page */
+  .contact {
+    background: transparent; padding: 80px 44px 40px; text-align: center; position: relative;
+  }
+  .contact__inner { max-width: 780px; margin: 0 auto; }
+  .contact__eyebrow { margin-bottom: 32px; }
+  .contact__title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 4.5vw, 60px); line-height: 1.04;
+    letter-spacing: -0.02em; color: var(--ink); margin-bottom: 28px; font-weight: 300;
+  }
+  .contact__title em {
+    font-style: italic; color: var(--meadow);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .contact__subhead {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5;
+    color: var(--ink-soft); max-width: 580px; margin: 0 auto 44px;
+  }
+  .contact__button {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 18px 36px; background: var(--meadow); color: var(--cream);
+    font-family: 'Instrument Sans', sans-serif; font-size: 12px;
+    letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500;
+    text-decoration: none; border-radius: 100px; border: 0.5px solid var(--meadow);
+    transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+  }
+  .contact__button:hover { background: var(--ink); border-color: var(--ink); transform: translateY(-2px); }
+  .contact__button svg { transition: transform 0.35s ease; }
+  .contact__button:hover svg { transform: translate(3px, -3px); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--meadow); color: var(--cream);
+    position: relative; overflow: clip; padding: 0;
+  }
+  .footer__upper {
+    padding: 96px 44px 72px; max-width: 1680px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1.8fr;
+    gap: 56px; align-items: start;
+  }
+  .footer__col-label {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--cream); opacity: 0.5; margin: 0 0 22px; font-weight: 500;
+  }
+  .footer__col-links {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .footer__col-links a {
+    font-family: 'Instrument Sans', sans-serif; font-size: 13px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream);
+    font-weight: 500; display: inline-block; width: fit-content;
+    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .footer__col-links a:hover { color: var(--blush); transform: translateX(5px); }
+
+  .footer__newsletter { padding-left: 8px; }
+  .footer__newsletter-form {
+    display: flex; align-items: center;
+    background: rgba(249, 247, 242, 0.05);
+    border: 0.5px solid rgba(249, 247, 242, 0.18);
+    border-radius: 999px; padding: 4px 4px 4px 20px; max-width: 420px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  .footer__newsletter-form:focus-within {
+    border-color: rgba(249, 247, 242, 0.4);
+    background: rgba(249, 247, 242, 0.09);
+  }
+  .footer__newsletter-input {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--cream); font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px; padding: 10px 8px; min-width: 0;
+  }
+  .footer__newsletter-input::placeholder { color: var(--cream); opacity: 0.4; }
+  .footer__newsletter-submit {
+    background: var(--ink); border: none; color: var(--cream);
+    width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+    flex-shrink: 0;
+  }
+  .footer__newsletter-submit:hover { background: var(--cream); color: var(--meadow); transform: scale(1.08); }
+  .footer__newsletter-submit svg { width: 14px; height: 14px; }
+  .footer__newsletter-hint {
+    margin-top: 18px; font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 13px; line-height: 1.55; color: var(--cream); opacity: 0.6;
+    max-width: 420px; font-variation-settings: "opsz" 14, "SOFT" 60;
+  }
+  .footer__socials { margin-top: 28px; display: flex; gap: 8px; }
+  .footer__social {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 0.5px solid rgba(249, 247, 242, 0.22);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--cream); transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .footer__social:hover { background: var(--ink); border-color: var(--ink); transform: translateY(-4px); }
+  .footer__social svg { width: 15px; height: 15px; }
+  .footer__copyright {
+    margin-top: 26px; font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--cream); opacity: 0.4;
+  }
+  .footer__nameplate-wrap { position: relative; padding: 40px 32px 0; overflow: visible; }
+  .footer__nameplate {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(120px, 22vw, 360px); line-height: 0.78; font-weight: 900;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 900;
+    color: var(--cream); text-align: center; letter-spacing: -0.02em;
+    margin: 0; user-select: none; white-space: nowrap; overflow: visible; padding-bottom: 0;
+  }
+  .footer__stamp {
+    position: absolute; right: 6vw; top: -18px;
+    width: clamp(110px, 12vw, 160px); height: clamp(110px, 12vw, 160px);
+    z-index: 3; transform: rotate(-8deg);
+    filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.4));
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .footer__stamp:hover { transform: rotate(-8deg) scale(1.08); }
+  .footer__stamp-ring { transform-origin: 100px 100px; animation: stamp-rotate 24s linear infinite; }
+  @keyframes stamp-rotate { to { transform: rotate(360deg); } }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .nav { padding: 18px 24px; }
+    .nav__links { display: none; }
+    .work-hero__content { padding: 0 24px; }
+    .work-hero__title { font-size: clamp(32px, 9vw, 52px); }
+    .work-intro { padding: 60px 24px; }
+    .work-intro__inner { grid-template-columns: 1fr; gap: 40px; }
+    .work-grid { padding: 0 24px; }
+    .work-row { grid-template-columns: 1fr; height: auto; gap: 10px; margin-bottom: 10px; }
+    .work-item { min-height: 75vh; }
+    .work-item__content { padding: 28px; }
+    .contact { padding: 48px 24px 32px; }
+    .contact__button { padding: 14px 24px; font-size: 11px; }
+    .footer__upper { grid-template-columns: 1fr 1fr; gap: 40px 24px; padding: 72px 24px 48px; }
+    .footer__newsletter { padding-left: 0; grid-column: 1 / -1; }
+    .footer__nameplate { font-size: 28vw; }
+    .footer__stamp { right: 4vw; top: -8px; width: 92px; height: 92px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__brand">Momo<span>.</span></a>
+  <div class="nav__links">
+    <a href="work.html" class="is-current">Work</a>
+    <a href="index.html#studio">About</a>
+    <a href="index.html#journal">Journal</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="work-hero">
+  <div class="work-hero__bg"></div>
+  <div class="work-hero__overlay"></div>
+  <div class="work-hero__content reveal">
+    <span class="eyebrow work-hero__eyebrow">Senior product designer · Fintech & AI-native products</span>
+    <h1 class="work-hero__title">
+      Products designed to move money,<br>
+      <em>automate complexity, and earn trust.</em>
+    </h1>
+    <a href="#work" class="work-hero__cta">View selected work</a>
+  </div>
+</header>
+
+<section class="work-intro">
+  <div class="work-intro__inner reveal">
+    <p class="work-intro__quote">
+      Every product here solved a real problem for a real business — compliance flows that don't feel hostile, AI that knows when to step back, and design systems that ship faster than the ones before them.
+    </p>
+    <div class="work-intro__right">
+      <p class="eyebrow work-intro__label">What you'll find in this work</p>
+      <ul class="work-intro__list">
+        <li>Cross-border payment experiences designed for trust and regulatory compliance across GBP, NGN, and multi-currency corridors.</li>
+        <li>AI-native document automation with human-in-the-loop UX — where the machine suggests and the human decides.</li>
+        <li>Design systems built from scratch with token architecture, variant logic, and documentation engineering actually reads.</li>
+        <li>Conversion-driven fintech marketing sites where every section answers the next objection before users think of it.</li>
+        <li>Mobile-first product design across digital banking, payment infrastructure, and consumer applications.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="work-grid" id="work">
+
+  <!-- ROW 1 -->
+  <div class="work-row reveal">
+    <a href="#broadmoney" class="work-item">
+      <div class="work-item__bg" style="background: linear-gradient(135deg, #9D440C 0%, #6B2D06 100%);"></div>
+      <div class="work-item__overlay"></div>
+      <div class="work-item__content">
+        <span class="work-item__eyebrow">Fintech · Cross-border payments · 2025</span>
+        <h2 class="work-item__title">Broad Money <em>Payment</em></h2>
+        <p class="work-item__desc">Redesigned the entire cross-border payment experience — cutting drop-off rates and bringing GBP-to-NGN remittance flows into a single, trust-building interface that handles compliance without hostility.</p>
+        <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+    <a href="#doxflowy" class="work-item">
+      <div class="work-item__bg" style="background: linear-gradient(135deg, #5A7085 0%, #3D4E5F 100%);"></div>
+      <div class="work-item__overlay"></div>
+      <div class="work-item__content">
+        <span class="work-item__eyebrow">AI · Document automation · 2023 — 2026</span>
+        <h2 class="work-item__title">Doxflowy</h2>
+        <p class="work-item__desc">Three years building human-in-the-loop document automation — where AI suggests, humans decide, and nothing ships without review. Enterprise-grade UX replacing entire legal workflows.</p>
+        <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="work-row reveal">
+    <a href="#help2pay" class="work-item">
+      <div class="work-item__bg" style="background: linear-gradient(135deg, #C4653A 0%, #9D440C 100%);"></div>
+      <div class="work-item__overlay"></div>
+      <div class="work-item__content">
+        <span class="work-item__eyebrow">Fintech · Payment infrastructure · 2024</span>
+        <h2 class="work-item__title">Help2Pay</h2>
+        <p class="work-item__desc">Payment infrastructure that needed to feel simple despite routing money through complex settlement systems. Merchant dashboards and end-user flows that turned a back-office tool into something people wanted to open.</p>
+        <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+    <a href="#wosiwosi" class="work-item work-item--light">
+      <div class="work-item__bg" style="background: linear-gradient(135deg, #EFEBDF 0%, #D8D0B8 100%);"></div>
+      <div class="work-item__overlay"></div>
+      <div class="work-item__content">
+        <span class="work-item__eyebrow">Brand identity · 2024</span>
+        <h2 class="work-item__title">Wosi <em>Wosi</em></h2>
+        <p class="work-item__desc">Complete brand identity from scratch — visual system, packaging direction, and a digital presence that carries the brand voice from first impression to repeat purchase. Handmade feel, premium positioning.</p>
+        <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ROW 3 -->
+  <div class="work-row reveal">
+    <a href="#taxclarity" class="work-item">
+      <div class="work-item__bg" style="background: linear-gradient(135deg, #2A2825 0%, #14120F 100%);"></div>
+      <div class="work-item__overlay"></div>
+      <div class="work-item__content">
+        <span class="work-item__eyebrow">Website · Fintech · 2024</span>
+        <h2 class="work-item__title">Tax <em>Clarity</em></h2>
+        <p class="work-item__desc">A fintech marketing site with one job — explain a complex tax product clearly enough that high-net-worth users trust it with their returns. Every section answers the next objection before they think of it.</p>
+        <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+    <a href="#stacklayer" class="work-item">
+      <div class="work-item__bg" style="background: linear-gradient(135deg, #A8B8C8 0%, #6B7A8F 100%);"></div>
+      <div class="work-item__overlay"></div>
+      <div class="work-item__content">
+        <span class="work-item__eyebrow">Design system · 2025</span>
+        <h2 class="work-item__title">Stack <em>Layer</em></h2>
+        <p class="work-item__desc">Built a design system from zero — not just components, but the decision framework behind them. Token architecture, variant logic, and documentation engineering actually reads. The foundation that makes every product ship faster.</p>
+        <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="contact__inner reveal">
+    <div class="eyebrow contact__eyebrow">Let's work together</div>
+    <h2 class="contact__title">
+      Let's build something<br>
+      <em>worth shipping.</em>
+    </h2>
+    <p class="contact__subhead">Currently open to senior product design roles — fintech, AI-native products, or complex digital systems. Remote or relocation. Let's talk about what you're building.</p>
+    <a class="contact__button" href="mailto:hello@morayo.design">
+      <span>Get in touch</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__upper">
+    <div class="footer__col">
+      <p class="footer__col-label">Work</p>
+      <ul class="footer__col-links">
+        <li><a href="#broadmoney">Broad Money</a></li>
+        <li><a href="#doxflowy">Doxflowy</a></li>
+        <li><a href="#help2pay">Help2Pay</a></li>
+        <li><a href="#taxclarity">Tax Clarity</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <p class="footer__col-label">Studio</p>
+      <ul class="footer__col-links">
+        <li><a href="index.html#studio">About</a></li>
+        <li><a href="index.html#community">Community</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="cv.pdf" download>Download CV</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <p class="footer__col-label">Elsewhere</p>
+      <ul class="footer__col-links">
+        <li><a href="#" rel="noopener">LinkedIn</a></li>
+        <li><a href="#" rel="noopener">GitHub</a></li>
+        <li><a href="#" rel="noopener">Dribbble</a></li>
+        <li><a href="#" rel="noopener">Read</a></li>
+      </ul>
+    </div>
+    <div class="footer__col footer__newsletter">
+      <p class="footer__col-label">Studio Notes</p>
+      <form class="footer__newsletter-form" onsubmit="event.preventDefault();">
+        <input type="email" class="footer__newsletter-input" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit" class="footer__newsletter-submit" aria-label="Subscribe">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+      <p class="footer__newsletter-hint">Occasional writing on craft, AI-native design, and building for markets Silicon Valley overlooks.</p>
+      <div class="footer__socials">
+        <a href="#" class="footer__social" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></a>
+        <a href="#" class="footer__social" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.69-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.17.92-.26 1.9-.39 2.88-.39s1.96.13 2.88.39c2.2-1.48 3.17-1.17 3.17-1.17.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.07 0 4.41-2.69 5.39-5.25 5.67.41.35.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.14 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg></a>
+        <a href="#" class="footer__social" aria-label="Dribbble"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm7.94 5.53c1.44 1.75 2.31 3.98 2.31 6.47 0 .16-.01.32-.02.48-.31-.06-3.4-.69-6.52-.3-.07-.17-.14-.34-.22-.5-.2-.47-.42-.94-.63-1.39 3.47-1.42 5.05-3.46 5.08-3.5v.74zm-7.94-3.53c2.68 0 5.13 1 7.01 2.65-.03.04-1.46 2.06-4.83 3.31-1.55-2.84-3.27-5.17-3.53-5.52.44-.09.89-.15 1.35-.15zm-3.44.71c.25.34 1.94 2.68 3.51 5.46-4.42 1.18-8.32 1.16-8.74 1.15C4.4 5.98 6.98 3.44 8.56 2.71zM2.15 12.02c0-.11 0-.22.01-.32.42.01 5 .07 9.73-1.35.27.53.53 1.07.77 1.61-.13.04-.25.08-.38.12-4.89 1.58-7.5 5.89-7.72 6.25C2.87 16.84 2.15 14.49 2.15 12.02zm3.88 7.75c.13-.22 2.3-4.44 7.6-6.29.02-.01.04-.02.06-.02 1.33 3.44 1.87 6.33 2.01 7.16-1.34.79-2.9 1.24-4.55 1.24-1.87-.01-3.62-.6-5.12-1.66v-.43zm11.72-.87c-.09-.55-.59-3.32-1.83-6.71 2.95-.47 5.53.3 5.85.4-.42 2.7-1.98 5.03-4.02 6.31z"/></svg></a>
+        <a href="mailto:hello@morayo.design" class="footer__social" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      </div>
+      <p class="footer__copyright">&copy; MMXXVI · Made in Lagos · Est. 2019</p>
+    </div>
+  </div>
+  <div class="footer__nameplate-wrap">
+    <svg class="footer__stamp" viewBox="0 0 200 200" aria-label="Morayo Studio stamp">
+      <defs><path id="footerStampCircle" d="M 100 100 m -68 0 a 68 68 0 1 1 136 0 a 68 68 0 1 1 -136 0" fill="none"/></defs>
+      <circle cx="100" cy="100" r="88" fill="#2A2825"/>
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#F9F7F2" stroke-width="0.5" stroke-dasharray="1 3" opacity="0.5"/>
+      <g class="footer__stamp-ring">
+        <text font-family="Instrument Sans, sans-serif" font-size="13" fill="#F9F7F2" letter-spacing="2.4" font-weight="500">
+          <textPath href="#footerStampCircle" startOffset="0">MORAYO · STUDIO · EST. 2019 · MADE IN LAGOS · </textPath>
+        </text>
+      </g>
+      <text x="100" y="108" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="34" fill="#F9F7F2" font-weight="500">M<tspan fill="#E8C4C0">.</tspan></text>
+      <circle cx="100" cy="128" r="1.6" fill="#F9F7F2" opacity="0.65"/>
+    </svg>
+    <h2 class="footer__nameplate" aria-label="Morayo">MORAYO</h2>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var nav = document.getElementById("nav");
+  var ticking = false;
+  function updateNav() {
+    if (window.scrollY > 60) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+    ticking = false;
+  }
+  window.addEventListener("scroll", function() {
+    if (!ticking) { window.requestAnimationFrame(updateNav); ticking = true; }
+  }, { passive: true });
+  updateNav();
+})();
+
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    reveals.forEach(function(el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
