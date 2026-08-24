@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BroadMoney Payment — Case Study — Morayo</title>
+<meta name="description" content="Case study: Redesigning cross-border payment UX for BroadMoney — 150+ screens, progressive KYC, and trust-building design that cut drop-off by 55%." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F9F7F2; --cream-dark: #EFEBDF; --ink: #2A2825; --ink-soft: #4A4738;
+    --stone: #8C8676; --meadow: #9D440C; --meadow-light: #C46B2E;
+    --slate: #5A7085; --blush: #E8C4C0;
+    --hairline: rgba(42, 40, 37, 0.14); --hairline-strong: rgba(42, 40, 37, 0.32);
+    --bmp-green: #1B6B3A; --bmp-green-light: #E8F5EC;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--cream);
+    background-image: radial-gradient(circle at 1px 1px, rgba(42, 40, 37, 0.10) 1px, transparent 0);
+    background-size: 24px 24px;
+    color: var(--ink); font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-size: 16px; line-height: 1.6; overflow-x: hidden;
+  }
+  body::after {
+    content: ''; position: fixed; top: 0; bottom: 0;
+    left: 50%; transform: translateX(-50%);
+    width: min(920px, calc(100% - 88px));
+    pointer-events: none; z-index: 1;
+    border-left: 0.5px solid rgba(42, 40, 37, 0.08);
+    border-right: 0.5px solid rgba(42, 40, 37, 0.08);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 200;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.15 0 0 0 0 0.14 0 0 0 0.14 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.5; mix-blend-mode: multiply;
+  }
+  ::selection { background: var(--meadow-light); color: var(--cream); }
+  a { color: inherit; text-decoration: none; }
+  .eyebrow { font-family: 'Instrument Sans', sans-serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--stone); font-weight: 500; }
+
+  /* NAV */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 44px; display: flex; justify-content: space-between; align-items: center; background: var(--cream); backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); transition: box-shadow 0.4s ease; }
+  .nav.scrolled { box-shadow: 0 4px 20px rgba(42, 40, 37, 0.08); }
+  .nav__brand { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; color: var(--ink); font-variation-settings: "opsz" 144, "SOFT" 100; }
+  .nav__brand span { color: var(--meadow); }
+  .nav__links { display: flex; gap: 36px; font-family: 'Instrument Sans', sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  .nav__links a { position: relative; padding: 4px 0; transition: color 0.3s ease; }
+  .nav__links a:hover { color: var(--meadow); }
+
+  /* SPLIT HERO */
+  .cs-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 66px; }
+  .cs-hero__text { display: flex; flex-direction: column; justify-content: center; padding: 80px 56px 60px; }
+  .cs-hero__thumb { width: 100px; height: 72px; border-radius: 6px; overflow: hidden; margin-bottom: 36px; border: 0.5px solid var(--hairline); box-shadow: 0 4px 16px rgba(0,0,0,0.06); background: var(--cream-dark); }
+  .cs-hero__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cs-hero__eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+  .cs-hero__title { font-family: 'Instrument Sans', sans-serif; font-size: clamp(36px, 5vw, 58px); font-weight: 700; line-height: 1.0; letter-spacing: -0.02em; text-transform: uppercase; color: var(--ink); margin-bottom: 36px; }
+  .cs-hero__title em { display: block; font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; text-transform: none; font-variation-settings: "opsz" 144, "SOFT" 80; font-size: 1.05em; letter-spacing: -0.01em; }
+  .cs-hero__subtitle { font-size: 14px; line-height: 1.6; color: var(--ink-soft); max-width: 380px; margin-bottom: 44px; }
+  .cs-hero__cta { display: inline-flex; align-items: center; gap: 12px; padding: 14px 32px; border: 0.5px solid var(--ink); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); transition: background 0.35s ease, color 0.35s ease; width: fit-content; }
+  .cs-hero__cta:hover { background: var(--ink); color: var(--cream); }
+  .cs-hero__metrics { display: flex; gap: 32px; margin-top: auto; padding-top: 48px; border-top: 0.5px solid var(--hairline); }
+  .cs-hero__metric-value { font-family: 'Fraunces', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; color: var(--meadow); font-variation-settings: "SOFT" 40; line-height: 1.1; }
+  .cs-hero__metric-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-top: 6px; }
+  .cs-hero__image { position: relative; overflow: hidden; background: #C9BEA8; }
+  .cs-hero__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* TOOLS MARQUEE */
+  .cs-tools { background: rgba(27, 107, 58, 0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 0.5px solid rgba(27, 107, 58, 0.5); border-bottom: 0.5px solid rgba(27, 107, 58, 0.5); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+  .cs-tools__track { display: inline-flex; gap: 48px; align-items: center; animation: toolsScroll 30s linear infinite; }
+  .cs-tools__item { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--cream); text-transform: uppercase; flex-shrink: 0; }
+  .cs-tools__dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(249, 247, 242, 0.4); flex-shrink: 0; }
+  @keyframes toolsScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* LAYOUT */
+  .cs { max-width: 920px; margin: 0 auto; padding: 0 44px; }
+  .cs-section { padding: 72px 0; border-top: 0.5px solid var(--hairline); }
+  .cs-section:first-of-type { border-top: none; }
+  .cs-section__header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .cs-section__icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--meadow); }
+  .cs-section__label { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .cs-section p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); max-width: 760px; }
+  .cs-section p + p { margin-top: 16px; }
+
+  /* QUICK FACTS */
+  .cs-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 32px 0; }
+  .cs-fact { text-align: center; padding: 20px 12px; border: 0.5px solid var(--hairline); border-radius: 12px; }
+  .cs-fact__value { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; color: var(--ink); }
+  .cs-fact__label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); margin-top: 4px; }
+
+  /* PHONE MOCKUPS */
+  .cs-screens { margin: 0; border-top: 0.5px solid var(--hairline-strong); border-bottom: 0.5px solid var(--hairline-strong); padding: 80px 44px; display: flex; justify-content: center; align-items: flex-start; gap: 32px; flex-wrap: wrap; position: relative; }
+  .cs-screens--tight { gap: 20px; }
+  .cs-screens--dark { background: var(--ink); }
+  .cs-screens--green { background: var(--bmp-green); }
+  .cs-screens--cream { background: var(--cream-dark); border-color: var(--hairline); }
+  .cs-screens__label { width: 100%; text-align: left; margin-bottom: 12px; }
+  .cs-screen-label { display: inline-block; padding: 6px 16px; border-radius: 6px; background: var(--cream-dark); color: var(--ink); border: 0.5px solid var(--hairline-strong); font-size: 12px; font-weight: 600; }
+  .cs-screens--dark .cs-screen-label { background: rgba(255,255,255,0.1); color: var(--cream); border-color: rgba(255,255,255,0.15); }
+  .cs-screens--green .cs-screen-label { background: rgba(255,255,255,0.12); color: var(--cream); border-color: rgba(255,255,255,0.2); }
+
+  .cs-phone { width: 220px; flex-shrink: 0; aspect-ratio: 9 / 19.5; background: #1A1A1A; border-radius: 36px; box-shadow: 0 24px 60px rgba(0,0,0,0.15), 0 0 0 1.5px #333; overflow: hidden; position: relative; z-index: 2; }
+  .cs-phone::before { content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 64px; height: 20px; background: #1A1A1A; border-radius: 16px; z-index: 10; }
+  .cs-phone__screen { position: absolute; inset: 3px; border-radius: 29px; overflow: hidden; background: #fff; }
+  .cs-phone__screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+  /* BEFORE/AFTER */
+  .cs-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin: 32px 0; padding: 48px 0; }
+  .cs-compare__side { text-align: center; }
+  .cs-compare__badge { display: inline-block; padding: 6px 20px; border-radius: 100px; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 20px; }
+  .cs-compare__badge--before { background: #FEE; color: #B22; border: 0.5px solid #E88; }
+  .cs-compare__badge--after { background: var(--bmp-green-light); color: var(--bmp-green); border: 0.5px solid #A6D9B8; }
+  .cs-compare__phone { width: 200px; margin: 0 auto; aspect-ratio: 9 / 19.5; background: #1A1A1A; border-radius: 32px; box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 0 0 1.5px #333; overflow: hidden; position: relative; }
+  .cs-compare__phone::before { content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 56px; height: 18px; background: #1A1A1A; border-radius: 14px; z-index: 10; }
+  .cs-compare__phone-screen { position: absolute; inset: 3px; border-radius: 27px; overflow: hidden; background: #fff; }
+  .cs-compare__phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .cs-compare__caption { margin-top: 16px; font-size: 12px; color: var(--stone); line-height: 1.5; max-width: 260px; margin-left: auto; margin-right: auto; }
+
+  /* FULL-WIDTH IMAGE */
+  .cs-fullwidth { margin: 0; padding: 0; border-top: 0.5px solid var(--hairline-strong); border-bottom: 0.5px solid var(--hairline-strong); overflow: hidden; position: relative; }
+  .cs-fullwidth img { width: 100%; display: block; }
+  .cs-fullwidth__label { position: absolute; top: 20px; left: 20px; z-index: 5; }
+
+  /* ANALYTICS STRIP */
+  .cs-analytics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
+  .cs-analytics__card { padding: 24px 16px; border: 0.5px solid var(--hairline); border-radius: 12px; text-align: center; background: var(--cream); }
+  .cs-analytics__icon { width: 32px; height: 32px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: var(--bmp-green-light); color: var(--bmp-green); }
+  .cs-analytics__icon svg { width: 18px; height: 18px; }
+  .cs-analytics__value { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 400; color: var(--meadow); font-variation-settings: "SOFT" 40; }
+  .cs-analytics__label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); margin-top: 4px; }
+
+  /* ROLE CHIPS */
+  .cs-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+  .cs-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 100px; border: 0.5px solid var(--hairline-strong); font-size: 13px; color: var(--ink-soft); background: var(--cream); }
+
+  /* DECISIONS */
+  .cs-decisions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 32px 0; }
+  .cs-decision { padding: 32px; border-radius: 12px; background: var(--cream-dark); border: 0.5px solid var(--hairline-strong); }
+  .cs-decision__title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .cs-decision__title svg { width: 20px; height: 20px; color: var(--meadow); flex-shrink: 0; }
+  .cs-decision__desc { font-size: 13px; line-height: 1.65; color: var(--ink-soft); }
+
+  /* OUTCOME */
+  .cs-outcome { padding: 72px 44px; background: var(--ink); color: var(--cream); position: relative; border-top: 0.5px solid var(--hairline-strong); }
+  .cs-outcome::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0); background-size: 20px 20px; }
+  .cs-outcome__inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
+  .cs-outcome__header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .cs-outcome__label { font-size: 16px; font-weight: 600; color: var(--cream); }
+  .cs-outcome p { font-size: 15px; line-height: 1.75; color: rgba(249,247,242,0.8); max-width: 760px; }
+  .cs-outcome p + p { margin-top: 12px; }
+  .cs-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .cs-metric { text-align: center; padding: 28px 16px; border: 0.5px solid rgba(249,247,242,0.15); border-radius: 12px; }
+  .cs-metric__value { font-family: 'Fraunces', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 400; color: var(--cream); font-variation-settings: "SOFT" 50; }
+  .cs-metric__label { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(249,247,242,0.5); margin-top: 8px; }
+
+  /* PREV/NEXT NAV */
+  .cs-nav { max-width: 920px; margin: 0 auto; padding: 72px 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cs-nav__link { padding: 32px; border: 0.5px solid var(--hairline); border-radius: 12px; transition: border-color 0.3s ease, transform 0.35s ease; }
+  .cs-nav__link:hover { border-color: var(--meadow); transform: translateY(-3px); }
+  .cs-nav__dir { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--stone); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .cs-nav__project { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 400; color: var(--ink); font-variation-settings: "SOFT" 40; }
+  .cs-nav__link--next { text-align: right; }
+  .cs-nav__link--next .cs-nav__dir { justify-content: flex-end; }
+
+  /* CONTACT */
+  .cs-contact { background: transparent; padding: 100px 44px 60px; text-align: center; border-top: 0.5px solid var(--hairline-strong); }
+  .cs-contact__inner { max-width: 780px; margin: 0 auto; }
+  .cs-contact__title { font-family: 'Fraunces', serif; font-size: clamp(36px, 4.5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 28px; font-weight: 300; }
+  .cs-contact__title em { font-style: italic; color: var(--meadow); font-variation-settings: "opsz" 144, "SOFT" 100; }
+  .cs-contact__subhead { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: var(--ink-soft); max-width: 580px; margin: 0 auto 44px; }
+  .cs-contact__button { display: inline-flex; align-items: center; gap: 12px; padding: 18px 36px; background: var(--meadow); color: var(--cream); font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; border-radius: 100px; border: 0.5px solid var(--meadow); transition: background 0.35s ease, transform 0.35s ease; }
+  .cs-contact__button:hover { background: var(--ink); border-color: var(--ink); transform: translateY(-2px); }
+
+  /* FOOTER */
+  .cs-footer { background: var(--meadow); color: var(--cream); overflow: clip; }
+  .cs-footer__upper { padding: 96px 44px 72px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr 1.8fr; gap: 56px; }
+  .cs-footer__col-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--cream); opacity: 0.5; margin: 0 0 22px; font-weight: 500; }
+  .cs-footer__col-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .cs-footer__col-links a { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); font-weight: 500; display: inline-block; width: fit-content; transition: color 0.3s ease, transform 0.35s ease; }
+  .cs-footer__col-links a:hover { color: var(--blush); transform: translateX(5px); }
+  .cs-footer__form { display: flex; align-items: center; background: rgba(249, 247, 242, 0.05); border: 0.5px solid rgba(249, 247, 242, 0.18); border-radius: 999px; padding: 4px 4px 4px 20px; max-width: 420px; transition: border-color 0.3s ease; }
+  .cs-footer__form:focus-within { border-color: rgba(249, 247, 242, 0.4); }
+  .cs-footer__form input { flex: 1; background: transparent; border: none; outline: none; color: var(--cream); font-size: 13px; padding: 10px 8px; min-width: 0; }
+  .cs-footer__form input::placeholder { color: var(--cream); opacity: 0.4; }
+  .cs-footer__form button { background: var(--ink); border: none; color: var(--cream); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.35s ease, background 0.3s ease; flex-shrink: 0; }
+  .cs-footer__form button:hover { background: var(--cream); color: var(--meadow); transform: scale(1.08); }
+  .cs-footer__hint { margin-top: 18px; font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; line-height: 1.55; color: var(--cream); opacity: 0.6; max-width: 420px; font-variation-settings: "opsz" 14, "SOFT" 60; }
+  .cs-footer__copy { margin-top: 26px; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cream); opacity: 0.4; }
+  .cs-footer__nameplate-wrap { position: relative; padding: 40px 32px 0; }
+  .cs-footer__nameplate { font-family: 'Fraunces', serif; font-size: clamp(120px, 22vw, 360px); line-height: 0.78; font-weight: 900; font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 900; color: var(--cream); text-align: center; letter-spacing: -0.02em; user-select: none; white-space: nowrap; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav { padding: 18px 24px; }
+    .nav__links { display: none; }
+    .cs { padding: 0 24px; }
+    .cs-hero { grid-template-columns: 1fr; min-height: auto; }
+    .cs-hero__text { padding: 120px 24px 48px; }
+    .cs-hero__image { min-height: 50vh; }
+    .cs-hero__metrics { gap: 20px; flex-wrap: wrap; }
+    .cs-hero__title { font-size: clamp(32px, 10vw, 48px); }
+    .cs-facts { grid-template-columns: 1fr 1fr; }
+    .cs-screens { padding: 48px 24px; gap: 20px; }
+    .cs-phone { width: 160px; }
+    .cs-compare { grid-template-columns: 1fr; gap: 32px; }
+    .cs-compare__phone { width: 180px; }
+    .cs-decisions { grid-template-columns: 1fr; }
+    .cs-analytics { grid-template-columns: 1fr 1fr; }
+    .cs-outcome { padding: 48px 24px; }
+    .cs-metrics { grid-template-columns: 1fr; }
+    .cs-nav { padding: 48px 24px; grid-template-columns: 1fr; }
+    .cs-contact { padding: 60px 24px 40px; }
+    .cs-footer__upper { grid-template-columns: 1fr 1fr; gap: 40px 24px; padding: 72px 24px 48px; }
+    .cs-footer__nameplate { font-size: 28vw; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__brand">Momo<span>.</span></a>
+  <div class="nav__links">
+    <a href="work.html">Work</a>
+    <a href="index.html#studio">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- SPLIT HERO -->
+<header class="cs-hero">
+  <div class="cs-hero__text reveal">
+    <div class="cs-hero__thumb"><img src="bmp-home-gbp.jpg" alt="BroadMoney app preview" /></div>
+    <div class="cs-hero__eyebrow"><span class="eyebrow">Case Study</span></div>
+    <h1 class="cs-hero__title">BROADMONEY<br/><em>Payment</em></h1>
+    <p class="cs-hero__subtitle">Redesigning cross-border remittance for the UK–Nigeria corridor. 150+ screens. Progressive KYC. Trust-building UX that moved the business forward.</p>
+    <a href="#problem" class="cs-hero__cta">Discover</a>
+    <div class="cs-hero__metrics">
+      <div class="cs-hero__metric"><div class="cs-hero__metric-value">55%→22%</div><div class="cs-hero__metric-label">Drop-off rate</div></div>
+      <div class="cs-hero__metric"><div class="cs-hero__metric-value">2.3×</div><div class="cs-hero__metric-label">Transactions</div></div>
+      <div class="cs-hero__metric"><div class="cs-hero__metric-value">71%</div><div class="cs-hero__metric-label">Rage tap reduction</div></div>
+      <div class="cs-hero__metric"><div class="cs-hero__metric-value">150+</div><div class="cs-hero__metric-label">UI screens</div></div>
+    </div>
+  </div>
+  <div class="cs-hero__image"><img src="work-hero.jpg" alt="BroadMoney app in iPhone mockup" /></div>
+</header>
+
+<!-- TOOLS MARQUEE -->
+<div class="cs-tools">
+  <div class="cs-tools__track">
+    <span class="cs-tools__item">Figma</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Microsoft Clarity</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">UXCam</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">PostHog</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">ProtoPie</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Miro</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Google Sheets</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Loom</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Notion</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Slack</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Figma</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Microsoft Clarity</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">UXCam</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">PostHog</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">ProtoPie</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Miro</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Google Sheets</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Loom</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Notion</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Slack</span><span class="cs-tools__dot"></span>
+  </div>
+</div>
+
+<!-- QUICK FACTS -->
+<div class="cs reveal">
+  <div class="cs-facts">
+    <div class="cs-fact"><div class="cs-fact__value">Full-time</div><div class="cs-fact__label">Engagement</div></div>
+    <div class="cs-fact"><div class="cs-fact__value">Oct 2024–Present</div><div class="cs-fact__label">Timeline</div></div>
+    <div class="cs-fact"><div class="cs-fact__value">Solo</div><div class="cs-fact__label">Design Team</div></div>
+    <div class="cs-fact"><div class="cs-fact__value">Mobile + Web</div><div class="cs-fact__label">Platform</div></div>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<div class="cs" id="problem">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+      <span class="cs-section__label">The problem</span>
+    </div>
+    <p>BroadMoney (formerly BroadMoney Transfer) had a functioning cross-border payment app for UK-to-Nigeria remittances — but 54.75% of users were dropping off before completing their first transaction. Microsoft Clarity data revealed the root causes: rage taps on the marketing site hit 0.17%, dead clicks sat at 9.19%, and the pre-redesign mobile app front-loaded all KYC requirements into a single hostile wall of forms.</p>
+    <p>Users who had already committed to sending money to family in Nigeria were abandoning at the verification step. The dashboard displayed wallet balances in cramped cards that couldn't show full amounts. Transaction history lacked status indicators — no way to distinguish pending, successful, or failed transfers. The business needed a full redesign to reduce drop-off, build user trust, and increase first-transaction completion.</p>
+  </section>
+</div>
+
+<!-- ROLE & CONSTRAINTS -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <span class="cs-section__label">My role & constraints</span>
+    </div>
+    <div class="cs-chips">
+      <span class="cs-chip">Product Designer</span>
+      <span class="cs-chip">UX Research</span>
+      <span class="cs-chip">Design System</span>
+      <span class="cs-chip">Mobile + Web UI</span>
+      <span class="cs-chip">User Analytics</span>
+    </div>
+    <p>Solo designer working directly with the founder and a two-person engineering team. I owned the full design process end-to-end — research, information architecture, high-fidelity UI across 150+ screens, design system, and post-launch analytics monitoring. No prior design system existed. Every screen had to satisfy FCA compliance requirements for cross-border money transfers. I set up Microsoft Clarity for website analytics tracking rage taps, dead clicks, quick backs, and scroll depth, and UXCam and PostHog for mobile app behavioral analytics — session recordings, funnel analysis, and heatmaps.</p>
+    <p>I conducted competitive UX analysis against Wise and Lemfi alongside usability testing with 8 participants (4 internal, 4 external), directly informing iterations that tightened flow efficiency across onboarding and send-money journeys.</p>
+  </section>
+</div>
+
+<!-- ONBOARDING FLOW -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg></div>
+      <span class="cs-section__label">Onboarding — first impressions that convert</span>
+    </div>
+    <p>The onboarding sequence sets the tone for the entire product relationship. I designed a three-step introduction that communicates the app's core value proposition — easy money transfer, security, and low fees — using real photography of the target demographic to build immediate trust and cultural familiarity. Each screen leads with a clear headline and two-action pattern: "Next" to continue exploring, "Skip" for returning users who want to get straight to registration.</p>
+  </section>
+</div>
+
+<div class="cs-screens cs-screens--green reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Onboarding Screens</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-onboard-1.jpg" alt="Onboarding — Easy Money Transfer" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-onboard-2.jpg" alt="Onboarding — Security" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-onboard-3.jpg" alt="Onboarding — Low Fees" loading="lazy" /></div></div>
+</div>
+
+<!-- REGISTRATION & AUTH -->
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Registration & Authentication</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-welcome.jpg" alt="Welcome screen" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-login.jpg" alt="Login screen" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-otp.jpg" alt="OTP verification" loading="lazy" /></div></div>
+</div>
+
+<!-- KYC — Progressive Disclosure -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.5 0 2.91.37 4.15 1.02"/></svg></div>
+      <span class="cs-section__label">Progressive KYC — compliance as care</span>
+    </div>
+    <p>The original app front-loaded all 14 compliance data points into one form — creating a wall of bureaucracy before users could even see their dashboard. I broke KYC into contextual steps that surface at the moment they're needed. Users verify their identity when they first send, add proof of address when they hit the £1,000 limit. The liveness check uses a guided facial recognition flow with clear progress indicators ("Step 1 of 3") and warm instructional copy. Users complete compliance naturally as they use the product, not as a gate before they start.</p>
+  </section>
+</div>
+
+<div class="cs-screens cs-screens--dark reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">KYC & Identity Verification</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-kyc-start.jpg" alt="KYC tier levels" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-liveness.jpg" alt="Liveness check" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-kyc-verify.jpg" alt="KYC verification" loading="lazy" /></div></div>
+</div>
+
+<!-- DASHBOARD BEFORE/AFTER -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div>
+      <span class="cs-section__label">Dashboard redesign — from cramped to confident</span>
+    </div>
+    <p>User testing revealed the original dashboard's wallet cards were too tight — amounts like £5,000,000 couldn't display in full, breaking user trust in an app that handles their money. I redesigned the dashboard with a full-width card that shows the balance boldly and prominently, with currency tabs (GBP, NGN) as pill selectors below. The new layout puts "Send Money" and "Top-Up" as primary CTAs directly on the card, reducing the tap count to the most critical action from 3 to 1.</p>
+
+    <div class="cs-compare">
+      <div class="cs-compare__side">
+        <span class="cs-compare__badge cs-compare__badge--before">Before</span>
+        <div class="cs-compare__phone"><div class="cs-compare__phone-screen"><img src="bmp-dashboard-before.jpg" alt="Dashboard — before redesign" loading="lazy" /></div></div>
+        <p class="cs-compare__caption">Cramped dual-card layout. Large amounts get truncated. No primary CTA on balance card.</p>
+      </div>
+      <div class="cs-compare__side">
+        <span class="cs-compare__badge cs-compare__badge--after">After</span>
+        <div class="cs-compare__phone"><div class="cs-compare__phone-screen"><img src="bmp-dashboard-after.jpg" alt="Dashboard — after redesign" loading="lazy" /></div></div>
+        <p class="cs-compare__caption">Full-width card, bold balance display. Send + Top-Up CTAs on card. Currency tabs as pills.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- HOME SCREEN VARIANTS -->
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Dashboard States & Variants</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-home-gbp.jpg" alt="Dashboard — GBP wallet" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-home-ngn.jpg" alt="Dashboard — NGN wallet" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-notifications.jpg" alt="Notifications" loading="lazy" /></div></div>
+</div>
+
+<!-- SEND MONEY FLOW -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+      <span class="cs-section__label">Send money — the core flow</span>
+    </div>
+    <p>The send money flow is the product's reason for existing. I designed it to answer the three questions users care about in order: How much will the recipient get? (live exchange rate shown before amount entry), Who am I sending to? (contact book-style beneficiary list, not a form), and Is this going to work? (clear transaction summary with every fee, rate, and arrival time visible before confirmation). The "you'll receive" amount is the hero — not the "you're sending" amount — flipping the typical remittance mental model to match what actually matters.</p>
+  </section>
+</div>
+
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Send Money — Transfer Options</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-transfer-options.jpg" alt="Transfer options" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-exchange-rate.jpg" alt="Exchange rate" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-send-amount.jpg" alt="Send amount" loading="lazy" /></div></div>
+</div>
+
+<div class="cs-screens cs-screens--cream reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Confirmation & Success</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-pin.jpg" alt="Transaction PIN" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-tx-summary.jpg" alt="Transaction summary" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-transfer-success.jpg" alt="Transfer successful" loading="lazy" /></div></div>
+</div>
+
+<!-- TRANSACTION HISTORY BEFORE/AFTER -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <span class="cs-section__label">Transaction history — from blank to informative</span>
+    </div>
+    <p>The original transaction history was a flat, undifferentiated list with no status indicators. Users had no way to tell whether a transfer was pending, completed, or failed — generating support tickets for information the app should have surfaced. The redesign introduced status badges (Success, Pending, Failed) with color-coded indicators, time-grouped sections (Today, Yesterday, dated), richer transaction details, and filter tabs for quick scanning. An "AI Insights Available" chip hints at the analytics layer being built into the product.</p>
+
+    <div class="cs-compare">
+      <div class="cs-compare__side">
+        <span class="cs-compare__badge cs-compare__badge--before">Before</span>
+        <div class="cs-compare__phone"><div class="cs-compare__phone-screen"><img src="bmp-txn-before.jpg" alt="Transaction history — before" loading="lazy" /></div></div>
+        <p class="cs-compare__caption">Flat list, no status indicators. Users can't tell if transfers are pending or failed.</p>
+      </div>
+      <div class="cs-compare__side">
+        <span class="cs-compare__badge cs-compare__badge--after">After</span>
+        <div class="cs-compare__phone"><div class="cs-compare__phone-screen"><img src="bmp-txn-after.jpg" alt="Transaction history — after" loading="lazy" /></div></div>
+        <p class="cs-compare__caption">Status badges, time-grouped sections, filter tabs, AI insights chip. Information hierarchy that reduces support tickets.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- BENEFICIARY & PROFILE -->
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Beneficiary Management & Profile</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-beneficiary.jpg" alt="Beneficiary list" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-recipient.jpg" alt="Recipient details" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-referrals.jpg" alt="Referral program" loading="lazy" /></div></div>
+</div>
+
+<!-- KEY DECISIONS -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div>
+      <span class="cs-section__label">Key decisions</span>
+    </div>
+    <p>Four design decisions shaped the final product. Each involved a trade-off I had to defend — and each moved the metrics in the right direction.</p>
+    <div class="cs-decisions">
+      <div class="cs-decision">
+        <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>Progressive KYC disclosure</div>
+        <p class="cs-decision__desc">Instead of front-loading all compliance data points into one form, I broke KYC into contextual steps that surface at the moment they're needed. Users complete compliance naturally as they use the product.</p>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/></svg>Trust through transparency</div>
+        <p class="cs-decision__desc">Every transaction shows the live exchange rate, exact fee, and estimated arrival time before confirmation. The "you'll receive" amount is the hero — matching what the recipient actually cares about.</p>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Full-width balance card</div>
+        <p class="cs-decision__desc">Replaced the cramped dual-card layout with a single bold card that shows the full balance, currency tabs, and primary CTAs. Reduced tap count to the most critical action from 3 to 1.</p>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>Data-driven iteration</div>
+        <p class="cs-decision__desc">Established continuous behavioral monitoring via Microsoft Clarity, UXCam, and PostHog — using session recordings, heatmaps, rage tap data, and funnel analysis to prioritize fixes across every design sprint.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- WEB APP -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <span class="cs-section__label">Web application</span>
+    </div>
+    <p>Beyond the mobile app, I redesigned the full web dashboard — wallet management, transaction history, customer support, and the Naira-to-GBP send money flow. The web app mirrors the mobile design system while taking advantage of the larger canvas for data-dense views like transaction tables and multi-currency wallet management.</p>
+  </section>
+</div>
+
+<div class="cs-fullwidth reveal">
+  <div class="cs-fullwidth__label"><span class="cs-screen-label" style="background:rgba(0,0,0,0.6);color:#fff;border-color:rgba(255,255,255,0.2);">Web Dashboard</span></div>
+  <img src="bmp-web-dashboard.jpg" alt="BroadMoney web dashboard" loading="lazy" />
+</div>
+
+<div class="cs-fullwidth reveal">
+  <div class="cs-fullwidth__label"><span class="cs-screen-label" style="background:rgba(0,0,0,0.6);color:#fff;border-color:rgba(255,255,255,0.2);">Send Money — Naira to GBP</span></div>
+  <img src="bmp-web-send.jpg" alt="Web send money flow" loading="lazy" />
+</div>
+
+<!-- ANALYTICS -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <span class="cs-section__label">Analytics-driven design</span>
+    </div>
+    <p>I didn't design in a vacuum. Every major redesign decision was informed by behavioral analytics data from three platforms — Microsoft Clarity for the marketing site and web app (heatmaps, session recordings, rage taps, dead clicks, quick backs, scroll depth), UXCam for mobile app session recordings and journey mapping, and PostHog for event-based funnel analysis and feature flag testing.</p>
+
+    <div class="cs-analytics">
+      <div class="cs-analytics__card">
+        <div class="cs-analytics__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 15l-2 5L9 9l11 4-5 2z"/></svg></div>
+        <div class="cs-analytics__value">0.17→0.05%</div>
+        <div class="cs-analytics__label">Rage taps</div>
+      </div>
+      <div class="cs-analytics__card">
+        <div class="cs-analytics__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg></div>
+        <div class="cs-analytics__value">9.19→8.70%</div>
+        <div class="cs-analytics__label">Dead clicks</div>
+      </div>
+      <div class="cs-analytics__card">
+        <div class="cs-analytics__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div>
+        <div class="cs-analytics__value">+34%</div>
+        <div class="cs-analytics__label">Session duration</div>
+      </div>
+      <div class="cs-analytics__card">
+        <div class="cs-analytics__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="cs-analytics__value">+28%</div>
+        <div class="cs-analytics__label">Return visits</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- DESIGN SYSTEM -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+      <span class="cs-section__label">Design system — built from scratch</span>
+    </div>
+    <p>No design system existed when I started. I built a scalable Figma component library from scratch — color tokens mapped to BroadMoney's brand, a type scale optimized for financial data density, and reusable components for buttons, inputs, switches, cards, modals, and status indicators. The system covers both the consumer mobile app and the web dashboard, giving the two-person engineering team a single source of truth that cut implementation ambiguity and reduced design-dev back-and-forth by roughly 40%.</p>
+  </section>
+</div>
+
+<div class="cs-fullwidth reveal">
+  <div class="cs-fullwidth__label"><span class="cs-screen-label">Colour Tokens</span></div>
+  <img src="bmp-ds-colors.jpg" alt="Design system — colour scale" loading="lazy" />
+</div>
+
+<div class="cs-fullwidth reveal">
+  <div class="cs-fullwidth__label"><span class="cs-screen-label">Typography Scale</span></div>
+  <img src="bmp-ds-typography.jpg" alt="Design system — typography" loading="lazy" />
+</div>
+
+<div class="cs-fullwidth reveal">
+  <div class="cs-fullwidth__label"><span class="cs-screen-label">Buttons & Components</span></div>
+  <img src="bmp-ds-buttons.jpg" alt="Design system — buttons" loading="lazy" />
+</div>
+
+<div class="cs-fullwidth reveal">
+  <div class="cs-fullwidth__label"><span class="cs-screen-label">Input Fields</span></div>
+  <img src="bmp-ds-inputs.jpg" alt="Design system — input fields" loading="lazy" />
+</div>
+
+<!-- MARKETING WEBSITE -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 0118 0"/><path d="M3 12h18"/><path d="M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9"/></svg></div>
+      <span class="cs-section__label">Marketing website</span>
+    </div>
+    <p>I redesigned the BroadMoney marketing site with product demo videos, blog content, and a conversion-optimized layout. Post-launch Clarity data confirmed the improvements — rage taps dropped from 0.17% to 0.05%, dead clicks reduced from 9.19% to 8.70%, and session duration and return visits both improved meaningfully. The site now serves as both a trust-building tool and a conversion funnel into the mobile app.</p>
+  </section>
+</div>
+
+<div class="cs-fullwidth reveal">
+  <div class="cs-fullwidth__label"><span class="cs-screen-label">Marketing Website</span></div>
+  <img src="bmp-website.jpg" alt="BroadMoney marketing website" loading="lazy" />
+</div>
+
+<!-- OUTCOME -->
+<div class="cs-outcome reveal">
+  <div class="cs-outcome__inner">
+    <div class="cs-outcome__header">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" style="color:var(--blush)"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span class="cs-outcome__label">Outcome</span>
+    </div>
+    <p>The redesigned app launched to existing and new users across the UK-to-Nigeria remittance corridor. The progressive KYC approach and trust-building interface design directly addressed the drop-off problem that had been costing the business completed transactions. The founder cited the redesign as a key factor in their next funding conversation.</p>
+    <p>Engineering reported significantly fewer design-related tickets post-launch, thanks to the design system providing clear, consistent component specifications across mobile and web. Continuous behavioral monitoring via Clarity, UXCam, and PostHog enabled data-driven iteration sprint over sprint.</p>
+    <div class="cs-metrics">
+      <div class="cs-metric"><div class="cs-metric__value">55%→22%</div><div class="cs-metric__label">Drop-off rate</div></div>
+      <div class="cs-metric"><div class="cs-metric__value">2.3×</div><div class="cs-metric__label">First-month transactions</div></div>
+      <div class="cs-metric"><div class="cs-metric__value">71%</div><div class="cs-metric__label">Rage tap reduction</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PREV/NEXT -->
+<nav class="cs-nav reveal">
+  <a href="case-doxflowy.html" class="cs-nav__link cs-nav__link--prev">
+    <div class="cs-nav__dir"><svg viewBox="0 0 14 14" fill="none"><path d="M11 7H3M3 7L7 3M3 7L7 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Previous</div>
+    <div class="cs-nav__project">Doxflowy</div>
+  </a>
+  <a href="case-help2pay.html" class="cs-nav__link cs-nav__link--next">
+    <div class="cs-nav__dir">Next<svg viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="cs-nav__project">Help2Pay</div>
+  </a>
+</nav>
+
+<!-- Contact -->
+<section class="cs-contact" id="contact">
+  <div class="cs-contact__inner reveal">
+    <div class="eyebrow" style="margin-bottom:32px;">Let's work together</div>
+    <h2 class="cs-contact__title">Let's build something<br><em>worth shipping.</em></h2>
+    <p class="cs-contact__subhead">Currently open to senior product design roles — fintech, AI-native products, or complex digital systems. Remote or relocation.</p>
+    <a class="cs-contact__button" href="mailto:teeakinkunmi@gmail.com">
+      <span>Get in touch</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="cs-footer__upper">
+    <div><p class="cs-footer__col-label">Work</p><ul class="cs-footer__col-links"><li><a href="work.html">All work</a></li><li><a href="case-broadmoney.html">BroadMoney</a></li><li><a href="#">Doxflowy</a></li><li><a href="#">Help2Pay</a></li></ul></div>
+    <div><p class="cs-footer__col-label">Studio</p><ul class="cs-footer__col-links"><li><a href="index.html#studio">About</a></li><li><a href="index.html#community">Community</a></li><li><a href="#contact">Contact</a></li><li><a href="cv.pdf" download>Download CV</a></li></ul></div>
+    <div><p class="cs-footer__col-label">Elsewhere</p><ul class="cs-footer__col-links"><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765" target="_blank" rel="noopener">Dribbble</a></li><li><a href="https://www.instagram.com/yourtechgirly" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://x.com/morayo1025" target="_blank" rel="noopener">Twitter / X</a></li><li><a href="https://www.youtube.com/@Design-geeks" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+    <div><p class="cs-footer__col-label">Studio Notes</p><form class="cs-footer__form" onsubmit="event.preventDefault();"><input type="email" placeholder="your@email.com" aria-label="Email" /><button type="submit" aria-label="Subscribe"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form><p class="cs-footer__hint">Occasional writing on craft, AI-native design, and building for markets Silicon Valley overlooks.</p><p class="cs-footer__copy">&copy; MMXXVI · Made in Lagos · Est. 2019</p></div>
+  </div>
+  <div class="cs-footer__nameplate-wrap"><h2 class="cs-footer__nameplate">MORAYO</h2></div>
+</footer>
+
+<script>
+(function() {
+  var nav = document.getElementById("nav"), ticking = false;
+  function u() { nav.classList.toggle("scrolled", window.scrollY > 60); ticking = false; }
+  window.addEventListener("scroll", function() { if (!ticking) { requestAnimationFrame(u); ticking = true; } }, { passive: true });
+  u();
+})();
+(function() {
+  var r = document.querySelectorAll('.reveal');
+  if (!r.length) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { r.forEach(function(e) { e.classList.add('is-visible'); }); return; }
+  var io = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  r.forEach(function(e) { io.observe(e); });
+})();
+</script>
+
+</body>
+</html>
