@@ -124,6 +124,22 @@
   .cs-fullwidth img { width: 100%; display: block; }
   .cs-fullwidth__label { position: absolute; top: 20px; left: 20px; z-index: 5; }
 
+  /* PADDED IMAGE — design system, website */
+  .cs-padded { max-width: 920px; margin: 0 auto; padding: 24px 44px; }
+  .cs-padded__card { border-radius: 16px; overflow: hidden; border: 0.5px solid var(--hairline-strong); box-shadow: 0 8px 32px rgba(0,0,0,0.06); position: relative; background: #fff; }
+  .cs-padded__card img { width: 100%; display: block; }
+  .cs-padded__label { position: absolute; top: 16px; left: 16px; z-index: 5; }
+
+  /* LAPTOP MOCKUP — web app, website */
+  .cs-laptop-wrap { max-width: 920px; margin: 0 auto; padding: 32px 44px; }
+  .cs-laptop { position: relative; border-radius: 12px 12px 0 0; overflow: hidden; border: 2px solid #333; border-bottom: none; background: #1A1A1A; padding: 28px 2px 0; box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+  .cs-laptop::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 28px; background: #2A2A2A; display: flex; z-index: 5; }
+  .cs-laptop::after { content: '● ● ●'; position: absolute; top: 6px; left: 14px; font-size: 9px; letter-spacing: 5px; color: #666; z-index: 6; }
+  .cs-laptop__screen { width: 100%; display: block; }
+  .cs-laptop__label { position: absolute; top: 36px; left: 14px; z-index: 5; }
+  .cs-laptop-base { max-width: 920px; margin: 0 auto; padding: 0 44px; }
+  .cs-laptop-base__bar { height: 14px; background: linear-gradient(to bottom, #555, #333); border-radius: 0 0 10px 10px; margin: 0 40px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
   /* ANALYTICS STRIP */
   .cs-analytics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
   .cs-analytics__card { padding: 24px 16px; border: 0.5px solid var(--hairline); border-radius: 12px; text-align: center; background: var(--cream); }
@@ -207,6 +223,9 @@
     .cs-hero__metrics { gap: 20px; flex-wrap: wrap; }
     .cs-hero__title { font-size: clamp(32px, 10vw, 48px); }
     .cs-facts { grid-template-columns: 1fr 1fr; }
+    .cs-padded { padding: 16px 24px; }
+    .cs-laptop-wrap { padding: 24px 24px; }
+    .cs-laptop-base__bar { margin: 0 20px !important; }
     .cs-screens { padding: 48px 24px; gap: 20px; }
     .cs-phone { width: 160px; }
     .cs-compare { grid-template-columns: 1fr; gap: 32px; }
@@ -380,7 +399,7 @@
       </div>
       <div class="cs-compare__side">
         <span class="cs-compare__badge cs-compare__badge--after">After</span>
-        <div class="cs-compare__phone"><div class="cs-compare__phone-screen"><img src="bmp-dashboard-after.jpg" alt="Dashboard — after redesign" loading="lazy" /></div></div>
+        <div class="cs-compare__phone"><div class="cs-compare__phone-screen"><img src="bmp-home-new.jpg" alt="Dashboard — after redesign" loading="lazy" /></div></div>
         <p class="cs-compare__caption">Full-width card, bold balance display. Send + Top-Up CTAs on card. Currency tabs as pills.</p>
       </div>
     </div>
@@ -409,7 +428,7 @@
 <div class="cs-screens reveal">
   <div class="cs-screens__label"><span class="cs-screen-label">Send Money — Transfer Options</span></div>
   <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-transfer-options.jpg" alt="Transfer options" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-exchange-rate.jpg" alt="Exchange rate" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-send-money.jpg" alt="Send money — amount entry" loading="lazy" /></div></div>
   <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-send-amount.jpg" alt="Send amount" loading="lazy" /></div></div>
 </div>
 
@@ -492,14 +511,20 @@
   </section>
 </div>
 
-<div class="cs-fullwidth reveal">
-  <div class="cs-fullwidth__label"><span class="cs-screen-label" style="background:rgba(0,0,0,0.6);color:#fff;border-color:rgba(255,255,255,0.2);">Web Dashboard</span></div>
-  <img src="bmp-web-dashboard.jpg" alt="BroadMoney web dashboard" loading="lazy" />
+<div class="cs-laptop-wrap reveal">
+  <div class="cs-laptop">
+    <div class="cs-laptop__label"><span class="cs-screen-label" style="background:rgba(0,0,0,0.5);color:#fff;border-color:rgba(255,255,255,0.2);">Web Dashboard</span></div>
+    <img class="cs-laptop__screen" src="bmp-web-dashboard.jpg" alt="BroadMoney web dashboard" loading="lazy" />
+  </div>
+  <div class="cs-laptop-base__bar" style="margin:0 40px;"></div>
 </div>
 
-<div class="cs-fullwidth reveal">
-  <div class="cs-fullwidth__label"><span class="cs-screen-label" style="background:rgba(0,0,0,0.6);color:#fff;border-color:rgba(255,255,255,0.2);">Send Money — Naira to GBP</span></div>
-  <img src="bmp-web-send.jpg" alt="Web send money flow" loading="lazy" />
+<div class="cs-laptop-wrap reveal">
+  <div class="cs-laptop">
+    <div class="cs-laptop__label"><span class="cs-screen-label" style="background:rgba(0,0,0,0.5);color:#fff;border-color:rgba(255,255,255,0.2);">Send Money — Naira to GBP</span></div>
+    <img class="cs-laptop__screen" src="bmp-web-send.jpg" alt="Web send money flow" loading="lazy" />
+  </div>
+  <div class="cs-laptop-base__bar" style="margin:0 40px;"></div>
 </div>
 
 <!-- ANALYTICS -->
@@ -547,24 +572,32 @@
   </section>
 </div>
 
-<div class="cs-fullwidth reveal">
-  <div class="cs-fullwidth__label"><span class="cs-screen-label">Colour Tokens</span></div>
-  <img src="bmp-ds-colors.jpg" alt="Design system — colour scale" loading="lazy" />
+<div class="cs-padded reveal">
+  <div class="cs-padded__card">
+    <div class="cs-padded__label"><span class="cs-screen-label">Colour Tokens</span></div>
+    <img src="bmp-ds-colors.jpg" alt="Design system — colour scale" loading="lazy" />
+  </div>
 </div>
 
-<div class="cs-fullwidth reveal">
-  <div class="cs-fullwidth__label"><span class="cs-screen-label">Typography Scale</span></div>
-  <img src="bmp-ds-typography.jpg" alt="Design system — typography" loading="lazy" />
+<div class="cs-padded reveal">
+  <div class="cs-padded__card">
+    <div class="cs-padded__label"><span class="cs-screen-label">Typography Scale</span></div>
+    <img src="bmp-ds-typography.jpg" alt="Design system — typography" loading="lazy" />
+  </div>
 </div>
 
-<div class="cs-fullwidth reveal">
-  <div class="cs-fullwidth__label"><span class="cs-screen-label">Buttons & Components</span></div>
-  <img src="bmp-ds-buttons.jpg" alt="Design system — buttons" loading="lazy" />
+<div class="cs-padded reveal">
+  <div class="cs-padded__card">
+    <div class="cs-padded__label"><span class="cs-screen-label">Buttons & Components</span></div>
+    <img src="bmp-ds-buttons.jpg" alt="Design system — buttons" loading="lazy" />
+  </div>
 </div>
 
-<div class="cs-fullwidth reveal">
-  <div class="cs-fullwidth__label"><span class="cs-screen-label">Input Fields</span></div>
-  <img src="bmp-ds-inputs.jpg" alt="Design system — input fields" loading="lazy" />
+<div class="cs-padded reveal">
+  <div class="cs-padded__card">
+    <div class="cs-padded__label"><span class="cs-screen-label">Input Fields</span></div>
+    <img src="bmp-ds-inputs.jpg" alt="Design system — input fields" loading="lazy" />
+  </div>
 </div>
 
 <!-- MARKETING WEBSITE -->
@@ -578,9 +611,12 @@
   </section>
 </div>
 
-<div class="cs-fullwidth reveal">
-  <div class="cs-fullwidth__label"><span class="cs-screen-label">Marketing Website</span></div>
-  <img src="bmp-website.jpg" alt="BroadMoney marketing website" loading="lazy" />
+<div class="cs-laptop-wrap reveal">
+  <div class="cs-laptop">
+    <div class="cs-laptop__label"><span class="cs-screen-label" style="background:rgba(0,0,0,0.5);color:#fff;border-color:rgba(255,255,255,0.2);">Marketing Website</span></div>
+    <img class="cs-laptop__screen" src="bmp-website.jpg" alt="BroadMoney marketing website" loading="lazy" />
+  </div>
+  <div class="cs-laptop-base__bar" style="margin:0 40px;"></div>
 </div>
 
 <!-- OUTCOME -->
