@@ -650,7 +650,12 @@
     object-position: top;
     display: block;
   }
-  .project-card--doxflowy .project-card__bg { background: linear-gradient(135deg, #5A7085 0%, #3D4E5F 100%); }
+  .project-card--doxflowy .project-card__bg { background: linear-gradient(135deg, #2D1B69 0%, #1a0f3e 100%); }
+  .project-card--doxflowy .project-card__video-wrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 75%; z-index: 1; pointer-events: none; }
+  .project-card--doxflowy .project-card__video-mac { border-radius: 6px 6px 0 0; overflow: hidden; background: #111; border: 2px solid #333; border-bottom: none; padding-top: 20px; position: relative; }
+  .project-card--doxflowy .project-card__video-mac::before { content: '● ● ●'; position: absolute; top: 5px; left: 10px; font-size: 7px; letter-spacing: 4px; color: #555; z-index: 2; }
+  .project-card--doxflowy .project-card__video-mac video { width: 100%; display: block; }
+  .project-card--doxflowy .project-card__video-base { height: 8px; background: linear-gradient(to bottom, #444, #333); border-radius: 0 0 6px 6px; margin: 0 20%; }
   .project-card--wosiwosi .project-card__bg { background: linear-gradient(135deg, #EFEBDF 0%, #D8D0B8 100%); }
   .project-card--help2pay .project-card__bg { background: linear-gradient(135deg, #C4653A 0%, #9D440C 100%); }
   .project-card--taxclarity .project-card__bg { background: linear-gradient(135deg, #2A2825 0%, #14120F 100%); }
@@ -1774,7 +1779,12 @@
       </a>
 
       <a class="project-card project-card--doxflowy" href="case-doxflowy.html" aria-label="Open Doxflowy case study">
-        <div class="project-card__bg"></div>
+        <div class="project-card__bg">
+          <div class="project-card__video-wrap">
+            <div class="project-card__video-mac"><video src="dox-demo.mp4" autoplay muted loop playsinline></video></div>
+            <div class="project-card__video-base"></div>
+          </div>
+        </div>
         <span class="project-card__vertical-label">Doxflowy · '23 — '26</span>
         <div class="project-card__full-label">
           <div class="project-card__meta">AI · Document automation · 2023 — 2026</div>
