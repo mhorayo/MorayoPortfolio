@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Renncora — Case Study — Morayo</title>
+<meta name="description" content="Case study: Designing an Android-first live streaming and short video social app with inclusive design, WCAG accessibility, and a comprehensive design system." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F9F7F2; --cream-dark: #EFEBDF; --ink: #2A2825; --ink-soft: #4A4738;
+    --stone: #8C8676; --meadow: #9D440C; --meadow-light: #C46B2E;
+    --slate: #5A7085; --blush: #E8C4C0;
+    --hairline: rgba(42, 40, 37, 0.14); --hairline-strong: rgba(42, 40, 37, 0.32);
+    --ren-magenta: #D900D9; --ren-magenta-light: #FBEDFB; --ren-blue: #0145F2; --ren-blue-light: #E8EFFE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--cream);
+    background-image: radial-gradient(circle at 1px 1px, rgba(42, 40, 37, 0.10) 1px, transparent 0);
+    background-size: 24px 24px;
+    color: var(--ink); font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-size: 16px; line-height: 1.6; overflow-x: hidden;
+  }
+  body::after {
+    content: ''; position: fixed; top: 0; bottom: 0;
+    left: 50%; transform: translateX(-50%);
+    width: min(920px, calc(100% - 88px));
+    pointer-events: none; z-index: 1;
+    border-left: 0.5px solid rgba(42, 40, 37, 0.08);
+    border-right: 0.5px solid rgba(42, 40, 37, 0.08);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 200;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.15 0 0 0 0 0.14 0 0 0 0.14 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.5; mix-blend-mode: multiply;
+  }
+  ::selection { background: var(--ren-magenta); color: var(--cream); }
+  a { color: inherit; text-decoration: none; }
+  .eyebrow { font-family: 'Instrument Sans', sans-serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--stone); font-weight: 500; }
+
+  /* NAV */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 44px; display: flex; justify-content: space-between; align-items: center; background: var(--cream); backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); transition: box-shadow 0.4s ease; }
+  .nav.scrolled { box-shadow: 0 4px 20px rgba(42, 40, 37, 0.08); }
+  .nav__brand { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; color: var(--ink); font-variation-settings: "opsz" 144, "SOFT" 100; }
+  .nav__brand span { color: var(--meadow); }
+  .nav__links { display: flex; gap: 36px; font-family: 'Instrument Sans', sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  .nav__links a { position: relative; padding: 4px 0; transition: color 0.3s ease; }
+  .nav__links a:hover { color: var(--meadow); }
+
+  /* SPLIT HERO */
+  .cs-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 66px; }
+  .cs-hero__text { display: flex; flex-direction: column; justify-content: center; padding: 80px 56px 60px; }
+  .cs-hero__thumb { width: 100px; height: 72px; border-radius: 6px; overflow: hidden; margin-bottom: 36px; border: 0.5px solid var(--hairline); box-shadow: 0 4px 16px rgba(0,0,0,0.06); background: var(--cream-dark); }
+  .cs-hero__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cs-hero__eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+  .cs-hero__title { font-family: 'Instrument Sans', sans-serif; font-size: clamp(36px, 5vw, 58px); font-weight: 700; line-height: 1.0; letter-spacing: -0.02em; text-transform: uppercase; color: var(--ink); margin-bottom: 36px; }
+  .cs-hero__title em { display: block; font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; text-transform: none; font-variation-settings: "opsz" 144, "SOFT" 80; font-size: 1.05em; letter-spacing: -0.01em; }
+  .cs-hero__subtitle { font-size: 14px; line-height: 1.6; color: var(--ink-soft); max-width: 380px; margin-bottom: 44px; }
+  .cs-hero__cta { display: inline-flex; align-items: center; gap: 12px; padding: 14px 32px; border: 0.5px solid var(--ink); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); transition: background 0.35s ease, color 0.35s ease; width: fit-content; }
+  .cs-hero__cta:hover { background: var(--ink); color: var(--cream); }
+  .cs-hero__metrics { display: flex; gap: 32px; margin-top: auto; padding-top: 48px; border-top: 0.5px solid var(--hairline); }
+  .cs-hero__metric-value { font-family: 'Fraunces', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; color: var(--ren-magenta); font-variation-settings: "SOFT" 40; line-height: 1.1; }
+  .cs-hero__metric-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-top: 6px; }
+  .cs-hero__image { position: relative; overflow: hidden; background: #1A1A1A; display: flex; align-items: center; justify-content: center; }
+  .cs-hero__image video { height: 100%; max-height: 100vh; object-fit: contain; display: block; }
+
+  /* TOOLS MARQUEE */
+  .cs-tools { background: rgba(217, 0, 217, 0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 0.5px solid rgba(217, 0, 217, 0.5); border-bottom: 0.5px solid rgba(217, 0, 217, 0.5); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+  .cs-tools__track { display: inline-flex; gap: 48px; align-items: center; animation: toolsScroll 30s linear infinite; }
+  .cs-tools__item { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--cream); text-transform: uppercase; flex-shrink: 0; }
+  .cs-tools__dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(249, 247, 242, 0.4); flex-shrink: 0; }
+  @keyframes toolsScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* LAYOUT */
+  .cs { max-width: 920px; margin: 0 auto; padding: 0 44px; }
+  .cs-section { padding: 72px 0; border-top: 0.5px solid var(--hairline); }
+  .cs-section:first-of-type { border-top: none; }
+  .cs-section__header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .cs-section__icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--ren-magenta); }
+  .cs-section__label { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .cs-section p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); max-width: 760px; }
+  .cs-section p + p { margin-top: 16px; }
+
+  /* QUICK FACTS */
+  .cs-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 32px 0; }
+  .cs-fact { text-align: center; padding: 20px 12px; border: 0.5px solid var(--hairline); border-radius: 12px; }
+  .cs-fact__value { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; color: var(--ink); }
+  .cs-fact__label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); margin-top: 4px; }
+
+  /* PHONE MOCKUPS */
+  .cs-screens { margin: 0; border-top: 0.5px solid var(--hairline-strong); border-bottom: 0.5px solid var(--hairline-strong); padding: 80px 44px; display: flex; justify-content: center; align-items: flex-start; gap: 32px; flex-wrap: wrap; position: relative; }
+  .cs-screens--tight { gap: 20px; }
+  .cs-screens--dark { background: var(--ink); }
+  .cs-screens--magenta { background: var(--ren-magenta); }
+  .cs-screens--cream { background: var(--cream-dark); border-color: var(--hairline); }
+  .cs-screens__label { width: 100%; text-align: left; margin-bottom: 12px; }
+  .cs-screen-label { display: inline-block; padding: 6px 16px; border-radius: 6px; background: var(--cream-dark); color: var(--ink); border: 0.5px solid var(--hairline-strong); font-size: 12px; font-weight: 600; }
+  .cs-screens--dark .cs-screen-label { background: rgba(255,255,255,0.1); color: var(--cream); border-color: rgba(255,255,255,0.15); }
+  .cs-screens--magenta .cs-screen-label { background: rgba(255,255,255,0.15); color: var(--cream); border-color: rgba(255,255,255,0.2); }
+
+  .cs-phone { width: 220px; flex-shrink: 0; aspect-ratio: 9 / 19.5; background: #1A1A1A; border-radius: 36px; box-shadow: 0 24px 60px rgba(0,0,0,0.15), 0 0 0 1.5px #333; overflow: hidden; position: relative; z-index: 2; }
+  .cs-phone::before { content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 64px; height: 20px; background: #1A1A1A; border-radius: 16px; z-index: 10; }
+  .cs-phone__screen { position: absolute; inset: 3px; border-radius: 29px; overflow: hidden; background: #fff; }
+  .cs-phone__screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+  /* PADDED IMAGE — design system */
+  .cs-padded { max-width: 920px; margin: 0 auto; padding: 24px 44px; }
+  .cs-padded__card { border-radius: 16px; overflow: hidden; border: 0.5px solid var(--hairline-strong); box-shadow: 0 8px 32px rgba(0,0,0,0.06); position: relative; background: #fff; }
+  .cs-padded__card img { width: 100%; display: block; }
+  .cs-padded__label { position: absolute; top: 16px; left: 16px; z-index: 5; }
+
+  /* ACCESSIBILITY HIGHLIGHT */
+  .cs-a11y { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 32px 0; }
+  .cs-a11y__card { padding: 28px; border-radius: 12px; border: 0.5px solid var(--hairline-strong); background: var(--cream-dark); }
+  .cs-a11y__card--pass { border-left: 3px solid #0E4F2E; }
+  .cs-a11y__title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .cs-a11y__title svg { width: 18px; height: 18px; color: #0E4F2E; flex-shrink: 0; }
+  .cs-a11y__desc { font-size: 13px; line-height: 1.65; color: var(--ink-soft); }
+
+  /* ANALYTICS STRIP */
+  .cs-analytics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
+  .cs-analytics__card { padding: 24px 16px; border: 0.5px solid var(--hairline); border-radius: 12px; text-align: center; background: var(--cream); }
+  .cs-analytics__icon { width: 32px; height: 32px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: var(--ren-magenta-light); color: var(--ren-magenta); }
+  .cs-analytics__icon svg { width: 18px; height: 18px; }
+  .cs-analytics__value { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 400; color: var(--ren-magenta); font-variation-settings: "SOFT" 40; }
+  .cs-analytics__label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); margin-top: 4px; }
+
+  /* ROLE CHIPS */
+  .cs-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+  .cs-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 100px; border: 0.5px solid var(--hairline-strong); font-size: 13px; color: var(--ink-soft); background: var(--cream); }
+
+  /* DECISIONS */
+  .cs-decisions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 32px 0; }
+  .cs-decision { padding: 32px; border-radius: 12px; background: var(--cream-dark); border: 0.5px solid var(--hairline-strong); }
+  .cs-decision__title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .cs-decision__title svg { width: 20px; height: 20px; color: var(--ren-magenta); flex-shrink: 0; }
+  .cs-decision__desc { font-size: 13px; line-height: 1.65; color: var(--ink-soft); }
+
+  /* OUTCOME */
+  .cs-outcome { padding: 72px 44px; background: var(--ink); color: var(--cream); position: relative; border-top: 0.5px solid var(--hairline-strong); }
+  .cs-outcome::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0); background-size: 20px 20px; }
+  .cs-outcome__inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
+  .cs-outcome__header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .cs-outcome__label { font-size: 16px; font-weight: 600; color: var(--cream); }
+  .cs-outcome p { font-size: 15px; line-height: 1.75; color: rgba(249,247,242,0.8); max-width: 760px; }
+  .cs-outcome p + p { margin-top: 12px; }
+  .cs-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .cs-metric { text-align: center; padding: 28px 16px; border: 0.5px solid rgba(249,247,242,0.15); border-radius: 12px; }
+  .cs-metric__value { font-family: 'Fraunces', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 400; color: var(--cream); font-variation-settings: "SOFT" 50; }
+  .cs-metric__label { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(249,247,242,0.5); margin-top: 8px; }
+
+  /* PREV/NEXT NAV */
+  .cs-nav { max-width: 920px; margin: 0 auto; padding: 72px 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cs-nav__link { padding: 32px; border: 0.5px solid var(--hairline); border-radius: 12px; transition: border-color 0.3s ease, transform 0.35s ease; }
+  .cs-nav__link:hover { border-color: var(--ren-magenta); transform: translateY(-3px); }
+  .cs-nav__dir { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--stone); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .cs-nav__project { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 400; color: var(--ink); font-variation-settings: "SOFT" 40; }
+  .cs-nav__link--next { text-align: right; }
+  .cs-nav__link--next .cs-nav__dir { justify-content: flex-end; }
+
+  /* CONTACT */
+  .cs-contact { background: transparent; padding: 100px 44px 60px; text-align: center; border-top: 0.5px solid var(--hairline-strong); }
+  .cs-contact__inner { max-width: 780px; margin: 0 auto; }
+  .cs-contact__title { font-family: 'Fraunces', serif; font-size: clamp(36px, 4.5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 28px; font-weight: 300; }
+  .cs-contact__title em { font-style: italic; color: var(--meadow); font-variation-settings: "opsz" 144, "SOFT" 100; }
+  .cs-contact__subhead { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: var(--ink-soft); max-width: 580px; margin: 0 auto 44px; }
+  .cs-contact__button { display: inline-flex; align-items: center; gap: 12px; padding: 18px 36px; background: var(--meadow); color: var(--cream); font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; border-radius: 100px; border: 0.5px solid var(--meadow); transition: background 0.35s ease, transform 0.35s ease; }
+  .cs-contact__button:hover { background: var(--ink); border-color: var(--ink); transform: translateY(-2px); }
+
+  /* FOOTER */
+  .cs-footer { background: var(--meadow); color: var(--cream); overflow: clip; }
+  .cs-footer__upper { padding: 96px 44px 72px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr 1.8fr; gap: 56px; }
+  .cs-footer__col-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--cream); opacity: 0.5; margin: 0 0 22px; font-weight: 500; }
+  .cs-footer__col-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .cs-footer__col-links a { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); font-weight: 500; display: inline-block; width: fit-content; transition: color 0.3s ease, transform 0.35s ease; }
+  .cs-footer__col-links a:hover { color: var(--blush); transform: translateX(5px); }
+  .cs-footer__form { display: flex; align-items: center; background: rgba(249, 247, 242, 0.05); border: 0.5px solid rgba(249, 247, 242, 0.18); border-radius: 999px; padding: 4px 4px 4px 20px; max-width: 420px; transition: border-color 0.3s ease; }
+  .cs-footer__form:focus-within { border-color: rgba(249, 247, 242, 0.4); }
+  .cs-footer__form input { flex: 1; background: transparent; border: none; outline: none; color: var(--cream); font-size: 13px; padding: 10px 8px; min-width: 0; }
+  .cs-footer__form input::placeholder { color: var(--cream); opacity: 0.4; }
+  .cs-footer__form button { background: var(--ink); border: none; color: var(--cream); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.35s ease, background 0.3s ease; flex-shrink: 0; }
+  .cs-footer__form button:hover { background: var(--cream); color: var(--meadow); transform: scale(1.08); }
+  .cs-footer__hint { margin-top: 18px; font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; line-height: 1.55; color: var(--cream); opacity: 0.6; max-width: 420px; font-variation-settings: "opsz" 14, "SOFT" 60; }
+  .cs-footer__copy { margin-top: 26px; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cream); opacity: 0.4; }
+  .cs-footer__nameplate-wrap { position: relative; padding: 40px 32px 0; }
+  .cs-footer__nameplate { font-family: 'Fraunces', serif; font-size: clamp(120px, 22vw, 360px); line-height: 0.78; font-weight: 900; font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 900; color: var(--cream); text-align: center; letter-spacing: -0.02em; user-select: none; white-space: nowrap; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav { padding: 18px 24px; }
+    .nav__links { display: none; }
+    .cs { padding: 0 24px; }
+    .cs-hero { grid-template-columns: 1fr; min-height: auto; }
+    .cs-hero__text { padding: 120px 24px 48px; }
+    .cs-hero__image { min-height: 50vh; }
+    .cs-hero__metrics { gap: 20px; flex-wrap: wrap; }
+    .cs-hero__title { font-size: clamp(32px, 10vw, 48px); }
+    .cs-facts { grid-template-columns: 1fr 1fr; }
+    .cs-padded { padding: 16px 24px; }
+    .cs-screens { padding: 48px 24px; gap: 20px; }
+    .cs-phone { width: 160px; }
+    .cs-a11y { grid-template-columns: 1fr; }
+    .cs-decisions { grid-template-columns: 1fr; }
+    .cs-analytics { grid-template-columns: 1fr 1fr; }
+    .cs-outcome { padding: 48px 24px; }
+    .cs-metrics { grid-template-columns: 1fr; }
+    .cs-nav { padding: 48px 24px; grid-template-columns: 1fr; }
+    .cs-contact { padding: 60px 24px 40px; }
+    .cs-footer__upper { grid-template-columns: 1fr 1fr; gap: 40px 24px; padding: 72px 24px 48px; }
+    .cs-footer__nameplate { font-size: 28vw; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__brand">Momo<span>.</span></a>
+  <div class="nav__links">
+    <a href="work.html">Work</a>
+    <a href="index.html#studio">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- SPLIT HERO -->
+<header class="cs-hero">
+  <div class="cs-hero__text reveal">
+    <div class="cs-hero__thumb"><img src="ren-splash-live.jpg" alt="Renncora app preview" /></div>
+    <div class="cs-hero__eyebrow"><span class="eyebrow">Case Study</span></div>
+    <h1 class="cs-hero__title">RENNCORA<br/><em>Go live. Get paid.</em></h1>
+    <p class="cs-hero__subtitle">Designing an Android-first live streaming and short video social app — with inclusive design, WCAG accessibility, and a design system built from scratch for cross-platform scale.</p>
+    <a href="#problem" class="cs-hero__cta">Discover</a>
+    <div class="cs-hero__metrics">
+      <div class="cs-hero__metric"><div class="cs-hero__metric-value">Android</div><div class="cs-hero__metric-label">Primary platform</div></div>
+      <div class="cs-hero__metric"><div class="cs-hero__metric-value">WCAG 2.1</div><div class="cs-hero__metric-label">AA compliant</div></div>
+      <div class="cs-hero__metric"><div class="cs-hero__metric-value">12+</div><div class="cs-hero__metric-label">User flows</div></div>
+      <div class="cs-hero__metric"><div class="cs-hero__metric-value">1,130+</div><div class="cs-hero__metric-label">Icon variants</div></div>
+    </div>
+  </div>
+  <div class="cs-hero__image">
+    <video src="ren-demo.mp4" autoplay loop muted playsinline></video>
+  </div>
+</header>
+
+<!-- TOOLS MARQUEE -->
+<div class="cs-tools">
+  <div class="cs-tools__track">
+    <span class="cs-tools__item">Figma</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Material Design 3</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Phosphor Icons</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Montserrat</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Miro</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">ProtoPie</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">WCAG 2.1 AA</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Android SDK</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Loom</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Notion</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Figma</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Material Design 3</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Phosphor Icons</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Montserrat</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Miro</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">ProtoPie</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">WCAG 2.1 AA</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Android SDK</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Loom</span><span class="cs-tools__dot"></span>
+    <span class="cs-tools__item">Notion</span><span class="cs-tools__dot"></span>
+  </div>
+</div>
+
+<!-- QUICK FACTS -->
+<div class="cs reveal">
+  <div class="cs-facts">
+    <div class="cs-fact"><div class="cs-fact__value">Contract</div><div class="cs-fact__label">Engagement</div></div>
+    <div class="cs-fact"><div class="cs-fact__value">2026</div><div class="cs-fact__label">Timeline</div></div>
+    <div class="cs-fact"><div class="cs-fact__value">Solo Designer</div><div class="cs-fact__label">Design Team</div></div>
+    <div class="cs-fact"><div class="cs-fact__value">Android + iOS</div><div class="cs-fact__label">Platform</div></div>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<div class="cs" id="problem">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+      <span class="cs-section__label">The problem</span>
+    </div>
+    <p>Renncora is a live streaming and short video social platform targeting African creators — a market where mobile-first, Android-dominant users need experiences built for their context, not adapted from iOS conventions after the fact. The existing app needed a full UX redesign: the onboarding flow had high drop-off, the home feed lacked discoverability, and there was no design system in place — every screen was being built ad hoc by developers without consistent patterns.</p>
+    <p>The product needed to ship a polished, accessible experience across live streaming, short video feeds, messaging, communities, and creator monetization — while maintaining inclusive design principles and WCAG 2.1 AA compliance throughout. Android had to be the primary design target, with iOS adaptation built on the same system.</p>
+  </section>
+</div>
+
+<!-- ROLE & CONSTRAINTS -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <span class="cs-section__label">My role & constraints</span>
+    </div>
+    <div class="cs-chips">
+      <span class="cs-chip">UI/UX Designer</span>
+      <span class="cs-chip">Design System Lead</span>
+      <span class="cs-chip">Accessibility</span>
+      <span class="cs-chip">Android-First Design</span>
+      <span class="cs-chip">Prototyping</span>
+      <span class="cs-chip">Design Documentation</span>
+    </div>
+    <p>Solo designer responsible for the full redesign — UX research, information architecture, high-fidelity UI, interactive prototyping, design system creation, and detailed developer handoff documentation. I designed across live streaming, short video feed, onboarding, authentication, messaging, profile, and community modules.</p>
+    <p>Every design decision prioritized Android-first patterns (Material Design 3 guidelines, Android Compact viewport, system navigation) while maintaining cross-platform adaptability for iOS. Inclusive design and accessibility were woven into the process from the start — not bolted on after visual polish.</p>
+  </section>
+</div>
+
+<!-- ONBOARDING FLOW -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg></div>
+      <span class="cs-section__label">Onboarding — value before commitment</span>
+    </div>
+    <p>The splash sequence communicates three core value propositions before asking users to register: create content ("Lights. Camera. You."), go live and earn ("Go Live. Get Paid."), and find community ("Find Your People."). Each screen uses real creator photography and a "Get Started" CTA that stays consistent across all three — no cognitive load on what to do next, just scroll through the value or tap when ready.</p>
+    <p>The onboarding carousel uses full-bleed imagery with high-contrast text overlays that meet WCAG AA contrast ratios, and page indicators that provide clear position awareness for screen reader users.</p>
+  </section>
+</div>
+
+<!-- SPLASH SCREENS -->
+<div class="cs-screens cs-screens--dark reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Onboarding Carousel</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-splash-live.jpg" alt="Go Live, Get Paid — splash screen" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-splash-community.jpg" alt="Find Your People — community splash" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-splash-logo.jpg" alt="Renncora logo splash" loading="lazy" /></div></div>
+</div>
+
+<!-- SIGN UP / SIGN IN -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+      <span class="cs-section__label">Authentication — multiple paths, zero friction</span>
+    </div>
+    <p>I designed sign-up and sign-in flows with multiple authentication methods: email, phone (with country code picker), Apple, and Google. The sign-up screen opens with "Your World Now Streaming" — reinforcing the product's creator-first positioning before asking for credentials. The email form uses a tab switcher between Email and Phone, keeping the UI clean while offering choice.</p>
+    <p>The sign-in flow for returning users features a bottom-sheet pattern over the splash imagery — maintaining visual continuity while clearly separating the auth form. Email verification uses a clear confirmation screen with actionable next steps: confirm, resend, or change email. Every form field includes visible labels (not just placeholders), proper input types for mobile keyboards, and error states that explain what went wrong.</p>
+  </section>
+</div>
+
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Authentication Flow</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-signup.jpg" alt="Sign up screen" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-signup-email.jpg" alt="Email sign up form" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-signin-phone.jpg" alt="Phone sign in" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-verification.jpg" alt="Email verification" loading="lazy" /></div></div>
+</div>
+
+<!-- PROFILE SETUP -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <span class="cs-section__label">Profile setup — progressive, skippable, personal</span>
+    </div>
+    <p>After verification, the profile setup flow uses a four-step stepper with progress indicators and "Skip for now" on every screen. Step 1: claim a username and set date of birth. Step 2: add a profile picture via upload or selfie camera. Step 3: write a short bio with a 160-character limit. Step 4: select interests to personalize the feed. This progressive disclosure pattern reduces cognitive overload while collecting enough data to deliver a personalized first session.</p>
+    <p>The interest selection uses an accessible tag-based picker that requires a minimum of 3 selections before "Start Creating" activates — clear affordance on what's needed without blocking the user entirely. Selected tags change color to provide immediate visual feedback, using the full brand palette rather than a single accent to create a vibrant, personalized feel.</p>
+  </section>
+</div>
+
+<div class="cs-screens cs-screens--tight reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Profile Setup — 4-Step Progressive Flow</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-onboard-username.jpg" alt="Claim username" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-onboard-photo.jpg" alt="Add profile picture" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-onboard-bio.jpg" alt="Add bio" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-onboard-interests.jpg" alt="Select interests" loading="lazy" /></div></div>
+</div>
+
+<!-- INTERESTS SELECTED + WELCOME -->
+<div class="cs-screens cs-screens--magenta reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Interest Selection → Welcome</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-onboard-interests-selected.jpg" alt="Interests selected state" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-welcome.jpg" alt="Welcome screen" loading="lazy" /></div></div>
+</div>
+
+<!-- HOME FEED -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <span class="cs-section__label">Home feed — immersive, discoverable, accessible</span>
+    </div>
+    <p>The home feed uses a full-screen vertical video layout with tab-based content filtering: Live, Trending, Queue, and Gamers. The bottom navigation uses a prominent center "Go Live" button with a broadcast icon — making the primary creator action impossible to miss. Content engagement uses a right-side vertical action bar (like, comment, save, share) with count labels, following the pattern African mobile users already know from TikTok and Instagram Reels.</p>
+    <p>I designed the feed to handle multiple content states: live streams with real-time coin earning indicators, pre-recorded short videos with engagement metrics, and creator profiles with verification badges. The dark immersive background maximizes content visibility while the overlaid UI elements use semi-transparent backgrounds for readability across any video content.</p>
+  </section>
+</div>
+
+<div class="cs-screens cs-screens--dark reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Home Feed — Content Discovery</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-dashboard.jpg" alt="Home feed with live content" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-dashboard-video2.jpg" alt="Video feed variation" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-dashboard-video3.jpg" alt="Content with comments" loading="lazy" /></div></div>
+</div>
+
+<div class="cs-screens cs-screens--dark reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Live Streams & Creator Content</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-dashboard-comment.jpg" alt="Live stream with comments overlay" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-dashboard-video4.jpg" alt="Creator video content" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-home-feed.jpg" alt="Feed with engagement actions" loading="lazy" /></div></div>
+</div>
+
+<!-- MESSAGING & AI -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+      <span class="cs-section__label">Messaging & Renncora AI — always-on creator support</span>
+    </div>
+    <p>Messaging is where Renncora stops being a broadcast tool and becomes a relationship layer. The inbox splits into two tabs — direct messages and community threads — so creators manage personal conversations and group engagement from one place. A persistent "Chat with AI" banner sits above the message list, giving every user immediate access to Renncora's built-in AI assistant without leaving the messaging context.</p>
+    <p>Renncora AI is a voice-first assistant designed for creators who need answers while their hands are busy — mid-stream, mid-edit, mid-hustle. One tap starts listening; one tap stops. The AI responds in Nigerian Pidgin and English, surfacing actionable guidance on coin earnings, stream optimization, and platform features. The dark, immersive interface with its animated gradient orb creates a focused interaction space that feels distinct from the social feed — signalling to users that this is a different kind of conversation.</p>
+  </section>
+</div>
+
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Messages — Inbox & Direct Chat</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-msg-inbox.jpg" alt="Messages inbox with Inbox and Community tabs" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-msg-dm.jpg" alt="Direct message conversation" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-chat.jpg" alt="Renncora AI chat with Talk and Video options" loading="lazy" /></div></div>
+</div>
+
+<div class="cs-screens cs-screens--dark reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Renncora AI — Voice-First Assistant</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-idle.jpg" alt="Renncora AI — tap to talk idle state" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-speaking.jpg" alt="Renncora AI — speaking with live captions" loading="lazy" /></div></div>
+</div>
+
+<!-- COMMUNITY -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <span class="cs-section__label">Communities — where creators build audiences</span>
+    </div>
+    <p>The community module is Renncora's retention engine. Rather than letting engagement die between live sessions, communities give creators a persistent space to nurture their audience. The hub screen features a promoted "Featured Programmes" banner (paid communities with active member counts), a filterable room list split into "My Rooms" and "Discover," and a "+ Create" action for starting new communities — putting creator agency front and center.</p>
+    <p>Community chat follows familiar group messaging patterns, but with platform-specific features: moderator badges ("MOD"), member counts with online indicators, and contextual emoji reactions. I designed the chat to feel conversational and local — the demo content uses names like Adaeze, Chidi, and Kemi to reflect the Nigerian user base, and the copy references real community use cases like "Lagos Devs" meetup groups. This isn't a generic social feature — it's built for how African creators actually organize.</p>
+  </section>
+</div>
+
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Community — Hub, Chat & Discovery</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-community-hub.jpg" alt="Community hub with featured programmes and room list" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-community-chat.jpg" alt="Lagos Devs community group chat" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-community-join.jpg" alt="Community join preview" loading="lazy" /></div></div>
+</div>
+
+<!-- LIVE STREAMING -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
+      <span class="cs-section__label">Live streaming — the full broadcast lifecycle</span>
+    </div>
+    <p>Live streaming is Renncora's core monetization flow, so I designed the full lifecycle — from pre-stream setup to post-stream analytics. The "Go Live" compose screen lets creators choose between a Chat stream or a Game stream, set video quality, and add an optional title. A 3-second countdown with a pulsing animation builds anticipation while giving the camera time to stabilize — a small detail that reduces the number of streams that start with an awkward fumble.</p>
+    <p>The viewer experience surfaces real-time engagement: live comments with usernames, gifting animations (coin sends with animated roses), follower badges, and viewer counts — all overlaid on the camera feed without obstructing the creator's face. When the stream ends, a confirmation sheet prevents accidental closures, and the post-stream recap celebrates the creator's metrics: peak viewers, total comments, coins earned, and new followers. The "Share recap" and "Save replay to my profile" CTAs turn every stream into content that keeps working after the broadcast ends.</p>
+  </section>
+</div>
+
+<div class="cs-screens cs-screens--dark reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Live Stream — Setup & Countdown</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-live-compose.jpg" alt="Go Live compose — choose Chat or Game mode" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-live-countdown.jpg" alt="3-second countdown before going live" loading="lazy" /></div></div>
+</div>
+
+<div class="cs-screens cs-screens--dark reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Live Stream — Viewer Experience & Wrap-Up</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-live-watching.jpg" alt="Live stream with comments and coin gifts" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-live-end.jpg" alt="End live confirmation sheet" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-live-recap.jpg" alt="Post-stream recap — That's a wrap with metrics" loading="lazy" /></div></div>
+</div>
+
+<!-- CREATOR PROFILE -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <span class="cs-section__label">Creator profile — identity, growth, and monetization</span>
+    </div>
+    <p>The profile screen is a creator's storefront. It surfaces the metrics that matter — Following, Followers, and Likes — alongside a bio, verification badge ("Verified Creator"), and a content grid that mixes short videos with LIVE indicators. I used a full-bleed cover photo with an edge-to-edge layout that maximizes visual impact, borrowing from Instagram's proven profile pattern while adding Renncora-specific elements like the "Verified Creator" magenta badge and the central Go Live button in the bottom nav.</p>
+    <p>The edit profile form follows accessible form design: visible persistent labels above every field, character counters for constrained inputs (Bio: 76/150), date pickers for structured data, and a prominent "Save Changes" CTA in the brand magenta. Settings & Privacy organizes platform controls into clear categories — Account, Assets (Wallet, Referrals), Personal Tools, Creator Tools, Preferences, Privacy & Safety, Monetisation, Community, and Support — giving creators and moderators the right level of control without overwhelming new users.</p>
+  </section>
+</div>
+
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Creator Profile — Identity & Management</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-profile-main.jpg" alt="Creator profile with stats, bio, and content grid" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-profile-edit.jpg" alt="Edit profile form with accessible labels" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-profile-followers.jpg" alt="Followers list with Follow / Follow back states" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-profile-settings.jpg" alt="Settings & Privacy — full platform governance" loading="lazy" /></div></div>
+</div>
+
+<!-- DARK MODE -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></div>
+      <span class="cs-section__label">Dark mode — built into the design system, not bolted on</span>
+    </div>
+    <p>Dark mode wasn't a separate design pass — it was built into the token architecture from day one. Every color in the system maps to a semantic token that resolves to the correct value per theme: backgrounds shift from white to #1A1A1A, surface cards adapt contrast ratios, and the magenta primary retains its vibrancy against both light and dark contexts. The result is a dark theme that looks intentional, not inverted — content photography pops against the dark surfaces, LIVE badges gain additional visibility, and the overall experience feels premium for evening and night-time use.</p>
+  </section>
+</div>
+
+<div class="cs-screens cs-screens--dark reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Light → Dark — Token-Driven Theming</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-profile-main.jpg" alt="Creator profile — Light mode" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-profile-dark.jpg" alt="Creator profile — Dark mode" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-community-hub.jpg" alt="Community hub — Light mode" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-community-dark.jpg" alt="Community hub — Dark mode" loading="lazy" /></div></div>
+</div>
+
+<!-- ACCESSIBILITY -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8a2 2 0 100 4 2 2 0 000-4z"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
+      <span class="cs-section__label">Inclusive design & WCAG compliance</span>
+    </div>
+    <p>Accessibility was a design requirement from day one, not a compliance checkbox. Every color combination in the design system was tested against WCAG 2.1 AA contrast ratios — including the magenta primary (#D900D9) against white and dark backgrounds. Form inputs use visible labels above the field (not inside), touch targets meet the 48dp minimum, and interactive elements have visible focus indicators for keyboard and switch navigation.</p>
+    <p>The icon system uses Phosphor Icons at a base size of 32×32px with consistent stroke weights, organized into 12 functional categories with 1,130+ variants. Icons are always paired with text labels in navigation contexts — never used as the sole interactive affordance. The typography system uses Montserrat with responsive variables that scale across desktop and mobile breakpoints, maintaining readability at every size.</p>
+
+    <div class="cs-a11y">
+      <div class="cs-a11y__card cs-a11y__card--pass">
+        <div class="cs-a11y__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Color contrast — AA compliant</div>
+        <div class="cs-a11y__desc">Every text/background combination tested. Primary magenta on white passes at 4.5:1+ for body text. Dark backgrounds use #222222 neutral for maximum readability.</div>
+      </div>
+      <div class="cs-a11y__card cs-a11y__card--pass">
+        <div class="cs-a11y__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Touch targets — 48dp minimum</div>
+        <div class="cs-a11y__desc">All interactive elements meet Android's recommended 48dp touch target size. Bottom nav icons, action buttons, and form inputs all exceed minimum tap areas.</div>
+      </div>
+      <div class="cs-a11y__card cs-a11y__card--pass">
+        <div class="cs-a11y__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Visible labels & affordances</div>
+        <div class="cs-a11y__desc">Form fields use persistent visible labels above inputs. Navigation icons are paired with text. Interactive states have clear visual differentiation — no "mystery meat" navigation.</div>
+      </div>
+      <div class="cs-a11y__card cs-a11y__card--pass">
+        <div class="cs-a11y__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Responsive typography</div>
+        <div class="cs-a11y__desc">Type scale uses responsive variables: H1 scales from 48px (mobile) to 60px (desktop), body text from 14px to 16px. Line heights and paragraph spacing adapt per breakpoint.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- KEY DECISIONS -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+      <span class="cs-section__label">Key design decisions</span>
+    </div>
+
+    <div class="cs-decisions">
+      <div class="cs-decision">
+        <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>Android-first, not iOS-adapted</div>
+        <p class="cs-decision__desc">Designed for Android Compact viewport first, following Material Design 3 patterns: system navigation bar, status bar integration, and Android-native component patterns. iOS adaptation comes from the same design system tokens, not a separate design.</p>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Progressive onboarding over gatekeeping</div>
+        <p class="cs-decision__desc">Every profile setup step is skippable. Users see the product's value (splash carousel) before committing to registration. Interest selection personalizes the feed from the first scroll — reducing "empty state" drop-off.</p>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Comprehensive design system</div>
+        <p class="cs-decision__desc">Built a full token system from scratch: color scales (Primary Magenta, Secondary Electric Blue, Success, Warning, Error, Neutral, Information), responsive typography with desktop/mobile variables, 1,130+ icons in 12 categories, and documented sizing/usage guidelines.</p>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Inclusive by default</div>
+        <p class="cs-decision__desc">WCAG 2.1 AA compliance built into every component — contrast ratios, touch targets, visible labels, focus states. The icon system's Do/Don't guidelines specifically prevent inaccessible patterns like using icons without text labels as the sole affordance.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- DESIGN SYSTEM -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+      <span class="cs-section__label">Design system — built from scratch</span>
+    </div>
+    <p>No design system existed when I joined. I built the Renncore Design System from the ground up — a comprehensive token library covering color scales, typography with responsive variables, a 1,130+ icon library built on Phosphor Icons with 12 functional categories, sizing guidelines, and documented best practices. The system supports both Light and Dark Mode across all user flows, with proper color token mapping for each theme.</p>
+    <p>The typography system uses Montserrat with SemiBold for headings and Regular for body text, with responsive variables that adapt font size, line height, and paragraph spacing between Desktop and Mobile breakpoints. The color system includes full 9-step scales for each semantic color (Primary Magenta, Secondary Electric Blue, Error Red, Success Green, Warning Yellow, Neutral Grey, and Information Blue).</p>
+  </section>
+</div>
+
+<div class="cs-padded reveal">
+  <div class="cs-padded__card">
+    <div class="cs-padded__label"><span class="cs-screen-label">Typography Tokens</span></div>
+    <img src="ren-typography-font.jpg" alt="Renncora typography tokens — Montserrat" loading="lazy" />
+  </div>
+</div>
+
+<div class="cs-padded reveal">
+  <div class="cs-padded__card">
+    <div class="cs-padded__label"><span class="cs-screen-label">Typography Scale & Responsive Variables</span></div>
+    <img src="ren-typography.jpg" alt="Typography scale with responsive desktop/mobile variables" loading="lazy" />
+  </div>
+</div>
+
+<div class="cs-padded reveal">
+  <div class="cs-padded__card">
+    <div class="cs-padded__label"><span class="cs-screen-label">Color System — Full Semantic Scales</span></div>
+    <img src="ren-colors.jpg" alt="Design system color scales — Magenta, Blue, Red, Green, Grey, Yellow" loading="lazy" />
+  </div>
+</div>
+
+<div class="cs-padded reveal">
+  <div class="cs-padded__card">
+    <div class="cs-padded__label"><span class="cs-screen-label">Iconography — Phosphor Icons System</span></div>
+    <img src="ren-iconography.jpg" alt="Icon system documentation — 1,130+ variants in 12 categories" loading="lazy" />
+  </div>
+</div>
+
+<!-- OUTCOME -->
+<div class="cs-outcome reveal">
+  <div class="cs-outcome__inner">
+    <div class="cs-outcome__header">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" style="color:var(--blush)"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span class="cs-outcome__label">Outcome</span>
+    </div>
+    <p>The redesigned Renncora app delivered a cohesive, accessible experience across seven interconnected modules — onboarding, authentication, home feed, live streaming, messaging with AI assistance, community hubs, and creator profiles — all built on a scalable design system that gives the engineering team a single source of truth for Android and iOS implementation.</p>
+    <p>The design system's comprehensive documentation — including typography responsive variables, color token scales, icon usage guidelines with explicit Do/Don't rules, and component-level specifications — reduced design-to-development ambiguity and accelerated the handoff process. Light and Dark Mode support was built into the token architecture from day one, eliminating the need for separate design passes per theme. The AI assistant, community monetization, and referral systems were designed to work together — each feature reinforcing creator retention and platform stickiness.</p>
+    <div class="cs-metrics">
+      <div class="cs-metric"><div class="cs-metric__value">12+</div><div class="cs-metric__label">User flows designed</div></div>
+      <div class="cs-metric"><div class="cs-metric__value">7</div><div class="cs-metric__label">Modules shipped</div></div>
+      <div class="cs-metric"><div class="cs-metric__value">WCAG AA</div><div class="cs-metric__label">Accessibility standard</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PREV/NEXT -->
+<nav class="cs-nav reveal">
+  <a href="case-doxflowy.html" class="cs-nav__link cs-nav__link--prev">
+    <div class="cs-nav__dir"><svg viewBox="0 0 14 14" fill="none"><path d="M11 7H3M3 7L7 3M3 7L7 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Previous</div>
+    <div class="cs-nav__project">Doxflowy</div>
+  </a>
+  <a href="#" class="cs-nav__link cs-nav__link--next">
+    <div class="cs-nav__dir">Next<svg viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="cs-nav__project">Wosi Wosi</div>
+  </a>
+</nav>
+
+<!-- Contact -->
+<section class="cs-contact" id="contact">
+  <div class="cs-contact__inner reveal">
+    <div class="eyebrow" style="margin-bottom:32px;">Let's work together</div>
+    <h2 class="cs-contact__title">Let's build something<br><em>worth shipping.</em></h2>
+    <p class="cs-contact__subhead">Currently open to senior product design roles — fintech, AI-native products, or complex digital systems. Remote or relocation.</p>
+    <a class="cs-contact__button" href="mailto:teeakinkunmi@gmail.com">
+      <span>Get in touch</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="cs-footer">
+  <div class="cs-footer__upper">
+    <div><p class="cs-footer__col-label">Work</p><ul class="cs-footer__col-links"><li><a href="work.html">All work</a></li><li><a href="case-broadmoney.html">BroadMoney</a></li><li><a href="case-doxflowy.html">Doxflowy</a></li><li><a href="case-renncora.html">Renncora</a></li></ul></div>
+    <div><p class="cs-footer__col-label">Studio</p><ul class="cs-footer__col-links"><li><a href="index.html#studio">About</a></li><li><a href="index.html#community">Community</a></li><li><a href="#contact">Contact</a></li><li><a href="cv.pdf" download>Download CV</a></li></ul></div>
+    <div><p class="cs-footer__col-label">Elsewhere</p><ul class="cs-footer__col-links"><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765" target="_blank" rel="noopener">Dribbble</a></li><li><a href="https://www.instagram.com/yourtechgirly" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://x.com/morayo1025" target="_blank" rel="noopener">Twitter / X</a></li><li><a href="https://www.youtube.com/@Design-geeks" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+    <div><p class="cs-footer__col-label">Studio Notes</p><form class="cs-footer__form" onsubmit="event.preventDefault();"><input type="email" placeholder="your@email.com" aria-label="Email" /><button type="submit" aria-label="Subscribe"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form><p class="cs-footer__hint">Occasional writing on craft, AI-native design, and building for markets Silicon Valley overlooks.</p><p class="cs-footer__copy">&copy; MMXXVI · Made in Lagos · Est. 2019</p></div>
+  </div>
+  <div class="cs-footer__nameplate-wrap"><h2 class="cs-footer__nameplate">MORAYO</h2></div>
+</footer>
+
+<script>
+(function() {
+  var nav = document.getElementById("nav"), ticking = false;
+  function u() { nav.classList.toggle("scrolled", window.scrollY > 60); ticking = false; }
+  window.addEventListener("scroll", function() { if (!ticking) { requestAnimationFrame(u); ticking = true; } }, { passive: true });
+  u();
+})();
+(function() {
+  var r = document.querySelectorAll('.reveal');
+  if (!r.length) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { r.forEach(function(e) { e.classList.add('is-visible'); }); return; }
+  var io = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  r.forEach(function(e) { io.observe(e); });
+})();
+</script>
+
+</body>
+</html>
