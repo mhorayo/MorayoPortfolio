@@ -682,9 +682,9 @@
   .studio__portrait {
     aspect-ratio: 3 / 4;
     background: var(--meadow);
-    background-image: url('meadow.png');
-    background-size: 260%;
-    background-position: 62% 45%;
+    background-image: url('morayo-portrait.jpg');
+    background-size: cover;
+    background-position: center 20%;
     border-radius: 2px;
     position: relative;
     overflow: hidden;
@@ -1650,12 +1650,11 @@
 <body>
 
 <nav class="nav" id="nav">
-  <a href="#" class="nav__brand">Momo<span>.</span></a>
+  <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
   <div class="nav__links">
     <a href="work.html">Work</a>
     <a href="#studio">About</a>
-    <a href="#journal">Journal</a>
-    <a href="#contact">Contact</a>
+    <a href="contact.html">Contact</a>
   </div>
 </nav>
 
@@ -2095,8 +2094,9 @@
         <li><a href="case-broadmoney.html">Broad Money</a></li>
         <li><a href="case-doxflowy.html">Doxflowy</a></li>
         <li><a href="case-renncora.html">Renncora</a></li>
-        <li><a href="#help2pay">Help2Pay</a></li>
-        <li><a href="#taxclarity">Tax Clarity</a></li>
+        <li><a href="case-wosiwosi.html">Wosi Wosi</a></li>
+        <li><a href="case-taxclarity.html">Tax Clarity</a></li>
+        <li><a href="case-stacklayer.html">Stack Layer</a></li>
       </ul>
     </div>
 
@@ -2105,7 +2105,7 @@
       <ul class="footer__col-links">
         <li><a href="#studio">About</a></li>
         <li><a href="#community">Community</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
         <li><a href="cv.pdf" download>Download CV</a></li>
       </ul>
     </div>
@@ -2581,12 +2581,13 @@
   if (!stage) return;
 
   const testimonials = [
-    { text: "Momo doesn't just deliver screens — he thinks through the entire product problem. He challenged our assumptions on onboarding flow and the result was a measurable improvement in completion rates.", by: "Collaborator Name", role: "Role & Company — Replace with real testimonial", img: "https://i.pravatar.cc/150?img=1" },
-    { text: "Working with Momo on the payment infrastructure redesign, he brought both the strategic thinking and the pixel-level craft. He understood the compliance constraints without being told twice.", by: "Collaborator Name", role: "Role & Company — Replace with real testimonial", img: "https://i.pravatar.cc/150?img=2" },
-    { text: "He built our design system from scratch — not just components, but the decision framework behind them. The engineering team actually uses it, which tells you everything.", by: "Collaborator Name", role: "Role & Company — Replace with real testimonial", img: "https://i.pravatar.cc/150?img=3" },
-    { text: "Momo's ability to translate complex fintech requirements into intuitive user experiences is exceptional. He thinks in user journeys, not just interfaces.", by: "Collaborator Name", role: "Role & Company — Replace with real testimonial", img: "https://i.pravatar.cc/150?img=4" },
-    { text: "What sets Momo apart is that he stays with the product after launch. He tracks outcomes, iterates, and treats design as an ongoing process rather than a deliverable.", by: "Collaborator Name", role: "Role & Company — Replace with real testimonial", img: "https://i.pravatar.cc/150?img=5" },
-    { text: "He redesigned our cross-border payment flow and reduced drop-off significantly. He understood the regulatory nuances without needing hand-holding.", by: "Collaborator Name", role: "Role & Company — Replace with real testimonial", img: "https://i.pravatar.cc/150?img=6" },
+    { text: "Morayo doesn't just deliver screens — she thinks through the entire product problem. She challenged our assumptions on onboarding flow and the result was a measurable improvement in completion rates.", by: "Olayinka", role: "Product Lead", img: "" },
+    { text: "Working with Morayo on the payment infrastructure redesign, she brought both the strategic thinking and the pixel-level craft. She understood the compliance constraints without being told twice.", by: "Motunrayo", role: "Engineering Manager", img: "" },
+    { text: "She built our design system from scratch — not just components, but the decision framework behind them. The engineering team actually uses it, which tells you everything.", by: "Deborah", role: "Frontend Developer", img: "" },
+    { text: "Morayo's ability to translate complex fintech requirements into intuitive user experiences is exceptional. She thinks in user journeys, not just interfaces.", by: "Moses", role: "Product Manager", img: "" },
+    { text: "What sets Morayo apart is that she stays with the product after launch. She tracks outcomes, iterates, and treats design as an ongoing process rather than a deliverable.", by: "Valiant", role: "CTO", img: "" },
+    { text: "She redesigned our cross-border payment flow and reduced drop-off significantly. She understood the regulatory nuances without needing hand-holding.", by: "Ayomide", role: "Head of Compliance", img: "" },
+    { text: "Her attention to accessibility and inclusive design isn't performative — it's built into every decision. The WCAG work she did on our app was thorough and practical.", by: "Collins", role: "Design Lead", img: "" },
   ];
 
   const N = testimonials.length;
@@ -2602,7 +2603,7 @@
     card.style.transition = "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
     card.innerHTML =
       '<span class="stagger-card__corner-line"></span>' +
-      '<div><img class="stagger-card__avatar" src="' + t.img + '" alt="' + t.by + '" />' +
+      '<div><div class="stagger-card__avatar" style="display:flex;align-items:center;justify-content:center;font-family:Fraunces,serif;font-size:18px;font-weight:600;">' + t.by.charAt(0) + '</div>' +
       '<p class="stagger-card__text">\u201C' + t.text + '\u201D</p></div>' +
       '<p class="stagger-card__author">\u2014 ' + t.by + '</p>';
     stage.appendChild(card);

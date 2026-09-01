@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tax Clarity — Case Study — Morayo</title>
+<meta name="description" content="Case study: Designing a free web platform that turns Nigeria's 2026 tax reforms into a plain-language, personalized assessment for freelancers and small business owners." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F9F7F2; --cream-dark: #EFEBDF; --ink: #2A2825; --ink-soft: #4A4738;
+    --stone: #8C8676; --meadow: #9D440C; --meadow-light: #C46B2E;
+    --hairline: rgba(42, 40, 37, 0.14); --hairline-strong: rgba(42, 40, 37, 0.32);
+    --tax-green: #0F6B3A; --tax-green-light: #E6F4EC; --tax-gold: #F8C300;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--cream); background-image: radial-gradient(circle at 1px 1px, rgba(42, 40, 37, 0.10) 1px, transparent 0); background-size: 24px 24px;
+    color: var(--ink); font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden;
+  }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 200; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.15 0 0 0 0 0.14 0 0 0 0.14 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); opacity: 0.5; mix-blend-mode: multiply; }
+  ::selection { background: var(--tax-green); color: #fff; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .eyebrow { font-family: 'Instrument Sans', sans-serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--stone); font-weight: 500; }
+
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 44px; display: flex; justify-content: space-between; align-items: center; background: rgba(249,247,242,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .nav.scrolled { box-shadow: 0 4px 20px rgba(42, 40, 37, 0.08); }
+  .nav__brand { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; color: var(--ink); font-variation-settings: "opsz" 144, "SOFT" 100; }
+  .nav__brand span { color: var(--meadow); }
+  .nav__links { display: flex; gap: 36px; font-family: 'Instrument Sans', sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  .nav__links a { padding: 4px 0; transition: color 0.3s ease; }
+  .nav__links a:hover { color: var(--tax-green); }
+
+  .cs-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 66px; }
+  .cs-hero__text { display: flex; flex-direction: column; justify-content: center; padding: 80px 56px 60px; }
+  .cs-hero__title { font-family: 'Instrument Sans', sans-serif; font-size: clamp(36px, 5vw, 54px); font-weight: 700; line-height: 1.0; letter-spacing: -0.02em; text-transform: uppercase; color: var(--ink); margin-bottom: 36px; }
+  .cs-hero__title em { display: block; font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; text-transform: none; font-variation-settings: "opsz" 144, "SOFT" 80; font-size: 1.05em; }
+  .cs-hero__subtitle { font-size: 14px; line-height: 1.7; color: var(--ink-soft); max-width: 400px; margin-bottom: 44px; }
+  .cs-hero__metrics { display: flex; gap: 32px; margin-top: auto; padding-top: 48px; border-top: 0.5px solid var(--hairline); }
+  .cs-hero__metric-value { font-family: 'Fraunces', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; color: var(--tax-green); font-variation-settings: "SOFT" 40; line-height: 1.1; }
+  .cs-hero__metric-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-top: 6px; }
+  .cs-hero__image { position: relative; overflow: hidden; background: var(--tax-green-light); display: flex; align-items: center; justify-content: center; padding: 40px; }
+  .cs-hero__browser { width: 100%; max-width: 480px; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.1); background: #fff; }
+  .cs-hero__browser-bar { height: 28px; background: #f5f5f5; border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; padding: 0 10px; gap: 6px; }
+  .cs-hero__browser-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .cs-hero__browser-dot:nth-child(1) { background: #FF5F57; }
+  .cs-hero__browser-dot:nth-child(2) { background: #FFBD2E; }
+  .cs-hero__browser-dot:nth-child(3) { background: #28CA42; }
+  .cs-hero__browser img { width: 100%; display: block; }
+
+  .cs { max-width: 920px; margin: 0 auto; padding: 0 44px; }
+  .cs-section { padding: 72px 0; border-top: 0.5px solid var(--hairline); }
+  .cs-section__label { display: flex; align-items: center; gap: 14px; margin-bottom: 42px; }
+  .cs-section__label .line { flex: 1; height: 0.5px; background: var(--hairline); }
+  .cs h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 300; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); font-variation-settings: "SOFT" 40; margin-bottom: 24px; }
+  .cs h2 em { font-style: italic; color: var(--tax-green); }
+  .cs-lead { font-size: 15px; line-height: 1.75; color: var(--ink-soft); max-width: 640px; margin-bottom: 40px; }
+
+  /* Browser mockup for desktop screens */
+  .browser-mock { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.08); margin: 40px 0; }
+  .browser-mock__bar { height: 32px; background: #f5f5f5; border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; padding: 0 12px; gap: 6px; }
+  .browser-mock__dot { width: 8px; height: 8px; border-radius: 50%; }
+  .browser-mock__dot:nth-child(1) { background: #FF5F57; }
+  .browser-mock__dot:nth-child(2) { background: #FFBD2E; }
+  .browser-mock__dot:nth-child(3) { background: #28CA42; }
+  .browser-mock img { width: 100%; display: block; }
+
+  /* Step flow for the assessment screens */
+  .flow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+  .flow-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.05); }
+  .flow-card img { width: 100%; }
+  .flow-card__label { padding: 12px 16px; font-size: 12px; color: var(--stone); text-align: center; font-weight: 500; }
+
+  .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 40px 0; }
+  .pillar { padding: 28px; border: 0.5px solid var(--hairline-strong); }
+  .pillar h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .pillar p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+  .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 48px 0; }
+  .metric-card { text-align: center; padding: 32px 16px; border: 0.5px solid var(--hairline-strong); }
+  .metric-card__value { font-family: 'Fraunces', serif; font-size: 36px; color: var(--tax-green); font-variation-settings: "SOFT" 40; line-height: 1.1; }
+  .metric-card__label { font-size: 12px; color: var(--stone); margin-top: 8px; }
+
+  .cs-cta { text-align: center; padding: 80px 44px; background: var(--tax-green); }
+  .cs-cta h2 { color: #fff; }
+  .cs-cta p { color: rgba(255,255,255,0.8); max-width: 500px; margin: 0 auto 32px; font-size: 15px; }
+  .cs-cta a { display: inline-flex; padding: 14px 36px; border: 1px solid #fff; color: #fff; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; transition: background 0.3s ease; }
+  .cs-cta a:hover { background: #fff; color: var(--tax-green); }
+
+  .footer { background: var(--ink); color: var(--cream); padding: 56px 44px 32px; }
+  .footer__upper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1360px; margin: 0 auto; }
+  .footer__col-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(249,247,242,0.5); margin-bottom: 16px; }
+  .footer__col-links { list-style: none; }
+  .footer__col-links li { margin-bottom: 8px; }
+  .footer__col-links a { font-size: 14px; color: rgba(249,247,242,0.7); transition: color 0.3s ease; }
+  .footer__col-links a:hover { color: var(--cream); }
+  .footer__copyright { text-align: center; font-size: 12px; color: rgba(249,247,242,0.3); margin-top: 48px; padding-top: 24px; border-top: 0.5px solid rgba(249,247,242,0.1); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .nav { padding: 16px 20px; }
+    .nav__links { gap: 18px; font-size: 10px; }
+    .cs-hero { grid-template-columns: 1fr; }
+    .cs-hero__text { padding: 100px 24px 40px; }
+    .cs-hero__image { min-height: 300px; padding: 24px; }
+    .cs { padding: 0 24px; }
+    .flow-grid { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .metrics-row { grid-template-columns: repeat(2, 1fr); }
+    .footer__upper { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
+  <div class="nav__links">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<section class="cs-hero">
+  <div class="cs-hero__text">
+    <div style="margin-bottom: 28px;"><span class="eyebrow">Community · Open Source · Nigeria 2026</span></div>
+    <h1 class="cs-hero__title">TAX CLARITY <em>making sense of reform.</em></h1>
+    <p class="cs-hero__subtitle">A free, open-source web platform that turns Nigeria's 2026 tax reforms into a plain-language, personalized answer: what changed, what stayed the same, and what to do next.</p>
+    <div class="cs-hero__metrics">
+      <div><div class="cs-hero__metric-value">10</div><div class="cs-hero__metric-label">Screens designed</div></div>
+      <div><div class="cs-hero__metric-value">Web</div><div class="cs-hero__metric-label">Responsive</div></div>
+      <div><div class="cs-hero__metric-value">3 Q's</div><div class="cs-hero__metric-label">To personalize</div></div>
+    </div>
+  </div>
+  <div class="cs-hero__image">
+    <div class="cs-hero__browser">
+      <div class="cs-hero__browser-bar"><span class="cs-hero__browser-dot"></span><span class="cs-hero__browser-dot"></span><span class="cs-hero__browser-dot"></span></div>
+      <img src="tax-tax-clarity-landing-page-confused.jpg" alt="Tax Clarity landing page" />
+    </div>
+  </div>
+</section>
+
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__label"><span class="eyebrow">Overview</span><span class="line"></span></div>
+    <h2>People weren't lacking willpower to comply — they were lacking a clear, <em>personal answer</em></h2>
+    <p class="cs-lead">Nigeria's 2026 tax reforms arrived as dense legal language — new levies, shifted thresholds, new deadlines. Freelancers, small business owners, and salaried workers were all asking: does this affect me, and what do I do?</p>
+    <p class="cs-lead">Tax Clarity asks a few simple questions — how you earn, roughly how much, and whether your business is registered — and returns a personalized summary with a checklist of next steps. My job was to make a topic people actively avoid feel calm, guided, and genuinely understandable.</p>
+    <div class="pillars">
+      <div class="pillar"><h3>Role</h3><p>Product Designer (UI/UX) — end-to-end design</p></div>
+      <div class="pillar"><h3>Platform</h3><p>Responsive web application</p></div>
+      <div class="pillar"><h3>Type</h3><p>Community open-source project</p></div>
+      <div class="pillar"><h3>Year</h3><p>2026</p></div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <div class="cs-section__label"><span class="eyebrow">Discovery</span><span class="line"></span></div>
+    <h2>Three friction points shaped every <em>design decision</em></h2>
+    <div class="pillars">
+      <div class="pillar"><h3>Scattered information</h3><p>The reforms were everywhere — official PDFs, news articles, WhatsApp broadcasts, X threads — and sources often disagreed.</p></div>
+      <div class="pillar"><h3>A wall of jargon</h3><p>CAC registration, VAT thresholds, CIT rates, "digital infrastructure levy" — the language assumed tax literacy most people don't have.</p></div>
+      <div class="pillar"><h3>No clear next step</h3><p>Even people who understood the changes didn't know what to actually do — whether to register, what to file, or which deadlines applied.</p></div>
+      <div class="pillar"><h3>Fear of penalties</h3><p>Anxiety about getting it wrong made people avoid the topic entirely instead of engaging with it.</p></div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <div class="cs-section__label"><span class="eyebrow">The product</span><span class="line"></span></div>
+    <h2>Landing page — the <em>entry point</em></h2>
+    <p class="cs-lead">The landing page establishes trust immediately with a direct question ("Confused about the 2026 Tax Reforms?"), official guidelines badge, and a single clear call-to-action.</p>
+    <div class="browser-mock">
+      <div class="browser-mock__bar"><span class="browser-mock__dot"></span><span class="browser-mock__dot"></span><span class="browser-mock__dot"></span></div>
+      <img src="tax-landing-page.jpg" alt="Tax Clarity landing page" />
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <div class="cs-section__label"><span class="eyebrow">Assessment flow</span><span class="line"></span></div>
+    <h2>Three questions to <em>personalize everything</em></h2>
+    <p class="cs-lead">Instead of asking people to read the law, the platform asks three plain questions — income type, income range, and business registration status — then generates a personalized tax summary.</p>
+    <div class="flow-grid">
+      <div class="flow-card"><img src="tax-income-type-selection.jpg" alt="Income type selection" /><div class="flow-card__label">Income type</div></div>
+      <div class="flow-card"><img src="tax-income-range-selection.jpg" alt="Income range selection" /><div class="flow-card__label">Income range</div></div>
+      <div class="flow-card"><img src="tax-business-registration-status.jpg" alt="Business registration status" /><div class="flow-card__label">Registration status</div></div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <div class="cs-section__label"><span class="eyebrow">Results</span><span class="line"></span></div>
+    <h2>From confusion to <em>confidence</em></h2>
+    <p class="cs-lead">A brief "analysing" moment builds trust, then results land in three clear layers: what changed, what to do next, and confirmation that you're clear.</p>
+    <div class="flow-grid">
+      <div class="flow-card"><img src="tax-analysing-your-responses.jpg" alt="Analysing your responses" /><div class="flow-card__label">Processing</div></div>
+      <div class="flow-card"><img src="tax-your-2026-tax-summary-what.jpg" alt="Your 2026 tax summary" /><div class="flow-card__label">Tax summary</div></div>
+      <div class="flow-card"><img src="tax-what-you-should-do-next.jpg" alt="What you should do next" /><div class="flow-card__label">Action plan</div></div>
+    </div>
+    <div class="flow-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 560px; margin-left: auto; margin-right: auto;">
+      <div class="flow-card"><img src="tax-you-re-clear-on-your.jpg" alt="Assessment complete" /><div class="flow-card__label">All clear</div></div>
+      <div class="flow-card"><img src="tax-tax-clarity-mobile-landing-page.jpg" alt="Mobile landing page" /><div class="flow-card__label">Mobile responsive</div></div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <div class="cs-section__label"><span class="eyebrow">Outcomes</span><span class="line"></span></div>
+    <h2>Designed to turn a stressful task into a <em>two-minute check</em></h2>
+    <div class="metrics-row">
+      <div class="metric-card"><div class="metric-card__value">~2 min</div><div class="metric-card__label">Assessment time</div></div>
+      <div class="metric-card"><div class="metric-card__value">3</div><div class="metric-card__label">Simple questions</div></div>
+      <div class="metric-card"><div class="metric-card__value">100%</div><div class="metric-card__label">Responsive</div></div>
+      <div class="metric-card"><div class="metric-card__value">Free</div><div class="metric-card__label">Open source</div></div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <div class="cs-section__label"><span class="eyebrow">Reflection</span><span class="line"></span></div>
+    <h2>Challenges and <em>lessons</em></h2>
+    <div class="pillars">
+      <div class="pillar"><h3>Simplifying without oversimplifying</h3><p>Tax law is nuanced. The design had to feel clear without promising accuracy a free tool can't guarantee — so disclaimers are woven in naturally, not buried.</p></div>
+      <div class="pillar"><h3>Designing for anxiety</h3><p>Every micro-interaction — from the analysing animation to the green "you're clear" confirmation — was chosen to reduce stress, not just deliver information.</p></div>
+    </div>
+  </section>
+</div>
+
+<section class="cs-cta">
+  <h2>Want to see more work?</h2>
+  <p>Explore other case studies or get in touch to discuss your next project.</p>
+  <a href="work.html">View all work</a>
+</section>
+
+<footer class="footer">
+  <div class="footer__upper">
+    <div class="footer__col"><p class="footer__col-label">Work</p><ul class="footer__col-links"><li><a href="case-broadmoney.html">Broad Money</a></li><li><a href="case-doxflowy.html">Doxflowy</a></li><li><a href="case-renncora.html">Renncora</a></li><li><a href="case-wosiwosi.html">Wosi Wosi</a></li><li><a href="case-taxclarity.html">Tax Clarity</a></li><li><a href="case-stacklayer.html">Stack Layer</a></li></ul></div>
+    <div class="footer__col"><p class="footer__col-label">Studio</p><ul class="footer__col-links"><li><a href="index.html#studio">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer__col"><p class="footer__col-label">Elsewhere</p><ul class="footer__col-links"><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765" target="_blank">Dribbble</a></li><li><a href="https://x.com/morayo1025" target="_blank">Twitter / X</a></li></ul></div>
+    <div class="footer__col"><p class="footer__col-label">Get in touch</p><ul class="footer__col-links"><li><a href="mailto:teeakinkunmi@gmail.com">teeakinkunmi@gmail.com</a></li></ul></div>
+  </div>
+  <p class="footer__copyright">&copy; MMXXVI · Made in Lagos</p>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
+reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
