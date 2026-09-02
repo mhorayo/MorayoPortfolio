@@ -244,14 +244,13 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -0.08em;
     z-index: 3;
     font-family: 'Fraunces', serif;
     font-size: 26vw;
-    line-height: 0.86;
-    font-weight: 700;
+    line-height: 0.82;
+    font-weight: 900;
     color: var(--cream);
-    text-align: center;
     letter-spacing: -0.03em;
     white-space: nowrap;
     user-select: none;
@@ -259,9 +258,9 @@
     margin: 0;
     overflow: visible;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
-    padding: 0 2vw;
+    padding: 0;
   }
   .hero__nameplate span {
     display: inline-block;
@@ -1272,22 +1271,24 @@
   /* Massive nameplate + circular stamp */
   .footer__nameplate-wrap {
     position: relative;
-    padding: 40px 32px 0;
+    padding: 40px 0 0;
     overflow: visible;
   }
   .footer__nameplate {
     font-family: 'Fraunces', serif;
     font-size: clamp(120px, 22vw, 360px);
     line-height: 0.78;
-    font-weight: 700;
+    font-weight: 900;
     color: var(--cream);
-    text-align: center;
+    text-align: justify;
+    text-align-last: justify;
     letter-spacing: -0.02em;
     margin: 0;
     user-select: none;
     white-space: nowrap;
     overflow: visible;
     padding-bottom: 0;
+    width: 100%;
   }
   .footer__stamp {
     position: absolute;
