@@ -137,8 +137,8 @@
   .work-hero__cta {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 16px 34px;
-    background: transparent;
-    border: 1px solid rgba(249, 247, 242, 0.5);
+    background: var(--meadow);
+    border: 1px solid var(--meadow);
     color: var(--cream);
     font-family: 'Instrument Sans', sans-serif;
     font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500;
@@ -206,8 +206,10 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-bottom: 10px;
-    height: 100vh;
+    height: 85vh;
+    min-height: 560px;
   }
+  .work-row--three { grid-template-columns: 1fr 1fr 1fr; }
   .work-item {
     position: relative; overflow: hidden;
     background: var(--cream-dark);
@@ -415,8 +417,8 @@
     .work-intro { padding: 80px 24px; }
     .work-intro__inner { grid-template-columns: 1fr; gap: 40px; }
     .work-grid { padding: 0 24px; }
-    .work-row { grid-template-columns: 1fr; height: auto; gap: 10px; margin-bottom: 10px; }
-    .work-item { min-height: 75vh; }
+    .work-row, .work-row--three { grid-template-columns: 1fr; height: auto; gap: 10px; margin-bottom: 10px; }
+    .work-item { min-height: 65vh; }
     .work-item__content { padding: 28px; }
     .contact { padding: 48px 24px 32px; }
     .contact__button { padding: 14px 24px; font-size: 11px; }
@@ -436,9 +438,7 @@
   <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
   <div class="nav__links">
     <a href="work.html" class="is-current">Work</a>
-    <a href="index.html#studio">About</a>
-    <a href="index.html#journal">Journal</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="contact.html">Contact</a>
   </div>
 </nav>
 
@@ -512,16 +512,6 @@
         <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
     </a>
-    <a href="case-help2pay.html" class="work-item">
-      <div class="work-item__bg" style="background: linear-gradient(135deg, #C4653A 0%, #9D440C 100%);"></div>
-      <div class="work-item__overlay"></div>
-      <div class="work-item__content">
-        <span class="work-item__eyebrow">Fintech · Payment infrastructure · 2024</span>
-        <h2 class="work-item__title">Help2Pay</h2>
-        <p class="work-item__desc">Payment infrastructure that needed to feel simple despite routing money through complex settlement systems. Merchant dashboards and end-user flows that turned a back-office tool into something people wanted to open.</p>
-        <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
     <a href="case-wosiwosi.html" class="work-item">
       <div class="work-item__bg" style="background: linear-gradient(135deg, #006633 0%, #00301A 100%);"></div>
       <div class="work-item__overlay"></div>
@@ -536,16 +526,30 @@
 
   <!-- ROW 3 -->
   <div class="work-row reveal">
+    <a href="case-help2pay.html" class="work-item">
+      <div class="work-item__bg" style="background: linear-gradient(135deg, #C4653A 0%, #9D440C 100%);"></div>
+      <div class="work-item__overlay"></div>
+      <div class="work-item__content">
+        <span class="work-item__eyebrow">Fintech · Payment infrastructure · 2024</span>
+        <h2 class="work-item__title">Help2Pay</h2>
+        <p class="work-item__desc">Payment infrastructure that needed to feel simple despite routing money through complex settlement systems. Merchant dashboards and end-user flows that turned a back-office tool into something people wanted to open.</p>
+        <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
     <a href="case-taxclarity.html" class="work-item">
       <div class="work-item__bg" style="background: linear-gradient(135deg, #0F6B3A 0%, #063D1E 100%);"></div>
       <div class="work-item__overlay"></div>
       <div class="work-item__content">
-        <span class="work-item__eyebrow">Community · Open source · Web · 2026</span>
+        <span class="work-item__eyebrow">Community · Tax reform web app · 2026</span>
         <h2 class="work-item__title">Tax <em>Clarity</em></h2>
         <p class="work-item__desc">Free, open-source web platform turning Nigeria's 2026 tax reforms into plain-language, personalized assessments — three questions to a clear action plan.</p>
         <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
     </a>
+  </div>
+
+  <!-- ROW 4 -->
+  <div class="work-row reveal">
     <a href="case-stacklayer.html" class="work-item">
       <div class="work-item__bg" style="background: linear-gradient(135deg, #4B6BFB 0%, #2A4AD4 100%);"></div>
       <div class="work-item__overlay"></div>
@@ -553,6 +557,16 @@
         <span class="work-item__eyebrow">AI · Responsive web app · 2025</span>
         <h2 class="work-item__title">Stack <em>Layer</em></h2>
         <p class="work-item__desc">AI tool recommendation platform mapping tools to real career workflows — role selection, skill-level filtering, and guided discovery across ideation, creation, and analysis stages.</p>
+        <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+    <a href="case-kunchi.html" class="work-item">
+      <div class="work-item__bg" style="background: linear-gradient(135deg, #2D9F4F 0%, #1A6B30 100%);"></div>
+      <div class="work-item__overlay"></div>
+      <div class="work-item__content">
+        <span class="work-item__eyebrow">Fintech · Microfinance banking · 2024</span>
+        <h2 class="work-item__title">Kunchi <em>MFB</em></h2>
+        <p class="work-item__desc">Full mobile banking experience for a microfinance bank — 50+ screens across onboarding, KYC verification, transfers, card management, loans, biometrics, notifications, and referrals.</p>
         <span class="work-item__cta">View case study <svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
     </a>
@@ -569,7 +583,7 @@
       <em>worth shipping.</em>
     </h2>
     <p class="contact__subhead">Currently open to senior product design roles — fintech, AI-native products, or complex digital systems. Remote or relocation. Let's talk about what you're building.</p>
-    <a class="contact__button" href="mailto:teeakinkunmi@gmail.com">
+    <a class="contact__button" href="contact.html">
       <span>Get in touch</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -589,14 +603,16 @@
         <li><a href="case-renncora.html">Renncora</a></li>
         <li><a href="case-wosiwosi.html">Wosi Wosi</a></li>
         <li><a href="case-taxclarity.html">Tax Clarity</a></li>
+        <li><a href="case-stacklayer.html">Stack Layer</a></li>
+        <li><a href="case-help2pay.html">Help2Pay</a></li>
+        <li><a href="case-kunchi.html">Kunchi MFB</a></li>
       </ul>
     </div>
     <div class="footer__col">
       <p class="footer__col-label">Studio</p>
       <ul class="footer__col-links">
-        <li><a href="index.html#studio">About</a></li>
         <li><a href="index.html#community">Community</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
         <li><a href="cv.pdf" download>Download CV</a></li>
       </ul>
     </div>

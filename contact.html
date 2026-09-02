@@ -4,15 +4,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Contact — Morayo</title>
-<meta name="description" content="Get in touch with Morayo — senior product designer specializing in fintech and AI-native products. Open for senior design roles, consulting, and collaboration." />
+<meta name="description" content="Get in touch with Morayo — senior product designer specializing in fintech and AI-native products." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --cream: #F9F7F2; --cream-dark: #EFEBDF; --ink: #2A2825; --ink-soft: #4A4738;
-    --stone: #8C8676; --meadow: #9D440C; --meadow-light: #C46B2E;
+    --stone: #8C8676; --meadow: #9D440C; --meadow-light: #C46B2E; --blush: #E8C4C0;
     --hairline: rgba(42, 40, 37, 0.14); --hairline-strong: rgba(42, 40, 37, 0.32);
+    --brown-hero: #5C3A1E;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -26,7 +27,7 @@
   .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 44px; display: flex; justify-content: space-between; align-items: center; background: transparent; transition: background 0.4s ease, box-shadow 0.4s ease; }
   .nav.scrolled { background: rgba(249,247,242,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 4px 20px rgba(42, 40, 37, 0.08); }
   .nav__brand { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; color: var(--cream); font-variation-settings: "opsz" 144, "SOFT" 100; transition: color 0.4s ease; }
-  .nav__brand span { color: var(--cream); }
+  .nav__brand span { color: var(--cream); transition: color 0.4s ease; }
   .nav.scrolled .nav__brand { color: var(--ink); }
   .nav.scrolled .nav__brand span { color: var(--meadow); }
   .nav__links { display: flex; gap: 36px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(249,247,242,0.8); transition: color 0.4s ease; }
@@ -34,38 +35,105 @@
   .nav__links a { padding: 4px 0; transition: color 0.3s ease; }
   .nav__links a:hover { color: var(--meadow-light); }
 
-  /* HERO */
-  .contact-hero { background: var(--meadow); color: var(--cream); padding: 140px 44px 80px; text-align: center; position: relative; overflow: hidden; }
-  .contact-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 20%, rgba(196, 107, 46, 0.4) 0%, transparent 60%); pointer-events: none; }
-  .contact-hero__eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(249,247,242,0.7); margin-bottom: 24px; position: relative; z-index: 1; }
-  .contact-hero__title { font-family: 'Fraunces', serif; font-size: clamp(40px, 6vw, 64px); font-weight: 300; line-height: 1.08; letter-spacing: -0.01em; font-variation-settings: "SOFT" 60; margin-bottom: 20px; position: relative; z-index: 1; }
-  .contact-hero__title em { font-style: italic; }
-  .contact-hero__sub { font-size: 16px; line-height: 1.65; color: rgba(249,247,242,0.85); max-width: 520px; margin: 0 auto; position: relative; z-index: 1; }
+  /* HERO — 100vh dark brown, editorial */
+  .contact-hero {
+    height: 100vh; min-height: 600px;
+    background: var(--brown-hero);
+    color: var(--cream);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 64px 64px;
+    position: relative; overflow: hidden;
+  }
+  .contact-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(92,58,30,0) 50%, rgba(42,40,37,0.4) 100%);
+    pointer-events: none;
+  }
+  .contact-hero__title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300; line-height: 1.12;
+    font-variation-settings: "SOFT" 50, "opsz" 144;
+    max-width: 640px;
+    position: relative; z-index: 1;
+    margin-bottom: 28px;
+  }
+  .contact-hero__title em { font-style: italic; font-variation-settings: "SOFT" 100, "opsz" 144; }
+  .contact-hero__line {
+    display: flex; align-items: center; gap: 20px;
+    position: relative; z-index: 1;
+  }
+  .contact-hero__line span {
+    font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: rgba(249,247,242,0.55); white-space: nowrap;
+  }
+  .contact-hero__line::after {
+    content: ''; flex: 1; height: 0.5px;
+    background: rgba(249,247,242,0.2);
+  }
+
+  /* AUTHOR / BIO */
+  .bio {
+    max-width: 960px; margin: 0 auto;
+    padding: 72px 44px 56px;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 40px; align-items: start;
+    text-align: left;
+  }
+  .bio__left, .bio__right {
+    font-size: 14px; line-height: 1.7; color: var(--ink-soft);
+  }
+  .bio__center { text-align: center; }
+  .bio__portrait {
+    width: 100px; height: 100px; border-radius: 50%; overflow: hidden;
+    margin: 0 auto 12px;
+    border: 2px solid var(--hairline);
+  }
+  .bio__portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .bio__name {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 14px; color: var(--meadow);
+    font-variation-settings: "SOFT" 80;
+  }
+  .bio__role { font-size: 11px; color: var(--stone); letter-spacing: 0.08em; margin-top: 2px; }
+
+  /* 3-PHOTO GRID */
+  .photo-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+  }
+  .photo-grid__img {
+    width: 100%; aspect-ratio: 3 / 4;
+    object-fit: cover; display: block;
+    filter: grayscale(20%);
+    transition: filter 0.4s ease;
+  }
+  .photo-grid__img:hover { filter: grayscale(0); }
 
   /* FORM SECTION */
-  .contact-form-section { max-width: 720px; margin: -40px auto 0; padding: 0 44px; position: relative; z-index: 2; }
-  .contact-form-card { background: #fff; padding: 48px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); border: 0.5px solid var(--hairline); }
+  .contact-form-section { max-width: 720px; margin: 72px auto 0; padding: 0 44px; }
+  .contact-form-card { background: #fff; padding: 48px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 0.5px solid var(--hairline); border-radius: 12px; }
   .contact-form-card h2 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 400; margin-bottom: 8px; font-variation-settings: "SOFT" 40; }
   .contact-form-card .sub { font-size: 14px; color: var(--stone); margin-bottom: 32px; }
 
   .form-row { margin-bottom: 24px; }
   .form-row--half { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
-  .form-input, .form-textarea, .form-select { width: 100%; padding: 14px 16px; font-family: 'Instrument Sans', sans-serif; font-size: 15px; color: var(--ink); background: var(--cream); border: 0.5px solid var(--hairline-strong); outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; -webkit-appearance: none; }
+  .form-input, .form-textarea, .form-select { width: 100%; padding: 14px 16px; font-family: 'Instrument Sans', sans-serif; font-size: 15px; color: var(--ink); background: var(--cream); border: 0.5px solid var(--hairline-strong); border-radius: 8px; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; -webkit-appearance: none; }
   .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--meadow); box-shadow: 0 0 0 3px rgba(157, 68, 12, 0.12); }
   .form-textarea { min-height: 140px; resize: vertical; }
   .form-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%234A4738' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
 
-  .form-submit { display: inline-flex; align-items: center; gap: 12px; padding: 16px 40px; background: var(--meadow); color: var(--cream); border: none; font-family: 'Instrument Sans', sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.3s ease, transform 0.2s ease; font-weight: 500; }
+  .form-submit { display: inline-flex; align-items: center; gap: 12px; padding: 16px 40px; background: var(--meadow); color: var(--cream); border: none; font-family: 'Instrument Sans', sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.3s ease, transform 0.2s ease; font-weight: 500; border-radius: 8px; }
   .form-submit:hover { background: var(--ink); transform: translateY(-1px); }
   .form-submit svg { width: 16px; height: 16px; }
 
-  /* TOOLS SECTION */
+  /* TOOLS */
   .tools-section { max-width: 920px; margin: 0 auto; padding: 80px 44px; }
   .tools-section h2 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300; margin-bottom: 12px; font-variation-settings: "SOFT" 40; }
   .tools-section .sub { font-size: 14px; color: var(--stone); margin-bottom: 40px; max-width: 500px; }
   .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
-  .tool-card { padding: 20px 16px; border: 0.5px solid var(--hairline-strong); text-align: center; transition: border-color 0.3s ease, transform 0.2s ease; }
+  .tool-card { padding: 20px 16px; border: 0.5px solid var(--hairline-strong); border-radius: 8px; text-align: center; transition: border-color 0.3s ease, transform 0.2s ease; }
   .tool-card:hover { border-color: var(--meadow); transform: translateY(-2px); }
   .tool-card__icon { width: 36px; height: 36px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
   .tool-card__icon img, .tool-card__icon svg { width: 100%; height: 100%; object-fit: contain; }
@@ -74,37 +142,68 @@
 
   /* CONNECT */
   .connect-section { max-width: 920px; margin: 0 auto; padding: 0 44px 80px; }
+  .connect-section h2 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300; margin-bottom: 32px; font-variation-settings: "SOFT" 40; }
   .connect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .connect-card { padding: 28px; border: 0.5px solid var(--hairline-strong); transition: border-color 0.3s ease; }
+  .connect-card { padding: 28px; border: 0.5px solid var(--hairline-strong); border-radius: 8px; transition: border-color 0.3s ease; }
   .connect-card:hover { border-color: var(--meadow); }
   .connect-card__label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 8px; }
   .connect-card__value { font-family: 'Fraunces', serif; font-size: 16px; font-variation-settings: "SOFT" 40; }
   .connect-card__value a { color: var(--meadow); transition: color 0.3s ease; }
   .connect-card__value a:hover { color: var(--ink); }
 
-  /* FOOTER */
-  .footer { background: var(--ink); color: var(--cream); padding: 56px 44px 32px; }
-  .footer__upper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1360px; margin: 0 auto; }
-  .footer__col-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(249,247,242,0.5); margin-bottom: 16px; }
-  .footer__col-links { list-style: none; }
-  .footer__col-links li { margin-bottom: 8px; }
-  .footer__col-links a { font-size: 14px; color: rgba(249,247,242,0.7); transition: color 0.3s ease; }
-  .footer__col-links a:hover { color: var(--cream); }
-  .footer__copyright { text-align: center; font-size: 12px; color: rgba(249,247,242,0.3); margin-top: 48px; padding-top: 24px; border-top: 0.5px solid rgba(249,247,242,0.1); }
+  /* FOOTER — matches home page */
+  .footer { background: var(--meadow); color: var(--cream); position: relative; overflow: clip; padding: 0; }
+  .footer__upper { padding: 96px 44px 72px; max-width: 1680px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr 1.8fr; gap: 56px; align-items: start; }
+  .footer__col-label { font-family: 'Instrument Sans', sans-serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--cream); opacity: 0.5; margin: 0 0 22px; font-weight: 500; }
+  .footer__col-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .footer__col-links a { font-family: 'Instrument Sans', sans-serif; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); font-weight: 500; display: inline-block; width: fit-content; transition: color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+  .footer__col-links a:hover { color: var(--blush); transform: translateX(5px); }
+  .footer__newsletter { padding-left: 8px; }
+  .footer__newsletter-form { display: flex; align-items: center; background: rgba(249, 247, 242, 0.05); border: 0.5px solid rgba(249, 247, 242, 0.18); border-radius: 999px; padding: 4px 4px 4px 20px; max-width: 420px; transition: border-color 0.3s ease, background 0.3s ease; }
+  .footer__newsletter-form:focus-within { border-color: rgba(249, 247, 242, 0.4); background: rgba(249, 247, 242, 0.09); }
+  .footer__newsletter-input { flex: 1; background: transparent; border: none; outline: none; color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-size: 13px; padding: 10px 8px; min-width: 0; }
+  .footer__newsletter-input::placeholder { color: var(--cream); opacity: 0.4; }
+  .footer__newsletter-submit { background: var(--ink); border: none; color: var(--cream); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease; flex-shrink: 0; }
+  .footer__newsletter-submit:hover { background: var(--cream); color: var(--meadow); transform: scale(1.08); }
+  .footer__newsletter-submit svg { width: 14px; height: 14px; }
+  .footer__newsletter-hint { margin-top: 18px; font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; line-height: 1.55; color: var(--cream); opacity: 0.6; max-width: 420px; font-variation-settings: "opsz" 14, "SOFT" 60; }
+  .footer__socials { margin-top: 28px; display: flex; gap: 8px; }
+  .footer__social { width: 40px; height: 40px; border-radius: 50%; border: 0.5px solid rgba(249, 247, 242, 0.22); display: inline-flex; align-items: center; justify-content: center; color: var(--cream); transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+  .footer__social:hover { background: var(--ink); border-color: var(--ink); transform: translateY(-4px); }
+  .footer__social svg { width: 15px; height: 15px; }
+  .footer__copyright { margin-top: 26px; font-family: 'Instrument Sans', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cream); opacity: 0.4; }
+  .footer__nameplate-wrap { position: relative; padding: 40px 32px 0; overflow: visible; }
+  .footer__nameplate { font-family: 'Fraunces', serif; font-size: clamp(120px, 22vw, 360px); line-height: 0.78; font-weight: 900; font-variation-settings: "opsz" 144, "SOFT" 0, "wght" 900; color: var(--cream); text-align: center; letter-spacing: -0.02em; margin: 0; user-select: none; white-space: nowrap; overflow: visible; padding-bottom: 0; }
+  .footer__stamp { position: absolute; right: 6vw; top: -18px; width: clamp(110px, 12vw, 160px); height: clamp(110px, 12vw, 160px); z-index: 3; transform: rotate(-8deg); filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.4)); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  .footer__stamp:hover { transform: rotate(-8deg) scale(1.08); }
+  .footer__stamp-ring { transform-origin: 100px 100px; animation: stamp-rotate 24s linear infinite; }
+  @keyframes stamp-rotate { to { transform: rotate(360deg); } }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 768px) {
     .nav { padding: 16px 20px; }
     .nav__links { gap: 18px; font-size: 10px; }
-    .contact-hero { padding: 120px 24px 60px; }
-    .contact-form-section { padding: 0 20px; }
+    .contact-hero { padding: 0 28px 40px; }
+    .contact-hero__title { font-size: clamp(28px, 7vw, 44px); }
+    .bio { grid-template-columns: 1fr; gap: 24px; padding: 48px 24px; text-align: center; }
+    .bio__center { order: -1; }
+    .photo-grid { grid-template-columns: 1fr; }
+    .contact-form-section { padding: 0 20px; margin-top: 48px; }
     .contact-form-card { padding: 32px 24px; }
     .form-row--half { grid-template-columns: 1fr; }
     .tools-section { padding: 48px 24px; }
     .tools-grid { grid-template-columns: repeat(3, 1fr); }
     .connect-section { padding: 0 24px 48px; }
     .connect-grid { grid-template-columns: 1fr; }
-    .footer__upper { grid-template-columns: repeat(2, 1fr); }
+    .footer__upper { grid-template-columns: 1fr 1fr; gap: 40px 24px; padding: 72px 24px 48px; }
+    .footer__newsletter { padding-left: 0; grid-column: 1 / -1; }
+    .footer__nameplate { font-size: 28vw; }
+    .footer__stamp { right: 4vw; top: -8px; width: 92px; height: 92px; }
   }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 </style>
 </head>
 <body>
@@ -112,21 +211,44 @@
 <nav class="nav" id="nav">
   <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
   <div class="nav__links">
-    <a href="index.html">Home</a>
     <a href="work.html">Work</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — 100vh dark brown editorial -->
 <section class="contact-hero">
-  <p class="contact-hero__eyebrow">Let's work together</p>
-  <h1 class="contact-hero__title">Let's build something<br><em>worth shipping.</em></h1>
-  <p class="contact-hero__sub">Currently open to senior product design roles — fintech, AI-native products, or complex digital systems. Remote or relocation. Tell me what you're building.</p>
+  <h1 class="contact-hero__title">Considered work for teams<br>who care about the <em>details.</em></h1>
+  <div class="contact-hero__line">
+    <span>Senior Product Designer</span>
+    <span>Fintech · AI-native · Mobile-first</span>
+  </div>
+</section>
+
+<!-- BIO — author portrait flanked by text -->
+<section class="bio reveal">
+  <div class="bio__left">
+    <p>I specialize in fintech and AI-native products — cross-border payments, digital banking, document automation, and crypto-to-fiat infrastructure. Over four years I've shipped products that handle real money, real compliance, and real user trust across multiple markets.</p>
+  </div>
+  <div class="bio__center">
+    <div class="bio__portrait"><img src="morayo-portrait.jpg" alt="Morayo" loading="lazy" /></div>
+    <div class="bio__name">with Morayo</div>
+    <div class="bio__role">Senior Product Designer</div>
+  </div>
+  <div class="bio__right">
+    <p>I build design systems from scratch, collaborate closely with engineering and product, and own the design process end-to-end — from research through to post-launch iteration. Currently open to senior product design roles internationally.</p>
+  </div>
+</section>
+
+<!-- 3-PHOTO GRID -->
+<section class="photo-grid reveal">
+  <img class="photo-grid__img" src="broadmoney-hero.jpg" alt="BroadMoney project" loading="lazy" />
+  <img class="photo-grid__img" src="work-hero.jpg" alt="Design work" loading="lazy" />
+  <img class="photo-grid__img" src="ren-live-watching.jpg" alt="Renncora project" loading="lazy" />
 </section>
 
 <!-- FORM -->
-<div class="contact-form-section">
+<div class="contact-form-section reveal">
   <div class="contact-form-card">
     <h2>Send a message</h2>
     <p class="sub">I'll get back to you within 24–48 hours.</p>
@@ -135,18 +257,10 @@
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value="https://morayo-portfolio.vercel.app/contact.html" />
       <input type="text" name="_honey" style="display:none" />
-
       <div class="form-row form-row--half">
-        <div>
-          <label class="form-label" for="name">Name</label>
-          <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required />
-        </div>
-        <div>
-          <label class="form-label" for="email">Email</label>
-          <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required />
-        </div>
+        <div><label class="form-label" for="name">Name</label><input class="form-input" type="text" id="name" name="name" placeholder="Your name" required /></div>
+        <div><label class="form-label" for="email">Email</label><input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required /></div>
       </div>
-
       <div class="form-row">
         <label class="form-label" for="subject">What's this about?</label>
         <select class="form-select" id="subject" name="subject">
@@ -158,120 +272,131 @@
           <option value="General inquiry">General inquiry</option>
         </select>
       </div>
-
       <div class="form-row">
         <label class="form-label" for="message">Message</label>
         <textarea class="form-textarea" id="message" name="message" placeholder="Tell me about your project, team, or how I can help..." required></textarea>
       </div>
-
-      <button type="submit" class="form-submit">
-        Send message
-        <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
+      <button type="submit" class="form-submit">Send message <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </form>
   </div>
 </div>
 
 <!-- TOOLS -->
-<section class="tools-section">
+<section class="tools-section reveal">
   <h2>Design tools I work with</h2>
   <p class="sub">The toolkit behind fintech, AI-native, and mobile-first product design.</p>
   <div class="tools-grid">
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 38 57" xmlns="http://www.w3.org/2000/svg"><path d="M19 28.5a9.5 9.5 0 100-19h-9.5v19H19z" fill="#A259FF"/><path d="M0 9.5A9.5 9.5 0 019.5 0H19v19H9.5A9.5 9.5 0 010 9.5z" fill="#F24E1E"/><path d="M0 28.5A9.5 9.5 0 019.5 19H19v19H9.5A9.5 9.5 0 010 28.5z" fill="#FF7262"/><path d="M0 47.5A9.5 9.5 0 019.5 38H19v9.5a9.5 9.5 0 01-19 0z" fill="#0ACF83"/><path d="M19 38h9.5a9.5 9.5 0 010 19A9.5 9.5 0 0119 47.5V38z" fill="#1ABCFE"/></svg></div>
-      <div class="tool-card__name">Figma</div><div class="tool-card__type">Design</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#252525"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">FJ</text></svg></div>
-      <div class="tool-card__name">FigJam</div><div class="tool-card__type">Whiteboard</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#FFD02F"/><text x="20" y="26" text-anchor="middle" fill="#050038" font-family="sans-serif" font-size="12" font-weight="800">Miro</text></svg></div>
-      <div class="tool-card__name">Miro</div><div class="tool-card__type">Collaboration</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#F25F3A"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="700">PP</text></svg></div>
-      <div class="tool-card__name">ProtoPie</div><div class="tool-card__type">Prototyping</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#D97706"/><text x="20" y="27" text-anchor="middle" fill="#fff" font-family="serif" font-size="20" font-style="italic">C</text></svg></div>
-      <div class="tool-card__name">Claude</div><div class="tool-card__type">AI Assistant</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#000"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">v0</text></svg></div>
-      <div class="tool-card__name">V0</div><div class="tool-card__type">AI Prototyping</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#111"/><text x="20" y="26" text-anchor="middle" fill="#00D1FF" font-family="sans-serif" font-size="11" font-weight="800">C</text></svg></div>
-      <div class="tool-card__name">Cursor</div><div class="tool-card__type">AI Code Editor</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#000"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">N</text></svg></div>
-      <div class="tool-card__name">Notion</div><div class="tool-card__type">Documentation</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#4A154B"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">S</text></svg></div>
-      <div class="tool-card__name">Slack</div><div class="tool-card__type">Communication</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#0078D4"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="700">Clarity</text></svg></div>
-      <div class="tool-card__name">MS Clarity</div><div class="tool-card__type">Analytics</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#5A45FF"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8" font-weight="700">UXCam</text></svg></div>
-      <div class="tool-card__name">UXCam</div><div class="tool-card__type">Analytics</div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#1D4AFF"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8" font-weight="700">PostHog</text></svg></div>
-      <div class="tool-card__name">PostHog</div><div class="tool-card__type">Analytics</div>
-    </div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 38 57" xmlns="http://www.w3.org/2000/svg"><path d="M19 28.5a9.5 9.5 0 100-19h-9.5v19H19z" fill="#A259FF"/><path d="M0 9.5A9.5 9.5 0 019.5 0H19v19H9.5A9.5 9.5 0 010 9.5z" fill="#F24E1E"/><path d="M0 28.5A9.5 9.5 0 019.5 19H19v19H9.5A9.5 9.5 0 010 28.5z" fill="#FF7262"/><path d="M0 47.5A9.5 9.5 0 019.5 38H19v9.5a9.5 9.5 0 01-19 0z" fill="#0ACF83"/><path d="M19 38h9.5a9.5 9.5 0 010 19A9.5 9.5 0 0119 47.5V38z" fill="#1ABCFE"/></svg></div><div class="tool-card__name">Figma</div><div class="tool-card__type">Design</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#252525"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">FJ</text></svg></div><div class="tool-card__name">FigJam</div><div class="tool-card__type">Whiteboard</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#FFD02F"/><text x="20" y="26" text-anchor="middle" fill="#050038" font-family="sans-serif" font-size="12" font-weight="800">Miro</text></svg></div><div class="tool-card__name">Miro</div><div class="tool-card__type">Collaboration</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#F25F3A"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="700">PP</text></svg></div><div class="tool-card__name">ProtoPie</div><div class="tool-card__type">Prototyping</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#D97706"/><text x="20" y="27" text-anchor="middle" fill="#fff" font-family="serif" font-size="20" font-style="italic">C</text></svg></div><div class="tool-card__name">Claude</div><div class="tool-card__type">AI Assistant</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#000"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">v0</text></svg></div><div class="tool-card__name">V0</div><div class="tool-card__type">AI Prototyping</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#111"/><text x="20" y="26" text-anchor="middle" fill="#00D1FF" font-family="sans-serif" font-size="11" font-weight="800">C</text></svg></div><div class="tool-card__name">Cursor</div><div class="tool-card__type">AI Code Editor</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#000"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">N</text></svg></div><div class="tool-card__name">Notion</div><div class="tool-card__type">Documentation</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#4A154B"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="700">S</text></svg></div><div class="tool-card__name">Slack</div><div class="tool-card__type">Communication</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#0078D4"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="9" font-weight="700">Clarity</text></svg></div><div class="tool-card__name">MS Clarity</div><div class="tool-card__type">Analytics</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#5A45FF"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8" font-weight="700">UXCam</text></svg></div><div class="tool-card__name">UXCam</div><div class="tool-card__type">Analytics</div></div>
+    <div class="tool-card"><div class="tool-card__icon"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#1D4AFF"/><text x="20" y="26" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8" font-weight="700">PostHog</text></svg></div><div class="tool-card__name">PostHog</div><div class="tool-card__type">Analytics</div></div>
   </div>
 </section>
 
 <!-- CONNECT -->
-<section class="connect-section">
+<section class="connect-section reveal">
+  <h2>Let's connect</h2>
   <div class="connect-grid">
-    <div class="connect-card">
-      <div class="connect-card__label">Email</div>
-      <div class="connect-card__value"><a href="mailto:teeakinkunmi@gmail.com">teeakinkunmi@gmail.com</a></div>
-    </div>
-    <div class="connect-card">
-      <div class="connect-card__label">LinkedIn</div>
-      <div class="connect-card__value"><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank">linkedin.com/in/morayo-akinkunmi</a></div>
-    </div>
-    <div class="connect-card">
-      <div class="connect-card__label">WhatsApp</div>
-      <div class="connect-card__value"><a href="https://api.whatsapp.com/send?phone=2349036584218" target="_blank">+234 903 658 4218</a></div>
-    </div>
-    <div class="connect-card">
-      <div class="connect-card__label">Dribbble</div>
-      <div class="connect-card__value"><a href="https://dribbble.com/momo98765" target="_blank">dribbble.com/momo98765</a></div>
-    </div>
-    <div class="connect-card">
-      <div class="connect-card__label">Twitter / X</div>
-      <div class="connect-card__value"><a href="https://x.com/morayo1025" target="_blank">@morayo1025</a></div>
-    </div>
-    <div class="connect-card">
-      <div class="connect-card__label">Instagram</div>
-      <div class="connect-card__value"><a href="https://www.instagram.com/yourtechgirly" target="_blank">@yourtechgirly</a></div>
-    </div>
+    <div class="connect-card"><div class="connect-card__label">Email</div><div class="connect-card__value"><a href="mailto:teeakinkunmi@gmail.com">teeakinkunmi@gmail.com</a></div></div>
+    <div class="connect-card"><div class="connect-card__label">LinkedIn</div><div class="connect-card__value"><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank">linkedin.com/in/morayo-akinkunmi</a></div></div>
+    <div class="connect-card"><div class="connect-card__label">WhatsApp</div><div class="connect-card__value"><a href="https://api.whatsapp.com/send?phone=2349036584218" target="_blank">+234 903 658 4218</a></div></div>
+    <div class="connect-card"><div class="connect-card__label">Dribbble</div><div class="connect-card__value"><a href="https://dribbble.com/momo98765" target="_blank">dribbble.com/momo98765</a></div></div>
+    <div class="connect-card"><div class="connect-card__label">Twitter / X</div><div class="connect-card__value"><a href="https://x.com/morayo1025" target="_blank">@morayo1025</a></div></div>
+    <div class="connect-card"><div class="connect-card__label">Instagram</div><div class="connect-card__value"><a href="https://www.instagram.com/yourtechgirly" target="_blank">@yourtechgirly</a></div></div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER — matches home page -->
 <footer class="footer">
   <div class="footer__upper">
-    <div class="footer__col"><p class="footer__col-label">Work</p><ul class="footer__col-links"><li><a href="case-broadmoney.html">Broad Money</a></li><li><a href="case-doxflowy.html">Doxflowy</a></li><li><a href="case-renncora.html">Renncora</a></li><li><a href="case-wosiwosi.html">Wosi Wosi</a></li><li><a href="case-taxclarity.html">Tax Clarity</a></li><li><a href="case-stacklayer.html">Stack Layer</a></li></ul></div>
-    <div class="footer__col"><p class="footer__col-label">Studio</p><ul class="footer__col-links"><li><a href="index.html#studio">About</a></li><li><a href="index.html#community">Community</a></li><li><a href="contact.html">Contact</a></li><li><a href="cv.pdf" download>Download CV</a></li></ul></div>
-    <div class="footer__col"><p class="footer__col-label">Elsewhere</p><ul class="footer__col-links"><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765" target="_blank">Dribbble</a></li><li><a href="https://www.instagram.com/yourtechgirly" target="_blank">Instagram</a></li><li><a href="https://x.com/morayo1025" target="_blank">Twitter / X</a></li><li><a href="https://www.youtube.com/@Design-geeks" target="_blank">YouTube</a></li></ul></div>
-    <div class="footer__col"><p class="footer__col-label">Get in touch</p><ul class="footer__col-links"><li><a href="mailto:teeakinkunmi@gmail.com">teeakinkunmi@gmail.com</a></li><li><a href="https://api.whatsapp.com/send?phone=2349036584218" target="_blank">WhatsApp</a></li></ul></div>
+    <div class="footer__col">
+      <p class="footer__col-label">Work</p>
+      <ul class="footer__col-links">
+        <li><a href="case-broadmoney.html">Broad Money</a></li>
+        <li><a href="case-doxflowy.html">Doxflowy</a></li>
+        <li><a href="case-renncora.html">Renncora</a></li>
+        <li><a href="case-wosiwosi.html">Wosi Wosi</a></li>
+        <li><a href="case-taxclarity.html">Tax Clarity</a></li>
+        <li><a href="case-stacklayer.html">Stack Layer</a></li>
+        <li><a href="case-help2pay.html">Help2Pay</a></li>
+        <li><a href="case-kunchi.html">Kunchi MFB</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <p class="footer__col-label">Studio</p>
+      <ul class="footer__col-links">
+        <li><a href="index.html#community">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cv.pdf" download>Download CV</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <p class="footer__col-label">Elsewhere</p>
+      <ul class="footer__col-links">
+        <li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://dribbble.com/momo98765" target="_blank" rel="noopener">Dribbble</a></li>
+        <li><a href="https://www.instagram.com/yourtechgirly" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://x.com/morayo1025" target="_blank" rel="noopener">Twitter / X</a></li>
+        <li><a href="https://www.youtube.com/@Design-geeks" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://www.pinterest.com/teeakinkunmi/" target="_blank" rel="noopener">Pinterest</a></li>
+      </ul>
+    </div>
+    <div class="footer__col footer__newsletter">
+      <p class="footer__col-label">Studio Notes</p>
+      <form class="footer__newsletter-form" onsubmit="event.preventDefault();">
+        <input type="email" class="footer__newsletter-input" placeholder="your@email.com" aria-label="Email address for studio notes" />
+        <button type="submit" class="footer__newsletter-submit" aria-label="Subscribe to Studio Notes">
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+      <p class="footer__newsletter-hint">Occasional writing on craft, AI-native design, and building for markets Silicon Valley overlooks.</p>
+      <div class="footer__socials">
+        <a href="https://www.linkedin.com/in/morayo-akinkunmi/" class="footer__social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></a>
+        <a href="https://dribbble.com/momo98765" class="footer__social" aria-label="Dribbble" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm7.94 5.53c1.44 1.75 2.31 3.98 2.31 6.47 0 .16-.01.32-.02.48-.31-.06-3.4-.69-6.52-.3-.07-.17-.14-.34-.22-.5-.2-.47-.42-.94-.63-1.39 3.47-1.42 5.05-3.46 5.08-3.5v.74zm-7.94-3.53c2.68 0 5.13 1 7.01 2.65-.03.04-1.46 2.06-4.83 3.31-1.55-2.84-3.27-5.17-3.53-5.52.44-.09.89-.15 1.35-.15zm-3.44.71c.25.34 1.94 2.68 3.51 5.46-4.42 1.18-8.32 1.16-8.74 1.15C4.4 5.98 6.98 3.44 8.56 2.71zM2.15 12.02c0-.11 0-.22.01-.32.42.01 5 .07 9.73-1.35.27.53.53 1.07.77 1.61-.13.04-.25.08-.38.12-4.89 1.58-7.5 5.89-7.72 6.25C2.87 16.84 2.15 14.49 2.15 12.02zm3.88 7.75c.13-.22 2.3-4.44 7.6-6.29.02-.01.04-.02.06-.02 1.33 3.44 1.87 6.33 2.01 7.16-1.34.79-2.9 1.24-4.55 1.24-1.87-.01-3.62-.6-5.12-1.66v-.43zm11.72-.87c-.09-.55-.59-3.32-1.83-6.71 2.95-.47 5.53.3 5.85.4-.42 2.7-1.98 5.03-4.02 6.31z"/></svg></a>
+        <a href="https://www.instagram.com/yourtechgirly" class="footer__social" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://x.com/morayo1025" class="footer__social" aria-label="Twitter / X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.youtube.com/@Design-geeks" class="footer__social" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://api.whatsapp.com/send?phone=2349036584218" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        <a href="mailto:teeakinkunmi@gmail.com" class="footer__social" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      </div>
+      <p class="footer__copyright">&copy; MMXXVI · Made in Lagos · Est. 2019</p>
+    </div>
   </div>
-  <p class="footer__copyright">&copy; MMXXVI · Made in Lagos</p>
+  <div class="footer__nameplate-wrap">
+    <svg class="footer__stamp" viewBox="0 0 200 200" aria-label="Morayo Studio stamp">
+      <defs><path id="footerStampCircle" d="M 100 100 m -68 0 a 68 68 0 1 1 136 0 a 68 68 0 1 1 -136 0" fill="none"/></defs>
+      <circle cx="100" cy="100" r="88" fill="#2A2825"/>
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#F9F7F2" stroke-width="0.5" stroke-dasharray="1 3" opacity="0.5"/>
+      <g class="footer__stamp-ring"><text font-family="Instrument Sans, sans-serif" font-size="13" fill="#F9F7F2" letter-spacing="2.4" font-weight="500"><textPath href="#footerStampCircle" startOffset="0">MORAYO · STUDIO · EST. 2019 · MADE IN LAGOS · </textPath></text></g>
+      <text x="100" y="108" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="34" fill="#F9F7F2" font-weight="500">M<tspan fill="#E8C4C0">.</tspan></text>
+      <circle cx="100" cy="128" r="1.6" fill="#F9F7F2" opacity="0.65"/>
+    </svg>
+    <h2 class="footer__nameplate" aria-label="Morayo">MORAYO</h2>
+  </div>
 </footer>
 
 <script>
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { io.observe(el); });
+})();
 </script>
 </body>
 </html>

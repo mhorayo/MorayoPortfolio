@@ -664,6 +664,28 @@
   .project-card--help2pay .project-card__bg { background: linear-gradient(135deg, #C4653A 0%, #9D440C 100%); }
   .project-card--taxclarity .project-card__bg { background: linear-gradient(135deg, #2A2825 0%, #14120F 100%); }
   .project-card--stacklayer .project-card__bg { background: linear-gradient(135deg, #A8B8C8 0%, #6B7A8F 100%); }
+  .project-card--kunchi .project-card__bg { background: linear-gradient(135deg, #2D9F4F 0%, #1A6B30 100%); }
+
+  /* Carousel */
+  .projects__carousel { position: relative; }
+  .projects__slides { overflow: hidden; }
+  .projects__track { display: flex; transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1); }
+  .projects__slide { flex: 0 0 100%; display: flex; gap: 10px; height: 780px; }
+  .projects__nav { display: flex; justify-content: center; gap: 16px; margin-top: 28px; }
+  .projects__nav-btn {
+    width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--hairline-strong);
+    background: transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink); transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  }
+  .projects__nav-btn:hover { background: var(--meadow); color: var(--cream); border-color: var(--meadow); transform: scale(1.06); }
+  .projects__nav-btn:disabled { opacity: 0.25; pointer-events: none; }
+  .projects__nav-btn svg { width: 18px; height: 18px; }
+  .projects__dots { display: flex; align-items: center; gap: 8px; }
+  .projects__dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--hairline-strong); border: none; cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .projects__dot.is-active { background: var(--meadow); transform: scale(1.3); }
 
   /* Studio (about) */
   .studio {
@@ -1577,7 +1599,7 @@
       grid-column: 1;
       margin-top: 0;
     }
-    .projects__row {
+    .projects__slide {
       flex-direction: column;
       height: auto;
       gap: 12px;
@@ -1653,7 +1675,6 @@
   <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
   <div class="nav__links">
     <a href="work.html">Work</a>
-    <a href="#studio">About</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
@@ -1762,105 +1783,111 @@
       <a href="work.html" class="eyebrow" style="color:var(--meadow); text-decoration:none; transition:opacity 0.3s;">View all work →</a>
     </div>
 
-    <div class="projects__row">
+    <div class="projects__carousel">
+      <div class="projects__slides">
+        <div class="projects__track" id="projectsTrack">
 
-      <a class="project-card project-card--broadmoney" href="case-broadmoney.html" aria-label="Open Broad Money Payment case study">
-        <div class="project-card__bg"></div>
-        <div class="project-card__mockup">
-          <div class="project-card__mockup-screen">
-            <video src="broadmoney-demo.mp4" muted loop playsinline preload="metadata" aria-label="BroadMoney Payment app walkthrough showing cross-border payment flows"></video>
+          <!-- SLIDE 1 -->
+          <div class="projects__slide">
+            <a class="project-card project-card--broadmoney" href="case-broadmoney.html" aria-label="Open Broad Money Payment case study">
+              <div class="project-card__bg"></div>
+              <div class="project-card__mockup"><div class="project-card__mockup-screen"><video src="broadmoney-demo.mp4" muted loop playsinline preload="metadata"></video></div></div>
+              <span class="project-card__vertical-label">Broad Money Payment · '25</span>
+              <div class="project-card__full-label">
+                <div class="project-card__meta">Fintech · Cross-border payments · 2025</div>
+                <h3 class="project-card__title">Broad Money <em>Payment</em></h3>
+                <span class="project-card__cta">View case study <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </a>
+            <a class="project-card project-card--doxflowy" href="case-doxflowy.html" aria-label="Open Doxflowy case study">
+              <div class="project-card__bg"><div class="project-card__video-wrap"><div class="project-card__video-mac"><video src="dox-demo.mp4" autoplay muted loop playsinline></video></div><div class="project-card__video-base"></div></div></div>
+              <span class="project-card__vertical-label">Doxflowy · '23 — '26</span>
+              <div class="project-card__full-label">
+                <div class="project-card__meta">AI · Document automation · 2023 — 2026</div>
+                <h3 class="project-card__title">Doxflowy</h3>
+                <span class="project-card__cta">View case study <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </a>
+            <a class="project-card project-card--renncora" href="case-renncora.html" aria-label="Open Renncora case study">
+              <div class="project-card__bg"></div>
+              <div class="project-card__mockup"><div class="project-card__mockup-frame"><img src="ren-live-watching.jpg" alt="Renncora live streaming screen" loading="lazy" /></div></div>
+              <span class="project-card__vertical-label">Renncora · '26</span>
+              <div class="project-card__full-label">
+                <div class="project-card__meta">Social · Live streaming · 2026</div>
+                <h3 class="project-card__title">Renncora</h3>
+                <span class="project-card__cta">View case study <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </a>
           </div>
-        </div>
-        <span class="project-card__vertical-label">Broad Money Payment · '25</span>
-        <div class="project-card__full-label">
-          <div class="project-card__meta">Fintech · Cross-border payments · 2025</div>
-          <h3 class="project-card__title">Broad Money <em>Payment</em></h3>
-          <span class="project-card__cta">View case study
-            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
-      </a>
 
-      <a class="project-card project-card--doxflowy" href="case-doxflowy.html" aria-label="Open Doxflowy case study">
-        <div class="project-card__bg">
-          <div class="project-card__video-wrap">
-            <div class="project-card__video-mac"><video src="dox-demo.mp4" autoplay muted loop playsinline></video></div>
-            <div class="project-card__video-base"></div>
+          <!-- SLIDE 2 -->
+          <div class="projects__slide">
+            <a class="project-card project-card--wosiwosi" href="case-wosiwosi.html" aria-label="Open Wosi Wosi case study">
+              <div class="project-card__bg"></div>
+              <span class="project-card__vertical-label">Wosi Wosi · '25 — '26</span>
+              <div class="project-card__full-label">
+                <div class="project-card__meta">Fintech · Cross-border payments · 2025 — 2026</div>
+                <h3 class="project-card__title">Wosi <em>Wosi</em></h3>
+                <span class="project-card__cta">View case study <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </a>
+            <a class="project-card project-card--help2pay" href="case-help2pay.html" aria-label="Open Help2Pay case study">
+              <div class="project-card__bg"></div>
+              <span class="project-card__vertical-label">Help2Pay · '24</span>
+              <div class="project-card__full-label">
+                <div class="project-card__meta">Fintech · Payment infrastructure · 2024</div>
+                <h3 class="project-card__title">Help2Pay</h3>
+                <span class="project-card__cta">View case study <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </a>
+            <a class="project-card project-card--taxclarity" href="case-taxclarity.html" aria-label="Open Tax Clarity case study">
+              <div class="project-card__bg"></div>
+              <span class="project-card__vertical-label">Tax Clarity · '26</span>
+              <div class="project-card__full-label">
+                <div class="project-card__meta">Community · Tax reform web app · 2026</div>
+                <h3 class="project-card__title">Tax <em>Clarity</em></h3>
+                <span class="project-card__cta">View case study <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </a>
           </div>
-        </div>
-        <span class="project-card__vertical-label">Doxflowy · '23 — '26</span>
-        <div class="project-card__full-label">
-          <div class="project-card__meta">AI · Document automation · 2023 — 2026</div>
-          <h3 class="project-card__title">Doxflowy</h3>
-          <span class="project-card__cta">View case study
-            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
-      </a>
 
-      <a class="project-card project-card--renncora" href="case-renncora.html" aria-label="Open Renncora case study">
-        <div class="project-card__bg"></div>
-        <div class="project-card__mockup">
-          <div class="project-card__mockup-frame"><img src="ren-live-watching.jpg" alt="Renncora live streaming screen" loading="lazy" /></div>
-        </div>
-        <span class="project-card__vertical-label">Renncora · '26</span>
-        <div class="project-card__full-label">
-          <div class="project-card__meta">Social · Live streaming · 2026</div>
-          <h3 class="project-card__title">Renncora</h3>
-          <span class="project-card__cta">View case study
-            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
-      </a>
+          <!-- SLIDE 3 -->
+          <div class="projects__slide">
+            <a class="project-card project-card--stacklayer" href="case-stacklayer.html" aria-label="Open Stack Layer case study">
+              <div class="project-card__bg"></div>
+              <span class="project-card__vertical-label">Stack Layer · '25</span>
+              <div class="project-card__full-label">
+                <div class="project-card__meta">AI · Tool recommendation platform · 2025</div>
+                <h3 class="project-card__title">Stack <em>Layer</em></h3>
+                <span class="project-card__cta">View case study <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </a>
+            <a class="project-card project-card--kunchi" href="case-kunchi.html" aria-label="Open Kunchi MFB case study">
+              <div class="project-card__bg"></div>
+              <span class="project-card__vertical-label">Kunchi MFB · '24</span>
+              <div class="project-card__full-label">
+                <div class="project-card__meta">Fintech · Microfinance banking · 2024</div>
+                <h3 class="project-card__title">Kunchi <em>MFB</em></h3>
+                <span class="project-card__cta">View case study <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </a>
+          </div>
 
-      <a class="project-card project-card--wosiwosi project-card--light" href="#wosiwosi" aria-label="Open Wosi Wosi case study">
-        <div class="project-card__bg"></div>
-        <span class="project-card__vertical-label">Wosi Wosi · '24</span>
-        <div class="project-card__full-label">
-          <div class="project-card__meta">Brand identity · 2024</div>
-          <h3 class="project-card__title">Wosi <em>Wosi</em></h3>
-          <span class="project-card__cta">View case study
-            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
         </div>
-      </a>
-
-      <a class="project-card project-card--help2pay" href="case-help2pay.html" aria-label="Open Help2Pay case study">
-        <div class="project-card__bg"></div>
-        <span class="project-card__vertical-label">Help2Pay · '24</span>
-        <div class="project-card__full-label">
-          <div class="project-card__meta">Fintech · Payment infrastructure · 2024</div>
-          <h3 class="project-card__title">Help2Pay</h3>
-          <span class="project-card__cta">View case study
-            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
+      </div>
+      <div class="projects__nav">
+        <button class="projects__nav-btn" id="projPrev" aria-label="Previous projects" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="projects__dots">
+          <button class="projects__dot is-active" data-slide="0" aria-label="Slide 1"></button>
+          <button class="projects__dot" data-slide="1" aria-label="Slide 2"></button>
+          <button class="projects__dot" data-slide="2" aria-label="Slide 3"></button>
         </div>
-      </a>
-
-      <a class="project-card project-card--taxclarity" href="#taxclarity" aria-label="Open Tax Clarity case study">
-        <div class="project-card__bg"></div>
-        <span class="project-card__vertical-label">Tax Clarity · '24</span>
-        <div class="project-card__full-label">
-          <div class="project-card__meta">Website · Fintech · 2024</div>
-          <h3 class="project-card__title">Tax <em>Clarity</em></h3>
-          <span class="project-card__cta">View case study
-            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
-      </a>
-
-      <a class="project-card project-card--stacklayer" href="#stacklayer" aria-label="Open Stack Layer case study">
-        <div class="project-card__bg"></div>
-        <span class="project-card__vertical-label">Stack Layer · '25</span>
-        <div class="project-card__full-label">
-          <div class="project-card__meta">Design system · 2025</div>
-          <h3 class="project-card__title">Stack <em>Layer</em></h3>
-          <span class="project-card__cta">View case study
-            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
-      </a>
-
+        <button class="projects__nav-btn" id="projNext" aria-label="Next projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -1876,8 +1903,7 @@
     <div class="studio__content">
       <div class="eyebrow" style="margin-bottom: 32px;">About</div>
       <h2 class="studio__title">
-        Senior Product Designer<br>
-        based in <em>Lagos, Nigeria</em>.
+        Senior Product <em>Designer</em>.
       </h2>
       <div class="studio__prose">
         <p>I specialize in fintech and AI-native products — cross-border payments, digital banking, document automation, and crypto-to-fiat infrastructure. Over four years I've shipped products that handle real money, real compliance, and real user trust across multiple markets.</p>
@@ -2077,7 +2103,7 @@
       <em>worth shipping.</em>
     </h2>
     <p class="contact__subhead">Currently open to senior product design roles — fintech, AI-native products, or complex digital systems. Remote or relocation. Let's talk about what you're building.</p>
-    <a class="contact__button" href="mailto:teeakinkunmi@gmail.com">
+    <a class="contact__button" href="contact.html">
       <span>Get in touch</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2105,7 +2131,6 @@
     <div class="footer__col">
       <p class="footer__col-label">Studio</p>
       <ul class="footer__col-links">
-        <li><a href="#studio">About</a></li>
         <li><a href="#community">Community</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="cv.pdf" download>Download CV</a></li>
@@ -2181,6 +2206,29 @@
     <h2 class="footer__nameplate" aria-label="Morayo">MORAYO</h2>
   </div>
 </footer>
+
+<script>
+/* Projects carousel */
+(function() {
+  var track = document.getElementById('projectsTrack');
+  var prev = document.getElementById('projPrev');
+  var next = document.getElementById('projNext');
+  var dots = document.querySelectorAll('.projects__dot');
+  var current = 0;
+  var total = document.querySelectorAll('.projects__slide').length;
+  function go(idx) {
+    if (idx < 0 || idx >= total) return;
+    current = idx;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    prev.disabled = current === 0;
+    next.disabled = current === total - 1;
+    dots.forEach(function(d, i) { d.classList.toggle('is-active', i === current); });
+  }
+  prev.addEventListener('click', function() { go(current - 1); });
+  next.addEventListener('click', function() { go(current + 1); });
+  dots.forEach(function(d) { d.addEventListener('click', function() { go(parseInt(d.dataset.slide)); }); });
+})();
+</script>
 
 <script>
 (function() {
