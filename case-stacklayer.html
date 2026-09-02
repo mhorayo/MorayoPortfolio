@@ -95,6 +95,42 @@
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
+  
+  /* NEXT PROJECT NAV */
+  .cs-nav{display:flex;max-width:1360px;margin:0 auto;border-top:.5px solid var(--hairline)}
+  .cs-nav__link{flex:1;padding:56px 44px;display:flex;flex-direction:column;gap:8px;transition:background .3s;text-decoration:none}
+  .cs-nav__link:hover{background:var(--cream-dark)}
+  .cs-nav__link--next{text-align:right;border-left:.5px solid var(--hairline)}
+  .cs-nav__dir{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone)}
+  .cs-nav__name{font-family:'Fraunces',serif;font-size:clamp(20px,3vw,32px);color:var(--ink);font-weight:500}
+  /* CONTACT */
+  .contact{padding:100px 44px;text-align:center}
+  .contact__inner{max-width:680px;margin:0 auto}
+  .contact__heading{font-family:'Fraunces',serif;font-size:clamp(36px,5vw,56px);line-height:1.08;margin:18px 0 20px;font-weight:500}
+  .contact__heading em{font-style:italic;color:var(--meadow)}
+  .contact__sub{font-size:15px;color:var(--stone);line-height:1.7;margin-bottom:36px;max-width:460px;margin-left:auto;margin-right:auto}
+  .contact__button{display:inline-flex;align-items:center;gap:14px;padding:18px 44px;background:var(--ink);color:var(--cream);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:background .4s,transform .3s;text-decoration:none}
+  .contact__button:hover{background:var(--meadow);transform:translateY(-2px)}
+  /* FOOTER */
+  .footer{background:var(--meadow);color:var(--cream);position:relative;overflow:clip;padding:0}
+  .footer__upper{padding:96px 44px 72px;max-width:1680px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1.8fr;gap:56px;align-items:start}
+  .footer__col-label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--cream);opacity:.5;margin:0 0 22px;font-weight:500}
+  .footer__col-links{list-style:none}.footer__col-links li{margin-bottom:8px}
+  .footer__col-links a{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--cream);font-weight:500;display:inline-block;width:fit-content;transition:color .3s,transform .35s;text-decoration:none}
+  .footer__col-links a:hover{color:#E8C4C0;transform:translateX(5px)}
+  .footer__newsletter{padding-left:8px}
+  .footer__newsletter-form{display:flex;align-items:center;background:rgba(249,247,242,.05);border:.5px solid rgba(249,247,242,.18);border-radius:999px;padding:4px 4px 4px 20px;max-width:420px}
+  .footer__newsletter-input{flex:1;background:transparent;border:none;outline:none;color:var(--cream);font-size:13px;padding:10px 8px}
+  .footer__newsletter-input::placeholder{color:var(--cream);opacity:.4}
+  .footer__newsletter-submit{background:var(--ink);border:none;color:var(--cream);width:38px;height:38px;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:transform .3s;flex-shrink:0}
+  .footer__newsletter-submit:hover{background:var(--cream);color:var(--meadow);transform:scale(1.08)}
+  .footer__newsletter-submit svg{width:14px;height:14px}
+  .footer__newsletter-hint{margin-top:18px;font-family:'Fraunces',serif;font-style:italic;font-size:13px;line-height:1.55;color:var(--cream);opacity:.6;max-width:420px}
+  .footer__copyright{margin-top:26px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--cream);opacity:.4}
+  .footer__nameplate-wrap{position:relative;padding:40px 0 0;overflow:visible}
+  .footer__nameplate{font-family:'Fraunces',serif;font-size:clamp(120px,22vw,360px);line-height:.78;font-weight:900;color:var(--cream);text-align:justify;text-align-last:justify;letter-spacing:-.02em;margin:0;user-select:none;white-space:nowrap;overflow:visible;padding-bottom:0;width:100%}
+
+
   @media (max-width: 768px) {
     .nav { padding: 16px 20px; }
     .cs-hero { grid-template-columns: 1fr; }
@@ -105,6 +141,12 @@
     .pillars { grid-template-columns: 1fr; }
     .metrics-row { grid-template-columns: repeat(2, 1fr); }
     .footer__upper { grid-template-columns: repeat(2, 1fr); }
+  
+    .cs-nav{flex-direction:column}.cs-nav__link--next{text-align:left;border-left:none;border-top:.5px solid var(--hairline)}
+    .contact{padding:60px 24px}
+    .footer__upper{grid-template-columns:1fr 1fr;gap:40px 24px;padding:72px 24px 48px}
+    .footer__newsletter{padding-left:0;grid-column:1/-1}
+    .footer__nameplate{font-size:28vw}
   }
 </style>
 </head>
@@ -231,21 +273,32 @@
   </section>
 </div>
 
-<section class="cs-cta">
-  <h2>Want to see more work?</h2>
-  <p>Explore other case studies or get in touch to discuss your next project.</p>
-  <a href="work.html">View all work</a>
+
+<!-- NEXT PROJECT NAV -->
+<nav class="cs-nav reveal">
+  <a href="case-taxclarity.html" class="cs-nav__link cs-nav__link--prev"><span class="cs-nav__dir">Previous</span><span class="cs-nav__name">Tax Clarity</span></a>
+  <a href="case-help2pay.html" class="cs-nav__link cs-nav__link--next"><span class="cs-nav__dir">Next</span><span class="cs-nav__name">Help2Pay</span></a>
+</nav>
+
+<section class="contact" id="contact">
+  <div class="contact__inner">
+    <span class="eyebrow">Get in touch</span>
+    <h2 class="contact__heading">Let's work <em>together.</em></h2>
+    <p class="contact__sub">I'm currently open to senior product design roles — fintech, AI-native, and mobile-first teams.</p>
+    <a class="contact__button" href="contact.html"><span>Get in touch</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
 </section>
 
 <footer class="footer">
   <div class="footer__upper">
     <div class="footer__col"><p class="footer__col-label">Work</p><ul class="footer__col-links"><li><a href="case-broadmoney.html">Broad Money</a></li><li><a href="case-doxflowy.html">Doxflowy</a></li><li><a href="case-renncora.html">Renncora</a></li><li><a href="case-wosiwosi.html">Wosi Wosi</a></li><li><a href="case-taxclarity.html">Tax Clarity</a></li><li><a href="case-stacklayer.html">Stack Layer</a></li><li><a href="case-help2pay.html">Help2Pay</a></li><li><a href="case-kunchi.html">Kunchi MFB</a></li></ul></div>
-    <div class="footer__col"><p class="footer__col-label">Studio</p><ul class="footer__col-links"><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="footer__col"><p class="footer__col-label">Elsewhere</p><ul class="footer__col-links"><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765" target="_blank">Dribbble</a></li><li><a href="https://x.com/morayo1025" target="_blank">Twitter / X</a></li></ul></div>
-    <div class="footer__col"><p class="footer__col-label">Get in touch</p><ul class="footer__col-links"><li><a href="mailto:teeakinkunmi@gmail.com">teeakinkunmi@gmail.com</a></li></ul></div>
+    <div class="footer__col"><p class="footer__col-label">Studio</p><ul class="footer__col-links"><li><a href="index.html#community">Community</a></li><li><a href="contact.html">Contact</a></li><li><a href="cv.pdf" download>Download CV</a></li></ul></div>
+    <div class="footer__col"><p class="footer__col-label">Elsewhere</p><ul class="footer__col-links"><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765" target="_blank">Dribbble</a></li><li><a href="https://www.instagram.com/yourtechgirly" target="_blank">Instagram</a></li><li><a href="https://x.com/morayo1025" target="_blank">Twitter / X</a></li><li><a href="https://www.youtube.com/@Design-geeks" target="_blank">YouTube</a></li></ul></div>
+    <div class="footer__col footer__newsletter"><p class="footer__col-label">Studio Notes</p><form class="footer__newsletter-form" onsubmit="event.preventDefault();"><input type="email" class="footer__newsletter-input" placeholder="your@email.com" /><button type="submit" class="footer__newsletter-submit"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form><p class="footer__newsletter-hint">Occasional writing on craft, AI-native design, and building for markets Silicon Valley overlooks.</p><p class="footer__copyright">&copy; MMXXVI · Made in Lagos · Est. 2019</p></div>
   </div>
-  <p class="footer__copyright">&copy; MMXXVI · Made in Lagos</p>
+  <div class="footer__nameplate-wrap"><h2 class="footer__nameplate">MORAYO</h2></div>
 </footer>
+
 
 <script>
 const nav = document.getElementById('nav');
