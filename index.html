@@ -7,19 +7,29 @@
 <meta name="description" content="Portfolio of Akinkunmi Taiwo Morayo, senior product designer based in Lagos. Considered work for teams who care about the details." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
 <style>
-  @font-face {
-    font-family: 'Clash Display';
-    src: url('ClashDisplay-Variable.woff2') format('woff2'),
-         url('ClashDisplay-Variable.woff') format('woff');
-    font-weight: 200 700;
+  
+
+    @font-face {
+    font-family: 'Boska';
+    src: url('Boska-Variable.woff2') format('woff2'),
+         url('Boska-Variable.woff') format('woff');
+    font-weight: 200 900;
     font-display: swap;
     font-style: normal;
   }
+  @font-face {
+    font-family: 'Boska';
+    src: url('Boska-VariableItalic.woff2') format('woff2'),
+         url('Boska-VariableItalic.woff') format('woff');
+    font-weight: 200 900;
+    font-display: swap;
+    font-style: italic;
+  }
 
-  :root {
+:root {
     --cream: #F9F7F2;
     --cream-dark: #EFEBDF;
     --ink: #2A2825;
@@ -47,7 +57,7 @@
     background-image: radial-gradient(circle at 1px 1px, rgba(42, 40, 37, 0.10) 1px, transparent 0);
     background-size: 24px 24px;
     color: var(--ink);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
@@ -70,11 +80,11 @@
   a { color: inherit; text-decoration: none; }
 
   .serif {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
   }
 
   .eyebrow {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 11px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -102,7 +112,7 @@
     box-shadow: 0 4px 20px rgba(42, 40, 37, 0.08);
   }
   .nav__brand {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     
     font-size: 20px;
     color: var(--ink);
@@ -111,7 +121,7 @@
   .nav__links {
     display: flex;
     gap: 36px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -185,7 +195,7 @@
     position: absolute;
     top: 92px;
     z-index: 4;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 10px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -213,7 +223,7 @@
     gap: 28px;
   }
   .hero__tagline {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: clamp(28px, 3.4vw, 46px);
     line-height: 1.15;
     font-weight: 500;
@@ -226,14 +236,14 @@
   }
   .hero__tagline em {
     font-style: italic;
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     color: var(--blush);
     font-size: 1.15em;
     padding: 0 0.08em;
   }
   .hero__eyebrow {
     display: inline-block;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 10px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
@@ -254,7 +264,7 @@
     right: 0;
     bottom: 0;
     z-index: 3;
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: 26vw;
     line-height: 0.86;
     font-weight: 700;
@@ -300,7 +310,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 10px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -361,7 +371,7 @@
     align-items: start;
   }
   .manifesto__quote {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: clamp(32px, 4.2vw, 56px);
     line-height: 1.08;
     letter-spacing: -0.015em;
@@ -388,7 +398,7 @@
     padding-top: 12px;
   }
   .manifesto__body p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 15px;
     line-height: 1.75;
     color: var(--ink-soft);
@@ -397,7 +407,7 @@
   }
   .manifesto__body p:last-child { margin-bottom: 0; }
   .manifesto__body p.serif-note {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-style: italic;
     font-size: 17px;
     color: var(--ink);
@@ -434,14 +444,14 @@
   }
   .project__meta .eyebrow { padding-top: 8px; }
   .project__meta .year {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-style: italic;
     font-size: 14px;
     color: var(--stone);
     padding-top: 8px;
   }
   .project__title {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: 28px;
     line-height: 1.1;
     color: var(--ink);
@@ -450,7 +460,7 @@
   }
   .project__title em { font-style: italic; color: var(--slate); }
   .project__desc {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 13px;
     color: var(--ink-soft);
     line-height: 1.55;
@@ -527,7 +537,7 @@
     transform: rotate(-90deg);
     transform-origin: left bottom;
     white-space: nowrap;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -559,7 +569,7 @@
     transform: translateY(0);
   }
   .project-card__meta {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 11px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -567,7 +577,7 @@
     margin-bottom: 14px;
   }
   .project-card__title {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: clamp(32px, 3vw, 46px);
     line-height: 0.98;
     letter-spacing: -0.015em;
@@ -582,7 +592,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-style: italic;
     font-size: 14px;
     padding: 8px 0 0;
@@ -726,13 +736,13 @@
     right: 22px;
     z-index: 2;
     color: rgba(249, 247, 242, 0.9);
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-style: italic;
     font-size: 14px;
   }
   .studio__portrait-caption span {
     display: block;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-size: 10px;
     letter-spacing: 0.24em;
@@ -743,7 +753,7 @@
 
   .studio__content { padding-top: 20px; }
   .studio__title {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: clamp(36px, 4vw, 52px);
     line-height: 1.05;
     letter-spacing: -0.01em;
@@ -754,7 +764,7 @@
   .studio__title em { font-style: italic; color: var(--meadow); }
 
   .studio__prose p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 15px;
     line-height: 1.75;
     color: var(--ink-soft);
@@ -772,7 +782,7 @@
   }
   .studio__fact .eyebrow { display: block; margin-bottom: 10px; }
   .studio__fact p {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: 15px;
     line-height: 1.5;
     color: var(--ink);
@@ -780,7 +790,7 @@
   }
   .studio__fact ul {
     list-style: none;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 13px;
     line-height: 1.9;
     color: var(--ink-soft);
@@ -821,7 +831,7 @@
     flex-shrink: 0;
   }
   .cv-download__label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -833,7 +843,7 @@
     padding-right: 8px;
   }
   .cv-download__label em {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-style: italic;
     text-transform: none;
     letter-spacing: 0.01em;
@@ -855,7 +865,7 @@
   }
   .contact__eyebrow { margin-bottom: 32px; }
   .contact__title {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: clamp(36px, 4.5vw, 60px);
     line-height: 1.04;
     letter-spacing: -0.02em;
@@ -868,7 +878,7 @@
     color: var(--meadow);
   }
   .contact__subhead {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-style: italic;
     font-size: clamp(17px, 1.6vw, 21px);
     line-height: 1.5;
@@ -878,7 +888,7 @@
   }
   .contact__meta {
     margin-top: 40px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -903,7 +913,7 @@
     display: flex;
     justify-content: center;
     gap: 28px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 11px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -920,7 +930,7 @@
     padding: 18px 36px;
     background: var(--meadow);
     color: var(--cream);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -1044,7 +1054,7 @@
     display: block;
   }
   .community__script {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-style: italic;
     font-size: clamp(17px, 1.6vw, 21px);
     color: var(--meadow);
@@ -1052,7 +1062,7 @@
     letter-spacing: 0.005em;
   }
   .community__title {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: clamp(36px, 4.5vw, 58px);
     line-height: 1.02;
     letter-spacing: -0.02em;
@@ -1066,7 +1076,7 @@
     font-weight: 400;
   }
   .community__body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 15px;
     line-height: 1.75;
     color: var(--ink-soft);
@@ -1080,7 +1090,7 @@
     padding: 16px 32px;
     background: var(--meadow);
     color: var(--cream);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -1115,7 +1125,7 @@
     justify-content: center;
     gap: 24px;
     flex-wrap: wrap;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 11px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
@@ -1123,7 +1133,7 @@
   }
   .community__strip-mark {
     color: var(--meadow);
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: 14px;
     line-height: 1;
   }
@@ -1149,7 +1159,7 @@
     align-items: start;
   }
   .footer__col-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 11px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -1167,7 +1177,7 @@
     gap: 12px;
   }
   .footer__col-links a {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 13px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -1204,7 +1214,7 @@
     border: none;
     outline: none;
     color: var(--cream);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 13px;
     padding: 10px 8px;
     min-width: 0;
@@ -1233,7 +1243,7 @@
   .footer__newsletter-submit svg path { transition: transform 0.35s ease; }
   .footer__newsletter-hint {
     margin-top: 18px;
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-style: italic;
     font-size: 13px;
     line-height: 1.55;
@@ -1268,7 +1278,7 @@
 
   .footer__copyright {
     margin-top: 26px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 10px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -1284,7 +1294,7 @@
     overflow: visible;
   }
   .footer__nameplate {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: clamp(120px, 22vw, 360px);
     line-height: 0.78;
     font-weight: 700;
@@ -1344,7 +1354,7 @@
     100% { transform: translateX(-50%); }
   }
   .proof-strip__item {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: 17px;
     font-weight: 500;
     color: var(--ink);
@@ -1382,14 +1392,14 @@
   .process__header-text { max-width: 500px; }
   .process__header-text .eyebrow { margin-bottom: 16px; display: block; }
   .process__header-title {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: clamp(28px, 3vw, 40px);
     line-height: 1.1;
     font-weight: 500;
     color: var(--ink);
   }
   .process__header-sub {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     color: var(--stone);
     margin-top: 8px;
@@ -1446,7 +1456,7 @@
     height: 64px;
   }
   .process__card-title {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: 20px;
     font-weight: 500;
     color: var(--ink);
@@ -1454,7 +1464,7 @@
     line-height: 1.2;
   }
   .process__card-desc {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 13px;
     line-height: 1.7;
     color: var(--ink-soft);
@@ -1536,14 +1546,14 @@
     box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
   }
   .stagger-card__text {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Boska', serif;
     font-size: 17px;
     line-height: 1.45;
     font-weight: 500;
     margin-top: 16px;
   }
   .stagger-card__author {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     font-style: italic;
     opacity: 0.7;
@@ -2187,11 +2197,11 @@
       <circle cx="100" cy="100" r="88" fill="#2A2825"/>
       <circle cx="100" cy="100" r="82" fill="none" stroke="#F9F7F2" stroke-width="0.5" stroke-dasharray="1 3" opacity="0.5"/>
       <g class="footer__stamp-ring">
-        <text font-family="Inter, sans-serif" font-size="13" fill="#F9F7F2" letter-spacing="2.4" font-weight="500">
+        <text font-family="Poppins, sans-serif" font-size="13" fill="#F9F7F2" letter-spacing="2.4" font-weight="500">
           <textPath href="#footerStampCircle" startOffset="0">MORAYO · STUDIO · EST. 2019 · MADE IN LAGOS · </textPath>
         </text>
       </g>
-      <text x="100" y="108" text-anchor="middle" font-family="Clash Display, sans-serif" font-style="italic" font-size="34" fill="#F9F7F2" font-weight="500">M<tspan fill="#E8C4C0">.</tspan></text>
+      <text x="100" y="108" text-anchor="middle" font-family="Boska, serif" font-style="italic" font-size="34" fill="#F9F7F2" font-weight="500">M<tspan fill="#E8C4C0">.</tspan></text>
       <circle cx="100" cy="128" r="1.6" fill="#F9F7F2" opacity="0.65"/>
     </svg>
 
@@ -2645,7 +2655,7 @@
     card.style.transition = "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
     card.innerHTML =
       '<span class="stagger-card__corner-line"></span>' +
-      '<div><div class="stagger-card__avatar" style="display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-size:18px;font-weight:600;">' + t.by.charAt(0) + '</div>' +
+      '<div><div class="stagger-card__avatar" style="display:flex;align-items:center;justify-content:center;font-family:'Boska',serif;font-size:18px;font-weight:600;">' + t.by.charAt(0) + '</div>' +
       '<p class="stagger-card__text">\u201C' + t.text + '\u201D</p></div>' +
       '<p class="stagger-card__author">\u2014 ' + t.by + '</p>';
     stage.appendChild(card);
