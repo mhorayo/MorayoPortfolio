@@ -58,17 +58,21 @@
   .footer__copyright{text-align:center;font-size:12px;color:rgba(249,247,242,.3);margin-top:48px;padding-top:24px;border-top:.5px solid rgba(249,247,242,.1)}
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
   
-  /* PHONE MOCKUP — clean standalone */
+  /* PHONE MOCKUP — Renncora-style iPhone frame */
   .phone-card{text-align:center}
-  .cs-phone{width:220px;margin:0 auto;overflow:hidden;border-radius:24px;box-shadow:0 16px 48px rgba(0,0,0,0.10)}
-  .cs-phone img{width:100%;display:block;border-radius:24px}
+  .cs-phone{width:220px;margin:0 auto;background:#1A1A1A;border-radius:36px;box-shadow:0 24px 60px rgba(0,0,0,0.12),0 0 0 1.5px #333;overflow:hidden;position:relative;padding:8px}
+  .cs-phone::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:72px;height:20px;background:#1A1A1A;border-radius:0 0 14px 14px;z-index:10}
+  .cs-phone img{width:100%;display:block;border-radius:28px;background:#fff}
   .phone-card__caption{margin-top:14px;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--stone)}
 
-  /* LAPTOP MOCKUP — clean */
+  /* LAPTOP MOCKUP */
   .cs-laptop-wrap{max-width:920px;margin:32px auto;padding:32px 44px}
-  .cs-laptop{border-radius:8px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.10);border:1px solid rgba(0,0,0,0.08)}
-  .cs-laptop img{width:100%;display:block}
-  .cs-laptop-base{display:none}
+  .cs-laptop{background:#1A1A1A;border-radius:12px 12px 0 0;padding:28px 8px 0;position:relative;box-shadow:0 16px 48px rgba(0,0,0,0.12)}
+  .cs-laptop::before{content:'';position:absolute;top:0;left:0;right:0;height:28px;background:#2A2A2A;border-radius:12px 12px 0 0;z-index:5}
+  .cs-laptop::after{content:'● ● ●';position:absolute;top:7px;left:14px;font-size:8px;letter-spacing:5px;color:#666;z-index:6}
+  .cs-laptop img{width:100%;display:block;border-radius:4px 4px 0 0}
+  .cs-laptop-base{max-width:920px;margin:0 auto;padding:0 44px}
+  .cs-laptop-base__bar{height:12px;background:linear-gradient(to bottom,#444,#333);border-radius:0 0 8px 8px;margin:0 40px}
 
   /* BEFORE/AFTER */
   .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:40px 0;align-items:start}
@@ -232,12 +236,12 @@
     <div class="ba-grid">
       <div class="ba-card">
         <span class="ba-label ba-label--before">Before — dense single screen</span>
-        <div class="cs-phone"><img src="h2p-send-v2.png" alt="Original send money screen" loading="lazy" /></div>
+        <div class="cs-phone"><img src="h2p-send-filled.png" alt="Original send money screen" loading="lazy" /></div>
         <p class="ba-desc">Currency, bank, amount, and fees all on one screen. Users paused at conversion math.</p>
       </div>
       <div class="ba-card">
         <span class="ba-label ba-label--after">After — progressive steps</span>
-        <div class="cs-phone"><img src="h2p-send-filled.png" alt="Redesigned send flow" loading="lazy" /></div>
+        <div class="cs-phone"><img src="h2p-send-v2.png" alt="Redesigned send flow" loading="lazy" /></div>
         <p class="ba-desc">Fee and rate visible before commitment. Bank details confirmed separately. One decision per screen.</p>
       </div>
     </div>
