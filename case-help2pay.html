@@ -41,8 +41,8 @@
   .phone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:48px 0}
   .phone-grid--2{grid-template-columns:repeat(2,1fr);max-width:560px;margin-left:auto;margin-right:auto}
   .phone-grid--4{grid-template-columns:repeat(4,1fr)}
-  .phone-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.06)}
-  .phone-card img{width:100%;display:block}.phone-card__caption{padding:12px 16px;font-size:12px;color:var(--stone);text-align:center}
+  .phone-card{background:transparent;text-align:center}
+  .phone-card img{width:100%;display:block}
   .pillars{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0}
   .pillar{padding:28px;border:.5px solid var(--hairline-strong)}.pillar h3{font-size:16px;font-weight:600;margin-bottom:8px}.pillar p{font-size:14px;color:var(--ink-soft);line-height:1.6}
   .metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:48px 0}
@@ -58,21 +58,17 @@
   .footer__copyright{text-align:center;font-size:12px;color:rgba(249,247,242,.3);margin-top:48px;padding-top:24px;border-top:.5px solid rgba(249,247,242,.1)}
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
   
-  /* PHONE MOCKUP — Renncora-style iPhone frame */
+  /* PHONE MOCKUP — bare, no card background (screens stand alone) */
   .phone-card{text-align:center}
-  .cs-phone{width:220px;margin:0 auto;background:#1A1A1A;border-radius:36px;box-shadow:0 24px 60px rgba(0,0,0,0.12),0 0 0 1.5px #333;overflow:hidden;position:relative;padding:8px}
+  .cs-phone{width:220px;margin:0 auto;background:#1A1A1A;border-radius:36px;box-shadow:0 24px 60px rgba(0,0,0,0.15),0 0 0 1.5px #333;overflow:hidden;position:relative;padding:8px}
   .cs-phone::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:72px;height:20px;background:#1A1A1A;border-radius:0 0 14px 14px;z-index:10}
   .cs-phone img{width:100%;display:block;border-radius:28px;background:#fff}
-  .phone-card__caption{margin-top:14px;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--stone)}
+  .phone-card__caption{margin-top:16px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
 
-  /* LAPTOP MOCKUP */
-  .cs-laptop-wrap{max-width:920px;margin:32px auto;padding:32px 44px}
-  .cs-laptop{background:#1A1A1A;border-radius:12px 12px 0 0;padding:28px 8px 0;position:relative;box-shadow:0 16px 48px rgba(0,0,0,0.12)}
-  .cs-laptop::before{content:'';position:absolute;top:0;left:0;right:0;height:28px;background:#2A2A2A;border-radius:12px 12px 0 0;z-index:5}
-  .cs-laptop::after{content:'● ● ●';position:absolute;top:7px;left:14px;font-size:8px;letter-spacing:5px;color:#666;z-index:6}
-  .cs-laptop img{width:100%;display:block;border-radius:4px 4px 0 0}
-  .cs-laptop-base{max-width:920px;margin:0 auto;padding:0 44px}
-  .cs-laptop-base__bar{height:12px;background:linear-gradient(to bottom,#444,#333);border-radius:0 0 8px 8px;margin:0 40px}
+  /* WEB SCREENS — bare UI, no laptop frame */
+  .cs-web{max-width:920px;margin:0 auto;padding:40px 44px;text-align:center}
+  .cs-web img{width:100%;display:block;border-radius:6px}
+  .cs-web__caption{margin-top:18px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
 
   /* BEFORE/AFTER */
   .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:40px 0;align-items:start}
@@ -129,9 +125,8 @@
     .footer__upper{grid-template-columns:1fr 1fr;gap:40px 24px;padding:72px 24px 48px}
     .footer__newsletter{padding-left:0;grid-column:1/-1}
     .footer__nameplate{font-size:28vw}
-    .cs-laptop-wrap{padding:0 20px}
     .cs-phone{width:160px}
-    .cs-laptop-wrap{padding:24px 20px}
+    .cs-web{padding:24px 20px}
   }
 </style>
 </head>
@@ -209,14 +204,14 @@
     <h2>Onboarding that converts <em>skeptics</em></h2>
     <p class="cs-lead">The onboarding strips away jargon, focuses on what the app does, and gets users to their first action in under 90 seconds.</p>
     <div class="phone-grid">
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-onboard1.png" alt="Welcome" loading="lazy" /></div><div class="phone-card__caption">Welcome</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-onboard2.png" alt="Value prop" loading="lazy" /></div><div class="phone-card__caption">Value proposition</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-signup.png" alt="Sign up" loading="lazy" /></div><div class="phone-card__caption">Sign up</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-onboard1.png" alt="Onboarding — step into the future of finance" loading="lazy" /></div><div class="phone-card__caption">Get started</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-onboard2.png" alt="Onboarding — transfer coins to your bank" loading="lazy" /></div><div class="phone-card__caption">Instant transactions</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-signup.png" alt="Onboarding — take control of your digital assets" loading="lazy" /></div><div class="phone-card__caption">Automatic conversions</div></div>
     </div>
     <div class="phone-grid">
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-signin.png" alt="Sign in" loading="lazy" /></div><div class="phone-card__caption">Sign in</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-kyc.png" alt="KYC" loading="lazy" /></div><div class="phone-card__caption">KYC verification</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-pin.png" alt="PIN" loading="lazy" /></div><div class="phone-card__caption">Set PIN</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-signin.png" alt="Sign in screen" loading="lazy" /></div><div class="phone-card__caption">Sign in</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-kyc.png" alt="Create account form" loading="lazy" /></div><div class="phone-card__caption">Create account</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-pin.png" alt="Set transaction PIN" loading="lazy" /></div><div class="phone-card__caption">Set PIN</div></div>
     </div>
   </section>
 
@@ -224,9 +219,10 @@
     <div class="cs-section__label"><span class="eyebrow">The daily hub</span><span class="line"></span></div>
     <h2>Everything above <em>the fold</em></h2>
     <p class="cs-lead">The redesigned dashboard surfaces every service without scrolling. Identity verification prompts appear contextually.</p>
-    <div class="phone-grid phone-grid--2">
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-dashboard-new.png" alt="Dashboard" loading="lazy" /></div><div class="phone-card__caption">Home dashboard</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-dashboard-tooltip.png" alt="Identity prompt" loading="lazy" /></div><div class="phone-card__caption">Identity prompt</div></div>
+    <div class="phone-grid">
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-dashboard-new.png" alt="Home dashboard" loading="lazy" /></div><div class="phone-card__caption">Home dashboard</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-dashboard-tooltip.png" alt="Identity verification prompt over dashboard" loading="lazy" /></div><div class="phone-card__caption">Identity verification prompt</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-profile.png" alt="Wallet overview with balance and services" loading="lazy" /></div><div class="phone-card__caption">Wallet overview</div></div>
     </div>
   </section>
 
@@ -246,10 +242,9 @@
         <p class="ba-desc">Fee and rate visible before commitment.</p>
       </div>
     </div>
-    <div class="phone-grid">
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-receive-qr.png" alt="Receive" loading="lazy" /></div><div class="phone-card__caption">Receive crypto</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-send-confirm.png" alt="Confirm" loading="lazy" /></div><div class="phone-card__caption">Confirm transfer</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-send-success.png" alt="Success" loading="lazy" /></div><div class="phone-card__caption">Transfer complete</div></div>
+    <div class="phone-grid phone-grid--2">
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-receive-qr.png" alt="Receive crypto via QR code" loading="lazy" /></div><div class="phone-card__caption">Receive</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-exchange.png" alt="Transaction successful confirmation" loading="lazy" /></div><div class="phone-card__caption">Transfer complete</div></div>
     </div>
   </section>
 
@@ -258,14 +253,13 @@
     <h2>Swap, exchange, and manage <em>multiple wallets</em></h2>
     <p class="cs-lead">Convert between currencies in two taps. Multi-currency wallets with full transaction history per wallet.</p>
     <div class="phone-grid">
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-swap.png" alt="Swap" loading="lazy" /></div><div class="phone-card__caption">Swap currencies</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-exchange.png" alt="Exchange" loading="lazy" /></div><div class="phone-card__caption">Exchange rates</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-swap-confirm.png" alt="Confirm" loading="lazy" /></div><div class="phone-card__caption">Swap confirmation</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-send-confirm.png" alt="Swap BTC to ETH" loading="lazy" /></div><div class="phone-card__caption">Swap currencies</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-send-success.png" alt="Swap transaction summary" loading="lazy" /></div><div class="phone-card__caption">Swap summary</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-wallets.png" alt="Choose your wallet type" loading="lazy" /></div><div class="phone-card__caption">Choose wallet type</div></div>
     </div>
-    <div class="phone-grid">
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-wallets.png" alt="Wallets" loading="lazy" /></div><div class="phone-card__caption">All wallets</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-wallet-ngn.png" alt="NGN wallet" loading="lazy" /></div><div class="phone-card__caption">NGN wallet</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-wallet-detail.png" alt="Detail" loading="lazy" /></div><div class="phone-card__caption">Wallet detail</div></div>
+    <div class="phone-grid phone-grid--2">
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-wallet-ngn.png" alt="NGN wallet balance and transactions" loading="lazy" /></div><div class="phone-card__caption">NGN wallet</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-wallet-detail.png" alt="Wallet secret phrase security screen" loading="lazy" /></div><div class="phone-card__caption">Wallet security</div></div>
     </div>
   </section>
 
@@ -274,18 +268,14 @@
     <h2>A full financial <em>ecosystem</em></h2>
     <p class="cs-lead">Gift cards, bill payments, shopping, and referral rewards — each feature feels native, not bolted on.</p>
     <div class="phone-grid">
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-giftcard.png" alt="Gift cards" loading="lazy" /></div><div class="phone-card__caption">Gift cards</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-bills.png" alt="Bills" loading="lazy" /></div><div class="phone-card__caption">Pay bills</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-shopping.png" alt="Shopping" loading="lazy" /></div><div class="phone-card__caption">Shopping</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-giftcard.png" alt="Gift card purchase — Amazon" loading="lazy" /></div><div class="phone-card__caption">Gift cards</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-swap.png" alt="Electricity bill payment" loading="lazy" /></div><div class="phone-card__caption">Pay bills — electricity</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-swap-confirm.png" alt="Airtime top-up" loading="lazy" /></div><div class="phone-card__caption">Pay bills — airtime</div></div>
     </div>
     <div class="phone-grid">
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-history.png" alt="History" loading="lazy" /></div><div class="phone-card__caption">History</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-referrals.png" alt="Referrals" loading="lazy" /></div><div class="phone-card__caption">Referrals</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-profile.png" alt="Profile" loading="lazy" /></div><div class="phone-card__caption">Profile</div></div>
-    </div>
-    <div class="phone-grid phone-grid--2">
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-settings.png" alt="Settings" loading="lazy" /></div><div class="phone-card__caption">Settings</div></div>
-      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-security.png" alt="Security" loading="lazy" /></div><div class="phone-card__caption">Security</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-shopping-flat.png" alt="Shopping — product detail page" loading="lazy" /></div><div class="phone-card__caption">Shopping</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-settings.png" alt="Transaction history" loading="lazy" /></div><div class="phone-card__caption">Transaction history</div></div>
+      <div class="phone-card"><div class="cs-phone"><img src="h2p-n-referrals.png" alt="Referral invite screen" loading="lazy" /></div><div class="phone-card__caption">Referrals</div></div>
     </div>
   </section>
 
@@ -296,19 +286,19 @@
   </section>
 </div>
 
-<div class="cs-laptop-wrap reveal"><div class="cs-laptop"><img src="h2p-20-web-dashboard.jpg" alt="Web dashboard" loading="lazy" /></div></div>
+<div class="cs-web reveal"><img src="h2p-20-web-dashboard.jpg" alt="Merchant dashboard" loading="lazy" /><div class="cs-web__caption">Merchant dashboard</div></div>
 
-<div class="cs-laptop-wrap reveal"><div class="cs-laptop"><img src="h2p-21-web-send.jpg" alt="Web send" loading="lazy" /></div></div>
+<div class="cs-web reveal"><img src="h2p-21-web-send.jpg" alt="Dashboard — balance overview" loading="lazy" /><div class="cs-web__caption">Balance overview</div></div>
 
-<div class="cs-laptop-wrap reveal"><div class="cs-laptop"><img src="h2p-22-wallets.jpg" alt="Web wallets" loading="lazy" /></div></div>
+<div class="cs-web reveal"><img src="h2p-22-wallets.jpg" alt="Send money" loading="lazy" /><div class="cs-web__caption">Send money</div></div>
 
-<div class="cs-laptop-wrap reveal"><div class="cs-laptop"><img src="h2p-23-history.jpg" alt="Web history" loading="lazy" /></div></div>
+<div class="cs-web reveal"><img src="h2p-23-history.jpg" alt="Transaction details" loading="lazy" /><div class="cs-web__caption">Transaction details</div></div>
 
-<div class="cs-laptop-wrap reveal"><div class="cs-laptop"><img src="h2p-24-exchange.jpg" alt="Web exchange" loading="lazy" /></div></div>
+<div class="cs-web reveal"><img src="h2p-24-exchange.jpg" alt="Receive funds" loading="lazy" /><div class="cs-web__caption">Receive</div></div>
 
-<div class="cs-laptop-wrap reveal"><div class="cs-laptop"><img src="h2p-25-settings.jpg" alt="Web settings" loading="lazy" /></div></div>
+<div class="cs-web reveal"><img src="h2p-25-settings.jpg" alt="User and business management" loading="lazy" /><div class="cs-web__caption">User &amp; business management</div></div>
 
-<div class="cs-laptop-wrap reveal"><div class="cs-laptop"><img src="h2p-26-web-sign-up.jpg" alt="Web sign up" loading="lazy" /></div></div>
+<div class="cs-web reveal"><img src="h2p-26-web-sign-up.jpg" alt="Web sign up" loading="lazy" /><div class="cs-web__caption">Sign up</div></div>
 
 
 <div class="cs">
@@ -319,7 +309,7 @@
   </section>
 </div>
 
-<div class="cs-laptop-wrap reveal"><div class="cs-laptop"><img src="h2p-27-brand.jpg" alt="Brand guidelines" loading="lazy" /></div></div>
+<div class="cs-web reveal"><img src="h2p-27-brand.jpg" alt="Brand guidelines" loading="lazy" /><div class="cs-web__caption">Brand guidelines</div></div>
 
 <div class="cs">
   <section class="cs-section reveal">
