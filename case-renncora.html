@@ -107,6 +107,8 @@
   .cs-phone::before { content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 64px; height: 20px; background: #1A1A1A; border-radius: 16px; z-index: 10; }
   .cs-phone__screen { position: absolute; inset: 3px; border-radius: 29px; overflow: hidden; background: #fff; }
   .cs-phone__screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .cs-prototype { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 2rem 0; }
+  .cs-prototype video { width: 220px; display: block; filter: drop-shadow(0 24px 60px rgba(0,0,0,0.18)); border-radius: 4px; }
 
   /* PADDED IMAGE — design system */
   .cs-padded { max-width: 920px; margin: 0 auto; padding: 24px 44px; }
@@ -412,6 +414,13 @@
   <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-home-feed.jpg" alt="Feed with engagement actions" loading="lazy" /></div></div>
 </div>
 
+<div class="cs-screens cs-screens--dark reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Interactive Prototype — Feed & Streaming</span></div>
+  <div class="cs-prototype">
+    <video src="ren-demo-feed.mp4" autoplay loop muted playsinline></video>
+  </div>
+</div>
+
 <!-- MESSAGING & AI -->
 <div class="cs">
   <section class="cs-section reveal">
@@ -435,6 +444,13 @@
   <div class="cs-screens__label"><span class="cs-screen-label">Renncora AI — Voice-First Assistant</span></div>
   <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-idle.jpg" alt="Renncora AI — tap to talk idle state" loading="lazy" /></div></div>
   <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-speaking.jpg" alt="Renncora AI — speaking with live captions" loading="lazy" /></div></div>
+</div>
+
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Interactive Prototype — Messaging & AI</span></div>
+  <div class="cs-prototype">
+    <video src="ren-demo-messages.mp4" autoplay loop muted playsinline></video>
+  </div>
 </div>
 
 <!-- COMMUNITY -->
