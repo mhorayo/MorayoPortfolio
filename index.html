@@ -662,6 +662,11 @@
   .project-card--taxclarity .project-card__video-mac video { width: 100%; display: block; }
   .project-card--taxclarity .project-card__video-base { height: 8px; background: linear-gradient(to bottom, #444, #333); border-radius: 0 0 6px 6px; margin: 0 20%; }
   .project-card--stacklayer .project-card__bg { background: linear-gradient(135deg, #A8B8C8 0%, #6B7A8F 100%); }
+  .project-card--stacklayer .project-card__video-wrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 75%; z-index: 1; pointer-events: none; }
+  .project-card--stacklayer .project-card__video-mac { border-radius: 6px 6px 0 0; overflow: hidden; background: #111; border: 2px solid #333; border-bottom: none; padding-top: 20px; position: relative; }
+  .project-card--stacklayer .project-card__video-mac::before { content: '● ● ●'; position: absolute; top: 5px; left: 10px; font-size: 7px; letter-spacing: 4px; color: #555; z-index: 2; }
+  .project-card--stacklayer .project-card__video-mac video { width: 100%; display: block; }
+  .project-card--stacklayer .project-card__video-base { height: 8px; background: linear-gradient(to bottom, #444, #333); border-radius: 0 0 6px 6px; margin: 0 20%; }
   .project-card--kunchi .project-card__bg { background: linear-gradient(135deg, #2D9F4F 0%, #1A6B30 100%); }
 
   /* Carousel */
@@ -1844,7 +1849,7 @@
           <!-- SLIDE 3 -->
           <div class="projects__slide">
             <a class="project-card project-card--stacklayer" href="case-stacklayer.html" aria-label="Open Stack Layer case study">
-              <div class="project-card__bg"></div>
+              <div class="project-card__bg"><div class="project-card__video-wrap"><div class="project-card__video-mac"><video src="stack-demo.mp4" autoplay muted loop playsinline></video></div><div class="project-card__video-base"></div></div></div>
               <span class="project-card__vertical-label">Stack Layer · '25</span>
               <div class="project-card__full-label">
                 <div class="project-card__meta">AI · Tool recommendation platform · 2025</div>
