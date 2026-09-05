@@ -644,11 +644,9 @@
     display: block;
   }
   .project-card--doxflowy .project-card__bg { background: linear-gradient(135deg, #2D1B69 0%, #1a0f3e 100%); }
-  .project-card--doxflowy .project-card__video-wrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 75%; z-index: 1; pointer-events: none; }
-  .project-card--doxflowy .project-card__video-mac { border-radius: 6px 6px 0 0; overflow: hidden; background: #111; border: 2px solid #333; border-bottom: none; padding-top: 20px; position: relative; }
-  .project-card--doxflowy .project-card__video-mac::before { content: '● ● ●'; position: absolute; top: 5px; left: 10px; font-size: 7px; letter-spacing: 4px; color: #555; z-index: 2; }
-  .project-card--doxflowy .project-card__video-mac video { width: 100%; display: block; }
-  .project-card--doxflowy .project-card__video-base { height: 8px; background: linear-gradient(to bottom, #444, #333); border-radius: 0 0 6px 6px; margin: 0 20%; }
+  .project-card--doxflowy .project-card__mockup { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -48%) rotate(-2deg); width: 55%; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.6s 0.25s ease, transform 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+  .project-card--doxflowy:hover .project-card__mockup, .project-card--doxflowy:focus-visible .project-card__mockup { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
+  .project-card--doxflowy .project-card__mockup img { width: 100%; display: block; border-radius: 8px; filter: drop-shadow(0 12px 40px rgba(0,0,0,0.45)); }
   .project-card--renncora .project-card__bg { background: linear-gradient(135deg, #2A0A2A 0%, #0F0A14 100%); }
   .project-card--renncora .project-card__mockup { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -48%) rotate(2deg); width: 30%; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.6s 0.25s ease, transform 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
   .project-card--renncora:hover .project-card__mockup, .project-card--renncora:focus-visible .project-card__mockup { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
@@ -1785,7 +1783,7 @@
               </div>
             </a>
             <a class="project-card project-card--doxflowy" href="case-doxflowy.html" aria-label="Open Doxflowy case study">
-              <div class="project-card__bg"><div class="project-card__video-wrap"><div class="project-card__video-mac"><video src="dox-demo.mp4" autoplay muted loop playsinline></video></div><div class="project-card__video-base"></div></div></div>
+              <div class="project-card__bg"><div class="project-card__mockup"><img src="dox-laptop-couch.jpg" alt="Doxflowy dashboard on laptop" loading="lazy" /></div></div>
               <span class="project-card__vertical-label">Doxflowy · '23 — '26</span>
               <div class="project-card__full-label">
                 <div class="project-card__meta">AI · Document automation · 2023 — 2026</div>
