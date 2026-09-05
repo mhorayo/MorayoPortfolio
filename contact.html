@@ -98,8 +98,8 @@
 
   /* 3-PHOTO GRID */
   .photo-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 4px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4px; margin-top: 128px;
   }
   .photo-grid__img {
     width: 100%; aspect-ratio: 3 / 4;
@@ -110,7 +110,7 @@
   .photo-grid__img:hover { filter: grayscale(0); }
 
   /* FORM SECTION */
-  .contact-form-section { max-width: 720px; margin: 96px auto 0; padding: 0 44px; }
+  .contact-form-section { max-width: 720px; margin: 128px auto 0; padding: 0 44px; }
   .contact-form-card { background: #fff; padding: 48px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 0.5px solid var(--hairline); border-radius: 12px; }
   .contact-form-card h2 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 8px; }
   .contact-form-card .sub { font-size: 14px; color: var(--stone); margin-bottom: 32px; }
@@ -128,7 +128,7 @@
   .form-submit svg { width: 16px; height: 16px; }
 
   /* TOOLS */
-  .tools-section { max-width: 920px; margin: 0 auto; padding: 100px 44px; }
+  .tools-section { max-width: 920px; margin: 0 auto; padding: 128px 44px; }
   .tools-section h2 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500; margin-bottom: 12px; }
   .tools-section .sub { font-size: 14px; color: var(--stone); margin-bottom: 40px; max-width: 500px; }
   .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
@@ -140,7 +140,7 @@
   .tool-card__type { font-size: 10px; color: var(--stone); margin-top: 2px; letter-spacing: 0.05em; }
 
   /* CONNECT */
-  .connect-section { max-width: 920px; margin: 0 auto; padding: 0 44px 100px; }
+  .connect-section { max-width: 920px; margin: 0 auto; padding: 0 44px 128px; }
   .connect-section h2 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500; margin-bottom: 32px; }
   .connect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .connect-card { padding: 28px; border: 0.5px solid var(--hairline-strong); border-radius: 8px; transition: border-color 0.3s ease; }
@@ -217,10 +217,10 @@
 
 <!-- HERO — 100vh dark brown editorial -->
 <section class="contact-hero">
-  <h1 class="contact-hero__title">Considered work for teams<br>who care about the <em>details.</em></h1>
+  <h1 class="contact-hero__title">Let's build something<br>that <em>matters.</em></h1>
   <div class="contact-hero__line">
-    <span>Senior Product Designer</span>
-    <span>Fintech · AI-native · Mobile-first</span>
+    <span>Open to senior product design roles</span>
+    <span>Remote · Dubai · UK · US · Germany · Canada</span>
   </div>
 </section>
 
@@ -239,18 +239,17 @@
   </div>
 </section>
 
-<!-- 3-PHOTO GRID -->
+<!-- WORKSPACE PHOTOS -->
 <section class="photo-grid reveal">
-  <img class="photo-grid__img" src="broadmoney-hero.jpg" alt="BroadMoney project" loading="lazy" />
-  <img class="photo-grid__img" src="work-hero.jpg" alt="Design work" loading="lazy" />
-  <img class="photo-grid__img" src="ren-live-watching.jpg" alt="Renncora project" loading="lazy" />
+  <img class="photo-grid__img" src="contact-desk.jpg" alt="Workspace — desk with laptop and chair" loading="lazy" />
+  <img class="photo-grid__img" src="contact-workspace.jpg" alt="Workspace — MacBook at hotel desk" loading="lazy" />
 </section>
 
 <!-- FORM -->
 <div class="contact-form-section reveal">
   <div class="contact-form-card">
-    <h2>Send a message</h2>
-    <p class="sub">I'll get back to you within 24–48 hours.</p>
+    <h2>Have a project in mind?</h2>
+    <p class="sub">Tell me about your team and what you're building. I'll get back to you within 24–48 hours.</p>
     <form action="https://formsubmit.co/teeakinkunmi@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="New message from portfolio — Morayo" />
       <input type="hidden" name="_captcha" value="false" />
