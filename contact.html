@@ -35,6 +35,20 @@
   .nav.scrolled .nav__links { color: var(--ink-soft); }
   .nav__links a { padding: 4px 0; transition: color 0.3s ease; }
   .nav__links a:hover { color: var(--meadow-light); }
+  .nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
+  .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); margin: 5px 0; transition: all 0.3s ease; }
+  .nav.scrolled .nav__hamburger span { background: var(--ink); }
+  .nav__hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  @media(max-width:768px) {
+    .nav__hamburger { display: block; }
+    .nav__links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: var(--ink); flex-direction: column; justify-content: center; align-items: center; gap: 32px; font-size: 14px; transition: right 0.35s ease; color: var(--cream); }
+    .nav__links.open { right: 0; }
+    .nav__links a { color: var(--cream); }
+    .nav__overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
+    .nav__overlay.open { display: block; }
+  }
 
   /* HERO — 100vh dark brown, editorial */
   .contact-hero {
@@ -96,24 +110,26 @@
   }
   .bio__role { font-size: 11px; color: var(--stone); letter-spacing: 0.08em; margin-top: 2px; }
 
-  /* 3-PHOTO GRID */
-  .photo-grid {
+  /* WORKSPACE SECTION — text left, images right */
+  .workspace-section {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 4px; margin-top: 128px;
+    gap: 48px; align-items: center;
+    max-width: 1200px; margin: 128px auto 0; padding: 0 44px;
   }
-  .photo-grid__img {
-    width: 100%; aspect-ratio: 3 / 4;
-    object-fit: cover; display: block;
-    filter: grayscale(20%);
-    transition: filter 0.4s ease;
+  .workspace-section__text h2 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500; margin-bottom: 16px; }
+  .workspace-section__text p { font-size: 15px; line-height: 1.7; color: var(--stone); }
+  .workspace-section__photos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .workspace-section__photos img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px; display: block; }
+  @media(max-width:768px) {
+    .workspace-section { grid-template-columns: 1fr; padding: 0 24px; margin-top: 80px; }
+    .workspace-section__photos { grid-template-columns: 1fr 1fr; }
   }
-  .photo-grid__img:hover { filter: grayscale(0); }
 
   /* FORM SECTION */
   .contact-form-section { max-width: 720px; margin: 128px auto 0; padding: 0 44px; }
+  .contact-form-section > h2 { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 500; margin-bottom: 12px; }
+  .contact-form-section > .sub { font-size: 15px; color: var(--stone); margin-bottom: 32px; line-height: 1.6; }
   .contact-form-card { background: #fff; padding: 48px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 0.5px solid var(--hairline); border-radius: 12px; }
-  .contact-form-card h2 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; margin-bottom: 8px; }
-  .contact-form-card .sub { font-size: 14px; color: var(--stone); margin-bottom: 32px; }
 
   .form-row { margin-bottom: 24px; }
   .form-row--half { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -209,7 +225,9 @@
 
 <nav class="nav" id="nav">
   <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
-  <div class="nav__links">
+  <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="nav__overlay" id="navOverlay"></div>
+  <div class="nav__links" id="navLinks">
     <a href="work.html">Work</a>
     <a href="contact.html">Contact</a>
   </div>
@@ -239,17 +257,23 @@
   </div>
 </section>
 
-<!-- WORKSPACE PHOTOS -->
-<section class="photo-grid reveal">
-  <img class="photo-grid__img" src="contact-desk.jpg" alt="Workspace — desk with laptop and chair" loading="lazy" />
-  <img class="photo-grid__img" src="contact-workspace.jpg" alt="Workspace — MacBook at hotel desk" loading="lazy" />
+<!-- WORKSPACE -->
+<section class="workspace-section reveal">
+  <div class="workspace-section__text">
+    <h2>Where the work <em>happens.</em></h2>
+    <p>Whether it's a quiet desk at home or a hotel lobby between flights, the work stays the same — intentional, focused, and built around solving real problems for real users. Every pixel has a reason.</p>
+  </div>
+  <div class="workspace-section__photos">
+    <img src="contact-desk.jpg" alt="Workspace — desk with laptop and chair" loading="lazy" />
+    <img src="contact-workspace.jpg" alt="Workspace — MacBook at hotel desk" loading="lazy" />
+  </div>
 </section>
 
 <!-- FORM -->
 <div class="contact-form-section reveal">
+  <h2>Have a project in mind?</h2>
+  <p class="sub">Tell me about your team and what you're building. I'll get back to you within 24–48 hours.</p>
   <div class="contact-form-card">
-    <h2>Have a project in mind?</h2>
-    <p class="sub">Tell me about your team and what you're building. I'll get back to you within 24–48 hours.</p>
     <form action="https://formsubmit.co/teeakinkunmi@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="New message from portfolio — Morayo" />
       <input type="hidden" name="_captcha" value="false" />
@@ -382,6 +406,21 @@
 </footer>
 
 <script>
+/* Hamburger menu */
+(function() {
+  var btn = document.getElementById('hamburger');
+  var links = document.getElementById('navLinks');
+  var overlay = document.getElementById('navOverlay');
+  if (!btn || !links) return;
+  function toggle() {
+    btn.classList.toggle('open');
+    links.classList.toggle('open');
+    if (overlay) overlay.classList.toggle('open');
+  }
+  btn.addEventListener('click', toggle);
+  if (overlay) overlay.addEventListener('click', toggle);
+  links.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', toggle); });
+})();
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
 
