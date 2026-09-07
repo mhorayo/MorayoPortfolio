@@ -97,12 +97,10 @@
 
   
   /* NEXT PROJECT NAV */
-  .cs-nav{display:flex;max-width:1360px;margin:0 auto;border-top:.5px solid var(--hairline)}
-  .cs-nav__link{flex:1;padding:56px 44px;display:flex;flex-direction:column;gap:8px;transition:background .3s;text-decoration:none}
-  .cs-nav__link:hover{background:var(--cream-dark)}
-  .cs-nav__link--next{text-align:right;border-left:.5px solid var(--hairline)}
-  .cs-nav__dir{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone)}
-  .cs-nav__name{font-family:'Fraunces',serif;font-size:clamp(20px,3vw,32px);color:var(--ink);font-weight:500}
+  .cs-nav { max-width: 920px; margin: 0 auto; padding: 72px 44px; display: flex; justify-content: space-between; align-items: center; }
+  .cs-nav__btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border: 1px solid var(--hairline-strong); border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--ink); background: transparent; text-decoration: none; transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease; }
+  .cs-nav__btn:hover { border-color: var(--ink); background: var(--cream-dark); transform: translateY(-1px); }
+  .cs-nav__btn svg { width: 16px; height: 16px; opacity: 0.5; }
   /* CONTACT */
   .contact{padding:100px 44px;text-align:center}
   .contact__inner{max-width:680px;margin:0 auto}
@@ -142,7 +140,7 @@
     .metrics-row { grid-template-columns: repeat(2, 1fr); }
     .footer__upper { grid-template-columns: repeat(2, 1fr); }
   
-    .cs-nav{flex-direction:column}.cs-nav__link--next{text-align:left;border-left:none;border-top:.5px solid var(--hairline)}
+    .cs-nav{flex-direction:column}
     .contact{padding:60px 24px}
     .footer__upper{grid-template-columns:1fr 1fr;gap:40px 24px;padding:72px 24px 48px}
     .footer__newsletter{padding-left:0;grid-column:1/-1}
@@ -284,10 +282,16 @@
 </div>
 
 
-<!-- NEXT PROJECT NAV -->
+<!-- CASE STUDY PAGINATION -->
 <nav class="cs-nav reveal">
-  <a href="case-taxclarity.html" class="cs-nav__link cs-nav__link--prev"><span class="cs-nav__dir">Previous</span><span class="cs-nav__name">Tax Clarity</span></a>
-  <a href="case-help2pay.html" class="cs-nav__link cs-nav__link--next"><span class="cs-nav__dir">Next</span><span class="cs-nav__name">Help2Pay</span></a>
+  <a href="case-taxclarity.html" class="cs-nav__btn" aria-label="Previous: Tax Clarity">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Previous
+  </a>
+  <a href="case-kunchi.html" class="cs-nav__btn" aria-label="Next: Kunchi MFB">
+    Next
+    <svg viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
 </nav>
 
 <section class="contact" id="contact">

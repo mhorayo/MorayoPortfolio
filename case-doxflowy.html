@@ -147,13 +147,10 @@
   .cs-metric__label { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(249,247,242,0.5); margin-top: 8px; }
 
   /* PREV/NEXT NAV */
-  .cs-nav { max-width: 920px; margin: 0 auto; padding: 72px 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .cs-nav__link { padding: 32px; border: 0.5px solid var(--hairline); border-radius: 12px; transition: border-color 0.3s ease, transform 0.35s ease; }
-  .cs-nav__link:hover { border-color: var(--meadow); transform: translateY(-3px); }
-  .cs-nav__dir { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--stone); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-  .cs-nav__project { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; color: var(--ink); }
-  .cs-nav__link--next { text-align: right; }
-  .cs-nav__link--next .cs-nav__dir { justify-content: flex-end; }
+  .cs-nav { max-width: 920px; margin: 0 auto; padding: 72px 44px; display: flex; justify-content: space-between; align-items: center; }
+  .cs-nav__btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border: 1px solid var(--hairline-strong); border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--ink); background: transparent; text-decoration: none; transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease; }
+  .cs-nav__btn:hover { border-color: var(--ink); background: var(--cream-dark); transform: translateY(-1px); }
+  .cs-nav__btn svg { width: 16px; height: 16px; opacity: 0.5; }
 
   /* CONTACT */
   .cs-contact { background: transparent; padding: 100px 44px 60px; text-align: center; border-top: 0.5px solid var(--hairline-strong); }
@@ -566,15 +563,15 @@
   </div>
 </div>
 
-<!-- PREV/NEXT -->
+<!-- CASE STUDY PAGINATION -->
 <nav class="cs-nav reveal">
-  <a href="case-broadmoney.html" class="cs-nav__link cs-nav__link--prev">
-    <div class="cs-nav__dir"><svg viewBox="0 0 14 14" fill="none"><path d="M11 7H3M3 7L7 3M3 7L7 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Previous</div>
-    <div class="cs-nav__project">BroadMoney Payment</div>
+  <a href="case-broadmoney.html" class="cs-nav__btn" aria-label="Previous: BroadMoney Payment">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Previous
   </a>
-  <a href="case-help2pay.html" class="cs-nav__link cs-nav__link--next">
-    <div class="cs-nav__dir">Next<svg viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="cs-nav__project">Help2Pay</div>
+  <a href="case-renncora.html" class="cs-nav__btn" aria-label="Next: Renncora">
+    Next
+    <svg viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 </nav>
 
