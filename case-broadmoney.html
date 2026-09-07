@@ -167,7 +167,7 @@
   .cs-decision__desc { font-size: 13px; line-height: 1.65; color: var(--ink-soft); }
 
   /* OUTCOME */
-  .cs-outcome { padding: 72px 44px; background: var(--ink); color: var(--cream); position: relative; border-top: 0.5px solid var(--hairline-strong); }
+  .cs-outcome { padding: 72px 44px; background: var(--ink); color: var(--cream); position: relative; }
   .cs-outcome::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0); background-size: 20px 20px; }
   .cs-outcome__inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
   .cs-outcome__header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
@@ -186,7 +186,7 @@
   .cs-nav__btn svg { width: 16px; height: 16px; opacity: 0.5; }
 
   /* CONTACT */
-  .cs-contact { background: transparent; padding: 100px 44px 60px; text-align: center; border-top: 0.5px solid var(--hairline-strong); }
+  .cs-contact { background: transparent; padding: 100px 44px 60px; text-align: center; }
   .cs-contact__inner { max-width: 780px; margin: 0 auto; }
   .cs-contact__title { font-family: 'Fraunces', serif; font-size: clamp(36px, 4.5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 28px; font-weight: 500; }
   .cs-contact__title em { font-style: italic; color: var(--meadow); }
@@ -219,12 +219,6 @@
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .nav { padding: 18px 24px; }
-        .nav__links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: var(--ink); flex-direction: column; justify-content: center; align-items: center; gap: 32px; font-size: 14px; transition: right 0.35s ease; color: var(--cream); z-index: 100; }
-    .nav__links.open { right: 0; }
-    .nav__links a { color: var(--cream); }
-    .nav__links a:hover { color: #C46B2E; }
-    .nav__overlay.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
-    .nav__hamburger { display: block; }
     .cs { padding: 0 24px; }
     .nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
   .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: all 0.3s ease; }
