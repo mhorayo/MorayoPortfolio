@@ -127,6 +127,12 @@
     transform: scaleX(1);
     transform-origin: left;
   }
+  .nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
+  .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: all 0.3s ease; }
+  .nav__hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav__overlay { display: none; }
   /* Scallop awning — same cream as nav, reads as one connected unit */
   .nav::after {
     content: '';
@@ -650,13 +656,17 @@
   .project-card--doxflowy .project-card__video-mac video { width: 100%; display: block; }
   .project-card--doxflowy .project-card__video-base { height: 8px; background: linear-gradient(to bottom, #444, #333); border-radius: 0 0 6px 6px; margin: 0 20%; }
   .project-card--renncora .project-card__bg { background: linear-gradient(135deg, #2A0A2A 0%, #0F0A14 100%); }
-  .project-card--renncora .project-card__mockup { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -48%) rotate(2deg); width: 30%; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.6s 0.25s ease, transform 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+  .project-card--renncora .project-card__mockup { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -48%) rotate(2deg); width: 200px; height: 432px; background: #1A1A1A; border-radius: 40px; padding: 0; box-shadow: 0 20px 60px rgba(0,0,0,0.45), 0 0 0 2px #333, inset 0 0 0 1.5px rgba(255,255,255,0.06); z-index: 2; overflow: hidden; opacity: 0; transition: opacity 0.6s 0.25s ease, transform 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
   .project-card--renncora:hover .project-card__mockup, .project-card--renncora:focus-visible .project-card__mockup { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
-  .project-card--renncora .project-card__mockup video { width: 100%; display: block; filter: drop-shadow(0 12px 40px rgba(0,0,0,0.45)); }
+  .project-card--renncora .project-card__mockup::before { content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 72px; height: 22px; background: #1A1A1A; border-radius: 20px; z-index: 10; }
+  .project-card--renncora .project-card__mockup-screen { position: absolute; inset: 4px; border-radius: 36px; overflow: hidden; background: #fff; }
+  .project-card--renncora .project-card__mockup-screen video { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
   .project-card--wosiwosi .project-card__bg { background: linear-gradient(135deg, #EFEBDF 0%, #D8D0B8 100%); }
-  .project-card--wosiwosi .project-card__mockup { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -48%) rotate(2deg); width: 30%; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.6s 0.25s ease, transform 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+  .project-card--wosiwosi .project-card__mockup { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -48%) rotate(2deg); width: 200px; height: 432px; background: #1A1A1A; border-radius: 40px; padding: 0; box-shadow: 0 20px 60px rgba(0,0,0,0.45), 0 0 0 2px #333, inset 0 0 0 1.5px rgba(255,255,255,0.06); z-index: 2; overflow: hidden; opacity: 0; transition: opacity 0.6s 0.25s ease, transform 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
   .project-card--wosiwosi:hover .project-card__mockup, .project-card--wosiwosi:focus-visible .project-card__mockup { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
-  .project-card--wosiwosi .project-card__mockup video { width: 100%; display: block; filter: drop-shadow(0 12px 40px rgba(0,0,0,0.45)); }
+  .project-card--wosiwosi .project-card__mockup::before { content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 72px; height: 22px; background: #1A1A1A; border-radius: 20px; z-index: 10; }
+  .project-card--wosiwosi .project-card__mockup-screen { position: absolute; inset: 4px; border-radius: 36px; overflow: hidden; background: #fff; }
+  .project-card--wosiwosi .project-card__mockup-screen video { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
   .project-card--help2pay .project-card__bg { background: linear-gradient(135deg, #C4653A 0%, #9D440C 100%); }
   .project-card--taxclarity .project-card__bg { background: linear-gradient(135deg, #2A2825 0%, #14120F 100%); }
   .project-card--taxclarity .project-card__video-wrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 75%; z-index: 1; pointer-events: none; }
@@ -671,9 +681,11 @@
   .project-card--stacklayer .project-card__video-mac video { width: 100%; display: block; }
   .project-card--stacklayer .project-card__video-base { height: 8px; background: linear-gradient(to bottom, #444, #333); border-radius: 0 0 6px 6px; margin: 0 20%; }
   .project-card--kunchi .project-card__bg { background: linear-gradient(135deg, #2D9F4F 0%, #1A6B30 100%); }
-  .project-card--kunchi .project-card__mockup { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -48%) rotate(2deg); width: 30%; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.6s 0.25s ease, transform 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+  .project-card--kunchi .project-card__mockup { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -48%) rotate(2deg); width: 200px; height: 432px; background: #1A1A1A; border-radius: 40px; padding: 0; box-shadow: 0 20px 60px rgba(0,0,0,0.45), 0 0 0 2px #333, inset 0 0 0 1.5px rgba(255,255,255,0.06); z-index: 2; overflow: hidden; opacity: 0; transition: opacity 0.6s 0.25s ease, transform 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
   .project-card--kunchi:hover .project-card__mockup, .project-card--kunchi:focus-visible .project-card__mockup { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
-  .project-card--kunchi .project-card__mockup video { width: 100%; display: block; filter: drop-shadow(0 12px 40px rgba(0,0,0,0.45)); }
+  .project-card--kunchi .project-card__mockup::before { content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 72px; height: 22px; background: #1A1A1A; border-radius: 20px; z-index: 10; }
+  .project-card--kunchi .project-card__mockup-screen { position: absolute; inset: 4px; border-radius: 36px; overflow: hidden; background: #fff; }
+  .project-card--kunchi .project-card__mockup-screen video { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 
   /* Carousel */
   .projects__carousel { position: relative; }
@@ -1585,7 +1597,13 @@
   /* ------------ Responsive ------------ */
   @media (max-width: 900px) {
     .nav { padding: 18px 24px; }
-    .nav__links { display: none; }
+    .nav__links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: var(--ink); flex-direction: column; justify-content: center; align-items: center; gap: 32px; font-size: 14px; transition: right 0.35s ease; color: var(--cream); z-index: 100; }
+    .nav__links.open { right: 0; }
+    .nav__links a { color: var(--cream); padding: 4px 0; }
+    .nav__links a::after { display: none; }
+    .nav__links a:hover { color: var(--meadow-light); }
+    .nav__overlay.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
+    .nav__hamburger { display: block; }
     .hero { min-height: 620px; }
     .hero__labels { top: 80px; font-size: 9px; letter-spacing: 0.22em; }
     .hero__labels--tl { left: 24px; }
@@ -1674,7 +1692,9 @@
 
 <nav class="nav" id="nav">
   <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
-  <div class="nav__links">
+  <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="nav__overlay" id="navOverlay"></div>
+  <div class="nav__links" id="navLinks">
     <a href="work.html">Work</a>
     <a href="contact.html">Contact</a>
   </div>
@@ -1811,7 +1831,7 @@
             </a>
             <a class="project-card project-card--renncora" href="case-renncora.html" aria-label="Open Renncora case study">
               <div class="project-card__bg"></div>
-              <div class="project-card__mockup"><video src="ren-demo-onboarding.mp4" muted loop playsinline preload="metadata"></video></div>
+              <div class="project-card__mockup"><div class="project-card__mockup-screen"><video src="ren-demo-onboarding.mp4" muted loop playsinline preload="metadata"></video></div></div>
               <span class="project-card__vertical-label">Renncora · '26</span>
               <div class="project-card__full-label">
                 <div class="project-card__meta">Social · Live streaming · 2026</div>
@@ -1824,7 +1844,8 @@
           <!-- SLIDE 2 -->
           <div class="projects__slide">
             <a class="project-card project-card--wosiwosi" href="case-wosiwosi.html" aria-label="Open Wosi Wosi case study">
-              <div class="project-card__bg"><div class="project-card__mockup"><video src="wosi-demo.mp4" muted loop playsinline preload="metadata"></video></div></div>
+              <div class="project-card__bg"></div>
+              <div class="project-card__mockup"><div class="project-card__mockup-screen"><video src="wosi-demo.mp4" muted loop playsinline preload="metadata"></video></div></div>
               <span class="project-card__vertical-label">Wosi Wosi · '25 — '26</span>
               <div class="project-card__full-label">
                 <div class="project-card__meta">Fintech · Cross-border payments · 2025 — 2026</div>
@@ -1864,7 +1885,8 @@
               </div>
             </a>
             <a class="project-card project-card--kunchi" href="case-kunchi.html" aria-label="Open Kunchi MFB case study">
-              <div class="project-card__bg"><div class="project-card__mockup"><video src="kunchi-demo.mp4" muted loop playsinline preload="metadata"></video></div></div>
+              <div class="project-card__bg"></div>
+              <div class="project-card__mockup"><div class="project-card__mockup-screen"><video src="kunchi-demo.mp4" muted loop playsinline preload="metadata"></video></div></div>
               <span class="project-card__vertical-label">Kunchi MFB · '24</span>
               <div class="project-card__full-label">
                 <div class="project-card__meta">Fintech · Microfinance banking · 2024</div>
@@ -2231,6 +2253,23 @@
 })();
 </script>
 
+<script>
+/* Hamburger menu */
+(function() {
+  var btn = document.getElementById('hamburger');
+  var links = document.getElementById('navLinks');
+  var overlay = document.getElementById('navOverlay');
+  if (!btn || !links) return;
+  function toggle() {
+    btn.classList.toggle('open');
+    links.classList.toggle('open');
+    if (overlay) overlay.classList.toggle('open');
+  }
+  btn.addEventListener('click', toggle);
+  if (overlay) overlay.addEventListener('click', toggle);
+  links.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', toggle); });
+})();
+</script>
 <script>
 (function() {
   const nav = document.getElementById("nav");

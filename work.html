@@ -75,6 +75,12 @@
   .nav__links a:hover::after { transform: scaleX(1); transform-origin: left; }
   .nav__links a.is-current { color: var(--meadow); }
   .nav__links a.is-current::after { transform: scaleX(1); }
+  .nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
+  .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: all 0.3s ease; }
+  .nav__hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav__overlay { display: none; }
   .nav::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: -22px; height: 22px;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 22' preserveAspectRatio='xMidYMid slice'><path d='M0 0 L56 0 A28 22 0 0 1 0 0 Z' fill='%23F9F7F2'/></svg>");
@@ -403,7 +409,13 @@
   /* Responsive */
   @media (max-width: 900px) {
     .nav { padding: 18px 24px; }
-    .nav__links { display: none; }
+    .nav__links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: var(--ink); flex-direction: column; justify-content: center; align-items: center; gap: 32px; font-size: 14px; transition: right 0.35s ease; color: var(--cream); z-index: 100; }
+    .nav__links.open { right: 0; }
+    .nav__links a { color: var(--cream); }
+    .nav__links a::after { display: none; }
+    .nav__links a:hover { color: var(--meadow-light); }
+    .nav__overlay.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
+    .nav__hamburger { display: block; }
     .work-hero__content { padding: 0 24px; }
     .work-hero__title { font-size: clamp(32px, 9vw, 52px); }
     .work-intro { padding: 80px 24px; }
@@ -428,7 +440,9 @@
 
 <nav class="nav" id="nav">
   <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
-  <div class="nav__links">
+  <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="nav__overlay" id="navOverlay"></div>
+  <div class="nav__links" id="navLinks">
     <a href="work.html" class="is-current">Work</a>
     <a href="contact.html">Contact</a>
   </div>
@@ -688,6 +702,22 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(function(el) { io.observe(el); });
+})();
+
+/* Hamburger menu */
+(function() {
+  var btn = document.getElementById('hamburger');
+  var links = document.getElementById('navLinks');
+  var overlay = document.getElementById('navOverlay');
+  if (!btn || !links) return;
+  function toggle() {
+    btn.classList.toggle('open');
+    links.classList.toggle('open');
+    if (overlay) overlay.classList.toggle('open');
+  }
+  btn.addEventListener('click', toggle);
+  if (overlay) overlay.addEventListener('click', toggle);
+  links.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', toggle); });
 })();
 </script>
 </body>

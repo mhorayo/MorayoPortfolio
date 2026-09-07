@@ -53,6 +53,12 @@
   .nav__links a:hover { color: var(--meadow); }
 
   /* SPLIT HERO */
+  .nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
+  .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: all 0.3s ease; }
+  .nav__hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav__overlay { display: none; }
   .cs-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 66px; }
   .cs-hero__text { display: flex; flex-direction: column; justify-content: center; padding: 80px 56px 60px; }
   .cs-hero__thumb { width: 100px; height: 72px; border-radius: 6px; overflow: hidden; margin-bottom: 36px; border: 0.5px solid var(--hairline); box-shadow: 0 4px 16px rgba(0,0,0,0.06); background: var(--cream-dark); }
@@ -196,9 +202,20 @@
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .nav { padding: 18px 24px; }
-    .nav__links { display: none; }
+        .nav__links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: var(--ink); flex-direction: column; justify-content: center; align-items: center; gap: 32px; font-size: 14px; transition: right 0.35s ease; color: var(--cream); z-index: 100; }
+    .nav__links.open { right: 0; }
+    .nav__links a { color: var(--cream); }
+    .nav__links a:hover { color: #C46B2E; }
+    .nav__overlay.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
+    .nav__hamburger { display: block; }
     .cs { padding: 0 24px; }
-    .cs-hero { grid-template-columns: 1fr; min-height: auto; }
+    .nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
+  .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: all 0.3s ease; }
+  .nav__hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav__hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav__overlay { display: none; }
+  .cs-hero { grid-template-columns: 1fr; min-height: auto; }
     .cs-hero__text { padding: 120px 24px 48px; }
     .cs-hero__image { min-height: 50vh; }
     .cs-hero__metrics { gap: 20px; flex-wrap: wrap; }
@@ -224,7 +241,9 @@
 
 <nav class="nav" id="nav">
   <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
-  <div class="nav__links">
+  <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="nav__overlay" id="navOverlay"></div>
+  <div class="nav__links" id="navLinks">
     <a href="work.html">Work</a>
     <a href="contact.html">Contact</a>
   </div>
@@ -702,5 +721,22 @@
 })();
 </script>
 
+<script>
+/* Hamburger menu */
+(function() {
+  var btn = document.getElementById('hamburger');
+  var links = document.getElementById('navLinks');
+  var overlay = document.getElementById('navOverlay');
+  if (!btn || !links) return;
+  function toggle() {
+    btn.classList.toggle('open');
+    links.classList.toggle('open');
+    if (overlay) overlay.classList.toggle('open');
+  }
+  btn.addEventListener('click', toggle);
+  if (overlay) overlay.addEventListener('click', toggle);
+  links.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', toggle); });
+})();
+</script>
 </body>
 </html>
