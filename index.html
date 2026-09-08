@@ -1633,8 +1633,12 @@
       transition: none;
     }
     .project-card__bg::after { opacity: 1; }
-    .project-card__mockup { display: none !important; }
-    .project-card__video-wrap { display: none !important; }
+    .project-card__mockup,
+    .project-card__video-wrap,
+    .project-card [class*="mockup"],
+    .project-card [class*="video-wrap"],
+    .project-card [class*="video-mac"],
+    .project-card [class*="video-base"] { display: none !important; visibility: hidden !important; }
     .studio { padding: 65px 24px; }
     .studio__inner { grid-template-columns: 1fr; gap: 48px; }
     .studio__portrait { aspect-ratio: 4 / 3; }
@@ -1691,12 +1695,12 @@
 
 <nav class="nav" id="nav">
   <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
-  <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="nav__overlay" id="navOverlay"></div>
   <div class="nav__links" id="navLinks">
     <a href="work.html">Work</a>
     <a href="contact.html">Contact</a>
   </div>
+  <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <section class="hero" id="hero">
