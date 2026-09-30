@@ -122,7 +122,7 @@
   .cs-screen-label--dark { background: rgba(0,0,0,0.5); color: #fff; border-color: rgba(255,255,255,0.2); }
 
   /* ANALYTICS STRIP */
-  .cs-analytics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
+  .cs-analytics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
   .cs-analytics__card { padding: 24px 16px; border: 0.5px solid var(--hairline); border-radius: 12px; text-align: center; background: var(--cream); }
   .cs-analytics__icon { width: 32px; height: 32px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: var(--dox-purple-light); color: var(--dox-purple); }
   .cs-analytics__icon svg { width: 18px; height: 18px; }
@@ -216,7 +216,7 @@
     .cs-mac-wrap { padding: 24px 24px; }
     .cs-padded { padding: 16px 24px; }
     .cs-decisions { grid-template-columns: 1fr; }
-    .cs-analytics { grid-template-columns: 1fr 1fr; }
+    .cs-analytics { grid-template-columns: 1fr; }
     .cs-outcome { padding: 48px 24px; }
     .cs-metrics { grid-template-columns: 1fr; }
     .cs-nav { padding: 48px 24px; grid-template-columns: 1fr; }
@@ -250,7 +250,6 @@
     <div class="cs-hero__metrics">
       <div class="cs-hero__metric"><div class="cs-hero__metric-value">31%</div><div class="cs-hero__metric-label">Rage tap reduction</div></div>
       <div class="cs-hero__metric"><div class="cs-hero__metric-value">+42%</div><div class="cs-hero__metric-label">Sign-up rate</div></div>
-      <div class="cs-hero__metric"><div class="cs-hero__metric-value">5%</div><div class="cs-hero__metric-label">Dead click reduction</div></div>
       <div class="cs-hero__metric"><div class="cs-hero__metric-value">AI-first</div><div class="cs-hero__metric-label">Document UX</div></div>
     </div>
   </div>
@@ -336,7 +335,7 @@
       <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 014 4v1a4 4 0 01-8 0V6a4 4 0 014-4z"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><circle cx="12" cy="12" r="10" stroke="none"/><path d="M9 3.5C5.5 5.5 3 9.5 3 14c0 1.7.4 3.3 1 4.7"/><path d="M15 3.5c3.5 2 6 6 6 10.5 0 1.7-.4 3.3-1 4.7"/></svg></div>
       <span class="cs-section__label">AI document assistant — replacing manual with intelligent</span>
     </div>
-    <p>I designed the end-to-end interface for Doxflowy's AI document assistant — prompt input, inline AI suggestions, formatting controls, and a contextual tag system. The previous approach required users to manually tag every field in a document template, a tedious process that took hours for complex contracts. The AI-powered approach automates field detection and tagging, cutting setup time for new users from hours to minutes while maintaining the precision that legal documents demand.</p>
+    <p>I designed the end-to-end interface for Doxflowy's AI document assistant — prompt input, inline AI suggestions, formatting controls, and a contextual tag system. The previous approach required users to manually tag every field in a document template, a tedious process that took hours for complex contracts. The AI-powered approach automates field detection and tagging while maintaining the precision that legal documents demand.</p>
   </section>
 </div>
 
@@ -486,18 +485,13 @@
       <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
       <span class="cs-section__label">Analytics-driven iteration</span>
     </div>
-    <p>Every design decision was validated through Microsoft Clarity behavioral data. I ran monthly analytics reviews — heatmaps, session recordings, rage tap maps, dead click analysis — and translated findings into prioritized design sprints. The skeleton loader intervention alone significantly reduced user frustration metrics. Template download page redesigns with email capture increased sign-up conversion. The data told the story; the design followed.</p>
+    <p>Every design decision was validated through Microsoft Clarity behavioral data. I ran monthly analytics reviews — heatmaps, session recordings, rage tap maps, dead click analysis — and translated findings into prioritized design sprints. The skeleton loader went straight at the biggest source of rage taps. Template download page redesigns with email capture increased sign-up conversion. The data told the story; the design followed.</p>
 
     <div class="cs-analytics">
       <div class="cs-analytics__card">
         <div class="cs-analytics__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 15l-2 5L9 9l11 4-5 2z"/></svg></div>
         <div class="cs-analytics__value">0.48→0.33%</div>
         <div class="cs-analytics__label">Rage taps</div>
-      </div>
-      <div class="cs-analytics__card">
-        <div class="cs-analytics__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg></div>
-        <div class="cs-analytics__value">15.7→14.9%</div>
-        <div class="cs-analytics__label">Dead clicks</div>
       </div>
       <div class="cs-analytics__card">
         <div class="cs-analytics__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div>
@@ -536,7 +530,7 @@
       </div>
       <div class="cs-decision">
         <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/></svg>Email capture before download</div>
-        <p class="cs-decision__desc">Redesigned template download pages to collect email before serving the file. Users still get their template instantly, but now the business has a lead to nurture. Follow-up email sequences converted a meaningful percentage of downloaders into trial users.</p>
+        <p class="cs-decision__desc">Redesigned template download pages to collect email before serving the file. Users still get their template instantly, but now the business has a lead to nurture.</p>
       </div>
       <div class="cs-decision">
         <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Pain-point messaging</div>
@@ -544,7 +538,7 @@
       </div>
       <div class="cs-decision">
         <div class="cs-decision__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>AI-powered tag automation</div>
-        <p class="cs-decision__desc">Replaced manual document tagging with AI-powered field detection. The previous approach required users to individually mark every variable in a contract — the new system suggests tags intelligently, cutting setup time from hours to minutes.</p>
+        <p class="cs-decision__desc">Replaced manual document tagging with AI-powered field detection. The previous approach required users to individually mark every variable in a contract — the new system suggests tags and users confirm or correct them.</p>
       </div>
     </div>
   </section>
@@ -576,12 +570,12 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" style="color:var(--blush)"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       <span class="cs-outcome__label">Outcome</span>
     </div>
-    <p>The combined impact of skeleton loaders, conversion-optimized template pages, pain-point-driven marketing copy, and AI-powered document tagging transformed Doxflowy's user engagement and business metrics. Rage taps dropped 31%, dead clicks reduced 5%, and the email capture strategy turned anonymous template downloaders into a growing pipeline of signed-up users.</p>
+    <p>The combined impact of skeleton loaders, conversion-optimized template pages, pain-point-driven marketing copy, and AI-powered document tagging transformed Doxflowy's user engagement and business metrics. Rage taps dropped 31%, and the email capture strategy turned anonymous template downloaders into a growing pipeline of signed-up users.</p>
     <p>Engineering velocity improved as the maintained design system reduced implementation ambiguity. Monthly Clarity analytics reviews kept design decisions grounded in real user behavior rather than assumptions, creating a culture of data-informed iteration that continued beyond my tenure.</p>
     <div class="cs-metrics">
       <div class="cs-metric"><div class="cs-metric__value">31%</div><div class="cs-metric__label">Rage tap reduction</div></div>
       <div class="cs-metric"><div class="cs-metric__value">+42%</div><div class="cs-metric__label">Sign-up conversion</div></div>
-      <div class="cs-metric"><div class="cs-metric__value">5%</div><div class="cs-metric__label">Dead click reduction</div></div>
+      <div class="cs-metric"><div class="cs-metric__value">+27%</div><div class="cs-metric__label">Session duration</div></div>
     </div>
   </div>
 </div>
@@ -616,8 +610,8 @@
   <div class="cs-footer__upper">
     <div><p class="cs-footer__col-label">Work</p><ul class="cs-footer__col-links"><li><a href="case-broadmoney.html">Broad Money</a></li><li><a href="case-doxflowy.html">Doxflowy</a></li><li><a href="case-renncora.html">Renncora</a></li><li><a href="case-wosiwosi.html">Wosi Wosi</a></li><li><a href="case-taxclarity.html">Tax Clarity</a></li><li><a href="case-stacklayer.html">Stack Layer</a></li><li><a href="case-help2pay.html">Help2Pay</a></li><li><a href="case-kunchi.html">Kunchi MFB</a></li></ul></div>
     <div><p class="cs-footer__col-label">Studio</p><ul class="cs-footer__col-links"><li><a href="index.html#community">Community</a></li><li><a href="contact.html">Contact</a></li><li><a href="cv.pdf" download>Download CV</a></li></ul></div>
-    <div><p class="cs-footer__col-label">Elsewhere</p><ul class="cs-footer__col-links"><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765" target="_blank" rel="noopener">Dribbble</a></li><li><a href="https://www.instagram.com/yourtechgirly" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://x.com/morayo1025" target="_blank" rel="noopener">Twitter / X</a></li><li><a href="https://www.youtube.com/@Design-geeks" target="_blank" rel="noopener">YouTube</a></li></ul></div>
-    <div><p class="cs-footer__col-label">Studio Notes</p><form class="cs-footer__form" onsubmit="event.preventDefault();"><input type="email" placeholder="your@email.com" aria-label="Email" /><button type="submit" aria-label="Subscribe"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form><p class="cs-footer__hint">Occasional writing on craft, AI-native design, and building for markets Silicon Valley overlooks.</p><p class="cs-footer__copy">&copy; MMXXVI · Made in Lagos · Est. 2019</p></div>
+    <div><p class="cs-footer__col-label">Elsewhere</p><ul class="cs-footer__col-links"><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765" target="_blank" rel="noopener">Dribbble</a></li><li><a href="https://x.com/morayo1025" target="_blank" rel="noopener">Twitter / X</a></li><li><a href="https://www.youtube.com/@Design-geeks" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+    <div><p class="cs-footer__copy">&copy; MMXXVI · Made in Lagos · Est. 2021</p></div>
   </div>
   <div class="cs-footer__nameplate-wrap"><h2 class="cs-footer__nameplate">MORAYO</h2></div>
 </footer>
