@@ -73,6 +73,17 @@
   .cs-section__header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
   .cs-section__icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--meadow); }
   .cs-section__label { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .cs-lead { display: grid; gap: 28px; margin-top: 28px; }
+  .cs-lead__item { padding-left: 20px; border-left: 2px solid var(--meadow); }
+  .cs-lead__title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .cs-lead__item p { margin: 0; }
+  .cs-lead__item p + p { margin-top: 10px; }
+  .cs-retro { margin-top: 40px; padding: 28px 32px; border: 0.5px solid var(--hairline-strong); border-radius: 12px; }
+  .cs-retro__title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--meadow); margin-bottom: 14px; }
+  .cs-retro ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .cs-retro li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.7; color: var(--ink-soft); max-width: 760px; }
+  .cs-retro li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 8px; border-radius: 50%; background: var(--meadow); }
+  .cs-retro strong { color: var(--ink); font-weight: 600; }
   .cs-section p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); max-width: 760px; }
   .cs-section p + p { margin-top: 16px; }
 
@@ -607,6 +618,34 @@
     <img class="cs-laptop__screen" src="bmp-website.jpg" alt="BroadMoney marketing website" loading="lazy" />
   </div>
   <div class="cs-laptop-base__bar" style="margin:0 40px;"></div>
+</div>
+
+<!-- LEADERSHIP & RETRO -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <span class="cs-section__label">Leadership — influencing the product, not just designing it</span>
+    </div>
+    <div class="cs-lead">
+      <div class="cs-lead__item">
+        <p class="cs-lead__title">Pushing back on the balance card</p>
+        <p>The founder wanted smaller wallet cards on the dashboard so several currencies would show at once. I pushed back. A remittance balance has to display any amount in full &mdash; &pound;5,000,000 should never shrink or get cut off to make room &mdash; and the balance is the first thing users check before they trust a transfer.</p>
+        <p>I proposed one full-width card per wallet that users swipe between, with currency chips underneath for quick switching. That&rsquo;s the version that shipped.</p>
+      </div>
+      <div class="cs-lead__item">
+        <p class="cs-lead__title">Getting engineers to build from the system</p>
+        <p>With a two-person engineering team, the design system only mattered if it was quicker to use than to ignore. I built it in Figma the way engineers think: colour, type and spacing as variables (tokens) named to match the code, every component annotated with its states, spacing and behaviour, and a documentation page for each pattern. Engineering reported fewer design-related tickets after launch.</p>
+      </div>
+    </div>
+    <div class="cs-retro">
+      <p class="cs-retro__title">What I&rsquo;d do differently</p>
+      <ul>
+        <li><strong>Set up analytics before launch, not mid-project.</strong> Rebuilding the funnel when we moved from UXCam to PostHog worked, but one tool from day one would have made the before-and-after cleaner.</li>
+        <li><strong>Settle disagreements with a quick test.</strong> I won the balance-card argument on reasoning. Five users comparing both versions would have settled it faster and given the founder evidence, not just my opinion.</li>
+      </ul>
+    </div>
+  </section>
 </div>
 
 <!-- OUTCOME -->

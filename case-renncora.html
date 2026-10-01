@@ -73,6 +73,17 @@
   .cs-section__header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
   .cs-section__icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--ren-magenta); }
   .cs-section__label { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .cs-lead { display: grid; gap: 28px; margin-top: 28px; }
+  .cs-lead__item { padding-left: 20px; border-left: 2px solid var(--ren-magenta); }
+  .cs-lead__title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .cs-lead__item p { margin: 0; }
+  .cs-lead__item p + p { margin-top: 10px; }
+  .cs-retro { margin-top: 40px; padding: 28px 32px; border: 0.5px solid var(--hairline-strong); border-radius: 12px; }
+  .cs-retro__title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ren-magenta); margin-bottom: 14px; }
+  .cs-retro ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .cs-retro li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.7; color: var(--ink-soft); max-width: 760px; }
+  .cs-retro li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 8px; border-radius: 50%; background: var(--ren-magenta); }
+  .cs-retro strong { color: var(--ink); font-weight: 600; }
   .cs-section p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); max-width: 760px; }
   .cs-section p + p { margin-top: 16px; }
 
@@ -670,6 +681,34 @@
     <div class="cs-padded__label"><span class="cs-screen-label">Iconography — Phosphor Icons System</span></div>
     <img src="ren-iconography.jpg" alt="Icon system documentation — 1,130+ variants in 12 categories" loading="lazy" />
   </div>
+</div>
+
+<!-- LEADERSHIP & RETRO -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <span class="cs-section__label">Leadership — influencing the product, not just designing it</span>
+    </div>
+    <div class="cs-lead">
+      <div class="cs-lead__item">
+        <p class="cs-lead__title">A trade-off I lost: video vs still images in onboarding</p>
+        <p>I designed the onboarding splash screens around short clips of creators streaming, filming and performing. Renncora&rsquo;s promise is content and live streaming, and still images undersold it. I expected bandwidth to be the objection, so I optimised the clips to load on low-bandwidth connections too.</p>
+        <p>In testing, users responded much more strongly to the video version. The founder still preferred still images, and that&rsquo;s what shipped. I made the case with evidence, then respected the call.</p>
+      </div>
+      <div class="cs-lead__item">
+        <p class="cs-lead__title">Making the design system the easiest path for engineers</p>
+        <p>I built the Renncore Design System in Figma as something engineers could build from directly: colours, typography and spacing as variables (tokens) with light and dark modes, annotated components showing every state and spacing rule, and documentation pages for each pattern, so handoff answers questions before they&rsquo;re asked.</p>
+      </div>
+    </div>
+    <div class="cs-retro">
+      <p class="cs-retro__title">What I&rsquo;d do differently</p>
+      <ul>
+        <li><strong>Bring numbers, not reactions.</strong> &ldquo;Users loved the video&rdquo; was easy to overrule. Onboarding completion rates for video vs stills would have been much harder to argue with.</li>
+        <li><strong>Design the AI&rsquo;s failure states in the first release.</strong> Trust in an assistant is won or lost on the bad moments &mdash; mishearing, uncertainty, no connection &mdash; so those states shouldn&rsquo;t wait for a later version.</li>
+      </ul>
+    </div>
+  </section>
 </div>
 
 <!-- OUTCOME -->
