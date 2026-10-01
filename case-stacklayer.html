@@ -25,20 +25,6 @@
   img { max-width: 100%; display: block; }
   .eyebrow { font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--stone); font-weight: 500; }
 
-  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 44px; display: flex; justify-content: space-between; align-items: center; background: rgba(249,247,242,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
-  .nav.scrolled { box-shadow: 0 4px 20px rgba(42, 40, 37, 0.08); }
-  .nav__brand { font-family: 'Fraunces', serif;  font-size: 20px; color: var(--ink); }
-  .nav__brand span { color: var(--meadow); }
-  .nav__links { display: flex; gap: 36px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
-  .nav__links a { padding: 4px 0; transition: color 0.3s ease; }
-  .nav__links a:hover { color: var(--stack-blue); }
-  .nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
-  .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: all 0.3s ease; }
-  .nav__hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-  .nav__hamburger.open span:nth-child(2) { opacity: 0; }
-  .nav__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-  .nav__overlay { display: none; }
-
   .cs-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 66px; }
   .cs-hero__text { display: flex; flex-direction: column; justify-content: center; padding: 80px 56px 60px; }
   .cs-hero__title { font-family: 'Fraunces', serif; font-size: clamp(36px, 5vw, 54px); font-weight: 700; line-height: 1.0; letter-spacing: -0.02em; text-transform: uppercase; color: var(--ink); margin-bottom: 36px; }
@@ -135,21 +121,8 @@
   .footer__nameplate{font-family:'Fraunces',serif;font-size:clamp(120px,22vw,360px);line-height:.78;font-weight:900;color:var(--cream);text-align:justify;text-align-last:justify;letter-spacing:-.02em;margin:0;user-select:none;white-space:nowrap;overflow:visible;padding-bottom:0;width:100%}
 
 
-  @media (max-width: 900px) {
-    .nav { padding: 18px 24px; }
-    .nav__hamburger { display: block; }
-    .nav__links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: var(--ink); flex-direction: column; justify-content: center; align-items: center; gap: 32px; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; transition: right 0.35s ease; color: var(--cream); z-index: 100; }
-    .nav__links.open { right: 0; }
-    .nav__links a { color: var(--cream); padding: 8px 0; }
-    .nav__links a:hover { color: #C46B2E; }
-    .nav__overlay.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
-
-    .nav { padding: 18px 24px; }
-    .nav__links a { color: var(--cream); padding: 8px 0; }
-    .nav__links a:hover { color: #C46B2E; }
-  }
+  
   @media (max-width: 768px) {
-.nav { padding: 16px 20px; }
   
   .cs-hero { grid-template-columns: 1fr; }
     .cs-hero__text { padding: 100px 24px 40px; }
@@ -167,6 +140,7 @@
     .footer__nameplate{font-size:28vw}
   }
 </style>
+<link rel="stylesheet" href="nav.css" />
 </head>
 <body>
 
@@ -174,7 +148,7 @@
   <a href="index.html" class="nav__brand">Morayo<span>.</span></a>
   <div class="nav__overlay" id="navOverlay"></div>
   <div class="nav__links" id="navLinks">
-    <a href="work.html">Work</a>
+    <a href="work.html" class="is-current">Work</a>
     <a href="contact.html">Contact</a>
   </div>
   <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -338,7 +312,7 @@
 
 <script>
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 const reveals = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
 reveals.forEach(el => io.observe(el));

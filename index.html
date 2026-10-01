@@ -74,80 +74,6 @@
     font-weight: 500;
   }
 
-  /* ------------ NAV ------------ */
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 22px 44px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--cream);
-    backdrop-filter: blur(20px) saturate(1.4);
-    -webkit-backdrop-filter: blur(20px) saturate(1.4);
-    transition: box-shadow 0.4s ease;
-  }
-  .nav.scrolled {
-    box-shadow: 0 4px 20px rgba(42, 40, 37, 0.08);
-  }
-  .nav__brand {
-    font-family: 'Fraunces', serif;
-    
-    font-size: 20px;
-    color: var(--ink);
-  }
-  .nav__brand span { color: var(--meadow); }
-  .nav__links {
-    display: flex;
-    gap: 36px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .nav__links a { position: relative; padding: 4px 0; color: var(--ink-soft); transition: color 0.3s ease; }
-  .nav__links a:hover { color: var(--meadow); }
-  .nav__links a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: var(--meadow);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.35s ease;
-  }
-  .nav__links a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-  .nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
-  .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: all 0.3s ease; }
-  .nav__hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-  .nav__hamburger.open span:nth-child(2) { opacity: 0; }
-  .nav__hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-  .nav__overlay { display: none; }
-  /* Scallop awning — same cream as nav, reads as one connected unit */
-  .nav::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -22px;
-    height: 22px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 22' preserveAspectRatio='xMidYMid slice'><path d='M0 0 L56 0 A28 22 0 0 1 0 0 Z' fill='%23F9F7F2'/></svg>");
-    background-size: 56px 22px;
-    background-repeat: repeat-x;
-    background-position: top left;
-    pointer-events: none;
-  }
-
   /* ------------ HERO — Cinematic Backdrop ------------ */
   .hero {
     position: relative;
@@ -1601,14 +1527,6 @@
 
   /* ------------ Responsive ------------ */
   @media (max-width: 900px) {
-    .nav { padding: 18px 24px; }
-    .nav__links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; background: var(--ink); flex-direction: column; justify-content: center; align-items: center; gap: 32px; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; transition: right 0.35s ease; color: var(--cream); z-index: 100; }
-    .nav__links.open { right: 0; }
-    .nav__links a { color: var(--cream); padding: 4px 0; }
-    .nav__links a::after { display: none; }
-    .nav__links a:hover { color: var(--meadow-light); }
-    .nav__overlay.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
-    .nav__hamburger { display: block; }
     .hero { min-height: 620px; }
     .hero__labels { top: 80px; font-size: 9px; letter-spacing: 0.22em; }
     .hero__labels--tl { left: 24px; }
@@ -1699,6 +1617,7 @@
     html { scroll-behavior: auto; }
   }
 </style>
+<link rel="stylesheet" href="nav.css" />
 </head>
 <body>
 
