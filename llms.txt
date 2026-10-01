@@ -1,0 +1,31 @@
+# Morayo Akinkunmi — Senior Product Designer
+
+> Morayo Akinkunmi (full name Akinkunmi Taiwo Morayo) is a Senior Product Designer with 5 years of experience across fintech, AI and SaaS. She makes complex products simple enough to trust, and backs her design decisions with analytics (Microsoft Clarity, UXCam, PostHog). She is open to relocation and available for remote roles.
+
+## What she does
+- End-to-end product design: research, information architecture, interaction and UI design, prototyping, and post-launch iteration
+- Fintech: cross-border payments, remittance, digital banking, KYC and onboarding
+- AI products: designing AI assistants that users can trust, including clear states, live captions, consent and failure handling
+- Design systems built from scratch: tokens as Figma variables, annotated components and documentation that engineers can build from
+- Data-informed design: funnel analysis, session recordings, heatmaps and monthly UX audits presented to founders
+
+## Selected case studies
+- [BroadMoney](https://morayo-portfolio.vercel.app/case-broadmoney.html): Cross-border payments app (UK–Nigeria). Progressive KYC and a redesigned onboarding and send flow cut first-transfer drop-off from 55% to 22%, and new users made 2.3x as many transactions in their first month.
+- [Doxflowy](https://morayo-portfolio.vercel.app/case-doxflowy.html): Document automation and e-signature SaaS. Clarity-led redesign: rage taps down 31%, sign-ups up 42% after email-gated template downloads and new messaging, session duration up 27%.
+- [Renncora](https://morayo-portfolio.vercel.app/case-renncora.html): Live streaming and creator platform where she is Lead Product Designer. Includes Renncora AI, a voice-first assistant in Nigerian Pidgin and English designed around trust, and a design system built from scratch.
+- [Help2Pay](https://morayo-portfolio.vercel.app/case-help2pay.html): Multi-currency, crypto-to-fiat payments across iOS, Android and web. Send-flow drop-off reduced by 40%.
+- [All work](https://morayo-portfolio.vercel.app/work.html): Also includes Wosi Wosi (remittance), Kunchi MFB (microfinance banking), Tax Clarity and Stack Layer.
+
+## Leadership
+- Founder of The Design Geeks Community (since July 2026): design critiques, sessions and mentoring for product designers
+- Ran monthly UX audits and presented findings to founders at Doxflowy
+- Pushed back on founders with evidence, for example arguing for a full-width wallet balance card at BroadMoney, which shipped
+
+## Contact
+- Portfolio: https://morayo-portfolio.vercel.app/
+- Contact page: https://morayo-portfolio.vercel.app/contact.html
+- Email: teeakinkunmi@gmail.com
+- LinkedIn: https://www.linkedin.com/in/morayo-akinkunmi/
+- Dribbble: https://dribbble.com/momo98765
+- Medium: https://medium.com/@YourTechGeeks
+- YouTube: https://www.youtube.com/@Design-geeks
