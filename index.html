@@ -2062,8 +2062,7 @@
   </div>
 </section>
 
-<!-- Hidden until real, attributable testimonials exist -->
-<section class="testimonials" id="testimonials" aria-label="What collaborators say" hidden>
+<section class="testimonials" id="testimonials" aria-label="What collaborators say">
   <div class="testimonials__header reveal">
     <div class="section__label reveal">
       <span class="eyebrow">What collaborators say</span>
@@ -2701,7 +2700,7 @@
       '<span class="stagger-card__corner-line"></span>' +
       '<div><div class="stagger-card__avatar" style="display:flex;align-items:center;justify-content:center;font-family:Fraunces,serif;font-size:18px;font-weight:600;">' + t.by.charAt(0) + '</div>' +
       '<p class="stagger-card__text">\u201C' + t.text + '\u201D</p></div>' +
-      '<p class="stagger-card__author">\u2014 ' + t.by + '</p>';
+      '<p class="stagger-card__author">\u2014 ' + t.by + (t.role ? ', ' + t.role : '') + '</p>';
     stage.appendChild(card);
     cardEls.push(card);
   });
