@@ -10,8 +10,6 @@
     justify-content: space-between;
     align-items: center;
     background: var(--cream);
-    backdrop-filter: blur(20px) saturate(1.4);
-    -webkit-backdrop-filter: blur(20px) saturate(1.4);
     transition: box-shadow 0.4s ease;
 }
 .nav.scrolled {
@@ -71,10 +69,10 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -22px;
-    height: 22px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 22' preserveAspectRatio='xMidYMid slice'><path d='M0 0 L56 0 A28 22 0 0 1 0 0 Z' fill='%23F9F7F2'/></svg>");
-    background-size: 56px 22px;
+    bottom: -23px;
+    height: 24px;
+    background-image: radial-gradient(28px 22px at 50% 1px, var(--cream) 97%, transparent 100%);
+    background-size: 56px 24px;
     background-repeat: repeat-x;
     background-position: top left;
     pointer-events: none;
