@@ -158,6 +158,11 @@
   .cs-outcome__label { font-size: 16px; font-weight: 600; color: var(--cream); }
   .cs-outcome p { font-size: 15px; line-height: 1.75; color: rgba(249,247,242,0.8); max-width: 760px; }
   .cs-outcome p + p { margin-top: 12px; }
+  .cs-hero__method { font-size: 12px; line-height: 1.6; color: var(--stone); margin-top: 14px; max-width: 560px; }
+  .cs-method { margin-top: 40px; padding: 28px 32px; border: 0.5px solid rgba(249,247,242,0.15); border-radius: 12px; }
+  .cs-method__title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blush); margin-bottom: 14px; }
+  .cs-outcome .cs-method p { font-size: 14px; }
+  .cs-method strong { color: var(--cream); font-weight: 600; }
   .cs-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
   .cs-metric { text-align: center; padding: 28px 16px; border: 0.5px solid rgba(249,247,242,0.15); border-radius: 12px; }
   .cs-metric__value { font-family: 'Fraunces', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 500; color: var(--cream); }
@@ -257,6 +262,7 @@
       <div class="cs-hero__metric"><div class="cs-hero__metric-value">71%</div><div class="cs-hero__metric-label">Rage tap reduction</div></div>
       <div class="cs-hero__metric"><div class="cs-hero__metric-value">150+</div><div class="cs-hero__metric-label">UI screens</div></div>
     </div>
+    <p class="cs-hero__method">New-user app funnel, before vs after launch. Tracked in UXCam, then PostHog.</p>
   </div>
   <div class="cs-hero__image"><img src="work-hero.jpg" alt="BroadMoney app in iPhone mockup" /></div>
 </header>
@@ -616,6 +622,12 @@
       <div class="cs-metric"><div class="cs-metric__value">55%→22%</div><div class="cs-metric__label">Drop-off rate</div></div>
       <div class="cs-metric"><div class="cs-metric__value">2.3×</div><div class="cs-metric__label">First-month transactions</div></div>
       <div class="cs-metric"><div class="cs-metric__value">71%</div><div class="cs-metric__label">Rage tap reduction</div></div>
+    </div>
+    <div class="cs-method">
+      <p class="cs-method__title">How I measured this</p>
+      <p><strong>Drop-off</strong> is the share of new users who signed up but never completed a first transfer. I tracked the app funnel (sign-up → KYC → first transfer) in UXCam, and the marketing site in Microsoft Clarity. When we moved app analytics to PostHog, I rebuilt the same funnel steps and events so the before and after stayed comparable.</p>
+      <p>Before the redesign, <strong>54.75%</strong> of new users dropped off. After the new onboarding and progressive KYC shipped, that fell to <strong>22%</strong>, and new users made <strong>2.3×</strong> as many transactions in their first month.</p>
+      <p><strong>What else changed:</strong> exchange rates moved over the same period, and better rates can lift transfers on their own, so I read the transaction uplift as partly market-driven. The drop-off improvement is easier to tie to design, because it happened at the exact steps we redesigned: KYC and the first transfer.</p>
     </div>
   </div>
 </div>
