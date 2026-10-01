@@ -84,6 +84,15 @@
   .cs-retro li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.7; color: var(--ink-soft); max-width: 760px; }
   .cs-retro li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 8px; border-radius: 50%; background: var(--meadow); }
   .cs-retro strong { color: var(--ink); font-weight: 600; }
+  .cs-gallery { display: grid; gap: 16px; margin-top: 28px; }
+  .cs-gallery--phones { grid-template-columns: repeat(5, 1fr); }
+  .cs-gallery--wide { grid-template-columns: repeat(3, 1fr); margin-top: 16px; }
+  .cs-gallery__item { display: block; text-decoration: none; color: var(--stone); }
+  .cs-gallery__item img { width: 100%; display: block; border-radius: 12px; border: 0.5px solid var(--hairline); background: #fff; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .cs-gallery--wide .cs-gallery__item img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+  .cs-gallery__item:hover img { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(42,40,37,0.12); }
+  .cs-gallery__item span { display: block; font-size: 11px; letter-spacing: 0.06em; margin-top: 8px; }
+  @media (max-width: 900px) { .cs-gallery--phones { grid-template-columns: repeat(3, 1fr); } .cs-gallery--wide { grid-template-columns: 1fr; } }
   .cs-section p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); max-width: 760px; }
   .cs-section p + p { margin-top: 16px; }
 
@@ -278,32 +287,6 @@
   <div class="cs-hero__image"><img src="work-hero.jpg" alt="BroadMoney app in iPhone mockup" /></div>
 </header>
 
-<!-- TOOLS MARQUEE -->
-<div class="cs-tools">
-  <div class="cs-tools__track">
-    <span class="cs-tools__item">Figma</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Microsoft Clarity</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">UXCam</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">PostHog</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">ProtoPie</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Miro</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Google Sheets</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Loom</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Notion</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Slack</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Figma</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Microsoft Clarity</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">UXCam</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">PostHog</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">ProtoPie</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Miro</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Google Sheets</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Loom</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Notion</span><span class="cs-tools__dot"></span>
-    <span class="cs-tools__item">Slack</span><span class="cs-tools__dot"></span>
-  </div>
-</div>
-
 <!-- QUICK FACTS -->
 <div class="cs reveal">
   <div class="cs-facts">
@@ -355,20 +338,7 @@
   </section>
 </div>
 
-<div class="cs-screens cs-screens--green reveal">
-  <div class="cs-screens__label"><span class="cs-screen-label">Onboarding Screens</span></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-onboard-1.jpg" alt="Onboarding — Easy Money Transfer" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-onboard-2.jpg" alt="Onboarding — Security" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-onboard-3.jpg" alt="Onboarding — Low Fees" loading="lazy" /></div></div>
-</div>
-
 <!-- REGISTRATION & AUTH -->
-<div class="cs-screens reveal">
-  <div class="cs-screens__label"><span class="cs-screen-label">Registration & Authentication</span></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-welcome.jpg" alt="Welcome screen" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-login.jpg" alt="Login screen" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-otp.jpg" alt="OTP verification" loading="lazy" /></div></div>
-</div>
 
 <!-- KYC — Progressive Disclosure -->
 <div class="cs">
@@ -413,12 +383,6 @@
 </div>
 
 <!-- HOME SCREEN VARIANTS -->
-<div class="cs-screens reveal">
-  <div class="cs-screens__label"><span class="cs-screen-label">Dashboard States & Variants</span></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-home-gbp.jpg" alt="Dashboard — GBP wallet" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-home-ngn.jpg" alt="Dashboard — NGN wallet" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-notifications.jpg" alt="Notifications" loading="lazy" /></div></div>
-</div>
 
 <!-- SEND MONEY FLOW -->
 <div class="cs">
@@ -432,15 +396,8 @@
 </div>
 
 <div class="cs-screens reveal">
-  <div class="cs-screens__label"><span class="cs-screen-label">Send Money — Transfer Options</span></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-transfer-options.jpg" alt="Transfer options" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-send-money.jpg" alt="Send money — amount entry" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-send-amount.jpg" alt="Send amount" loading="lazy" /></div></div>
-</div>
-
-<div class="cs-screens cs-screens--cream reveal">
-  <div class="cs-screens__label"><span class="cs-screen-label">Confirmation & Success</span></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-pin.jpg" alt="Transaction PIN" loading="lazy" /></div></div>
+  <div class="cs-screens__label"><span class="cs-screen-label">Send Money — amount, review, done</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-send-amount.jpg" alt="Send amount with live exchange rate" loading="lazy" /></div></div>
   <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-tx-summary.jpg" alt="Transaction summary" loading="lazy" /></div></div>
   <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-transfer-success.jpg" alt="Transfer successful" loading="lazy" /></div></div>
 </div>
@@ -470,12 +427,6 @@
 </div>
 
 <!-- BENEFICIARY & PROFILE -->
-<div class="cs-screens reveal">
-  <div class="cs-screens__label"><span class="cs-screen-label">Beneficiary Management & Profile</span></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-beneficiary.jpg" alt="Beneficiary list" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-recipient.jpg" alt="Recipient details" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="bmp-referrals.jpg" alt="Referral program" loading="lazy" /></div></div>
-</div>
 
 <!-- KEY DECISIONS -->
 <div class="cs">
@@ -521,14 +472,6 @@
   <div class="cs-laptop">
     <div class="cs-laptop__label"><span class="cs-screen-label" style="background:rgba(0,0,0,0.5);color:#fff;border-color:rgba(255,255,255,0.2);">Web Dashboard</span></div>
     <img class="cs-laptop__screen" src="bmp-web-dashboard.jpg" alt="BroadMoney web dashboard" loading="lazy" />
-  </div>
-  <div class="cs-laptop-base__bar" style="margin:0 40px;"></div>
-</div>
-
-<div class="cs-laptop-wrap reveal">
-  <div class="cs-laptop">
-    <div class="cs-laptop__label"><span class="cs-screen-label" style="background:rgba(0,0,0,0.5);color:#fff;border-color:rgba(255,255,255,0.2);">Send Money — Naira to GBP</span></div>
-    <img class="cs-laptop__screen" src="bmp-web-send.jpg" alt="Web send money flow" loading="lazy" />
   </div>
   <div class="cs-laptop-base__bar" style="margin:0 40px;"></div>
 </div>
@@ -582,22 +525,8 @@
 
 <div class="cs-padded reveal">
   <div class="cs-padded__card">
-    <div class="cs-padded__label"><span class="cs-screen-label">Typography Scale</span></div>
-    <img src="bmp-ds-typography.jpg" alt="Design system — typography" loading="lazy" />
-  </div>
-</div>
-
-<div class="cs-padded reveal">
-  <div class="cs-padded__card">
     <div class="cs-padded__label"><span class="cs-screen-label">Buttons & Components</span></div>
     <img src="bmp-ds-buttons.jpg" alt="Design system — buttons" loading="lazy" />
-  </div>
-</div>
-
-<div class="cs-padded reveal">
-  <div class="cs-padded__card">
-    <div class="cs-padded__label"><span class="cs-screen-label">Input Fields</span></div>
-    <img src="bmp-ds-inputs.jpg" alt="Design system — input fields" loading="lazy" />
   </div>
 </div>
 
@@ -618,6 +547,39 @@
     <img class="cs-laptop__screen" src="bmp-website.jpg" alt="BroadMoney marketing website" loading="lazy" />
   </div>
   <div class="cs-laptop-base__bar" style="margin:0 40px;"></div>
+</div>
+
+<!-- MORE SCREENS -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+      <span class="cs-section__label">More screens</span>
+    </div>
+    <p>Supporting screens from across the app, web and design system. Tap any screen to open it full size.</p>
+    <div class="cs-gallery cs-gallery--phones">
+      <a class="cs-gallery__item" href="bmp-onboard-1.jpg" target="_blank" rel="noopener"><img src="bmp-onboard-1.jpg" alt="Onboarding — transfers" loading="lazy" /><span>Onboarding — transfers</span></a>
+      <a class="cs-gallery__item" href="bmp-onboard-2.jpg" target="_blank" rel="noopener"><img src="bmp-onboard-2.jpg" alt="Onboarding — security" loading="lazy" /><span>Onboarding — security</span></a>
+      <a class="cs-gallery__item" href="bmp-onboard-3.jpg" target="_blank" rel="noopener"><img src="bmp-onboard-3.jpg" alt="Onboarding — low fees" loading="lazy" /><span>Onboarding — low fees</span></a>
+      <a class="cs-gallery__item" href="bmp-welcome.jpg" target="_blank" rel="noopener"><img src="bmp-welcome.jpg" alt="Welcome" loading="lazy" /><span>Welcome</span></a>
+      <a class="cs-gallery__item" href="bmp-login.jpg" target="_blank" rel="noopener"><img src="bmp-login.jpg" alt="Login" loading="lazy" /><span>Login</span></a>
+      <a class="cs-gallery__item" href="bmp-otp.jpg" target="_blank" rel="noopener"><img src="bmp-otp.jpg" alt="OTP verification" loading="lazy" /><span>OTP verification</span></a>
+      <a class="cs-gallery__item" href="bmp-home-gbp.jpg" target="_blank" rel="noopener"><img src="bmp-home-gbp.jpg" alt="GBP wallet" loading="lazy" /><span>GBP wallet</span></a>
+      <a class="cs-gallery__item" href="bmp-home-ngn.jpg" target="_blank" rel="noopener"><img src="bmp-home-ngn.jpg" alt="NGN wallet" loading="lazy" /><span>NGN wallet</span></a>
+      <a class="cs-gallery__item" href="bmp-notifications.jpg" target="_blank" rel="noopener"><img src="bmp-notifications.jpg" alt="Notifications" loading="lazy" /><span>Notifications</span></a>
+      <a class="cs-gallery__item" href="bmp-transfer-options.jpg" target="_blank" rel="noopener"><img src="bmp-transfer-options.jpg" alt="Transfer options" loading="lazy" /><span>Transfer options</span></a>
+      <a class="cs-gallery__item" href="bmp-send-money.jpg" target="_blank" rel="noopener"><img src="bmp-send-money.jpg" alt="Send money" loading="lazy" /><span>Send money</span></a>
+      <a class="cs-gallery__item" href="bmp-pin.jpg" target="_blank" rel="noopener"><img src="bmp-pin.jpg" alt="Transaction PIN" loading="lazy" /><span>Transaction PIN</span></a>
+      <a class="cs-gallery__item" href="bmp-beneficiary.jpg" target="_blank" rel="noopener"><img src="bmp-beneficiary.jpg" alt="Beneficiaries" loading="lazy" /><span>Beneficiaries</span></a>
+      <a class="cs-gallery__item" href="bmp-recipient.jpg" target="_blank" rel="noopener"><img src="bmp-recipient.jpg" alt="Recipient details" loading="lazy" /><span>Recipient details</span></a>
+      <a class="cs-gallery__item" href="bmp-referrals.jpg" target="_blank" rel="noopener"><img src="bmp-referrals.jpg" alt="Referrals" loading="lazy" /><span>Referrals</span></a>
+    </div>
+    <div class="cs-gallery cs-gallery--wide">
+      <a class="cs-gallery__item" href="bmp-web-send.jpg" target="_blank" rel="noopener"><img src="bmp-web-send.jpg" alt="Web — send money" loading="lazy" /><span>Web — send money</span></a>
+      <a class="cs-gallery__item" href="bmp-ds-typography.jpg" target="_blank" rel="noopener"><img src="bmp-ds-typography.jpg" alt="Design system — typography" loading="lazy" /><span>Design system — typography</span></a>
+      <a class="cs-gallery__item" href="bmp-ds-inputs.jpg" target="_blank" rel="noopener"><img src="bmp-ds-inputs.jpg" alt="Design system — inputs" loading="lazy" /><span>Design system — inputs</span></a>
+    </div>
+  </section>
 </div>
 
 <!-- LEADERSHIP & RETRO -->
