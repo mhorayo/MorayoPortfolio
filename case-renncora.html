@@ -86,6 +86,12 @@
   .cs-screens { margin: 0; border-top: 0.5px solid var(--hairline-strong); border-bottom: 0.5px solid var(--hairline-strong); padding: 80px 44px; display: flex; justify-content: center; align-items: flex-start; gap: 32px; flex-wrap: wrap; position: relative; }
   .cs-screens--tight { gap: 20px; }
   .cs-screens--dark { background: var(--ink); }
+  .cs-ai-points { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 14px; }
+  .cs-ai-points li { position: relative; padding-left: 22px; font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+  .cs-ai-points li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 8px; border-radius: 50%; background: var(--ren-magenta); }
+  .cs-ai-points strong { color: var(--ink); font-weight: 600; }
+  .cs-ai-next { padding: 28px 32px; border: 0.5px solid var(--hairline-strong); border-radius: 12px; }
+  .cs-ai-next__title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ren-magenta); margin-bottom: 12px; }
   .cs-screens--magenta { background: var(--ren-magenta); }
   .cs-screens--cream { background: var(--cream-dark); border-color: var(--hairline); }
   .cs-screens__label { width: 100%; text-align: left; margin-bottom: 12px; }
@@ -415,10 +421,9 @@
   <section class="cs-section reveal">
     <div class="cs-section__header">
       <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-      <span class="cs-section__label">Messaging & Renncora AI — always-on creator support</span>
+      <span class="cs-section__label">Messaging — from broadcast tool to relationship layer</span>
     </div>
     <p>Messaging is where Renncora stops being a broadcast tool and becomes a relationship layer. The inbox splits into two tabs — direct messages and community threads — so creators manage personal conversations and group engagement from one place. A persistent "Chat with AI" banner sits above the message list, giving every user immediate access to Renncora's built-in AI assistant without leaving the messaging context.</p>
-    <p>Renncora AI is a voice-first assistant designed for creators who need answers while their hands are busy — mid-stream, mid-edit, mid-hustle. One tap starts listening; one tap stops. The AI responds in Nigerian Pidgin and English, surfacing actionable guidance on coin earnings, stream optimization, and platform features. The dark, immersive interface with its animated gradient orb creates a focused interaction space that feels distinct from the social feed — signalling to users that this is a different kind of conversation.</p>
   </section>
 </div>
 
@@ -429,10 +434,52 @@
   <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-chat.jpg" alt="Renncora AI chat with Talk and Video options" loading="lazy" /></div></div>
 </div>
 
+<!-- RENNCORA AI -->
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-section__header">
+      <div class="cs-section__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0014 0v-1"/><line x1="12" y1="18" x2="12" y2="22"/></svg></div>
+      <span class="cs-section__label">Renncora AI — designing an assistant creators can trust</span>
+    </div>
+    <p>Renncora AI is a voice-first assistant for creators who need answers while their hands are busy — mid-stream, mid-edit, mid-hustle. It replies in Nigerian Pidgin and English and covers coin earnings, stream tips and platform features. Prompt cards — Plan my week, Summarize streams, AI coaching — show creators what it&rsquo;s good at before they have to think of a question.</p>
+    <p>The hard part of a talking AI isn&rsquo;t the answer. It&rsquo;s trust: creators need to know when it&rsquo;s listening, what it heard, and what happens to their voice and camera. Every state below is designed around those three questions.</p>
+    <ul class="cs-ai-points">
+      <li><strong>Clear listening states.</strong> One tap starts, one tap stops. The mic turns red while Renncora AI is listening, so it never records without the creator knowing.</li>
+      <li><strong>Live captions as a check.</strong> What the creator said appears as a caption tagged <em>You</em>, and the reply is tagged <em>Renncora AI</em>. If it misheard, they see it straight away and can simply ask again.</li>
+      <li><strong>Answers stay in the thread.</strong> Voice replies land back in the chat as text, so advice about coins or streams can be reread or shared later instead of remembered.</li>
+      <li><strong>Video on the creator&rsquo;s terms.</strong> Starting a video chat opens a prompt that explains the camera and AI voice, with recording as a visible toggle. A timer shows while it records, and afterwards the creator chooses whether to share the clip or save it to the chat.</li>
+    </ul>
+  </section>
+</div>
+
 <div class="cs-screens cs-screens--dark reveal">
-  <div class="cs-screens__label"><span class="cs-screen-label">Renncora AI — Voice-First Assistant</span></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-idle.jpg" alt="Renncora AI — tap to talk idle state" loading="lazy" /></div></div>
-  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-speaking.jpg" alt="Renncora AI — speaking with live captions" loading="lazy" /></div></div>
+  <div class="cs-screens__label"><span class="cs-screen-label">Voice — tap, listen, reply, review</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-ready.jpg" alt="Renncora AI tap-to-talk state" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-listening.jpg" alt="Renncora AI listening, with the creator's words shown as a live caption" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-response.jpg" alt="Renncora AI replying in Pidgin, with its answer captioned" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-thread.jpg" alt="The voice exchange saved as text in the Renncora AI chat thread" loading="lazy" /></div></div>
+</div>
+
+<div class="cs-screens reveal">
+  <div class="cs-screens__label"><span class="cs-screen-label">Video — consent first, creator keeps control</span></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-video-consent.jpg" alt="Start a video chat prompt with a record toggle" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-video-call.jpg" alt="Video call with Renncora AI, recording timer and live captions" loading="lazy" /></div></div>
+  <div class="cs-phone"><div class="cs-phone__screen"><img src="ren-ai-video-recap.jpg" alt="Nice chat recap with Share video and Save to chat" loading="lazy" /></div></div>
+</div>
+
+<div class="cs">
+  <section class="cs-section reveal">
+    <div class="cs-ai-next">
+      <p class="cs-ai-next__title">What I&rsquo;d design next</p>
+      <p>The first release covers the happy path well. Before scaling it, I&rsquo;d add the states that decide whether creators keep trusting it:</p>
+      <ul class="cs-ai-points">
+        <li><strong>When it mishears:</strong> a &ldquo;Didn&rsquo;t catch that&rdquo; state in Pidgin and English, with suggested ways to rephrase.</li>
+        <li><strong>When it&rsquo;s unsure:</strong> answers about coins or payouts link to the actual policy, so creators can check the source rather than take the AI&rsquo;s word for it.</li>
+        <li><strong>When it fails:</strong> offline and slow-network states that fall back to the typed chat instead of a dead orb.</li>
+        <li><strong>Hard limits:</strong> the AI can explain earnings but never move coins. Any money action goes through a normal confirm screen.</li>
+      </ul>
+    </div>
+  </section>
 </div>
 
 <div class="cs-screens reveal">
