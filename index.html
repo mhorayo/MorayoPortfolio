@@ -155,6 +155,27 @@
     font-size: 1.15em;
     padding: 0 0.08em;
   }
+  .hero__sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    margin: -8px 0 0;
+    opacity: 0;
+    animation: hero-fade-sub 1s ease 0.7s forwards;
+  }
+  .hero__availability {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin: -14px 0 0;
+    opacity: 0;
+    animation: hero-fade-avail 1s ease 0.9s forwards;
+  }
+  @keyframes hero-fade-sub { to { opacity: 0.9; } }
+  @keyframes hero-fade-avail { to { opacity: 0.7; } }
   .hero__eyebrow {
     display: inline-block;
     font-family: 'Poppins', sans-serif;
@@ -1025,6 +1046,14 @@
     margin-bottom: 36px;
     max-width: 480px;
   }
+  .community__meta {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--meadow);
+    margin: -16px 0 32px;
+  }
   .community__button {
     display: inline-flex;
     align-items: center;
@@ -1643,7 +1672,9 @@
 
   <div class="hero__center">
     <span class="hero__eyebrow">Portfolio</span>
-    <h1 class="hero__tagline">I design products that <em>move money</em>, automate complexity, and earn trust at scale.</h1>
+    <h1 class="hero__tagline">I make complex products <em>simple</em> enough to trust.</h1>
+    <p class="hero__sub">Senior Product Designer · 5 years across fintech, AI and SaaS</p>
+    <p class="hero__availability">Open to relocation · Available for remote</p>
   </div>
 
   <div class="hero__scroll-cue" aria-hidden="true">
@@ -1875,12 +1906,13 @@
   <div class="community__inner reveal">
     <div class="community__content">
       <div class="community__eyebrow eyebrow">The Design Geeks Community</div>
-      <p class="community__script">a small, private corner of the internet</p>
+      <p class="community__script">founded by me, July 2026</p>
       <h2 class="community__title">
         For designers who think<br>
         in <em>considered strokes.</em>
       </h2>
-      <p class="community__body">A curated circle of product designers who value quiet craft over noisy output. Monthly critiques, shared reading, and a small place to think out loud. Small on purpose — kept intentionally intimate.</p>
+      <p class="community__body">I founded The Design Geeks Community to give product designers a place to grow together. I run design critiques and live sessions, mentor designers as they build their craft, and share what we learn on our YouTube channel. It&rsquo;s young and growing &mdash; and leading it has sharpened how I give feedback, explain design decisions and run a room.</p>
+      <p class="community__meta">Founder · Critiques &amp; sessions · Mentoring</p>
       <a class="community__button" href="https://forms.gle/NWr26EmtmZhDmU3B8" target="_blank" rel="noopener">
         <span>Request to join</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
