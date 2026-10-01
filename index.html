@@ -1108,194 +1108,6 @@
     font-size: 14px;
     line-height: 1;
   }
-
-  /* Footer */
-  /* ------------ FOOTER — Editorial Statement + Massive Nameplate ------------ */
-  .footer {
-    background: var(--meadow);
-    color: var(--cream);
-    position: relative;
-    overflow: clip;
-    overflow-clip-margin: 0;
-    padding: 0 0 0 0;
-    border-top: none;
-  }
-  .footer__upper {
-    padding: 96px 44px 72px;
-    max-width: 1680px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1.8fr;
-    gap: 56px;
-    align-items: start;
-  }
-  .footer__col-label {
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--cream);
-    opacity: 0.5;
-    margin: 0 0 22px;
-    font-weight: 500;
-  }
-  .footer__col-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .footer__col-links a {
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--cream);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    display: inline-block;
-    width: fit-content;
-  }
-  .footer__col-links a:hover {
-    color: var(--blush);
-    transform: translateX(5px);
-  }
-
-  .footer__newsletter { padding-left: 8px; }
-  .footer__newsletter-form {
-    display: flex;
-    align-items: center;
-    background: rgba(249, 247, 242, 0.05);
-    border: 0.5px solid rgba(249, 247, 242, 0.18);
-    border-radius: 999px;
-    padding: 4px 4px 4px 20px;
-    max-width: 420px;
-    transition: border-color 0.3s ease, background 0.3s ease;
-  }
-  .footer__newsletter-form:focus-within {
-    border-color: rgba(249, 247, 242, 0.4);
-    background: rgba(249, 247, 242, 0.09);
-  }
-  .footer__newsletter-input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--cream);
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    padding: 10px 8px;
-    min-width: 0;
-    letter-spacing: 0.02em;
-  }
-  .footer__newsletter-input::placeholder {
-    color: var(--cream);
-    opacity: 0.4;
-  }
-  .footer__newsletter-submit {
-    background: var(--ink);
-    border: none;
-    color: var(--cream);
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
-    flex-shrink: 0;
-  }
-  .footer__newsletter-submit:hover { background: var(--cream); color: var(--meadow); transform: scale(1.08); }
-  .footer__newsletter-submit svg { width: 14px; height: 14px; }
-  .footer__newsletter-submit svg path { transition: transform 0.35s ease; }
-  .footer__newsletter-hint {
-    margin-top: 18px;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--cream);
-    opacity: 0.6;
-    max-width: 420px;
-  }
-
-  .footer__socials {
-    margin-top: 28px;
-    display: flex;
-    gap: 8px;
-  }
-  .footer__social {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 0.5px solid rgba(249, 247, 242, 0.22);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--cream);
-    text-decoration: none;
-    transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
-  }
-  .footer__social:hover {
-    background: var(--ink);
-    border-color: var(--ink);
-    transform: translateY(-4px);
-  }
-  .footer__social svg { width: 15px; height: 15px; }
-
-  .footer__copyright {
-    margin-top: 26px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--cream);
-    opacity: 0.4;
-    margin-bottom: 0;
-  }
-
-  /* Massive nameplate + circular stamp */
-  .footer__nameplate-wrap {
-    position: relative;
-    padding: 40px 0 0;
-    overflow: visible;
-  }
-  .footer__nameplate {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(120px, 22vw, 360px);
-    line-height: 0.78;
-    font-weight: 900;
-    color: var(--cream);
-    text-align: justify;
-    text-align-last: justify;
-    letter-spacing: -0.02em;
-    margin: 0;
-    user-select: none;
-    white-space: nowrap;
-    overflow: visible;
-    padding-bottom: 0;
-    width: 100%;
-  }
-  .footer__stamp {
-    position: absolute;
-    right: 6vw;
-    top: -18px;
-    width: clamp(110px, 12vw, 160px);
-    height: clamp(110px, 12vw, 160px);
-    z-index: 3;
-    transform: rotate(-8deg);
-    filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.4));
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .footer__stamp:hover { transform: rotate(-8deg) scale(1.08); }
-  .footer__stamp-ring {
-    transform-origin: 100px 100px;
-    animation: stamp-rotate 24s linear infinite;
-  }
   @keyframes stamp-rotate {
     to { transform: rotate(360deg); }
   }
@@ -1636,16 +1448,6 @@
     .testimonials__stage { height: 440px; }
     .stagger-card { width: 270px; height: 270px; padding: 24px; }
     .stagger-card__text { font-size: 14px; }
-    .footer__upper {
-      grid-template-columns: 1fr 1fr;
-      gap: 40px 24px;
-      padding: 72px 24px 48px;
-    }
-    .footer__newsletter { padding-left: 0; grid-column: 1 / -1; }
-    .footer__newsletter-form { max-width: 100%; }
-    .footer__newsletter-hint { max-width: none; }
-    .footer__nameplate { font-size: 28vw; }
-    .footer__stamp { right: 4vw; top: -8px; width: 92px; height: 92px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1654,6 +1456,7 @@
   }
 </style>
 <link rel="stylesheet" href="nav.css" />
+<link rel="stylesheet" href="footer.css" />
 </head>
 <body>
 
@@ -1981,7 +1784,7 @@
     <div class="footer__col">
       <p class="footer__col-label">Studio</p>
       <ul class="footer__col-links">
-        <li><a href="#community">Community</a></li>
+        <li><a href="index.html#community">Community</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="cv.pdf" download>Download CV</a></li>
       </ul>

@@ -92,7 +92,8 @@
   .cs-gallery--wide .cs-gallery__item img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
   .cs-gallery__item:hover img { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(42,40,37,0.12); }
   .cs-gallery__item span { display: block; font-size: 11px; letter-spacing: 0.06em; margin-top: 8px; }
-  @media (max-width: 900px) { .cs-gallery--phones { grid-template-columns: repeat(3, 1fr); } .cs-gallery--wide { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .cs-gallery--phones { grid-template-columns: repeat(3, 1fr); } .cs-gallery--wide { grid-template-columns: 1fr; }
+  }
   .cs-section p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); max-width: 760px; }
   .cs-section p + p { margin-top: 16px; }
 
@@ -203,24 +204,6 @@
   .cs-contact__button { display: inline-flex; align-items: center; gap: 12px; padding: 18px 36px; background: var(--meadow); color: var(--cream); font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; border-radius: 100px; border: 0.5px solid var(--meadow); transition: background 0.35s ease, transform 0.35s ease; }
   .cs-contact__button:hover { background: var(--ink); border-color: var(--ink); transform: translateY(-2px); }
 
-  /* FOOTER */
-  .cs-footer { background: var(--meadow); color: var(--cream); overflow: clip; }
-  .cs-footer__upper { padding: 96px 44px 72px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr 1.8fr; gap: 56px; }
-  .cs-footer__col-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--cream); opacity: 0.5; margin: 0 0 22px; font-weight: 500; }
-  .cs-footer__col-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-  .cs-footer__col-links a { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); font-weight: 500; display: inline-block; width: fit-content; transition: color 0.3s ease, transform 0.35s ease; }
-  .cs-footer__col-links a:hover { color: var(--blush); transform: translateX(5px); }
-  .cs-footer__form { display: flex; align-items: center; background: rgba(249, 247, 242, 0.05); border: 0.5px solid rgba(249, 247, 242, 0.18); border-radius: 999px; padding: 4px 4px 4px 20px; max-width: 420px; transition: border-color 0.3s ease; }
-  .cs-footer__form:focus-within { border-color: rgba(249, 247, 242, 0.4); }
-  .cs-footer__form input { flex: 1; background: transparent; border: none; outline: none; color: var(--cream); font-size: 13px; padding: 10px 8px; min-width: 0; }
-  .cs-footer__form input::placeholder { color: var(--cream); opacity: 0.4; }
-  .cs-footer__form button { background: var(--ink); border: none; color: var(--cream); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.35s ease, background 0.3s ease; flex-shrink: 0; }
-  .cs-footer__form button:hover { background: var(--cream); color: var(--meadow); transform: scale(1.08); }
-  .cs-footer__hint { margin-top: 18px; font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; line-height: 1.55; color: var(--cream); opacity: 0.6; max-width: 420px; }
-  .cs-footer__copy { margin-top: 26px; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cream); opacity: 0.4; }
-  .cs-footer__nameplate-wrap { position: relative; padding: 40px 32px 0; }
-  .cs-footer__nameplate { font-family: 'Fraunces', serif; font-size: clamp(120px, 22vw, 360px); line-height: 0.78; font-weight: 700; color: var(--cream); text-align: center; letter-spacing: -0.02em; user-select: none; white-space: nowrap; }
-
   /* SCROLL REVEAL */
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -248,13 +231,12 @@
     .cs-metrics { grid-template-columns: 1fr; }
     .cs-nav { padding: 48px 24px; grid-template-columns: 1fr; }
     .cs-contact { padding: 60px 24px 40px; }
-    .cs-footer__upper { grid-template-columns: 1fr 1fr; gap: 40px 24px; padding: 72px 24px 48px; }
-    .cs-footer__nameplate { font-size: 28vw; }
   }
   @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 </style>
 <link rel="stylesheet" href="nav.css" />
+<link rel="stylesheet" href="footer.css" />
 </head>
 <body>
 
@@ -661,14 +643,83 @@
 </section>
 
 <!-- Footer -->
-<footer class="cs-footer">
-  <div class="cs-footer__upper">
-    <div><p class="cs-footer__col-label">Work</p><ul class="cs-footer__col-links"><li><a href="case-broadmoney.html">Broad Money</a></li><li><a href="case-doxflowy.html">Doxflowy</a></li><li><a href="case-renncora.html">Renncora</a></li><li><a href="case-wosiwosi.html">Wosi Wosi</a></li><li><a href="case-taxclarity.html">Tax Clarity</a></li><li><a href="case-stacklayer.html">Stack Layer</a></li><li><a href="case-help2pay.html">Help2Pay</a></li><li><a href="case-kunchi.html">Kunchi MFB</a></li></ul></div>
-    <div><p class="cs-footer__col-label">Studio</p><ul class="cs-footer__col-links"><li><a href="index.html#community">Community</a></li><li><a href="contact.html">Contact</a></li><li><a href="cv.pdf" download>Download CV</a></li></ul></div>
-    <div><p class="cs-footer__col-label">Elsewhere</p><ul class="cs-footer__col-links"><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765" target="_blank" rel="noopener">Dribbble</a></li><li><a href="https://medium.com/@YourTechGeeks" target="_blank" rel="noopener">Medium</a></li><li><a href="https://x.com/morayo1025" target="_blank" rel="noopener">Twitter / X</a></li><li><a href="https://www.youtube.com/@Design-geeks" target="_blank" rel="noopener">YouTube</a></li></ul></div>
-    <div><p class="cs-footer__copy">&copy; MMXXVI · Made in Lagos</p></div>
+<footer class="footer">
+  <div class="footer__upper">
+    <div class="footer__col">
+      <p class="footer__col-label">Work</p>
+      <ul class="footer__col-links">
+        <li><a href="case-broadmoney.html">Broad Money</a></li>
+        <li><a href="case-doxflowy.html">Doxflowy</a></li>
+        <li><a href="case-renncora.html">Renncora</a></li>
+        <li><a href="case-wosiwosi.html">Wosi Wosi</a></li>
+        <li><a href="case-taxclarity.html">Tax Clarity</a></li>
+        <li><a href="case-stacklayer.html">Stack Layer</a></li>
+        <li><a href="case-help2pay.html">Help2Pay</a></li>
+        <li><a href="case-kunchi.html">Kunchi MFB</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <p class="footer__col-label">Studio</p>
+      <ul class="footer__col-links">
+        <li><a href="index.html#community">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cv.pdf" download>Download CV</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <p class="footer__col-label">Elsewhere</p>
+      <ul class="footer__col-links">
+        <li><a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://dribbble.com/momo98765" target="_blank" rel="noopener">Dribbble</a></li>
+        <li><a href="https://medium.com/@YourTechGeeks" target="_blank" rel="noopener">Medium</a></li>
+        <li><a href="https://x.com/morayo1025" target="_blank" rel="noopener">Twitter / X</a></li>
+        <li><a href="https://www.youtube.com/@Design-geeks" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col footer__newsletter">
+      <div class="footer__socials">
+        <a href="https://www.linkedin.com/in/morayo-akinkunmi/" class="footer__social" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+        </a>
+        <a href="https://dribbble.com/momo98765" class="footer__social" aria-label="Dribbble" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm7.94 5.53c1.44 1.75 2.31 3.98 2.31 6.47 0 .16-.01.32-.02.48-.31-.06-3.4-.69-6.52-.3-.07-.17-.14-.34-.22-.5-.2-.47-.42-.94-.63-1.39 3.47-1.42 5.05-3.46 5.08-3.5v.74zm-7.94-3.53c2.68 0 5.13 1 7.01 2.65-.03.04-1.46 2.06-4.83 3.31-1.55-2.84-3.27-5.17-3.53-5.52.44-.09.89-.15 1.35-.15zm-3.44.71c.25.34 1.94 2.68 3.51 5.46-4.42 1.18-8.32 1.16-8.74 1.15C4.4 5.98 6.98 3.44 8.56 2.71zM2.15 12.02c0-.11 0-.22.01-.32.42.01 5 .07 9.73-1.35.27.53.53 1.07.77 1.61-.13.04-.25.08-.38.12-4.89 1.58-7.5 5.89-7.72 6.25C2.87 16.84 2.15 14.49 2.15 12.02zm3.88 7.75c.13-.22 2.3-4.44 7.6-6.29.02-.01.04-.02.06-.02 1.33 3.44 1.87 6.33 2.01 7.16-1.34.79-2.9 1.24-4.55 1.24-1.87-.01-3.62-.6-5.12-1.66v-.43zm11.72-.87c-.09-.55-.59-3.32-1.83-6.71 2.95-.47 5.53.3 5.85.4-.42 2.7-1.98 5.03-4.02 6.31z"/></svg>
+        </a>
+        <a href="https://x.com/morayo1025" class="footer__social" aria-label="Twitter / X" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@Design-geeks" class="footer__social" aria-label="YouTube" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="mailto:teeakinkunmi@gmail.com" class="footer__social" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+      </div>
+
+      <p class="footer__copyright">&copy; MMXXVI · Made in Lagos</p>
+    </div>
   </div>
-  <div class="cs-footer__nameplate-wrap"><h2 class="cs-footer__nameplate">MORAYO</h2></div>
+
+  <div class="footer__nameplate-wrap">
+    <svg class="footer__stamp" viewBox="0 0 200 200" aria-label="Morayo Studio stamp">
+      <defs>
+        <path id="footerStampCircle" d="M 100 100 m -68 0 a 68 68 0 1 1 136 0 a 68 68 0 1 1 -136 0" fill="none"/>
+      </defs>
+      <circle cx="100" cy="100" r="88" fill="#2A2825"/>
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#F9F7F2" stroke-width="0.5" stroke-dasharray="1 3" opacity="0.5"/>
+      <g class="footer__stamp-ring">
+        <text font-family="Poppins, sans-serif" font-size="13" fill="#F9F7F2" letter-spacing="2.4" font-weight="500">
+          <textPath href="#footerStampCircle" startOffset="0" textLength="425" lengthAdjust="spacing">MORAYO · STUDIO · MADE IN LAGOS · </textPath>
+        </text>
+      </g>
+      <text x="100" y="108" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="34" fill="#F9F7F2" font-weight="500">M<tspan fill="#E8C4C0">.</tspan></text>
+      <circle cx="100" cy="128" r="1.6" fill="#F9F7F2" opacity="0.65"/>
+    </svg>
+
+    <h2 class="footer__nameplate" aria-label="Morayo">MORAYO</h2>
+  </div>
 </footer>
 
 <script>
