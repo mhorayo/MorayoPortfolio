@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Morayo Akinkunmi — Senior Product Designer · Fintech, AI &amp; SaaS</title>
+<meta name="description" content="Morayo Akinkunmi is a Senior Product Designer with 5 years across fintech, AI and SaaS — making complex products simple enough to trust." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* Layout concept: a quiet gallery. One idea per screen, wide margins, a single
+   3D character as the signature, and each project presented as its own chapter. */
+:root {
+  --paper: #F9F7F2;        /* cream ground (brand) */
+  --paper-deep: #EFEAE0;   /* recessed panels */
+  --ink: #2A2825;          /* text (brand) */
+  --ink-soft: #6B655B;     /* secondary text, warm grey */
+  --ember: #9D440C;        /* accent (brand), used sparingly */
+  --line: rgba(42, 40, 37, 0.14);
+  --font-display: 'Instrument Serif', 'Times New Roman', serif;
+  --font-body: 'Geist', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --gutter: clamp(20px, 5vw, 72px);
+  --max: 1320px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 1.5px solid var(--ember); outline-offset: 4px; border-radius: 2px; }
+.wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  padding-top: env(safe-area-inset-top, 0px);
+  transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.nav.is-scrolled { background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-color: var(--line); }
+.nav__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav__brand { font-family: var(--font-display); font-size: 24px; text-decoration: none; letter-spacing: -0.01em; }
+.nav__brand span { color: var(--ember); }
+.nav__links { display: flex; gap: 32px; }
+.nav__links a { font-size: 14px; text-decoration: none; color: var(--ink-soft); transition: color 0.3s; }
+.nav__links a:hover { color: var(--ink); }
+
+/* ---------- Hero ---------- */
+.hero { padding-top: calc(72px + clamp(48px, 9vw, 120px)); padding-bottom: clamp(56px, 8vw, 112px); }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.hero__name { margin: 0 0 28px; }
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(44px, 7.2vw, 104px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+.hero__title em { font-style: italic; color: var(--ember); }
+.hero__sub { max-width: 44ch; margin: 32px 0 0; font-size: 17px; color: var(--ink-soft); font-weight: 300; }
+.hero__meta { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px; border-radius: 999px; font-size: 14px; font-weight: 500;
+  text-decoration: none; border: 1px solid var(--ink);
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.btn--solid { background: var(--ink); color: var(--paper); }
+.btn--solid:hover { background: var(--ember); border-color: var(--ember); }
+.btn--ghost:hover { background: var(--ink); color: var(--paper); }
+.btn svg { width: 14px; height: 14px; transition: transform 0.35s var(--ease); }
+.btn:hover svg { transform: translate(2px, -2px); }
+
+/* Character stage: placeholder until the approved 3D character is generated */
+.stage { position: relative; aspect-ratio: 4 / 5; max-width: 100%; }
+.stage__plate { position: absolute; inset: 0; border-radius: 240px 240px 24px 24px; background: var(--paper-deep); overflow: hidden; }
+.stage__orb {
+  position: absolute; left: 50%; top: 46%; width: 58%; aspect-ratio: 1; translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #FFF7EC 0%, #E9B98F 34%, var(--ember) 72%, #5C2706 100%);
+  box-shadow: 0 40px 80px -30px rgba(92, 39, 6, 0.55);
+  transition: transform 0.6s var(--ease);
+}
+.stage__ground { position: absolute; left: 50%; bottom: 14%; width: 46%; height: 18px; translate: -50% 0; border-radius: 50%; background: rgba(42, 40, 37, 0.14); filter: blur(10px); }
+.stage__lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stage__lines path { fill: none; stroke: var(--ink); stroke-width: 1; stroke-linecap: round; }
+.stage__note { position: absolute; left: 20px; bottom: 18px; }
+
+/* ---------- Section heads ---------- */
+.head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: clamp(40px, 6vw, 80px); }
+.head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.05; margin: 0; letter-spacing: -0.01em; }
+.head a { font-size: 14px; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.head a:hover { color: var(--ink); }
+
+/* ---------- Work chapters ---------- */
+.work { padding-block: clamp(48px, 7vw, 96px); }
+.chapter { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(28px, 4vw, 64px); align-items: end; padding-bottom: clamp(64px, 9vw, 128px); }
+.chapter--flip { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr); }
+.chapter--flip .chapter__media { order: 2; }
+.chapter__media { position: relative; display: block; overflow: hidden; border-radius: 6px; background: var(--paper-deep); aspect-ratio: 4 / 3; }
+.chapter__media img, .chapter__media video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.chapter__media:hover img, .chapter__media:hover video { transform: scale(1.03); }
+.chapter__tag { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 999px; background: color-mix(in srgb, var(--paper) 90%, transparent); }
+.chapter__body { min-width: 0; padding-bottom: 8px; }
+.chapter__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 4.4vw, 60px); line-height: 1; margin: 14px 0 18px; letter-spacing: -0.015em; }
+.chapter__result { font-family: var(--font-display); font-style: italic; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.25; color: var(--ember); margin: 0 0 16px; text-wrap: balance; }
+.chapter__text { color: var(--ink-soft); margin: 0 0 24px; max-width: 42ch; }
+.chapter__link { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid var(--ink); }
+.chapter__link:hover { color: var(--ember); border-color: var(--ember); }
+
+/* Signature moment: BroadMoney scroll-locked phone */
+.scrolly { position: relative; margin-bottom: clamp(64px, 9vw, 128px); }
+.scrolly__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); }
+.scrolly__sticky { position: sticky; top: calc(72px + 6vh); height: min(80vh, 680px); display: grid; place-items: center; }
+.phone { width: min(300px, 70vw); aspect-ratio: 9 / 19.5; background: #1A1A1A; border-radius: 44px; padding: 9px; box-shadow: 0 0 0 1.5px #333, 0 50px 90px -40px rgba(42, 40, 37, 0.5); position: relative; }
+.phone::before { content: ''; position: absolute; top: 18px; left: 50%; translate: -50% 0; width: 86px; height: 24px; border-radius: 20px; background: #1A1A1A; z-index: 2; }
+.phone__screen { width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: #fff; position: relative; }
+.phone__screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity 0.6s var(--ease); }
+.phone__screen img.is-on { opacity: 1; }
+.steps { display: grid; }
+.step { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; max-width: 40ch; opacity: 0.32; transition: opacity 0.5s var(--ease); }
+.step.is-on { opacity: 1; }
+.step h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 3vw, 40px); line-height: 1.1; margin: 12px 0 14px; }
+.step p { color: var(--ink-soft); margin: 0; }
+.step strong { color: var(--ink); font-weight: 500; }
+
+/* More work */
+.more { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(28px, 4vw, 44px); border: 1px solid var(--line); border-radius: 6px; }
+.more p { margin: 0; font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; max-width: 26ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 13px; text-decoration: none; color: var(--ink-soft); transition: border-color 0.3s, color 0.3s; }
+.chip:hover { border-color: var(--ink); color: var(--ink); }
+
+/* ---------- About ---------- */
+.about { padding-block: clamp(80px, 11vw, 160px); }
+.about__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.about__photo { aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden; background: var(--paper-deep); }
+.about__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.about__lede { font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 44px); line-height: 1.12; margin: 0 0 28px; letter-spacing: -0.01em; text-wrap: balance; }
+.about__text { color: var(--ink-soft); max-width: 58ch; margin: 0 0 16px; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
+.fact__value { font-family: var(--font-display); font-size: 26px; line-height: 1.1; margin-top: 8px; }
+
+/* ---------- Contact ---------- */
+.contact { padding-block: clamp(80px, 11vw, 160px); text-align: left; border-top: 1px solid var(--line); }
+.contact h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(48px, 8vw, 120px); line-height: 0.95; letter-spacing: -0.025em; margin: 18px 0 40px; text-wrap: balance; }
+.contact h2 em { font-style: italic; color: var(--ember); }
+.contact__row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 32px; }
+.contact__email { font-family: var(--font-mono); font-size: 15px; user-select: all; }
+
+.foot { padding-block: 32px; border-top: 1px solid var(--line); }
+.foot__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+.foot__links { display: flex; flex-wrap: wrap; gap: 20px; }
+.foot__links a { font-size: 14px; color: var(--ink-soft); text-decoration: none; }
+.foot__links a:hover { color: var(--ink); }
+
+/* ---------- Reveal (content is visible at rest; motion only enhances) ---------- */
+.reveal { transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.js .reveal:not(.is-in) { opacity: 0; transform: translateY(24px); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero__grid, .chapter, .chapter--flip, .about__grid, .scrolly__inner { grid-template-columns: minmax(0, 1fr); }
+  .chapter--flip .chapter__media { order: 0; }
+  .stage { max-width: 420px; }
+  .scrolly__sticky { position: relative; top: 0; height: auto; padding-block: 24px; }
+  .step { min-height: 0; opacity: 1; padding-block: 18px; }
+  .nav__links { gap: 20px; }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .js .reveal:not(.is-in) { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="index-v2.html">Morayo<span>.</span></a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="label hero__name">Morayo Akinkunmi — Senior Product Designer</p>
+        <h1 class="hero__title">I make complex products <em>simple</em> enough to trust.</h1>
+        <p class="hero__sub">Five years designing fintech, AI and SaaS products — payments, digital banking, document automation and AI assistants — with results I can measure.</p>
+        <div class="hero__meta">
+          <span class="label">Open to relocation</span>
+          <span class="label">Available for remote</span>
+        </div>
+        <div class="hero__cta">
+          <a class="btn btn--solid" href="#work">See selected work
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <!-- Character stage: replaced by the approved 3D character -->
+      <div class="stage" id="stage" aria-hidden="true">
+        <div class="stage__plate">
+          <svg class="stage__lines" viewBox="0 0 400 500" preserveAspectRatio="none">
+            <path class="draw" d="M40 330 C 120 250, 280 250, 360 330" />
+            <path class="draw" d="M70 380 C 150 320, 250 320, 330 380" opacity="0.5" />
+            <path class="draw" d="M200 60 L 200 120" opacity="0.4" />
+          </svg>
+          <div class="stage__orb" id="orb"></div>
+          <div class="stage__ground"></div>
+        </div>
+        <span class="label stage__note">3D character · coming next</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2>Selected work</h2>
+        <a href="work.html">All projects →</a>
+      </div>
+
+      <!-- BroadMoney: signature scroll moment -->
+      <article class="scrolly" aria-labelledby="bm-title">
+        <div class="scrolly__inner">
+          <div class="scrolly__sticky">
+            <div class="phone">
+              <div class="phone__screen">
+                <img src="bmp-kyc-start.jpg" alt="BroadMoney KYC tiers screen" class="is-on" data-step="0" />
+                <img src="bmp-send-amount.jpg" alt="BroadMoney send money screen with live exchange rate" data-step="1" />
+                <img src="bmp-home-new.jpg" alt="BroadMoney redesigned dashboard" data-step="2" />
+              </div>
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step is-on" data-step="0">
+              <span class="label">BroadMoney · Fintech · 2024 — Present</span>
+              <h3 id="bm-title">Compliance that feels like care</h3>
+              <p>Nearly <strong>55%</strong> of new users quit before their first transfer, most of them at KYC. I split verification into tiers, so people can start sending small amounts and verify more only when they need to.</p>
+            </div>
+            <div class="step" data-step="1">
+              <span class="label">The core flow</span>
+              <h3>The rate before the amount</h3>
+              <p>The send flow answers what users care about in order: how much the recipient gets, who receives it, and what it costs. The live exchange rate shows before anyone types a number.</p>
+            </div>
+            <div class="step" data-step="2">
+              <span class="label">The result</span>
+              <h3>Drop-off fell from 55% to 22%</h3>
+              <p>New users made <strong>2.3×</strong> as many transactions in their first month. <a class="chapter__link" href="case-broadmoney.html">Read the case study</a></p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Renncora -->
+      <article class="chapter chapter--flip reveal">
+        <a class="chapter__media" href="case-renncora.html" aria-label="Open the Renncora case study">
+          <img src="ren-phone-rattan.jpg" alt="Renncora app on a phone" loading="lazy" />
+          <span class="chapter__tag label">AI · Lead Product Designer</span>
+        </a>
+        <div class="chapter__body">
+          <span class="label">Renncora · Creator platform · 2026 — Present</span>
+          <h3 class="chapter__title">Renncora</h3>
+          <p class="chapter__result">A voice-first AI assistant creators can trust.</p>
+          <p class="chapter__text">Live captions show what the AI heard, answers stay in the chat, and video only records with the creator's consent. It replies in Nigerian Pidgin and English.</p>
+          <a class="chapter__link" href="case-renncora.html">Read the case study</a>
+        </div>
+      </article>
+
+      <!-- Doxflowy -->
+      <article class="chapter reveal">
+        <a class="chapter__media" href="case-doxflowy.html" aria-label="Open the Doxflowy case study">
+          <img src="dox-laptop-couch.jpg" alt="Doxflowy dashboard on a laptop" loading="lazy" />
+          <span class="chapter__tag label">SaaS · Document automation</span>
+        </a>
+        <div class="chapter__body">
+          <span class="label">Doxflowy · B2B SaaS · 2026</span>
+          <h3 class="chapter__title">Doxflowy</h3>
+          <p class="chapter__result">Sign-ups up 42%, led by monthly UX audits.</p>
+          <p class="chapter__text">I presented Microsoft Clarity findings to the founders every month, then redesigned what the data showed was broken: gated template downloads, skeleton loaders and clearer messaging.</p>
+          <a class="chapter__link" href="case-doxflowy.html">Read the case study</a>
+        </div>
+      </article>
+
+      <div class="more reveal">
+        <p>More work across payments, banking and AI.</p>
+        <div class="chips" aria-label="Browse more projects">
+          <a class="chip" href="work.html">Fintech</a>
+          <a class="chip" href="work.html">AI products</a>
+          <a class="chip" href="work.html">SaaS</a>
+          <a class="chip" href="work.html">All projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about__grid">
+      <div class="about__photo reveal"><img src="morayo-portrait.jpg" alt="Portrait of Morayo Akinkunmi" loading="lazy" /></div>
+      <div class="reveal">
+        <span class="label">About</span>
+        <p class="about__lede">I design the moments where users decide whether to trust a product.</p>
+        <p class="about__text">For five years I've worked on products where one confusing screen costs a customer: cross-border payments, digital banking, document automation and AI assistants. I own design end to end, from research to post-launch analytics, and I build design systems engineers actually use.</p>
+        <p class="about__text">I'm currently Lead Product Designer at Renncora, and I founded The Design Geeks Community, where I run critiques and mentor product designers.</p>
+        <div class="facts">
+          <div><span class="label">Experience</span><div class="fact__value">5 years</div></div>
+          <div><span class="label">Focus</span><div class="fact__value">Fintech, AI, SaaS</div></div>
+          <div><span class="label">Community</span><div class="fact__value">Founder, Design Geeks</div></div>
+        </div>
+        <div class="hero__cta"><a class="btn btn--ghost" href="cv.pdf">Download CV</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <span class="label">Contact</span>
+      <h2 class="reveal">Let's build something people <em>trust</em>.</h2>
+      <div class="contact__row">
+        <a class="btn btn--solid" href="contact.html">Send a message
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span class="contact__email">teeakinkunmi@gmail.com</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <span class="label">© 2026 Morayo Akinkunmi</span>
+    <nav class="foot__links" aria-label="Elsewhere">
+      <a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://dribbble.com/momo98765" target="_blank" rel="noopener">Dribbble</a>
+      <a href="https://medium.com/@YourTechGeeks" target="_blank" rel="noopener">Medium</a>
+      <a href="https://www.youtube.com/@Design-geeks" target="_blank" rel="noopener">YouTube</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+
+  // Nav background after scrolling
+  var nav = document.getElementById('nav');
+  function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 24); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // Reveal on scroll (content is visible without JS / with reduced motion)
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+
+  // Line art draws itself once on load
+  if (!reduce) {
+    document.querySelectorAll('.draw').forEach(function (p, i) {
+      var len = p.getTotalLength();
+      p.style.strokeDasharray = len; p.style.strokeDashoffset = len;
+      p.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.22,1,0.36,1) ' + (0.3 + i * 0.25) + 's';
+      requestAnimationFrame(function () { requestAnimationFrame(function () { p.style.strokeDashoffset = 0; }); });
+    });
+  }
+
+  // Character stage follows the cursor slightly (desktop only)
+  var orb = document.getElementById('orb'), stage = document.getElementById('stage');
+  if (!reduce && window.matchMedia('(pointer: fine)').matches) {
+    window.addEventListener('pointermove', function (e) {
+      var r = stage.getBoundingClientRect();
+      var x = (e.clientX - (r.left + r.width / 2)) / window.innerWidth;
+      var y = (e.clientY - (r.top + r.height / 2)) / window.innerHeight;
+      orb.style.transform = 'translate(' + (x * 18) + 'px,' + (y * 14) + 'px)';
+    }, { passive: true });
+  }
+
+  // BroadMoney scroll story: swap the phone screen as each step comes into view
+  var steps = document.querySelectorAll('.step');
+  var shots = document.querySelectorAll('.phone__screen img');
+  if ('IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var n = e.target.getAttribute('data-step');
+        steps.forEach(function (s) { s.classList.toggle('is-on', s === e.target); });
+        shots.forEach(function (img) { img.classList.toggle('is-on', img.getAttribute('data-step') === n); });
+      });
+    }, { threshold: 0.6 });
+    steps.forEach(function (s) { so.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
