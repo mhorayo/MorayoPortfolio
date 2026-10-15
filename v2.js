@@ -43,6 +43,31 @@
     }, { passive: true });
   }
 
+  /* ---------- Case pages: images bend in 3D with scroll speed, then settle flat ---------- */
+  var bendImgs = Array.prototype.slice.call(document.querySelectorAll('.shots img'));
+  if (bendImgs.length && !reduce) {
+    var lastY = scrollY, smooth = 0, bendRaf = null;
+    function bend() {
+      var y = scrollY, vel = y - lastY; lastY = y;
+      smooth += (vel - smooth) * 0.14;
+      var k = Math.max(-1, Math.min(1, smooth / 38));
+      var vh = innerHeight, vw = innerWidth;
+      for (var i = 0; i < bendImgs.length; i++) {
+        var img = bendImgs[i], r = img.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) continue;
+        var d = ((r.top + r.height / 2) - vh / 2) / (vh / 2);   // -1 top … 1 bottom
+        var hx = ((r.left + r.width / 2) - vw / 2) / (vw / 2);  // -1 left … 1 right
+        img.style.transform = 'perspective(1000px) rotateX(' + (-k * 24 * d).toFixed(2) + 'deg) skewY(' + (k * 9 * hx).toFixed(2) + 'deg) scale(' + (1 - Math.abs(k) * 0.05).toFixed(3) + ')';
+      }
+      if (Math.abs(smooth) < 0.05 && Math.abs(vel) < 0.05) {
+        bendImgs.forEach(function (im) { im.style.transform = ''; });
+        bendRaf = null; return;
+      }
+      bendRaf = requestAnimationFrame(bend);
+    }
+    window.addEventListener('scroll', function () { if (!bendRaf) bendRaf = requestAnimationFrame(bend); }, { passive: true });
+  }
+
   /* ---------- Home gallery ---------- */
   var track = document.getElementById('track');
   if (!track) return;

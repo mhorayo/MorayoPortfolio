@@ -113,31 +113,36 @@ img, video { display: block; max-width: 100%; }
 .intro p { grid-column: 2; font-size: clamp(20px, 2.15vw, 32px); line-height: 1.18; letter-spacing: -0.02em; margin: 0; max-width: 24em; }
 .intro p + p { margin-top: 0.8em; }
 
-.sec { padding-bottom: clamp(90px, 13vw, 190px); }
-.sec__label { display: flex; gap: 24px; text-transform: uppercase; margin-top: 10px; }
-.sec__note { color: var(--ink-soft); max-width: 46ch; font-size: 13px; line-height: 1.4; margin: 8px 0 0; text-transform: none; }
+.sec { padding-bottom: clamp(90px, 14vw, 210px); }
+.sec__group { display: grid; gap: 10px; }
+.sec__label { display: flex; gap: 28px; text-transform: uppercase; }
+.sec__note { color: var(--ink-soft); max-width: 44ch; font-size: 13px; line-height: 1.4; margin: 6px 0 0; text-transform: none; }
 .shots { display: flex; gap: 8px; align-items: flex-start; }
-.shots img { background: var(--tile); }
-/* Phone screens in a row */
-.shots--phones { justify-content: center; gap: clamp(10px, 2vw, 32px); padding-inline: 4vw; }
-.shots--phones img { width: calc((100% - 3 * 2vw) / 4); max-width: 300px; height: auto; border-radius: 22px; box-shadow: 0 0 0 1px rgba(17,17,17,0.06), 0 30px 60px -36px rgba(17,17,17,0.35); }
-/* One wide image, inset */
-.shots--wide { justify-content: center; }
-.shots--wide img { width: min(100%, 1180px); }
-/* Two images side by side */
-.shots--pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.shots img { background: var(--tile); will-change: transform; transform-origin: center; backface-visibility: hidden; }
+/* Placement, borrowed from editorial case layouts: offset, never centred */
+.pos-a .sec__group { margin-left: 0; }
+.pos-b .sec__group { margin-left: 38%; }
+.pos-c .sec__group { margin-left: 16%; }
+.pos-d .sec__group { margin-left: 56%; }
+/* Phone screens: small, grouped */
+.shots--phones { gap: clamp(8px, 1.4vw, 22px); }
+.shots--phones img { width: clamp(120px, 11.5vw, 210px); height: auto; border-radius: 16px; box-shadow: 0 0 0 1px rgba(17,17,17,0.06), 0 24px 50px -30px rgba(17,17,17,0.35); }
+/* One wide image */
+.shots--wide img { width: min(58vw, 980px); }
+.pos-d .shots--wide img { width: min(42vw, 720px); }
+/* Two images, staggered */
+.shots--pair { display: grid; grid-template-columns: 30vw 38vw; justify-content: space-between; align-items: start; width: calc(100vw - 2 * var(--pad)); }
 .shots--pair img { width: 100%; }
-/* Two tall boards (design systems) */
-.shots--tall { justify-content: center; gap: clamp(10px, 2vw, 32px); }
-.shots--tall img { width: min(34%, 460px); }
-/* A long page shown as a window onto its top */
-.shots--page { justify-content: center; }
-.shots--page img { width: min(62%, 860px); height: 92vh; object-fit: cover; object-position: top; }
-/* One image, offset to one side */
-.shots--left img, .shots--right img { width: min(50%, 720px); }
-.shots--right { justify-content: flex-end; }
-.sec--offset .sec__label { justify-content: flex-start; }
-
+.shots--pair img:nth-child(2) { margin-top: 22vh; }
+.pos-b .shots--pair, .pos-c .shots--pair, .pos-d .shots--pair { margin-left: 0; }
+/* Two tall boards, staggered */
+.shots--tall { gap: 6vw; }
+.shots--tall img { width: clamp(150px, 17vw, 300px); }
+.shots--tall img:nth-child(2) { margin-top: 14vh; }
+/* A long page as a window */
+.shots--page img { width: min(30vw, 520px); height: 78vh; object-fit: cover; object-position: top; }
+/* Single image to one side */
+.shots--left img, .shots--right img { width: min(34vw, 600px); }
 .outcome { display: grid; grid-template-columns: 1fr 1fr; padding-bottom: clamp(90px, 13vw, 190px); }
 .outcome__label { text-transform: uppercase; }
 .outcome__body { grid-column: 2; }
@@ -163,12 +168,15 @@ img, video { display: block; max-width: 100%; }
   .hero__text { grid-row: 2; padding-top: 28px; }
   .intro, .outcome { grid-template-columns: 1fr; }
   .intro p, .outcome__body { grid-column: 1; }
-  .shots--phones { flex-wrap: wrap; padding-inline: 0; }
-  .shots--phones img { width: calc(50% - 6px); }
-  .shots--pair { grid-template-columns: 1fr; }
-  .shots--left img, .shots--right img, .shots--page img { width: 100%; }
-  .shots--page img { height: 70vh; }
-  .shots--tall img { width: calc(50% - 6px); }
+  .pos-a .sec__group, .pos-b .sec__group, .pos-c .sec__group, .pos-d .sec__group { margin-left: 0; }
+  .shots--phones { flex-wrap: wrap; }
+  .shots--phones img { width: calc(33.3% - 6px); border-radius: 10px; }
+  .shots--wide img, .pos-d .shots--wide img { width: 100%; }
+  .shots--pair { grid-template-columns: 1fr 1fr; width: 100%; }
+  .shots--pair img:nth-child(2) { margin-top: 10vh; }
+  .shots--left img, .shots--right img, .shots--page img { width: 70%; }
+  .shots--page img { height: 60vh; }
+  .shots--tall img { width: calc(45% - 6px); }
   .next { min-height: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
