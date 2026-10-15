@@ -6,429 +6,315 @@
 <title>Morayo Akinkunmi — Senior Product Designer · Fintech, AI &amp; SaaS</title>
 <meta name="description" content="Morayo Akinkunmi is a Senior Product Designer with 5 years across fintech, AI and SaaS — making complex products simple enough to trust." />
 <meta name="robots" content="noindex" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-/* Layout concept: a quiet gallery. One idea per screen, wide margins, a single
-   3D character as the signature, and each project presented as its own chapter. */
+/* Layout concept: one screen. A quiet four-column top bar, a horizontal row of
+   project images you drag or scroll through, and a menu that zooms out into page cards. */
 :root {
-  --paper: #F9F7F2;        /* cream ground (brand) */
-  --paper-deep: #EFEAE0;   /* recessed panels */
-  --ink: #2A2825;          /* text (brand) */
-  --ink-soft: #6B655B;     /* secondary text, warm grey */
-  --ember: #9D440C;        /* accent (brand), used sparingly */
-  --line: rgba(42, 40, 37, 0.14);
-  --font-display: 'Instrument Serif', 'Times New Roman', serif;
-  --font-body: 'Geist', 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-  --gutter: clamp(20px, 5vw, 72px);
-  --max: 1320px;
+  --paper: #F8F6F2;
+  --ink: #111111;
+  --ink-soft: #6E6B66;
+  --olive: #7A7866;
+  --card: #F8F6F2;
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --pad: clamp(14px, 1.6vw, 22px);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html, body { height: 100%; }
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.6;
+  font-family: var(--font);
+  font-size: 12px;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
+  overflow: hidden;
 }
-img, video { max-width: 100%; display: block; }
-a { color: inherit; }
-:focus-visible { outline: 1.5px solid var(--ember); outline-offset: 4px; border-radius: 2px; }
-.wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
-.label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+.up { text-transform: uppercase; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Top bar ---------- */
+.bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 20;
+  display: grid; grid-template-columns: 1fr 1fr 1fr auto; align-items: start;
+  padding: calc(var(--pad) + env(safe-area-inset-top, 0px)) var(--pad) 0;
 }
-
-/* ---------- Nav ---------- */
-.nav {
-  position: fixed; inset: 0 0 auto 0; z-index: 50;
-  padding-top: env(safe-area-inset-top, 0px);
-  transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
-  border-bottom: 1px solid transparent;
+.bar__col { display: grid; gap: 1px; }
+.bar__col a, .bar__col button { justify-self: start; }
+.bar button { background: none; border: 0; padding: 0; font: inherit; color: inherit; letter-spacing: inherit; cursor: pointer; text-transform: uppercase; }
+.bar a:hover, .bar button:hover { opacity: 0.55; }
+.time__sep { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.bar .mark {
+  width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--ink);
+  display: grid; place-items: center; position: relative; cursor: pointer; background: none;
 }
-.nav.is-scrolled { background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-color: var(--line); }
-.nav__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-.nav__brand { font-family: var(--font-display); font-size: 24px; text-decoration: none; letter-spacing: -0.01em; }
-.nav__brand span { color: var(--ember); }
-.nav__links { display: flex; gap: 32px; }
-.nav__links a { font-size: 14px; text-decoration: none; color: var(--ink-soft); transition: color 0.3s; }
-.nav__links a:hover { color: var(--ink); }
+.mark__dot { position: absolute; width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--ink); top: 12px; left: 12px; transition: transform 0.6s var(--ease); }
 
-/* ---------- Hero ---------- */
-.hero { padding-top: calc(72px + clamp(48px, 9vw, 120px)); padding-bottom: clamp(56px, 8vw, 112px); }
-.hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
-.hero__name { margin: 0 0 28px; }
-.hero__title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(44px, 7.2vw, 104px);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
-  margin: 0;
-  text-wrap: balance;
+/* ---------- Gallery ---------- */
+.stage { position: fixed; inset: 0; display: flex; align-items: center; padding-bottom: clamp(90px, 14vh, 150px); padding-top: 70px; }
+.track {
+  display: flex; gap: clamp(8px, 0.6vw, 10px); align-items: flex-end;
+  width: 100%; overflow-x: auto; overflow-y: hidden;
+  padding-inline: var(--pad); scrollbar-width: none; cursor: grab;
+  scroll-snap-type: none; overscroll-behavior-x: contain;
 }
-.hero__title em { font-style: italic; color: var(--ember); }
-.hero__sub { max-width: 44ch; margin: 32px 0 0; font-size: 17px; color: var(--ink-soft); font-weight: 300; }
-.hero__meta { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
-.btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 24px; border-radius: 999px; font-size: 14px; font-weight: 500;
-  text-decoration: none; border: 1px solid var(--ink);
-  transition: background 0.35s var(--ease), color 0.35s var(--ease), transform 0.35s var(--ease);
+.track::-webkit-scrollbar { display: none; }
+.track.is-dragging { cursor: grabbing; }
+.track.is-dragging a { pointer-events: none; }
+.item { flex: 0 0 auto; display: grid; gap: 8px; }
+.item__title { text-transform: uppercase; }
+.item__media { overflow: hidden; background: #E9E5DD; height: clamp(260px, 54vh, 600px); }
+.item__media img { height: 100%; width: auto; max-width: none; object-fit: cover; transition: transform 1.2s var(--ease), filter 0.6s var(--ease); user-select: none; -webkit-user-drag: none; }
+.item:hover .item__media img { transform: scale(1.025); }
+.item__meta { color: var(--ink-soft); text-transform: uppercase; }
+
+/* Intro: images start small and scattered, then settle into the row */
+.js .item { transition: transform 1.4s var(--ease), opacity 1s var(--ease); }
+.js.is-intro .item { opacity: 0; transform: translateY(40px) scale(0.72); }
+
+/* ---------- Bottom caption ---------- */
+.foot {
+  position: fixed; inset: auto 0 0 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+  padding: 0 var(--pad) calc(var(--pad) + env(safe-area-inset-bottom, 0px));
+  pointer-events: none;
 }
-.btn--solid { background: var(--ink); color: var(--paper); }
-.btn--solid:hover { background: var(--ember); border-color: var(--ember); }
-.btn--ghost:hover { background: var(--ink); color: var(--paper); }
-.btn svg { width: 14px; height: 14px; transition: transform 0.35s var(--ease); }
-.btn:hover svg { transform: translate(2px, -2px); }
+.foot__title { font-size: clamp(34px, 4.4vw, 64px); line-height: 0.9; letter-spacing: -0.035em; margin: 0; }
+.foot__note { max-width: 34ch; margin-top: 8px; }
+.foot__count { text-transform: uppercase; font-variant-numeric: tabular-nums; }
 
-/* Character stage: placeholder until the approved 3D character is generated */
-.stage { position: relative; aspect-ratio: 4 / 5; max-width: 100%; }
-.stage__plate { position: absolute; inset: 0; border-radius: 240px 240px 24px 24px; background: var(--paper-deep); overflow: hidden; }
-.stage__orb {
-  position: absolute; left: 50%; top: 46%; width: 58%; aspect-ratio: 1; translate: -50% -50%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 34% 30%, #FFF7EC 0%, #E9B98F 34%, var(--ember) 72%, #5C2706 100%);
-  box-shadow: 0 40px 80px -30px rgba(92, 39, 6, 0.55);
-  transition: transform 0.6s var(--ease);
+/* ---------- Custom cursor (fine pointers only) ---------- */
+.cursor {
+  position: fixed; z-index: 40; left: 0; top: 0; pointer-events: none;
+  width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%;
+  background: var(--ink); color: var(--paper); display: grid; place-items: center;
+  text-transform: uppercase; font-size: 10px; letter-spacing: 0.06em;
+  transform: scale(0); transition: transform 0.35s var(--ease);
 }
-.stage__ground { position: absolute; left: 50%; bottom: 14%; width: 46%; height: 18px; translate: -50% 0; border-radius: 50%; background: rgba(42, 40, 37, 0.14); filter: blur(10px); }
-.stage__lines { position: absolute; inset: 0; width: 100%; height: 100%; }
-.stage__lines path { fill: none; stroke: var(--ink); stroke-width: 1; stroke-linecap: round; }
-.stage__note { position: absolute; left: 20px; bottom: 18px; }
+.cursor.is-on { transform: scale(1); }
 
-/* ---------- Section heads ---------- */
-.head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: clamp(40px, 6vw, 80px); }
-.head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.05; margin: 0; letter-spacing: -0.01em; }
-.head a { font-size: 14px; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
-.head a:hover { color: var(--ink); }
+/* ---------- Menu: zoom out into page cards ---------- */
+.menu {
+  position: fixed; inset: 0; z-index: 30; background: var(--olive);
+  display: flex; align-items: center; gap: clamp(20px, 4vw, 60px);
+  padding-inline: clamp(24px, 10vw, 160px); overflow-x: auto;
+  opacity: 0; visibility: hidden; transition: opacity 0.5s var(--ease), visibility 0.5s;
+}
+.menu.is-open { opacity: 1; visibility: visible; }
+.card {
+  flex: 0 0 auto; width: min(560px, 78vw); aspect-ratio: 16 / 10;
+  background: var(--card); color: var(--ink); padding: 14px; display: grid; grid-template-rows: auto auto 1fr;
+  transform: scale(0.9); transition: transform 0.7s var(--ease);
+}
+.menu.is-open .card { transform: scale(1); }
+.card:hover { transform: scale(1.02); }
+.card__top { display: flex; justify-content: space-between; font-size: 9px; text-transform: uppercase; }
+.card__title { font-size: clamp(30px, 3.4vw, 46px); letter-spacing: -0.035em; margin: 18px 0 0; }
+.card__strip { align-self: end; display: flex; gap: 6px; overflow: hidden; height: 46%; }
+.card__strip img { height: 100%; width: auto; object-fit: cover; }
+.card__text { align-self: end; max-width: 36ch; font-size: 12px; line-height: 1.35; color: var(--ink-soft); }
+.menu__close { position: fixed; top: calc(var(--pad) + env(safe-area-inset-top, 0px)); right: var(--pad); background: none; border: 0; color: var(--paper); font: inherit; text-transform: uppercase; cursor: pointer; z-index: 31; }
 
-/* ---------- Work chapters ---------- */
-.work { padding-block: clamp(48px, 7vw, 96px); }
-.chapter { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(28px, 4vw, 64px); align-items: end; padding-bottom: clamp(64px, 9vw, 128px); }
-.chapter--flip { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr); }
-.chapter--flip .chapter__media { order: 2; }
-.chapter__media { position: relative; display: block; overflow: hidden; border-radius: 6px; background: var(--paper-deep); aspect-ratio: 4 / 3; }
-.chapter__media img, .chapter__media video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
-.chapter__media:hover img, .chapter__media:hover video { transform: scale(1.03); }
-.chapter__tag { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 999px; background: color-mix(in srgb, var(--paper) 90%, transparent); }
-.chapter__body { min-width: 0; padding-bottom: 8px; }
-.chapter__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 4.4vw, 60px); line-height: 1; margin: 14px 0 18px; letter-spacing: -0.015em; }
-.chapter__result { font-family: var(--font-display); font-style: italic; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.25; color: var(--ember); margin: 0 0 16px; text-wrap: balance; }
-.chapter__text { color: var(--ink-soft); margin: 0 0 24px; max-width: 42ch; }
-.chapter__link { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid var(--ink); }
-.chapter__link:hover { color: var(--ember); border-color: var(--ember); }
-
-/* Signature moment: BroadMoney scroll-locked phone */
-.scrolly { position: relative; margin-bottom: clamp(64px, 9vw, 128px); }
-.scrolly__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); }
-.scrolly__sticky { position: sticky; top: calc(72px + 6vh); height: min(80vh, 680px); display: grid; place-items: center; }
-.phone { width: min(300px, 70vw); aspect-ratio: 9 / 19.5; background: #1A1A1A; border-radius: 44px; padding: 9px; box-shadow: 0 0 0 1.5px #333, 0 50px 90px -40px rgba(42, 40, 37, 0.5); position: relative; }
-.phone::before { content: ''; position: absolute; top: 18px; left: 50%; translate: -50% 0; width: 86px; height: 24px; border-radius: 20px; background: #1A1A1A; z-index: 2; }
-.phone__screen { width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: #fff; position: relative; }
-.phone__screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity 0.6s var(--ease); }
-.phone__screen img.is-on { opacity: 1; }
-.steps { display: grid; }
-.step { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; max-width: 40ch; opacity: 0.32; transition: opacity 0.5s var(--ease); }
-.step.is-on { opacity: 1; }
-.step h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 3vw, 40px); line-height: 1.1; margin: 12px 0 14px; }
-.step p { color: var(--ink-soft); margin: 0; }
-.step strong { color: var(--ink); font-weight: 500; }
-
-/* More work */
-.more { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(28px, 4vw, 44px); border: 1px solid var(--line); border-radius: 6px; }
-.more p { margin: 0; font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; max-width: 26ch; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 13px; text-decoration: none; color: var(--ink-soft); transition: border-color 0.3s, color 0.3s; }
-.chip:hover { border-color: var(--ink); color: var(--ink); }
-
-/* ---------- About ---------- */
-.about { padding-block: clamp(80px, 11vw, 160px); }
-.about__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
-.about__photo { aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden; background: var(--paper-deep); }
-.about__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
-.about__lede { font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 44px); line-height: 1.12; margin: 0 0 28px; letter-spacing: -0.01em; text-wrap: balance; }
-.about__text { color: var(--ink-soft); max-width: 58ch; margin: 0 0 16px; }
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
-.fact__value { font-family: var(--font-display); font-size: 26px; line-height: 1.1; margin-top: 8px; }
-
-/* ---------- Contact ---------- */
-.contact { padding-block: clamp(80px, 11vw, 160px); text-align: left; border-top: 1px solid var(--line); }
-.contact h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(48px, 8vw, 120px); line-height: 0.95; letter-spacing: -0.025em; margin: 18px 0 40px; text-wrap: balance; }
-.contact h2 em { font-style: italic; color: var(--ember); }
-.contact__row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 32px; }
-.contact__email { font-family: var(--font-mono); font-size: 15px; user-select: all; }
-
-.foot { padding-block: 32px; border-top: 1px solid var(--line); }
-.foot__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
-.foot__links { display: flex; flex-wrap: wrap; gap: 20px; }
-.foot__links a { font-size: 14px; color: var(--ink-soft); text-decoration: none; }
-.foot__links a:hover { color: var(--ink); }
-
-/* ---------- Reveal (content is visible at rest; motion only enhances) ---------- */
-.reveal { transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
-.js .reveal:not(.is-in) { opacity: 0; transform: translateY(24px); }
-
-/* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .hero__grid, .chapter, .chapter--flip, .about__grid, .scrolly__inner { grid-template-columns: minmax(0, 1fr); }
-  .chapter--flip .chapter__media { order: 0; }
-  .stage { max-width: 420px; }
-  .scrolly__sticky { position: relative; top: 0; height: auto; padding-block: 24px; }
-  .step { min-height: 0; opacity: 1; padding-block: 18px; }
-  .nav__links { gap: 20px; }
-  .facts { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 760px) {
+  .bar { grid-template-columns: 1fr 1fr auto; }
+  .bar__time { display: none; }
+  .item__media { height: 52vh; }
+  .foot { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .cursor { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
-  .js .reveal:not(.is-in) { opacity: 1; transform: none; }
+  .js.is-intro .item { opacity: 1; transform: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
 }
 </style>
 </head>
 <body>
+<h1 class="sr-only">Morayo Akinkunmi — Senior Product Designer. I make complex products simple enough to trust.</h1>
 
-<header class="nav" id="nav">
-  <div class="wrap nav__inner">
-    <a class="nav__brand" href="index-v2.html">Morayo<span>.</span></a>
-    <nav class="nav__links" aria-label="Main">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<header class="bar">
+  <div class="bar__col up"><a href="index-v2.html">Morayo<br>Akinkunmi</a></div>
+  <div class="bar__col">
+    <button type="button" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <a class="up" href="contact.html">Contact</a>
   </div>
+  <div class="bar__col up bar__time">
+    <span>Local time</span>
+    <span aria-label="Local time"><span id="hh">00</span><span class="time__sep"> . </span><span id="mm">00</span></span>
+  </div>
+  <button type="button" class="mark" id="markBtn" aria-label="Open menu"><span class="mark__dot" id="markDot"></span></button>
 </header>
 
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div>
-        <p class="label hero__name">Morayo Akinkunmi — Senior Product Designer</p>
-        <h1 class="hero__title">I make complex products <em>simple</em> enough to trust.</h1>
-        <p class="hero__sub">Five years designing fintech, AI and SaaS products — payments, digital banking, document automation and AI assistants — with results I can measure.</p>
-        <div class="hero__meta">
-          <span class="label">Open to relocation</span>
-          <span class="label">Available for remote</span>
-        </div>
-        <div class="hero__cta">
-          <a class="btn btn--solid" href="#work">See selected work
-            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="btn btn--ghost" href="#contact">Get in touch</a>
-        </div>
-      </div>
-
-      <!-- Character stage: replaced by the approved 3D character -->
-      <div class="stage" id="stage" aria-hidden="true">
-        <div class="stage__plate">
-          <svg class="stage__lines" viewBox="0 0 400 500" preserveAspectRatio="none">
-            <path class="draw" d="M40 330 C 120 250, 280 250, 360 330" />
-            <path class="draw" d="M70 380 C 150 320, 250 320, 330 380" opacity="0.5" />
-            <path class="draw" d="M200 60 L 200 120" opacity="0.4" />
-          </svg>
-          <div class="stage__orb" id="orb"></div>
-          <div class="stage__ground"></div>
-        </div>
-        <span class="label stage__note">3D character · coming next</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section class="work" id="work">
-    <div class="wrap">
-      <div class="head reveal">
-        <h2>Selected work</h2>
-        <a href="work.html">All projects →</a>
-      </div>
-
-      <!-- BroadMoney: signature scroll moment -->
-      <article class="scrolly" aria-labelledby="bm-title">
-        <div class="scrolly__inner">
-          <div class="scrolly__sticky">
-            <div class="phone">
-              <div class="phone__screen">
-                <img src="bmp-kyc-start.jpg" alt="BroadMoney KYC tiers screen" class="is-on" data-step="0" />
-                <img src="bmp-send-amount.jpg" alt="BroadMoney send money screen with live exchange rate" data-step="1" />
-                <img src="bmp-home-new.jpg" alt="BroadMoney redesigned dashboard" data-step="2" />
-              </div>
-            </div>
-          </div>
-          <div class="steps">
-            <div class="step is-on" data-step="0">
-              <span class="label">BroadMoney · Fintech · 2024 — Present</span>
-              <h3 id="bm-title">Compliance that feels like care</h3>
-              <p>Nearly <strong>55%</strong> of new users quit before their first transfer, most of them at KYC. I split verification into tiers, so people can start sending small amounts and verify more only when they need to.</p>
-            </div>
-            <div class="step" data-step="1">
-              <span class="label">The core flow</span>
-              <h3>The rate before the amount</h3>
-              <p>The send flow answers what users care about in order: how much the recipient gets, who receives it, and what it costs. The live exchange rate shows before anyone types a number.</p>
-            </div>
-            <div class="step" data-step="2">
-              <span class="label">The result</span>
-              <h3>Drop-off fell from 55% to 22%</h3>
-              <p>New users made <strong>2.3×</strong> as many transactions in their first month. <a class="chapter__link" href="case-broadmoney.html">Read the case study</a></p>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Renncora -->
-      <article class="chapter chapter--flip reveal">
-        <a class="chapter__media" href="case-renncora.html" aria-label="Open the Renncora case study">
-          <img src="ren-phone-rattan.jpg" alt="Renncora app on a phone" loading="lazy" />
-          <span class="chapter__tag label">AI · Lead Product Designer</span>
-        </a>
-        <div class="chapter__body">
-          <span class="label">Renncora · Creator platform · 2026 — Present</span>
-          <h3 class="chapter__title">Renncora</h3>
-          <p class="chapter__result">A voice-first AI assistant creators can trust.</p>
-          <p class="chapter__text">Live captions show what the AI heard, answers stay in the chat, and video only records with the creator's consent. It replies in Nigerian Pidgin and English.</p>
-          <a class="chapter__link" href="case-renncora.html">Read the case study</a>
-        </div>
-      </article>
-
-      <!-- Doxflowy -->
-      <article class="chapter reveal">
-        <a class="chapter__media" href="case-doxflowy.html" aria-label="Open the Doxflowy case study">
-          <img src="dox-laptop-couch.jpg" alt="Doxflowy dashboard on a laptop" loading="lazy" />
-          <span class="chapter__tag label">SaaS · Document automation</span>
-        </a>
-        <div class="chapter__body">
-          <span class="label">Doxflowy · B2B SaaS · 2026</span>
-          <h3 class="chapter__title">Doxflowy</h3>
-          <p class="chapter__result">Sign-ups up 42%, led by monthly UX audits.</p>
-          <p class="chapter__text">I presented Microsoft Clarity findings to the founders every month, then redesigned what the data showed was broken: gated template downloads, skeleton loaders and clearer messaging.</p>
-          <a class="chapter__link" href="case-doxflowy.html">Read the case study</a>
-        </div>
-      </article>
-
-      <div class="more reveal">
-        <p>More work across payments, banking and AI.</p>
-        <div class="chips" aria-label="Browse more projects">
-          <a class="chip" href="work.html">Fintech</a>
-          <a class="chip" href="work.html">AI products</a>
-          <a class="chip" href="work.html">SaaS</a>
-          <a class="chip" href="work.html">All projects</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="wrap about__grid">
-      <div class="about__photo reveal"><img src="morayo-portrait.jpg" alt="Portrait of Morayo Akinkunmi" loading="lazy" /></div>
-      <div class="reveal">
-        <span class="label">About</span>
-        <p class="about__lede">I design the moments where users decide whether to trust a product.</p>
-        <p class="about__text">For five years I've worked on products where one confusing screen costs a customer: cross-border payments, digital banking, document automation and AI assistants. I own design end to end, from research to post-launch analytics, and I build design systems engineers actually use.</p>
-        <p class="about__text">I'm currently Lead Product Designer at Renncora, and I founded The Design Geeks Community, where I run critiques and mentor product designers.</p>
-        <div class="facts">
-          <div><span class="label">Experience</span><div class="fact__value">5 years</div></div>
-          <div><span class="label">Focus</span><div class="fact__value">Fintech, AI, SaaS</div></div>
-          <div><span class="label">Community</span><div class="fact__value">Founder, Design Geeks</div></div>
-        </div>
-        <div class="hero__cta"><a class="btn btn--ghost" href="cv.pdf">Download CV</a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <span class="label">Contact</span>
-      <h2 class="reveal">Let's build something people <em>trust</em>.</h2>
-      <div class="contact__row">
-        <a class="btn btn--solid" href="contact.html">Send a message
-          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <span class="contact__email">teeakinkunmi@gmail.com</span>
-      </div>
-    </div>
-  </section>
+<main class="stage">
+  <div class="track" id="track" aria-label="Selected work — drag or scroll sideways">
+    <a class="item" href="case-broadmoney.html">
+      <span class="item__title">BroadMoney</span>
+      <span class="item__media"><img src="work-hero.jpg" alt="BroadMoney remittance app on a phone" /></span>
+      <span class="item__meta">Fintech · 55% → 22% drop-off</span>
+    </a>
+    <a class="item" href="case-renncora.html">
+      <span class="item__title">Renncora</span>
+      <span class="item__media"><img src="ren-phone-rattan.jpg" alt="Renncora creator app on a phone" /></span>
+      <span class="item__meta">AI assistant · Lead designer</span>
+    </a>
+    <a class="item" href="case-doxflowy.html">
+      <span class="item__title">Doxflowy</span>
+      <span class="item__media"><img src="dox-laptop-couch.jpg" alt="Doxflowy dashboard on a laptop" /></span>
+      <span class="item__meta">SaaS · +42% sign-ups</span>
+    </a>
+    <a class="item" href="case-help2pay.html">
+      <span class="item__title">Help2Pay</span>
+      <span class="item__media"><img src="h2p-phone-plate.jpg" alt="Help2Pay payments app on a phone" /></span>
+      <span class="item__meta">Payments · −40% send drop-off</span>
+    </a>
+    <a class="item" href="case-wosiwosi.html">
+      <span class="item__title">Wosi Wosi</span>
+      <span class="item__media"><img src="wosi-phone-couch.jpg" alt="Wosi Wosi remittance app on a phone" /></span>
+      <span class="item__meta">Fintech · UK–Nigeria</span>
+    </a>
+    <a class="item" href="case-kunchi.html">
+      <span class="item__title">Kunchi MFB</span>
+      <span class="item__media"><img src="kunchi-phone-rug.jpg" alt="Kunchi banking app on a phone" /></span>
+      <span class="item__meta">Digital banking</span>
+    </a>
+  </div>
 </main>
 
-<footer class="foot">
-  <div class="wrap foot__row">
-    <span class="label">© 2026 Morayo Akinkunmi</span>
-    <nav class="foot__links" aria-label="Elsewhere">
-      <a href="https://www.linkedin.com/in/morayo-akinkunmi/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://dribbble.com/momo98765" target="_blank" rel="noopener">Dribbble</a>
-      <a href="https://medium.com/@YourTechGeeks" target="_blank" rel="noopener">Medium</a>
-      <a href="https://www.youtube.com/@Design-geeks" target="_blank" rel="noopener">YouTube</a>
-    </nav>
+<div class="foot">
+  <div>
+    <p class="foot__title">selected work</p>
+    <p class="foot__note">Morayo Akinkunmi — Senior Product Designer making complex products simple enough to trust. Fintech, AI &amp; SaaS. 2021—2026</p>
   </div>
-</footer>
+  <span class="foot__count"><span id="count">01</span> / 06</span>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true">Drag</div>
+
+<nav class="menu" id="menu" aria-label="Pages" hidden>
+  <button type="button" class="menu__close" id="menuClose">Close ✕</button>
+  <a class="card" href="index-v2.html">
+    <span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span>
+    <span class="card__title">work</span>
+    <span class="card__strip"><img src="work-hero.jpg" alt="" /><img src="ren-phone-rattan.jpg" alt="" /><img src="dox-laptop-couch.jpg" alt="" /></span>
+  </a>
+  <a class="card" href="work.html">
+    <span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span>
+    <span class="card__title">archive</span>
+    <span class="card__strip"><img src="h2p-phone-plate.jpg" alt="" /><img src="tax-laptop-bench.jpg" alt="" /><img src="stack-laptop-table.jpg" alt="" /></span>
+  </a>
+  <a class="card" href="contact.html">
+    <span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span>
+    <span class="card__title">contact</span>
+    <span class="card__text">Open to senior product design roles. Open to relocation and available for remote. teeakinkunmi@gmail.com</span>
+  </a>
+</nav>
 
 <script>
 (function () {
+  var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.documentElement.classList.add('js');
+  root.classList.add('js');
 
-  // Nav background after scrolling
-  var nav = document.getElementById('nav');
-  function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 24); }
-  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  // Reveal on scroll (content is visible without JS / with reduced motion)
-  var reveals = document.querySelectorAll('.reveal');
-  if (reduce || !('IntersectionObserver' in window)) {
-    reveals.forEach(function (el) { el.classList.add('is-in'); });
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(function (el) { io.observe(el); });
+  // Local time (GMT+1)
+  function tick() {
+    var t = new Date(Date.now() + (new Date().getTimezoneOffset() + 60) * 60000);
+    document.getElementById('hh').textContent = String(t.getHours()).padStart(2, '0');
+    document.getElementById('mm').textContent = String(t.getMinutes()).padStart(2, '0');
   }
+  tick(); setInterval(tick, 15000);
 
-  // Line art draws itself once on load
+  // Intro: images grow into the row
   if (!reduce) {
-    document.querySelectorAll('.draw').forEach(function (p, i) {
-      var len = p.getTotalLength();
-      p.style.strokeDasharray = len; p.style.strokeDashoffset = len;
-      p.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.22,1,0.36,1) ' + (0.3 + i * 0.25) + 's';
-      requestAnimationFrame(function () { requestAnimationFrame(function () { p.style.strokeDashoffset = 0; }); });
-    });
+    root.classList.add('is-intro');
+    var items = document.querySelectorAll('.item');
+    items.forEach(function (it, i) { it.style.transitionDelay = (0.15 + i * 0.08) + 's'; });
+    requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove('is-intro'); }); });
+    setTimeout(function () { root.classList.remove('is-intro'); }, 120);
+    setTimeout(function () { items.forEach(function (it) { it.style.transitionDelay = ''; }); }, 2200);
   }
 
-  // Character stage follows the cursor slightly (desktop only)
-  var orb = document.getElementById('orb'), stage = document.getElementById('stage');
+  // Horizontal scroll: wheel, drag with momentum, keyboard
+  var track = document.getElementById('track');
+  var target = 0, current = 0, raf = null;
+  function max() { return track.scrollWidth - track.clientWidth; }
+  function loop() {
+    current += (target - current) * (reduce ? 1 : 0.12);
+    if (Math.abs(target - current) < 0.5) current = target;
+    track.scrollLeft = current;
+    updateCount();
+    raf = current === target ? null : requestAnimationFrame(loop);
+  }
+  function go(x) { target = Math.max(0, Math.min(max(), x)); if (!raf) raf = requestAnimationFrame(loop); }
+  track.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    go(target + (Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX));
+  }, { passive: false });
+
+  var down = false, startX = 0, startT = 0, moved = 0, lastX = 0, vel = 0;
+  track.addEventListener('pointerdown', function (e) {
+    if (e.pointerType !== 'mouse') return; // touch uses native scrolling
+    down = true; moved = 0; startX = lastX = e.clientX; startT = target;
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!down) return;
+    var dx = e.clientX - startX; moved = Math.abs(dx);
+    vel = e.clientX - lastX; lastX = e.clientX;
+    if (moved > 4) track.classList.add('is-dragging');
+    go(startT - dx * 1.4);
+  });
+  window.addEventListener('pointerup', function () {
+    if (!down) return; down = false;
+    go(target - vel * 14);
+    setTimeout(function () { track.classList.remove('is-dragging'); }, 0);
+  });
+  track.addEventListener('scroll', function () { if (!raf && !down) { target = current = track.scrollLeft; updateCount(); } }, { passive: true });
+  window.addEventListener('keydown', function (e) {
+    if (menu.classList.contains('is-open')) { if (e.key === 'Escape') closeMenu(); return; }
+    if (e.key === 'ArrowRight') go(target + track.clientWidth * 0.5);
+    if (e.key === 'ArrowLeft') go(target - track.clientWidth * 0.5);
+  });
+
+  // Counter: which project is nearest the left edge
+  var cards = Array.prototype.slice.call(track.querySelectorAll('.item'));
+  var countEl = document.getElementById('count');
+  function updateCount() {
+    var x = track.scrollLeft + 40, idx = 0;
+    cards.forEach(function (c, i) { if (c.offsetLeft <= x) idx = i; });
+    if (track.scrollLeft >= max() - 2) idx = cards.length - 1;
+    countEl.textContent = String(idx + 1).padStart(2, '0');
+  }
+
+  // Cursor: "Drag" on the gallery, "View" on a project
+  var cursor = document.getElementById('cursor');
   if (!reduce && window.matchMedia('(pointer: fine)').matches) {
     window.addEventListener('pointermove', function (e) {
-      var r = stage.getBoundingClientRect();
-      var x = (e.clientX - (r.left + r.width / 2)) / window.innerWidth;
-      var y = (e.clientY - (r.top + r.height / 2)) / window.innerHeight;
-      orb.style.transform = 'translate(' + (x * 18) + 'px,' + (y * 14) + 'px)';
+      cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+      var onItem = e.target.closest && e.target.closest('.item__media');
+      cursor.textContent = onItem ? 'View' : 'Drag';
+      cursor.classList.toggle('is-on', !!(e.target.closest && e.target.closest('.track')));
     }, { passive: true });
   }
 
-  // BroadMoney scroll story: swap the phone screen as each step comes into view
-  var steps = document.querySelectorAll('.step');
-  var shots = document.querySelectorAll('.phone__screen img');
-  if ('IntersectionObserver' in window) {
-    var so = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var n = e.target.getAttribute('data-step');
-        steps.forEach(function (s) { s.classList.toggle('is-on', s === e.target); });
-        shots.forEach(function (img) { img.classList.toggle('is-on', img.getAttribute('data-step') === n); });
-      });
-    }, { threshold: 0.6 });
-    steps.forEach(function (s) { so.observe(s); });
-  }
+  // Mark: the small dot circles with the scroll position
+  var dot = document.getElementById('markDot');
+  setInterval(function () {
+    var p = max() ? current / max() : 0;
+    dot.style.transform = 'rotate(' + (p * 360) + 'deg) translateX(' + (p * 22) + 'px)';
+  }, 120);
+
+  // Menu
+  var menu = document.getElementById('menu'), btn = document.getElementById('menuBtn');
+  function openMenu() { menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('is-open'); }); btn.setAttribute('aria-expanded', 'true'); document.getElementById('menuClose').focus(); }
+  function closeMenu() { menu.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); setTimeout(function () { menu.hidden = true; }, 500); btn.focus(); }
+  btn.addEventListener('click', openMenu);
+  document.getElementById('markBtn').addEventListener('click', openMenu);
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  menu.addEventListener('click', function (e) { if (e.target === menu) closeMenu(); });
 })();
 </script>
 </body>
