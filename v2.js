@@ -53,13 +53,38 @@
     }, { passive: true });
   }
 
-  /* ---------- About: scattered images flow past with inertia, loop, and bend with speed ---------- */
+  /* ---------- About: the field flows past with inertia, loops, and curves into a globe with speed ----------
+     Each image's four corners are projected onto a sphere (orthographic, like looking at the earth)
+     and the image is warped to that quad, so the whole field bends together as one surface. */
   var sc = document.getElementById('scatter');
   if (sc) {
     var field = document.getElementById('scatterField');
+    var pin = sc.querySelector('.scatter__pin');
     var figs = Array.prototype.slice.call(sc.querySelectorAll('.scatter__img'));
     var setH = field.firstElementChild.offsetHeight;
     var cur = 0, prev = 0, vel = 0, scRaf = null;
+
+    function solve(A, b) { // Gaussian elimination, 8x8
+      var n = b.length;
+      for (var i = 0; i < n; i++) {
+        var p = i; for (var r = i + 1; r < n; r++) if (Math.abs(A[r][i]) > Math.abs(A[p][i])) p = r;
+        var t = A[i]; A[i] = A[p]; A[p] = t; var tb = b[i]; b[i] = b[p]; b[p] = tb;
+        for (var r2 = i + 1; r2 < n; r2++) { var f = A[r2][i] / A[i][i]; for (var c = i; c < n; c++) A[r2][c] -= f * A[i][c]; b[r2] -= f * b[i]; }
+      }
+      var x = new Array(n);
+      for (var i2 = n - 1; i2 >= 0; i2--) { var sum = b[i2]; for (var c2 = i2 + 1; c2 < n; c2++) sum -= A[i2][c2] * x[c2]; x[i2] = sum / A[i2][i2]; }
+      return x;
+    }
+    function quad(w, h, to) { // matrix3d mapping the box (0,0)-(w,h) onto quad `to`
+      var from = [[0, 0], [w, 0], [w, h], [0, h]], A = [], b = [];
+      for (var i = 0; i < 4; i++) {
+        var X = from[i][0], Y = from[i][1], u = to[i][0], v = to[i][1];
+        A.push([X, Y, 1, 0, 0, 0, -X * u, -Y * u]); b.push(u);
+        A.push([0, 0, 0, X, Y, 1, -X * v, -Y * v]); b.push(v);
+      }
+      var h8 = solve(A, b);
+      return 'matrix3d(' + [h8[0], h8[3], 0, h8[6], h8[1], h8[4], 0, h8[7], 0, 0, 1, 0, h8[2], h8[5], 0, 1].map(function (n) { return n.toFixed(6); }).join(',') + ')';
+    }
     function targetOffset() {
       var r = sc.getBoundingClientRect(), span = sc.offsetHeight - innerHeight;
       var p = Math.max(0, Math.min(1, -r.top / span));
@@ -69,26 +94,34 @@
       setH = field.firstElementChild.offsetHeight;
       var t = targetOffset();
       cur += (t - cur) * (reduce ? 1 : 0.075);
-      vel += ((cur - prev) - vel) * 0.25; prev = cur;
-      var y = -(cur % setH);
-      field.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0)';
-      if (!reduce) {
-        var k = Math.max(-1, Math.min(1, vel / 22));
-        var vh = innerHeight, vw = innerWidth;
-        for (var i = 0; i < figs.length; i++) {
-          var el = figs[i], r = el.getBoundingClientRect();
-          if (r.bottom < -200 || r.top > vh + 200) continue;
-          var d = ((r.top + r.height / 2) - vh / 2) / (vh / 2);   // -1 top … 1 bottom
-          var hx = ((r.left + r.width / 2) - vw / 2) / (vw / 2);  // -1 left … 1 right
-          // Twist like a lens: shear grows towards the corners (vertical position x side),
-          // images tilt away and squash near the top and bottom, the centre stays calm.
-          var sk = -k * 42 * d * hx;
-          var rx = k * 36 * d;
-          var sy = 1 - Math.abs(k) * 0.38 * d * d;
-          el.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) skewX(' + sk.toFixed(2) + 'deg) scaleY(' + sy.toFixed(3) + ')';
-        }
+      vel += ((cur - prev) - vel) * 0.2; prev = cur;
+      var fy = -(cur % setH);
+      field.style.transform = 'translate3d(0,' + fy.toFixed(2) + 'px,0)';
+      var sv = reduce ? 0 : Math.max(-1, Math.min(1, vel / 14));   // + scrolling down, - scrolling up
+      var s = Math.abs(sv);
+      var vw = innerWidth, vh = innerHeight, cx = vw / 2, cy = vh / 2;
+      var pinTop = pin.getBoundingClientRect().top;
+      var R = (Math.max(vw, vh) * 0.75) / (0.0001 + s * 1.6);   // sphere radius: huge = flat, small = round
+      var half = Math.max(vw, vh) / 2;
+      function proj(x, y) {
+        var dx = x - cx, dy = y - cy, r = Math.sqrt(dx * dx + dy * dy);
+        if (r < 0.001 || s < 0.002) return [x, y];
+        var k2;
+        if (sv > 0) { var a = Math.min(r / R, Math.PI / 2); k2 = (R * Math.sin(a)) / r; }   // down: bulges out like a globe
+        else { var rr = r / half; k2 = 1 + 0.45 * s * rr * rr; }                              // up: curves in like a bowl
+        return [cx + dx * k2, cy + dy * k2];
       }
-      if (Math.abs(t - cur) < 0.3 && Math.abs(vel) < 0.03) {
+      for (var i = 0; i < figs.length; i++) {
+        var el = figs[i], set = el.parentElement;
+        var left = el.offsetLeft, top = pinTop + fy + set.offsetTop + el.offsetTop;
+        var w = el.offsetWidth, h = el.offsetHeight;
+        if (top + h < -300 || top > vh + 300) { el.style.transform = ''; continue; }
+        if (s < 0.002) { el.style.transform = ''; continue; }
+        var c = [proj(left, top), proj(left + w, top), proj(left + w, top + h), proj(left, top + h)]
+          .map(function (p) { return [p[0] - left, p[1] - top]; });
+        el.style.transform = quad(w, h, c);
+      }
+      if (Math.abs(t - cur) < 0.3 && Math.abs(vel) < 0.02) {
         cur = t; field.style.transform = 'translate3d(0,' + (-(cur % setH)).toFixed(2) + 'px,0)';
         figs.forEach(function (el) { el.style.transform = ''; });
         scRaf = null; return;
