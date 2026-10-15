@@ -2,320 +2,75 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Morayo Akinkunmi — Senior Product Designer · Fintech, AI &amp; SaaS</title>
-<meta name="description" content="Morayo Akinkunmi is a Senior Product Designer with 5 years across fintech, AI and SaaS — making complex products simple enough to trust." />
+<meta name="description" content="Morayo Akinkunmi is a Senior Product Designer with 5 years across fintech, AI and SaaS — making complex products simple enough to trust. Case studies include BroadMoney, Doxflowy, Help2Pay and Renncora." />
+<link rel="canonical" href="https://morayo-portfolio.vercel.app/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Morayo Akinkunmi — Product Designer" />
+<meta property="og:title" content="Morayo Akinkunmi — Senior Product Designer · Fintech, AI &amp; SaaS" />
+<meta property="og:description" content="Morayo Akinkunmi is a Senior Product Designer with 5 years across fintech, AI and SaaS — making complex products simple enough to trust. Case studies include BroadMoney, Doxflowy, Help2Pay and Renncora." />
+<meta property="og:url" content="https://morayo-portfolio.vercel.app/" />
+<meta property="og:image" content="https://morayo-portfolio.vercel.app/work-hero.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Morayo Akinkunmi — Senior Product Designer · Fintech, AI &amp; SaaS" />
+<meta name="twitter:description" content="Morayo Akinkunmi is a Senior Product Designer with 5 years across fintech, AI and SaaS — making complex products simple enough to trust. Case studies include BroadMoney, Doxflowy, Help2Pay and Renncora." />
+<meta name="twitter:image" content="https://morayo-portfolio.vercel.app/work-hero.jpg" />
+<meta name="author" content="Morayo Akinkunmi" />
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://morayo-portfolio.vercel.app/#person", "name": "Morayo Akinkunmi", "alternateName": "Akinkunmi Taiwo Morayo", "jobTitle": "Senior Product Designer", "description": "Senior Product Designer with 5 years across fintech, AI and SaaS. Founder of The Design Geeks Community.", "url": "https://morayo-portfolio.vercel.app/", "image": "https://morayo-portfolio.vercel.app/morayo-portrait.jpg", "email": "mailto:teeakinkunmi@gmail.com", "sameAs": ["https://www.linkedin.com/in/morayo-akinkunmi/", "https://dribbble.com/momo98765", "https://medium.com/@YourTechGeeks", "https://www.youtube.com/@Design-geeks", "https://x.com/morayo1025"], "knowsAbout": ["Product design", "UX design", "UI design", "Fintech", "Payments", "Digital banking", "AI products", "Design systems", "SaaS"]}, {"@type": "WebSite", "@id": "https://morayo-portfolio.vercel.app/#website", "url": "https://morayo-portfolio.vercel.app/", "name": "Morayo Akinkunmi — Product Design Portfolio", "author": {"@id": "https://morayo-portfolio.vercel.app/#person"}}, {"@type": "ProfilePage", "url": "https://morayo-portfolio.vercel.app/", "mainEntity": {"@id": "https://morayo-portfolio.vercel.app/#person"}}]}</script>
 <meta name="robots" content="noindex" />
-<style>
-/* Layout concept: one screen. A quiet four-column top bar, a horizontal row of
-   project images you drag or scroll through, and a menu that zooms out into page cards. */
-:root {
-  --paper: #F8F6F2;
-  --ink: #111111;
-  --ink-soft: #6E6B66;
-  --olive: #7A7866;
-  --card: #F8F6F2;
-  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --pad: clamp(14px, 1.6vw, 22px);
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-}
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font);
-  font-size: 12px;
-  line-height: 1.15;
-  letter-spacing: 0.01em;
-  -webkit-font-smoothing: antialiased;
-  overflow: hidden;
-}
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
-:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
-.up { text-transform: uppercase; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-/* ---------- Top bar ---------- */
-.bar {
-  position: fixed; inset: 0 0 auto 0; z-index: 20;
-  display: grid; grid-template-columns: 1fr 1fr 1fr auto; align-items: start;
-  padding: calc(var(--pad) + env(safe-area-inset-top, 0px)) var(--pad) 0;
-}
-.bar__col { display: grid; gap: 1px; }
-.bar__col a, .bar__col button { justify-self: start; }
-.bar button { background: none; border: 0; padding: 0; font: inherit; color: inherit; letter-spacing: inherit; cursor: pointer; text-transform: uppercase; }
-.bar a:hover, .bar button:hover { opacity: 0.55; }
-.time__sep { animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.bar .mark {
-  width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--ink);
-  display: grid; place-items: center; position: relative; cursor: pointer; background: none;
-}
-.mark__dot { position: absolute; width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--ink); top: 12px; left: 12px; transition: transform 0.6s var(--ease); }
-
-/* ---------- Gallery ---------- */
-.stage { position: fixed; inset: 0; display: flex; align-items: center; padding-bottom: clamp(90px, 14vh, 150px); padding-top: 70px; }
-.track {
-  display: flex; gap: clamp(8px, 0.6vw, 10px); align-items: flex-end;
-  width: 100%; overflow-x: auto; overflow-y: hidden;
-  padding-inline: var(--pad); scrollbar-width: none; cursor: grab;
-  scroll-snap-type: none; overscroll-behavior-x: contain;
-}
-.track::-webkit-scrollbar { display: none; }
-.track.is-dragging { cursor: grabbing; }
-.track.is-dragging a { pointer-events: none; }
-.item { flex: 0 0 auto; display: grid; gap: 8px; }
-.item__title { text-transform: uppercase; }
-.item__media { overflow: hidden; background: #E9E5DD; height: clamp(260px, 54vh, 600px); }
-.item__media img { height: 100%; width: auto; max-width: none; object-fit: cover; transition: transform 1.2s var(--ease), filter 0.6s var(--ease); user-select: none; -webkit-user-drag: none; }
-.item:hover .item__media img { transform: scale(1.025); }
-.item__meta { color: var(--ink-soft); text-transform: uppercase; }
-
-/* Intro: images start small and scattered, then settle into the row */
-.js .item { transition: transform 1.4s var(--ease), opacity 1s var(--ease); }
-.js.is-intro .item { opacity: 0; transform: translateY(40px) scale(0.72); }
-
-/* ---------- Bottom caption ---------- */
-.foot {
-  position: fixed; inset: auto 0 0 0; z-index: 10;
-  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
-  padding: 0 var(--pad) calc(var(--pad) + env(safe-area-inset-bottom, 0px));
-  pointer-events: none;
-}
-.foot__title { font-size: clamp(34px, 4.4vw, 64px); line-height: 0.9; letter-spacing: -0.035em; margin: 0; }
-.foot__note { max-width: 34ch; margin-top: 8px; }
-.foot__count { text-transform: uppercase; font-variant-numeric: tabular-nums; }
-
-/* ---------- Custom cursor (fine pointers only) ---------- */
-.cursor {
-  position: fixed; z-index: 40; left: 0; top: 0; pointer-events: none;
-  width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%;
-  background: var(--ink); color: var(--paper); display: grid; place-items: center;
-  text-transform: uppercase; font-size: 10px; letter-spacing: 0.06em;
-  transform: scale(0); transition: transform 0.35s var(--ease);
-}
-.cursor.is-on { transform: scale(1); }
-
-/* ---------- Menu: zoom out into page cards ---------- */
-.menu {
-  position: fixed; inset: 0; z-index: 30; background: var(--olive);
-  display: flex; align-items: center; gap: clamp(20px, 4vw, 60px);
-  padding-inline: clamp(24px, 10vw, 160px); overflow-x: auto;
-  opacity: 0; visibility: hidden; transition: opacity 0.5s var(--ease), visibility 0.5s;
-}
-.menu.is-open { opacity: 1; visibility: visible; }
-.card {
-  flex: 0 0 auto; width: min(560px, 78vw); aspect-ratio: 16 / 10;
-  background: var(--card); color: var(--ink); padding: 14px; display: grid; grid-template-rows: auto auto 1fr;
-  transform: scale(0.9); transition: transform 0.7s var(--ease);
-}
-.menu.is-open .card { transform: scale(1); }
-.card:hover { transform: scale(1.02); }
-.card__top { display: flex; justify-content: space-between; font-size: 9px; text-transform: uppercase; }
-.card__title { font-size: clamp(30px, 3.4vw, 46px); letter-spacing: -0.035em; margin: 18px 0 0; }
-.card__strip { align-self: end; display: flex; gap: 6px; overflow: hidden; height: 46%; }
-.card__strip img { height: 100%; width: auto; object-fit: cover; }
-.card__text { align-self: end; max-width: 36ch; font-size: 12px; line-height: 1.35; color: var(--ink-soft); }
-.menu__close { position: fixed; top: calc(var(--pad) + env(safe-area-inset-top, 0px)); right: var(--pad); background: none; border: 0; color: var(--paper); font: inherit; text-transform: uppercase; cursor: pointer; z-index: 31; }
-
-@media (max-width: 760px) {
-  .bar { grid-template-columns: 1fr 1fr auto; }
-  .bar__time { display: none; }
-  .item__media { height: 52vh; }
-  .foot { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .cursor { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .js.is-intro .item { opacity: 1; transform: none; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
-}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="v2.css" />
 </head>
-<body>
-<h1 class="sr-only">Morayo Akinkunmi — Senior Product Designer. I make complex products simple enough to trust.</h1>
-
+<body class="home">
+<h1 class="sr-only">Morayo Akinkunmi — Senior Product Designer. I make complex products simple enough to trust. Fintech, AI and SaaS.</h1>
 <header class="bar">
   <div class="bar__col up"><a href="index-v2.html">Morayo<br>Akinkunmi</a></div>
+  <div class="bar__col bar__col--sign"><a href="index-v2.html" aria-label="Home"><span class="sign">Morayo</span></a></div>
   <div class="bar__col">
     <button type="button" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
     <a class="up" href="contact.html">Contact</a>
   </div>
-  <div class="bar__col up bar__time">
-    <span>Local time</span>
-    <span aria-label="Local time"><span id="hh">00</span><span class="time__sep"> . </span><span id="mm">00</span></span>
-  </div>
+  <div class="bar__col up bar__time"><span>Local time</span><span><span id="hh">00</span><span class="time__sep"> . </span><span id="mm">00</span></span></div>
   <button type="button" class="mark" id="markBtn" aria-label="Open menu"><span class="mark__dot" id="markDot"></span></button>
 </header>
-
 <main class="stage">
-  <div class="track" id="track" aria-label="Selected work — drag or scroll sideways">
+  <div class="track" id="track" aria-label="Selected work. Drag or scroll sideways.">
     <a class="item" href="case-broadmoney.html">
       <span class="item__title">BroadMoney</span>
-      <span class="item__media"><img src="work-hero.jpg" alt="BroadMoney remittance app on a phone" /></span>
-      <span class="item__meta">Fintech · 55% → 22% drop-off</span>
+      <span class="item__media"><img src="work-hero.jpg" alt="BroadMoney — Fintech · 55% → 22% drop-off" draggable="false" /></span>
     </a>
     <a class="item" href="case-renncora.html">
       <span class="item__title">Renncora</span>
-      <span class="item__media"><img src="ren-phone-rattan.jpg" alt="Renncora creator app on a phone" /></span>
-      <span class="item__meta">AI assistant · Lead designer</span>
+      <span class="item__media"><img src="ren-phone-rattan.jpg" alt="Renncora — AI assistant · Lead designer" draggable="false" /></span>
     </a>
     <a class="item" href="case-doxflowy.html">
       <span class="item__title">Doxflowy</span>
-      <span class="item__media"><img src="dox-laptop-couch.jpg" alt="Doxflowy dashboard on a laptop" /></span>
-      <span class="item__meta">SaaS · +42% sign-ups</span>
+      <span class="item__media"><img src="dox-laptop-couch.jpg" alt="Doxflowy — SaaS · +42% sign-ups" draggable="false" /></span>
     </a>
     <a class="item" href="case-help2pay.html">
       <span class="item__title">Help2Pay</span>
-      <span class="item__media"><img src="h2p-phone-plate.jpg" alt="Help2Pay payments app on a phone" /></span>
-      <span class="item__meta">Payments · −40% send drop-off</span>
+      <span class="item__media"><img src="h2p-phone-plate.jpg" alt="Help2Pay — Payments · −40% send drop-off" draggable="false" /></span>
     </a>
     <a class="item" href="case-wosiwosi.html">
       <span class="item__title">Wosi Wosi</span>
-      <span class="item__media"><img src="wosi-phone-couch.jpg" alt="Wosi Wosi remittance app on a phone" /></span>
-      <span class="item__meta">Fintech · UK–Nigeria</span>
+      <span class="item__media"><img src="wosi-phone-couch.jpg" alt="Wosi Wosi — Fintech · UK–Nigeria" draggable="false" /></span>
     </a>
     <a class="item" href="case-kunchi.html">
       <span class="item__title">Kunchi MFB</span>
-      <span class="item__media"><img src="kunchi-phone-rug.jpg" alt="Kunchi banking app on a phone" /></span>
-      <span class="item__meta">Digital banking</span>
+      <span class="item__media"><img src="kunchi-phone-rug.jpg" alt="Kunchi MFB — Digital banking" draggable="false" /></span>
     </a>
   </div>
 </main>
-
-<div class="foot">
-  <div>
-    <p class="foot__title">selected work</p>
-    <p class="foot__note">Morayo Akinkunmi — Senior Product Designer making complex products simple enough to trust. Fintech, AI &amp; SaaS. 2021—2026</p>
-  </div>
-  <span class="foot__count"><span id="count">01</span> / 06</span>
-</div>
-
 <div class="cursor" id="cursor" aria-hidden="true">Drag</div>
-
 <nav class="menu" id="menu" aria-label="Pages" hidden>
   <button type="button" class="menu__close" id="menuClose">Close ✕</button>
-  <a class="card" href="index-v2.html">
-    <span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span>
-    <span class="card__title">work</span>
-    <span class="card__strip"><img src="work-hero.jpg" alt="" /><img src="ren-phone-rattan.jpg" alt="" /><img src="dox-laptop-couch.jpg" alt="" /></span>
-  </a>
-  <a class="card" href="work.html">
-    <span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span>
-    <span class="card__title">archive</span>
-    <span class="card__strip"><img src="h2p-phone-plate.jpg" alt="" /><img src="tax-laptop-bench.jpg" alt="" /><img src="stack-laptop-table.jpg" alt="" /></span>
-  </a>
-  <a class="card" href="contact.html">
-    <span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span>
-    <span class="card__title">contact</span>
-    <span class="card__text">Open to senior product design roles. Open to relocation and available for remote. teeakinkunmi@gmail.com</span>
-  </a>
+  <a class="card" href="index-v2.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">work</span><span class="card__strip"><img src="work-hero.jpg" alt="" /><img src="ren-phone-rattan.jpg" alt="" /><img src="dox-laptop-couch.jpg" alt="" /></span></a>
+  <a class="card" href="work.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">archive</span><span class="card__strip"><img src="h2p-phone-plate.jpg" alt="" /><img src="tax-laptop-bench.jpg" alt="" /><img src="stack-laptop-table.jpg" alt="" /></span></a>
+  <a class="card" href="contact.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">contact</span><span class="card__text">Senior Product Designer · Fintech, AI &amp; SaaS. Open to relocation and available for remote. teeakinkunmi@gmail.com</span></a>
 </nav>
-
-<script>
-(function () {
-  var root = document.documentElement;
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  root.classList.add('js');
-
-  // Local time (GMT+1)
-  function tick() {
-    var t = new Date(Date.now() + (new Date().getTimezoneOffset() + 60) * 60000);
-    document.getElementById('hh').textContent = String(t.getHours()).padStart(2, '0');
-    document.getElementById('mm').textContent = String(t.getMinutes()).padStart(2, '0');
-  }
-  tick(); setInterval(tick, 15000);
-
-  // Intro: images grow into the row
-  if (!reduce) {
-    root.classList.add('is-intro');
-    var items = document.querySelectorAll('.item');
-    items.forEach(function (it, i) { it.style.transitionDelay = (0.15 + i * 0.08) + 's'; });
-    requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove('is-intro'); }); });
-    setTimeout(function () { root.classList.remove('is-intro'); }, 120);
-    setTimeout(function () { items.forEach(function (it) { it.style.transitionDelay = ''; }); }, 2200);
-  }
-
-  // Horizontal scroll: wheel, drag with momentum, keyboard
-  var track = document.getElementById('track');
-  var target = 0, current = 0, raf = null;
-  function max() { return track.scrollWidth - track.clientWidth; }
-  function loop() {
-    current += (target - current) * (reduce ? 1 : 0.12);
-    if (Math.abs(target - current) < 0.5) current = target;
-    track.scrollLeft = current;
-    updateCount();
-    raf = current === target ? null : requestAnimationFrame(loop);
-  }
-  function go(x) { target = Math.max(0, Math.min(max(), x)); if (!raf) raf = requestAnimationFrame(loop); }
-  track.addEventListener('wheel', function (e) {
-    e.preventDefault();
-    go(target + (Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX));
-  }, { passive: false });
-
-  var down = false, startX = 0, startT = 0, moved = 0, lastX = 0, vel = 0;
-  track.addEventListener('pointerdown', function (e) {
-    if (e.pointerType !== 'mouse') return; // touch uses native scrolling
-    down = true; moved = 0; startX = lastX = e.clientX; startT = target;
-  });
-  window.addEventListener('pointermove', function (e) {
-    if (!down) return;
-    var dx = e.clientX - startX; moved = Math.abs(dx);
-    vel = e.clientX - lastX; lastX = e.clientX;
-    if (moved > 4) track.classList.add('is-dragging');
-    go(startT - dx * 1.4);
-  });
-  window.addEventListener('pointerup', function () {
-    if (!down) return; down = false;
-    go(target - vel * 14);
-    setTimeout(function () { track.classList.remove('is-dragging'); }, 0);
-  });
-  track.addEventListener('scroll', function () { if (!raf && !down) { target = current = track.scrollLeft; updateCount(); } }, { passive: true });
-  window.addEventListener('keydown', function (e) {
-    if (menu.classList.contains('is-open')) { if (e.key === 'Escape') closeMenu(); return; }
-    if (e.key === 'ArrowRight') go(target + track.clientWidth * 0.5);
-    if (e.key === 'ArrowLeft') go(target - track.clientWidth * 0.5);
-  });
-
-  // Counter: which project is nearest the left edge
-  var cards = Array.prototype.slice.call(track.querySelectorAll('.item'));
-  var countEl = document.getElementById('count');
-  function updateCount() {
-    var x = track.scrollLeft + 40, idx = 0;
-    cards.forEach(function (c, i) { if (c.offsetLeft <= x) idx = i; });
-    if (track.scrollLeft >= max() - 2) idx = cards.length - 1;
-    countEl.textContent = String(idx + 1).padStart(2, '0');
-  }
-
-  // Cursor: "Drag" on the gallery, "View" on a project
-  var cursor = document.getElementById('cursor');
-  if (!reduce && window.matchMedia('(pointer: fine)').matches) {
-    window.addEventListener('pointermove', function (e) {
-      cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-      var onItem = e.target.closest && e.target.closest('.item__media');
-      cursor.textContent = onItem ? 'View' : 'Drag';
-      cursor.classList.toggle('is-on', !!(e.target.closest && e.target.closest('.track')));
-    }, { passive: true });
-  }
-
-  // Mark: the small dot circles with the scroll position
-  var dot = document.getElementById('markDot');
-  setInterval(function () {
-    var p = max() ? current / max() : 0;
-    dot.style.transform = 'rotate(' + (p * 360) + 'deg) translateX(' + (p * 22) + 'px)';
-  }, 120);
-
-  // Menu
-  var menu = document.getElementById('menu'), btn = document.getElementById('menuBtn');
-  function openMenu() { menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('is-open'); }); btn.setAttribute('aria-expanded', 'true'); document.getElementById('menuClose').focus(); }
-  function closeMenu() { menu.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); setTimeout(function () { menu.hidden = true; }, 500); btn.focus(); }
-  btn.addEventListener('click', openMenu);
-  document.getElementById('markBtn').addEventListener('click', openMenu);
-  document.getElementById('menuClose').addEventListener('click', closeMenu);
-  menu.addEventListener('click', function (e) { if (e.target === menu) closeMenu(); });
-})();
-</script>
+<script src="v2.js"></script>
 </body>
 </html>
