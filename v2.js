@@ -22,7 +22,17 @@
     menuBtn.addEventListener('click', openMenu);
     document.getElementById('markBtn').addEventListener('click', openMenu);
     document.getElementById('menuClose').addEventListener('click', closeMenu);
-    menu.addEventListener('click', function (e) { if (e.target === menu) closeMenu(); });
+    menu.addEventListener('click', function (e) { if (e.target === menu && !menuDragged) closeMenu(); });
+    // Scroll the cards sideways with the mouse wheel, trackpad or a drag
+    menu.addEventListener('wheel', function (e) {
+      var d = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if (!d) return; e.preventDefault(); menu.scrollLeft += d;
+    }, { passive: false });
+    var menuDown = false, menuDragged = false, mStartX = 0, mStartL = 0;
+    menu.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; menuDown = true; menuDragged = false; mStartX = e.clientX; mStartL = menu.scrollLeft; });
+    window.addEventListener('pointermove', function (e) { if (!menuDown) return; var dx = e.clientX - mStartX; if (Math.abs(dx) > 5) { menuDragged = true; menu.classList.add('is-dragging'); } menu.scrollLeft = mStartL - dx; });
+    window.addEventListener('pointerup', function () { if (!menuDown) return; menuDown = false; setTimeout(function () { menuDragged = false; menu.classList.remove('is-dragging'); }, 0); });
+    menu.addEventListener('click', function (e) { if (menuDragged && e.target.closest('.card')) e.preventDefault(); }, true);
     window.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu(); });
   }
 
@@ -41,6 +51,31 @@
     window.addEventListener('scroll', function () {
       var m = document.documentElement.scrollHeight - innerHeight; moveDot(m > 0 ? scrollY / m : 0);
     }, { passive: true });
+  }
+
+  /* ---------- About: scattered images bend in 3D with scroll speed, then settle flat ---------- */
+  var scatter = Array.prototype.slice.call(document.querySelectorAll('.scatter__img'));
+  if (scatter.length && !reduce) {
+    var sLastY = scrollY, sSmooth = 0, sRaf = null;
+    function bendScatter() {
+      var y = scrollY, vel = y - sLastY; sLastY = y;
+      sSmooth += (vel - sSmooth) * 0.12;
+      var k = Math.max(-1, Math.min(1, sSmooth / 34));
+      var vh = innerHeight, vw = innerWidth;
+      for (var i = 0; i < scatter.length; i++) {
+        var el = scatter[i], r = el.getBoundingClientRect();
+        if (r.bottom < -150 || r.top > vh + 150) continue;
+        var d = ((r.top + r.height / 2) - vh / 2) / (vh / 2);
+        var hx = ((r.left + r.width / 2) - vw / 2) / (vw / 2);
+        el.style.transform = 'perspective(900px) rotateX(' + (-k * 34 * d).toFixed(2) + 'deg) skewY(' + (k * 14 * hx).toFixed(2) + 'deg) rotate(' + (k * 4 * hx).toFixed(2) + 'deg)';
+      }
+      if (Math.abs(sSmooth) < 0.04 && Math.abs(vel) < 0.04) {
+        scatter.forEach(function (el) { el.style.transform = ''; });
+        sRaf = null; return;
+      }
+      sRaf = requestAnimationFrame(bendScatter);
+    }
+    window.addEventListener('scroll', function () { if (!sRaf) sRaf = requestAnimationFrame(bendScatter); }, { passive: true });
   }
 
   /* ---------- Home gallery ---------- */
