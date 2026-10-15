@@ -228,11 +228,11 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
    A pinned window; the field of images flows past with inertia and loops.
    Images bend with scroll speed, as if printed on a curved sheet. */
 .scatter { position: relative; height: 420vh; margin-inline: calc(-1 * var(--pad)); margin-bottom: clamp(60px, 9vw, 140px); }
-.scatter__pin { position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden; perspective: 1100px; }
+.scatter__pin { position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden; }
 .scatter__field { position: absolute; left: 0; right: 0; top: 0; will-change: transform; }
 .scatter__set { position: relative; height: 190vh; }
 .scatter__name { position: absolute; left: 0; right: 0; top: 50vh; margin: 0; transform: translateY(-50%); text-align: center; font-size: clamp(16px, 1.5vw, 22px); font-weight: 500; letter-spacing: 0; z-index: 2; pointer-events: none; }
-.scatter__img { position: absolute; width: var(--w, 10vw); margin: 0; transform-style: preserve-3d; will-change: transform; backface-visibility: hidden; }
+.scatter__img { position: absolute; width: var(--w, 10vw); margin: 0; will-change: transform; backface-visibility: hidden; transform-origin: 50% 50%; }
 .scatter__img img { width: 100%; aspect-ratio: 4 / 5.2; object-fit: cover; display: block; background: var(--tile); }
 @media (max-width: 760px) {
   .scatter { height: 320vh; }

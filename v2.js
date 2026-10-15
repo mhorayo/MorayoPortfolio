@@ -73,14 +73,19 @@
       var y = -(cur % setH);
       field.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0)';
       if (!reduce) {
-        var k = Math.max(-1, Math.min(1, vel / 26));
+        var k = Math.max(-1, Math.min(1, vel / 22));
         var vh = innerHeight, vw = innerWidth;
         for (var i = 0; i < figs.length; i++) {
           var el = figs[i], r = el.getBoundingClientRect();
           if (r.bottom < -200 || r.top > vh + 200) continue;
           var d = ((r.top + r.height / 2) - vh / 2) / (vh / 2);   // -1 top … 1 bottom
           var hx = ((r.left + r.width / 2) - vw / 2) / (vw / 2);  // -1 left … 1 right
-          el.style.transform = 'rotateX(' + (k * 38 * d).toFixed(2) + 'deg) rotateY(' + (-k * 14 * hx).toFixed(2) + 'deg) skewX(' + (-k * 10 * hx * Math.sign(d || 1)).toFixed(2) + 'deg) rotate(' + (k * 6 * hx).toFixed(2) + 'deg)';
+          // Twist like a lens: shear grows towards the corners (vertical position x side),
+          // images tilt away and squash near the top and bottom, the centre stays calm.
+          var sk = -k * 42 * d * hx;
+          var rx = k * 36 * d;
+          var sy = 1 - Math.abs(k) * 0.38 * d * d;
+          el.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) skewX(' + sk.toFixed(2) + 'deg) scaleY(' + sy.toFixed(3) + ')';
         }
       }
       if (Math.abs(t - cur) < 0.3 && Math.abs(vel) < 0.03) {
