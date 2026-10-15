@@ -53,29 +53,47 @@
     }, { passive: true });
   }
 
-  /* ---------- About: scattered images bend in 3D with scroll speed, then settle flat ---------- */
-  var scatter = Array.prototype.slice.call(document.querySelectorAll('.scatter__img'));
-  if (scatter.length && !reduce) {
-    var sLastY = scrollY, sSmooth = 0, sRaf = null;
-    function bendScatter() {
-      var y = scrollY, vel = y - sLastY; sLastY = y;
-      sSmooth += (vel - sSmooth) * 0.12;
-      var k = Math.max(-1, Math.min(1, sSmooth / 34));
-      var vh = innerHeight, vw = innerWidth;
-      for (var i = 0; i < scatter.length; i++) {
-        var el = scatter[i], r = el.getBoundingClientRect();
-        if (r.bottom < -150 || r.top > vh + 150) continue;
-        var d = ((r.top + r.height / 2) - vh / 2) / (vh / 2);
-        var hx = ((r.left + r.width / 2) - vw / 2) / (vw / 2);
-        el.style.transform = 'perspective(900px) rotateX(' + (-k * 34 * d).toFixed(2) + 'deg) skewY(' + (k * 14 * hx).toFixed(2) + 'deg) rotate(' + (k * 4 * hx).toFixed(2) + 'deg)';
-      }
-      if (Math.abs(sSmooth) < 0.04 && Math.abs(vel) < 0.04) {
-        scatter.forEach(function (el) { el.style.transform = ''; });
-        sRaf = null; return;
-      }
-      sRaf = requestAnimationFrame(bendScatter);
+  /* ---------- About: scattered images flow past with inertia, loop, and bend with speed ---------- */
+  var sc = document.getElementById('scatter');
+  if (sc) {
+    var field = document.getElementById('scatterField');
+    var figs = Array.prototype.slice.call(sc.querySelectorAll('.scatter__img'));
+    var setH = field.firstElementChild.offsetHeight;
+    var cur = 0, prev = 0, vel = 0, scRaf = null;
+    function targetOffset() {
+      var r = sc.getBoundingClientRect(), span = sc.offsetHeight - innerHeight;
+      var p = Math.max(0, Math.min(1, -r.top / span));
+      return p * setH * 1.6;
     }
-    window.addEventListener('scroll', function () { if (!sRaf) sRaf = requestAnimationFrame(bendScatter); }, { passive: true });
+    function frame() {
+      setH = field.firstElementChild.offsetHeight;
+      var t = targetOffset();
+      cur += (t - cur) * (reduce ? 1 : 0.075);
+      vel += ((cur - prev) - vel) * 0.25; prev = cur;
+      var y = -(cur % setH);
+      field.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0)';
+      if (!reduce) {
+        var k = Math.max(-1, Math.min(1, vel / 26));
+        var vh = innerHeight, vw = innerWidth;
+        for (var i = 0; i < figs.length; i++) {
+          var el = figs[i], r = el.getBoundingClientRect();
+          if (r.bottom < -200 || r.top > vh + 200) continue;
+          var d = ((r.top + r.height / 2) - vh / 2) / (vh / 2);   // -1 top … 1 bottom
+          var hx = ((r.left + r.width / 2) - vw / 2) / (vw / 2);  // -1 left … 1 right
+          el.style.transform = 'rotateX(' + (k * 38 * d).toFixed(2) + 'deg) rotateY(' + (-k * 14 * hx).toFixed(2) + 'deg) skewX(' + (-k * 10 * hx * Math.sign(d || 1)).toFixed(2) + 'deg) rotate(' + (k * 6 * hx).toFixed(2) + 'deg)';
+        }
+      }
+      if (Math.abs(t - cur) < 0.3 && Math.abs(vel) < 0.03) {
+        cur = t; field.style.transform = 'translate3d(0,' + (-(cur % setH)).toFixed(2) + 'px,0)';
+        figs.forEach(function (el) { el.style.transform = ''; });
+        scRaf = null; return;
+      }
+      scRaf = requestAnimationFrame(frame);
+    }
+    function kick() { if (!scRaf) scRaf = requestAnimationFrame(frame); }
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', kick);
+    kick();
   }
 
   /* ---------- Home gallery ---------- */

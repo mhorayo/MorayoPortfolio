@@ -9,12 +9,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="v2.css" />
+<link rel="stylesheet" href="v2.css?v=1792083626" />
 </head>
 <body>
 <header class="bar">
   <div class="bar__col up"><a href="index-v2.html">Morayo<br>Akinkunmi</a></div>
-  <div class="bar__col bar__col--sign"><a href="index-v2.html" aria-label="Home"><span class="sign">Morayo</span></a></div>
+  <div class="bar__col bar__col--sign"><a href="index-v2.html" aria-label="Home"><img class="sign" src="signature.png" alt="Morayo Akinkunmi signature" /></a></div>
   <div class="bar__col">
     <button type="button" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
     <a class="up" href="contact-v2.html">Contact</a>
@@ -29,7 +29,7 @@
       <h1 class="hero__title">about</h1>
       <div class="meta"><span>Morayo Akinkunmi<br>Senior Product Designer</span><span>5 years<br>Fintech · AI · SaaS</span></div>
     </div>
-    <span class="about-hero__sign" aria-hidden="true">Morayo</span>
+    <img class="about-hero__sign" src="signature.png" alt="" aria-hidden="true" />
   </section>
   <section class="intro reveal">
     <p>I make complex products simple enough to trust. For five years I've designed products where one confusing screen costs a customer: cross-border payments, digital banking, document automation and AI assistants.</p>
@@ -52,24 +52,47 @@
     <div><h3>Research and data</h3><ul><li>Monthly UX audits</li><li>Microsoft Clarity</li><li>UXCam and PostHog</li><li>Funnel analysis</li></ul></div>
     <div><h3>Systems and AI</h3><ul><li>Design systems from scratch</li><li>Tokens and documentation</li><li>AI product design</li><li>WCAG AA accessibility</li></ul></div>
   </section>
-  <section class="scatter" aria-label="A glimpse of the work">
-    <p class="scatter__name">Morayo Akinkunmi</p>
-    <figure class="scatter__img" style="left:12%;top:1%;--w:7.6vw"><img src="work-hero.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:44%;top:0%;--w:7vw"><img src="ren-phone-rattan.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:64%;top:6%;--w:7.2vw"><img src="dox-laptop-couch.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:84%;top:8%;--w:6.8vw"><img src="h2p-phone-plate.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:2%;top:17%;--w:7.2vw"><img src="wosi-phone-couch.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:30%;top:28%;--w:7vw"><img src="community.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:8%;top:40%;--w:6.8vw"><img src="kunchi-phone-rug.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:66%;top:36%;--w:7.4vw"><img src="tax-laptop-bench.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:86%;top:37%;--w:6.6vw"><img src="ren-ai-ready.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:40%;top:50%;--w:7.6vw"><img src="contact-desk.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:3%;top:62%;--w:6.6vw"><img src="bmp-home-new.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:88%;top:58%;--w:7vw"><img src="stack-laptop-table.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:58%;top:66%;--w:7.2vw"><img src="wosi-lifestyle.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:20%;top:78%;--w:6.8vw"><img src="ren-live-watching.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:72%;top:84%;--w:7.4vw"><img src="contact-workspace.jpg" alt="" loading="lazy" /></figure>
-    <figure class="scatter__img" style="left:46%;top:90%;--w:6.6vw"><img src="kun-home.jpg" alt="" loading="lazy" /></figure>
+  <section class="scatter" id="scatter" aria-label="A glimpse of the work">
+    <div class="scatter__pin">
+      <div class="scatter__field" id="scatterField">
+        <div class="scatter__set"><p class="scatter__name">Morayo Akinkunmi</p>
+    <figure class="scatter__img" style="left:12%;top:1%;--w:11.0vw"><img src="work-hero.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:44%;top:0%;--w:10.2vw"><img src="ren-phone-rattan.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:64%;top:6%;--w:10.4vw"><img src="dox-laptop-couch.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:84%;top:8%;--w:9.9vw"><img src="h2p-phone-plate.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:2%;top:17%;--w:10.4vw"><img src="wosi-phone-couch.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:30%;top:28%;--w:10.2vw"><img src="community.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:8%;top:40%;--w:9.9vw"><img src="kunchi-phone-rug.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:66%;top:36%;--w:10.7vw"><img src="tax-laptop-bench.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:86%;top:37%;--w:9.6vw"><img src="ren-ai-ready.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:40%;top:50%;--w:11.0vw"><img src="contact-desk.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:3%;top:62%;--w:9.6vw"><img src="bmp-home-new.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:88%;top:58%;--w:10.2vw"><img src="stack-laptop-table.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:58%;top:66%;--w:10.4vw"><img src="wosi-lifestyle.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:20%;top:78%;--w:9.9vw"><img src="ren-live-watching.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:72%;top:84%;--w:10.7vw"><img src="contact-workspace.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:46%;top:90%;--w:9.6vw"><img src="kun-home.jpg" alt="" /></figure>
+        </div>
+        <div class="scatter__set" aria-hidden="true"><p class="scatter__name">Morayo Akinkunmi</p>
+    <figure class="scatter__img" style="left:12%;top:1%;--w:11.0vw"><img src="work-hero.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:44%;top:0%;--w:10.2vw"><img src="ren-phone-rattan.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:64%;top:6%;--w:10.4vw"><img src="dox-laptop-couch.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:84%;top:8%;--w:9.9vw"><img src="h2p-phone-plate.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:2%;top:17%;--w:10.4vw"><img src="wosi-phone-couch.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:30%;top:28%;--w:10.2vw"><img src="community.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:8%;top:40%;--w:9.9vw"><img src="kunchi-phone-rug.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:66%;top:36%;--w:10.7vw"><img src="tax-laptop-bench.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:86%;top:37%;--w:9.6vw"><img src="ren-ai-ready.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:40%;top:50%;--w:11.0vw"><img src="contact-desk.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:3%;top:62%;--w:9.6vw"><img src="bmp-home-new.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:88%;top:58%;--w:10.2vw"><img src="stack-laptop-table.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:58%;top:66%;--w:10.4vw"><img src="wosi-lifestyle.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:20%;top:78%;--w:9.9vw"><img src="ren-live-watching.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:72%;top:84%;--w:10.7vw"><img src="contact-workspace.jpg" alt="" /></figure>
+    <figure class="scatter__img" style="left:46%;top:90%;--w:9.6vw"><img src="kun-home.jpg" alt="" /></figure>
+        </div>
+      </div>
+    </div>
   </section>
   <section class="quote reveal">
     <span class="outcome__label">Community</span>
@@ -89,6 +112,6 @@
   <a class="card" href="about.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">about</span><span class="card__text">Senior Product Designer with 5 years across fintech, AI &amp; SaaS. Founder of The Design Geeks Community.</span></a>
   <a class="card" href="contact-v2.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">contact</span><span class="card__text">Senior Product Designer · Fintech, AI &amp; SaaS. Open to relocation and available for remote. teeakinkunmi@gmail.com</span></a>
 </nav>
-<script src="v2.js"></script>
+<script src="v2.js?v=1792083626"></script>
 </body>
 </html>

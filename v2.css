@@ -36,7 +36,7 @@ img, video { display: block; max-width: 100%; }
 .bar__col { display: grid; gap: 1px; justify-items: start; }
 .bar button { background: none; border: 0; padding: 0; font: inherit; color: inherit; letter-spacing: inherit; cursor: pointer; text-transform: uppercase; }
 .bar a:hover, .bar button:hover { opacity: 0.55; }
-.sign { font-family: var(--sign); font-size: 40px; line-height: 0.8; letter-spacing: 0; text-transform: none; margin-top: -6px; display: inline-block; white-space: nowrap; }
+.sign { display: block; height: 44px; width: auto; margin-top: -10px; }
 .js .sign { clip-path: inset(0 100% 0 0); animation: sign-draw 1.6s var(--ease) 0.2s forwards; }
 @keyframes sign-draw { to { clip-path: inset(0 0 0 0); } }
 .time__sep { animation: blink 1s steps(1) infinite; }
@@ -170,7 +170,7 @@ img, video { display: block; max-width: 100%; }
 .about-hero__photo { grid-column: 2; align-self: end; justify-self: end; width: min(30vw, 480px); aspect-ratio: 4 / 5; margin-bottom: var(--pad); overflow: hidden; background: var(--tile); }
 .about-hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 .js .about-hero__photo { animation: hero-in 1.2s var(--ease) both; }
-.about-hero__sign { position: absolute; right: calc(min(30vw, 480px) + var(--pad) + 24px); bottom: calc(var(--pad) + 8px); font-family: var(--sign); font-size: clamp(48px, 5vw, 84px); line-height: 1; }
+.about-hero__sign { position: absolute; right: calc(min(30vw, 480px) + var(--pad) + 24px); bottom: calc(var(--pad) + 8px); height: clamp(80px, 9vw, 150px); width: auto; }
 .js .about-hero__sign { clip-path: inset(0 100% 0 0); animation: sign-draw 1.8s var(--ease) 0.6s forwards; }
 .list { padding-bottom: clamp(90px, 13vw, 190px); }
 .list__head { display: grid; grid-template-columns: 1fr 1fr; text-transform: uppercase; padding-bottom: 14px; }
@@ -224,14 +224,19 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
   .caps__label { grid-column: 1 / -1; }
 }
 
-/* ---------- Scattered images (About) ---------- */
-.scatter { position: relative; height: 230vh; margin-inline: calc(-1 * var(--pad)); margin-bottom: clamp(90px, 13vw, 190px); }
-.scatter__name { position: sticky; top: 50%; z-index: 2; text-align: center; font-size: clamp(16px, 1.5vw, 22px); font-weight: 500; letter-spacing: 0; pointer-events: none; transform: translateY(-50%); }
-.scatter__img { position: absolute; width: var(--w, 7.4vw); margin: 0; will-change: transform; backface-visibility: hidden; }
+/* ---------- Scattered images (About) ----------
+   A pinned window; the field of images flows past with inertia and loops.
+   Images bend with scroll speed, as if printed on a curved sheet. */
+.scatter { position: relative; height: 420vh; margin-inline: calc(-1 * var(--pad)); margin-bottom: clamp(60px, 9vw, 140px); }
+.scatter__pin { position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden; perspective: 1100px; }
+.scatter__field { position: absolute; left: 0; right: 0; top: 0; will-change: transform; }
+.scatter__set { position: relative; height: 190vh; }
+.scatter__name { position: absolute; left: 0; right: 0; top: 50vh; margin: 0; transform: translateY(-50%); text-align: center; font-size: clamp(16px, 1.5vw, 22px); font-weight: 500; letter-spacing: 0; z-index: 2; pointer-events: none; }
+.scatter__img { position: absolute; width: var(--w, 10vw); margin: 0; transform-style: preserve-3d; will-change: transform; backface-visibility: hidden; }
 .scatter__img img { width: 100%; aspect-ratio: 4 / 5.2; object-fit: cover; display: block; background: var(--tile); }
 @media (max-width: 760px) {
-  .scatter { height: 180vh; }
-  .scatter__img { width: calc(var(--w, 7.4vw) * 2.6); }
+  .scatter { height: 320vh; }
+  .scatter__img { width: calc(var(--w, 10vw) * 2.2); }
 }
 
 @media (max-width: 760px) {
