@@ -124,31 +124,50 @@ img, video { display: block; max-width: 100%; }
 .sec__label { display: flex; gap: 28px; text-transform: uppercase; }
 .sec__note { color: var(--ink-soft); max-width: 44ch; font-size: 13px; line-height: 1.4; margin: 6px 0 0; text-transform: none; }
 .shots { display: flex; gap: 8px; align-items: flex-start; }
-.shots img { background: var(--tile); will-change: transform; transform-origin: center; backface-visibility: hidden; }
+.shots > img { background: var(--tile); }
 /* Placement, borrowed from editorial case layouts: offset, never centred */
 .pos-a .sec__group { margin-left: 0; }
 .pos-b .sec__group { margin-left: 38%; }
 .pos-c .sec__group { margin-left: 16%; }
 .pos-d .sec__group { margin-left: 56%; }
-/* Phone screens: small, grouped */
-.shots--phones { gap: clamp(8px, 1.4vw, 22px); }
-.shots--phones img { width: clamp(120px, 11.5vw, 210px); height: auto; border-radius: 16px; box-shadow: 0 0 0 1px rgba(17,17,17,0.06), 0 24px 50px -30px rgba(17,17,17,0.35); }
-/* One wide image */
-.shots--wide img { width: min(58vw, 980px); }
-.pos-d .shots--wide img { width: min(42vw, 720px); }
-/* Two images, staggered */
+/* ---------- Device mockups ---------- */
+.dev { display: block; position: relative; flex-shrink: 0; }
+.dev__screen, .dev__lid { display: block; }
+.dev__screen { position: relative; overflow: hidden; background: #000; }
+.dev__screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; background: var(--tile); }
+/* iPhone 16: rounded titanium frame, Dynamic Island */
+.dev--iphone { padding: 0; background: #1A1A1A; border-radius: 15% / 7%; box-shadow: 0 0 0 1.5px #333, inset 0 0 0 1px rgba(255,255,255,0.06), 0 34px 60px -34px rgba(17,17,17,0.45); }
+.dev--iphone .dev__screen { margin: 4.2%; aspect-ratio: 9 / 19.5; border-radius: 11.5% / 5.3%; }
+.dev--iphone::before { content: ''; position: absolute; z-index: 2; top: 3.9%; left: 50%; width: 30%; height: 2.6%; transform: translateX(-50%); border-radius: 999px; background: #000; }
+/* Compact Android: slim even bezel, punch-hole camera */
+.dev--android { padding: 0; background: #141414; border-radius: 10% / 4.6%; box-shadow: 0 0 0 1px #2a2a2a, 0 34px 60px -34px rgba(17,17,17,0.45); }
+.dev--android .dev__screen { margin: 2.8%; aspect-ratio: 9 / 20; border-radius: 8% / 3.6%; }
+.dev--android::before { content: ''; position: absolute; z-index: 2; top: 3.1%; left: 50%; width: 3.6%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: #050505; box-shadow: 0 0 0 1.5px #1d1d1d; }
+/* Laptop: thin black lid, aluminium base with a notch */
+.dev--laptop { padding-bottom: 3.4%; }
+.dev--laptop .dev__lid { background: #0E0E0E; border-radius: 2.2% / 3.4%; padding: 2% 2% 2.6%; box-shadow: 0 0 0 1px #2a2a2a; }
+.dev--laptop .dev__screen { aspect-ratio: 16 / 10; border-radius: 0.6%; }
+.dev--laptop::after { content: ''; position: absolute; left: -6%; right: -6%; bottom: 0; height: 3.4%; border-radius: 0 0 14px 14px / 0 0 100% 100%; background: linear-gradient(#E3E3E3, #B9B9B9 60%, #9E9E9E); box-shadow: 0 30px 50px -30px rgba(17,17,17,0.45); }
+.dev--laptop::before { content: ''; position: absolute; z-index: 2; left: 50%; bottom: 1.4%; width: 14%; height: 1.4%; transform: translateX(-50%); border-radius: 0 0 8px 8px; background: #A4A4A4; }
+
+/* Phone mockups, small and grouped */
+.shots--phones { gap: clamp(10px, 1.6vw, 26px); }
+.shots--phones > .dev, .shots--phones > img { width: clamp(130px, 12vw, 220px); }
+/* One wide image or laptop */
+.shots--wide > * { width: min(58vw, 980px); }
+.pos-d .shots--wide > * { width: min(42vw, 720px); }
+/* Two items, staggered */
 .shots--pair { display: grid; grid-template-columns: 30vw 38vw; justify-content: space-between; align-items: start; width: calc(100vw - 2 * var(--pad)); }
-.shots--pair img { width: 100%; }
-.shots--pair img:nth-child(2) { margin-top: 22vh; }
-.pos-b .shots--pair, .pos-c .shots--pair, .pos-d .shots--pair { margin-left: 0; }
+.shots--pair > * { width: 100%; }
+.shots--pair > :nth-child(2) { margin-top: 22vh; }
 /* Two tall boards, staggered */
 .shots--tall { gap: 6vw; }
-.shots--tall img { width: clamp(150px, 17vw, 300px); }
-.shots--tall img:nth-child(2) { margin-top: 14vh; }
+.shots--tall > * { width: clamp(150px, 17vw, 300px); }
+.shots--tall > :nth-child(2) { margin-top: 14vh; }
 /* A long page as a window */
 .shots--page img { width: min(30vw, 520px); height: 78vh; object-fit: cover; object-position: top; }
-/* Single image to one side */
-.shots--left img, .shots--right img { width: min(34vw, 600px); }
+/* Single item to one side */
+.shots--left > *, .shots--right > * { width: min(36vw, 620px); }
 .outcome { display: grid; grid-template-columns: 1fr 1fr; padding-bottom: clamp(90px, 13vw, 190px); }
 .outcome__label { text-transform: uppercase; }
 .outcome__body { grid-column: 2; }
@@ -251,13 +270,13 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
   .intro p, .outcome__body { grid-column: 1; }
   .pos-a .sec__group, .pos-b .sec__group, .pos-c .sec__group, .pos-d .sec__group { margin-left: 0; }
   .shots--phones { flex-wrap: wrap; }
-  .shots--phones img { width: calc(33.3% - 6px); border-radius: 10px; }
-  .shots--wide img, .pos-d .shots--wide img { width: 100%; }
+  .shots--phones > * { width: calc(33.3% - 8px); }
+  .shots--wide > *, .pos-d .shots--wide > * { width: 100%; }
   .shots--pair { grid-template-columns: 1fr 1fr; width: 100%; }
-  .shots--pair img:nth-child(2) { margin-top: 10vh; }
-  .shots--left img, .shots--right img, .shots--page img { width: 70%; }
+  .shots--pair > :nth-child(2) { margin-top: 10vh; }
+  .shots--left > *, .shots--right > *, .shots--page img { width: 80%; }
   .shots--page img { height: 60vh; }
-  .shots--tall img { width: calc(45% - 6px); }
+  .shots--tall > * { width: calc(45% - 6px); }
   .next { min-height: 0; }
 }
 @media (prefers-reduced-motion: reduce) {

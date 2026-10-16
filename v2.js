@@ -106,9 +106,7 @@
       function proj(x, y) {
         var dx = x - cx, dy = y - cy, r = Math.sqrt(dx * dx + dy * dy);
         if (r < 0.001 || s < 0.002) return [x, y];
-        var k2;
-        if (sv > 0) { var a = Math.min(r / R, Math.PI / 2); k2 = (R * Math.sin(a)) / r; }   // down: bulges out like a globe
-        else { var rr = r / half; k2 = 1 + 0.45 * s * rr * rr; }                              // up: curves in like a bowl
+        var a = Math.min(r / R, Math.PI / 2), k2 = (R * Math.sin(a)) / r;   // globe, in either scroll direction
         return [cx + dx * k2, cy + dy * k2];
       }
       for (var i = 0; i < figs.length; i++) {
