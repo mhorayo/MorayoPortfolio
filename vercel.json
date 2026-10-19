@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/work.html", "destination": "/", "permanent": true },
+    { "source": "/index-v2.html", "destination": "/", "permanent": true },
+    { "source": "/contact-v2.html", "destination": "/contact.html", "permanent": true }
+  ]
+}

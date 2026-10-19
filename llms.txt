@@ -14,7 +14,7 @@
 - [Doxflowy](https://morayo-portfolio.vercel.app/case-doxflowy.html): Document automation and e-signature SaaS. Clarity-led redesign: rage taps down 31%, sign-ups up 42% after email-gated template downloads and new messaging, session duration up 27%.
 - [Renncora](https://morayo-portfolio.vercel.app/case-renncora.html): Live streaming and creator platform where she is Lead Product Designer. Includes Renncora AI, a voice-first assistant in Nigerian Pidgin and English designed around trust, and a design system built from scratch.
 - [Help2Pay](https://morayo-portfolio.vercel.app/case-help2pay.html): Multi-currency, crypto-to-fiat payments across iOS, Android and web. Send-flow drop-off reduced by 40%.
-- [All work](https://morayo-portfolio.vercel.app/work.html): Also includes Wosi Wosi (remittance), Kunchi MFB (microfinance banking), Tax Clarity and Stack Layer.
+- [About](https://morayo-portfolio.vercel.app/about.html): Also includes Wosi Wosi (remittance), Kunchi MFB (microfinance banking), Tax Clarity and Stack Layer.
 
 ## Leadership
 - Founder of The Design Geeks Community (since July 2026): design critiques, sessions and mentoring for product designers
