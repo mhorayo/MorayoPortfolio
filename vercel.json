@@ -1,6 +1,6 @@
 {
   "redirects": [
-    { "source": "/:path*", "has": [{ "type": "host", "value": "morayo-portfolio.vercel.app" }], "destination": "https://morayoakinkunmi.com/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "morayo-portfolio.vercel.app" }], "destination": "https://morayoakinkunmi.com/:path*", "statusCode": 301 },
     { "source": "/work.html", "destination": "/", "permanent": true },
     { "source": "/index-v2.html", "destination": "/", "permanent": true },
     { "source": "/contact-v2.html", "destination": "/contact.html", "permanent": true }
