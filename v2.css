@@ -272,12 +272,15 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
   .shots--phones { flex-wrap: wrap; }
   .shots--phones > * { width: calc(33.3% - 8px); }
   .shots--wide > *, .pos-d .shots--wide > * { width: 100%; }
+  .shots--wide > .dev--laptop, .pos-d .shots--wide > .dev--laptop { width: 88%; margin-inline: auto; }
   .shots--pair { grid-template-columns: 1fr 1fr; width: 100%; }
   .shots--pair > :nth-child(2) { margin-top: 10vh; }
   .shots--left > *, .shots--right > *, .shots--page img { width: 80%; }
   .shots--page img { height: 60vh; }
   .shots--tall > * { width: calc(45% - 6px); }
-  .next { min-height: 0; }
+  .next { min-height: 0; gap: 16px; }
+  .next__title { min-width: 0; font-size: clamp(32px, 10vw, 44px); }
+  .next__thumb { width: 96px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
