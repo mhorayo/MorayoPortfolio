@@ -322,3 +322,15 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
   .arc__grid { grid-template-columns: 1fr; }
   .arc__item:nth-child(even) { margin-top: 0; }
 }
+
+/* Arrow after big clickable text */
+.next__title::after {
+  content: ''; display: inline-block; width: 0.5em; height: 0.5em; margin-left: 0.18em; vertical-align: 0.06em;
+  background-color: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='square'%3E%3Cpath d='M5 19 L18 6'/%3E%3Cpath d='M8 5 H19 V16'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='square'%3E%3Cpath d='M5 19 L18 6'/%3E%3Cpath d='M8 5 H19 V16'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.5s var(--ease);
+}
+.next:hover .next__title::after { transform: translate(0.08em, -0.08em); }
+
+/* Navbar gets a solid background once the page scrolls */
+.bar { padding-bottom: 14px; transition: background-color 0.35s var(--ease), box-shadow 0.35s var(--ease); }
+.bar.is-scrolled { background-color: var(--paper); box-shadow: 0 1px 0 rgba(17,17,17,0.06); }

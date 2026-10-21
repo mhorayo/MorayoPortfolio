@@ -14,6 +14,13 @@
   }
   tick(); setInterval(tick, 15000);
 
+  /* ---------- Navbar background on scroll ---------- */
+  var bar = document.querySelector('.bar');
+  if (bar) {
+    var setBar = function () { bar.classList.toggle('is-scrolled', window.scrollY > 8); };
+    setBar(); window.addEventListener('scroll', setBar, { passive: true });
+  }
+
   /* ---------- Menu ---------- */
   var menu = document.getElementById('menu'), menuBtn = document.getElementById('menuBtn');
   function openMenu() { if (!menu) return; menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('is-open'); }); menuBtn.setAttribute('aria-expanded', 'true'); document.getElementById('menuClose').focus(); }
@@ -194,13 +201,13 @@
     }, reduce ? 300 : 2900);
   }
 
-  /* Cursor: Drag / View */
+  /* Cursor: Scroll / View */
   var cursor = document.getElementById('cursor');
   if (cursor && !reduce && window.matchMedia('(pointer: fine)').matches) {
     window.addEventListener('pointermove', function (e) {
       cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
       var t = e.target.closest ? e.target : null;
-      cursor.textContent = t && t.closest('.item__media') ? 'View' : 'Drag';
+      cursor.textContent = t && t.closest('.item__media') ? 'View' : 'Scroll';
       cursor.classList.toggle('is-on', !!(t && t.closest('.track')));
     }, { passive: true });
   }
