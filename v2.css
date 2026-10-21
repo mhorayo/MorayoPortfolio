@@ -332,5 +332,5 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
 .next:hover .next__title::after { transform: translate(0.08em, -0.08em); }
 
 /* Navbar gets a solid background once the page scrolls */
-.bar { padding-bottom: 14px; transition: background-color 0.35s var(--ease), box-shadow 0.35s var(--ease); }
-.bar.is-scrolled { background-color: var(--paper); box-shadow: 0 1px 0 rgba(17,17,17,0.06); }
+.bar { padding-bottom: 14px; transition: background-color 0.35s var(--ease); }
+.bar.is-scrolled { background-color: var(--paper); }
