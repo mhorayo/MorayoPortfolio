@@ -10,11 +10,11 @@
 - Data-informed design: funnel analysis, session recordings, heatmaps and monthly UX audits presented to founders
 
 ## Selected case studies
-- [BroadMoney](https://morayo-portfolio.vercel.app/case-broadmoney.html): Cross-border payments app (UK–Nigeria). Progressive KYC and a redesigned onboarding and send flow cut first-transfer drop-off from 55% to 22%, and new users made 2.3x as many transactions in their first month.
-- [Doxflowy](https://morayo-portfolio.vercel.app/case-doxflowy.html): Document automation and e-signature SaaS. Clarity-led redesign: rage taps down 31%, sign-ups up 42% after email-gated template downloads and new messaging, session duration up 27%.
-- [Renncora](https://morayo-portfolio.vercel.app/case-renncora.html): Live streaming and creator platform where she is Lead Product Designer. Includes Renncora AI, a voice-first assistant in Nigerian Pidgin and English designed around trust, and a design system built from scratch.
-- [Help2Pay](https://morayo-portfolio.vercel.app/case-help2pay.html): Multi-currency, crypto-to-fiat payments across iOS, Android and web. Send-flow drop-off reduced by 40%.
-- [About](https://morayo-portfolio.vercel.app/about.html): Also includes Wosi Wosi (remittance), Kunchi MFB (microfinance banking), Tax Clarity and Stack Layer.
+- [BroadMoney](https://morayoakinkunmi.com/case-broadmoney.html): Cross-border payments app (UK–Nigeria). Progressive KYC and a redesigned onboarding and send flow cut first-transfer drop-off from 55% to 22%, and new users made 2.3x as many transactions in their first month.
+- [Doxflowy](https://morayoakinkunmi.com/case-doxflowy.html): Document automation and e-signature SaaS. Clarity-led redesign: rage taps down 31%, sign-ups up 42% after email-gated template downloads and new messaging, session duration up 27%.
+- [Renncora](https://morayoakinkunmi.com/case-renncora.html): Live streaming and creator platform where she is Lead Product Designer. Includes Renncora AI, a voice-first assistant in Nigerian Pidgin and English designed around trust, and a design system built from scratch.
+- [Help2Pay](https://morayoakinkunmi.com/case-help2pay.html): Multi-currency, crypto-to-fiat payments across iOS, Android and web. Send-flow drop-off reduced by 40%.
+- [About](https://morayoakinkunmi.com/about.html): Also includes Wosi Wosi (remittance), Kunchi MFB (microfinance banking), Tax Clarity and Stack Layer.
 
 ## Leadership
 - Founder of The Design Geeks Community (since July 2026): design critiques, sessions and mentoring for product designers
@@ -22,8 +22,8 @@
 - Pushed back on founders with evidence, for example arguing for a full-width wallet balance card at BroadMoney, which shipped
 
 ## Contact
-- Portfolio: https://morayo-portfolio.vercel.app/
-- Contact page: https://morayo-portfolio.vercel.app/contact.html
+- Portfolio: https://morayoakinkunmi.com/
+- Contact page: https://morayoakinkunmi.com/contact.html
 - Email: teeakinkunmi@gmail.com
 - LinkedIn: https://www.linkedin.com/in/morayo-akinkunmi/
 - Dribbble: https://dribbble.com/momo98765
