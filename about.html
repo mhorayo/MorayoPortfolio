@@ -8,16 +8,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="v2.css?v=1792583553" />
+<link rel="stylesheet" href="v2.css?v=1792583728" />
 </head>
 <body>
 <header class="bar">
   <div class="bar__col up"><a href="index.html">Morayo<br>Akinkunmi</a></div>
   <div class="bar__col bar__col--sign"><a href="index.html" aria-label="Home"><img class="sign" src="signature.png" alt="Morayo Akinkunmi signature" /></a></div>
-  <div class="bar__col">
-    <button type="button" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
-    <a class="up" href="contact.html">Contact</a>
-  </div>
+  <nav class="bar__col bar__nav" aria-label="Main">
+    <a class="bar__link up" href="index.html">Work</a>
+    <a class="bar__link up" href="archive.html">Archive</a>
+    <a class="bar__link up" aria-current="page" href="about.html">About</a>
+    <button type="button" class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <a class="bar__cta up" href="contact.html">Contact</a>
+  </nav>
   <div class="bar__col up bar__time"><span>Local time</span><span><span id="hh">00</span><span class="time__sep"> . </span><span id="mm">00</span></span></div>
   <button type="button" class="mark" id="markBtn" aria-label="Open menu"><span class="mark__dot" id="markDot"></span></button>
 </header>
@@ -108,9 +111,10 @@
 <nav class="menu" id="menu" aria-label="Pages" hidden>
   <button type="button" class="menu__close" id="menuClose">Close ✕</button>
   <a class="card" href="index.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">work</span><span class="card__strip"><img src="work-hero.jpg" alt="" /><img src="ren-phone-rattan.jpg" alt="" /><img src="dox-laptop-couch.jpg" alt="" /></span></a>
+  <a class="card" href="archive.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">archive</span><span class="card__strip"><img src="wosi-phone-couch.jpg" alt="" /><img src="kunchi-phone-rug.jpg" alt="" /><img src="tax-laptop-bench.jpg" alt="" /></span></a>
   <a class="card" href="about.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">about</span><span class="card__text">Senior Product Designer with 5 years across fintech, AI &amp; SaaS. Founder of The Design Geeks Community.</span></a>
   <a class="card" href="contact.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">contact</span><span class="card__text">Senior Product Designer · Fintech, AI &amp; SaaS. Open to relocation and available for remote. teeakinkunmi@gmail.com</span></a>
 </nav>
-<script src="v2.js?v=1792583553"></script>
+<script src="v2.js?v=1792583728"></script>
 </body>
 </html>
