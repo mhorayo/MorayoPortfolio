@@ -20,7 +20,7 @@
   function closeMenu() { menu.classList.remove('is-open'); menuBtn.setAttribute('aria-expanded', 'false'); setTimeout(function () { menu.hidden = true; }, 500); menuBtn.focus(); }
   if (menu) {
     menuBtn.addEventListener('click', openMenu);
-    document.getElementById('markBtn').addEventListener('click', openMenu);
+    var markBtn = document.getElementById('markBtn'); if (markBtn) markBtn.addEventListener('click', openMenu);
     document.getElementById('menuClose').addEventListener('click', closeMenu);
     menu.addEventListener('click', function (e) { if (e.target === menu && !menuDragged) closeMenu(); });
     // Scroll the cards sideways with the mouse wheel, trackpad or a drag
