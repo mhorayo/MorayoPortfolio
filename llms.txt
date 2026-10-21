@@ -14,6 +14,8 @@
 - [Doxflowy](https://morayoakinkunmi.com/case-doxflowy.html): Document automation and e-signature SaaS. Clarity-led redesign: rage taps down 31%, sign-ups up 42% after email-gated template downloads and new messaging, session duration up 27%.
 - [Renncora](https://morayoakinkunmi.com/case-renncora.html): Live streaming and creator platform where she is Lead Product Designer. Includes Renncora AI, a voice-first assistant in Nigerian Pidgin and English designed around trust, and a design system built from scratch.
 - [Help2Pay](https://morayoakinkunmi.com/case-help2pay.html): Multi-currency, crypto-to-fiat payments across iOS, Android and web. Send-flow drop-off reduced by 40%.
+- [WeCare](https://morayoakinkunmi.com/case-wecare.html): Her own product. A mobile app that helps Nigerian families find verified caregivers and nurses for loved ones recovering at home, follow each shift through a live care log, and release payment only after confirming the night. Working prototype, research-led.
+- [OwnIt](https://morayoakinkunmi.com/case-ownit.html): Her own product. A web app for African creatives: watermarked, expiring preview links, with the final files released only after the client pays through Paystack. Brand, design system and live prototype.
 - [About](https://morayoakinkunmi.com/about.html): Also includes Wosi Wosi (remittance), Kunchi MFB (microfinance banking), Tax Clarity and Stack Layer.
 
 ## Leadership
