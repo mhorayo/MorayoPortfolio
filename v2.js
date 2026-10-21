@@ -170,6 +170,30 @@
     if (e.key === 'ArrowLeft') go(target - track.clientWidth * 0.5);
   });
 
+  /* Hint: tells first-time visitors the row moves sideways, then fades on first interaction */
+  var hint = document.getElementById('hint');
+  if (hint) {
+    var hintText = hint.querySelector('.hint__text');
+    var placeHint = function () {
+      var bar = document.querySelector('.bar'), title = originals[0].querySelector('.item__title');
+      var top = bar ? bar.getBoundingClientRect().bottom : 0, bottom = title ? title.getBoundingClientRect().top : innerHeight / 2;
+      hint.style.top = Math.max(top + 8, (top + bottom) / 2 - hint.offsetHeight / 2) + 'px';
+    };
+    placeHint(); window.addEventListener('resize', placeHint);
+    if (hintText && !window.matchMedia('(pointer: fine)').matches) hintText.textContent = 'Swipe to explore';
+    var hideHint = function () {
+      hint.classList.remove('is-on');
+      ['wheel', 'pointerdown', 'touchstart'].forEach(function (ev) { track.removeEventListener(ev, hideHint); });
+      window.removeEventListener('keydown', hideHint);
+    };
+    ['wheel', 'pointerdown', 'touchstart'].forEach(function (ev) { track.addEventListener(ev, hideHint, { passive: true }); });
+    window.addEventListener('keydown', hideHint);
+    setTimeout(function () {
+      hint.classList.add('is-on');
+      if (!reduce) { var from = target; go(from + 90); setTimeout(function () { go(from); }, 650); }
+    }, reduce ? 300 : 2900);
+  }
+
   /* Cursor: Drag / View */
   var cursor = document.getElementById('cursor');
   if (cursor && !reduce && window.matchMedia('(pointer: fine)').matches) {

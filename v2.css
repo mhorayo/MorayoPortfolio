@@ -75,6 +75,16 @@ img, video { display: block; max-width: 100%; }
 }
 .cursor.is-on { transform: scale(1); }
 
+.hint {
+  position: fixed; z-index: 5; left: 0; right: 0; justify-content: center; top: 30vh; pointer-events: none;
+  display: flex; align-items: center; gap: 12px; text-transform: uppercase; color: var(--ink-soft);
+  opacity: 0; transform: translateY(6px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.hint.is-on { opacity: 1; transform: none; }
+.hint__arrow { display: inline-block; width: 36px; height: 1px; background: currentColor; position: relative; animation: hint-nudge 1.8s var(--ease) infinite; }
+.hint__arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-top: 1px solid currentColor; border-right: 1px solid currentColor; transform: rotate(45deg); }
+@keyframes hint-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(8px); } }
+
 /* ---------- Menu ---------- */
 .menu {
   position: fixed; inset: 0; z-index: 30; background: var(--menu);
