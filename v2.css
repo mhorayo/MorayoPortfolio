@@ -135,7 +135,7 @@ img, video { display: block; max-width: 100%; }
 .intro p + p { margin-top: 0.8em; }
 
 .sec { padding-bottom: clamp(90px, 14vw, 210px); }
-.sec__group { display: grid; gap: 10px; }
+.sec__group { display: grid; gap: clamp(18px, 1.8vw, 28px); }
 .sec__label { display: flex; gap: 28px; text-transform: uppercase; }
 .sec__note { color: var(--ink-soft); max-width: 44ch; font-size: 13px; line-height: 1.4; margin: 6px 0 0; text-transform: none; }
 .shots { display: flex; gap: 8px; align-items: flex-start; }
@@ -159,7 +159,13 @@ img, video { display: block; max-width: 100%; }
 .dev--android .dev__screen { margin: 2.8%; aspect-ratio: 9 / 20; border-radius: 8% / 3.6%; }
 .dev--android::before { content: ''; position: absolute; z-index: 2; top: 3.1%; left: 50%; width: 3.6%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: #050505; box-shadow: 0 0 0 1.5px #1d1d1d; }
 /* Laptop: thin black lid, aluminium base with a notch */
-.dev--laptop { padding-bottom: 3.4%; }
+/* web screens show flat, edge to edge, with no laptop frame (as on brandonyasin.com) */
+.dev--laptop { padding-bottom: 0; }
+.dev--laptop .dev__lid { background: none !important; border-radius: 0 !important; padding: 0 !important; box-shadow: none !important; }
+.dev--laptop .dev__screen { aspect-ratio: auto !important; border-radius: 0 !important; background: none; }
+.dev--laptop .dev__screen img { height: auto; object-fit: initial; }
+.dev--laptop::before, .dev--laptop::after { display: none !important; }
+.dev--laptop-legacy { padding-bottom: 3.4%; }
 .dev--laptop .dev__lid { background: #0E0E0E; border-radius: 2.2% / 3.4%; padding: 2% 2% 2.6%; box-shadow: 0 0 0 1px #2a2a2a; }
 .dev--laptop .dev__screen { aspect-ratio: 16 / 10; border-radius: 0.6%; }
 .dev--laptop::after { content: ''; position: absolute; left: -6%; right: -6%; bottom: 0; height: 3.4%; border-radius: 0 0 14px 14px / 0 0 100% 100%; background: linear-gradient(#E3E3E3, #B9B9B9 60%, #9E9E9E); box-shadow: 0 30px 50px -30px rgba(17,17,17,0.45); }
@@ -340,7 +346,7 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
 
 /* tablets in portrait: bigger tiles so the row fills the screen the same way */
 @media (min-width: 761px) and (max-width: 1180px) and (orientation: portrait) {
-  .item { width: 46vw; }
+  .item { width: 58vw; }
   .item__media { max-height: 62vh; }
   .hint { top: 22vh; }
 }
