@@ -279,7 +279,10 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
   .bar__time, .bar__col--sign { display: none; }
   .bar__link { display: none; }
   .bar__menu { display: inline; }
-  .item { width: 74vw; }
+  /* phones: the row fills the screen like on desktop instead of sitting small at the bottom */
+  .item { width: 80vw; }
+  .item__media { aspect-ratio: auto; height: min(64svh, 118vw); max-height: none; }
+  .hint { top: 22vh; }
   .cursor { display: none; }
   .hero { grid-template-columns: 1fr; grid-template-rows: auto 1fr; height: auto; min-height: 0; }
   .hero__img { grid-column: 1; grid-row: 1; max-width: 100%; height: 62vh; margin-top: 90px; }
@@ -334,3 +337,10 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
 /* Navbar gets a solid background once the page scrolls */
 .bar { padding-bottom: 14px; transition: background-color 0.35s var(--ease); }
 .bar.is-scrolled { background-color: var(--paper); }
+
+/* tablets in portrait: bigger tiles so the row fills the screen the same way */
+@media (min-width: 761px) and (max-width: 1180px) and (orientation: portrait) {
+  .item { width: 46vw; }
+  .item__media { max-height: 62vh; }
+  .hint { top: 22vh; }
+}
