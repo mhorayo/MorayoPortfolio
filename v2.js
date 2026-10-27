@@ -212,8 +212,10 @@
     }, { passive: true });
   }
 
-  /* Intro: images stack and shuffle in the centre, then open into the row */
-  if (!reduce) {
+  /* Intro: images stack and shuffle in the centre, then open into the row — first load of the visit only */
+  var shuffled = false;
+  try { shuffled = sessionStorage.getItem('momoShuffle') === '1'; sessionStorage.setItem('momoShuffle', '1'); } catch (e) {}
+  if (!reduce && !shuffled) {
     root.classList.add('is-intro');
     var visible = Array.prototype.filter.call(track.querySelectorAll('.item'), function (it) {
       var r = it.getBoundingClientRect(); return r.right > 0 && r.left < innerWidth;
