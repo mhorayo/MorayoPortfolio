@@ -151,59 +151,6 @@
     document.querySelectorAll('.arc__item').forEach(function (it) { arcIo.observe(it); });
   }
 
-  /* Scroll bend (opt-in with body.bend): the About page's curved-sheet feel on a case study's own images.
-     Scroll speed, smoothed with a little inertia, bends each visible image as if printed on a globe. */
-  if (document.body.classList.contains('bend') && !reduce) {
-    var bendEls = Array.prototype.slice.call(document.querySelectorAll('.case .shots > *, .case .hero__img'));
-    bendEls.forEach(function (el) { el.style.transformOrigin = '0 0'; el.style.willChange = 'transform'; });
-    var bPrev = scrollY, bVel = 0, bRaf = null;
-    var bSolve = function (A, b) {
-      var n = b.length;
-      for (var i = 0; i < n; i++) {
-        var p = i; for (var r = i + 1; r < n; r++) if (Math.abs(A[r][i]) > Math.abs(A[p][i])) p = r;
-        var t = A[i]; A[i] = A[p]; A[p] = t; var tb = b[i]; b[i] = b[p]; b[p] = tb;
-        for (var r2 = i + 1; r2 < n; r2++) { var f = A[r2][i] / A[i][i]; for (var c = i; c < n; c++) A[r2][c] -= f * A[i][c]; b[r2] -= f * b[i]; }
-      }
-      var x = new Array(n);
-      for (var i2 = n - 1; i2 >= 0; i2--) { var sum = b[i2]; for (var c2 = i2 + 1; c2 < n; c2++) sum -= A[i2][c2] * x[c2]; x[i2] = sum / A[i2][i2]; }
-      return x;
-    };
-    var bQuad = function (w, h, to) {
-      var from = [[0, 0], [w, 0], [w, h], [0, h]], A = [], b = [];
-      for (var i = 0; i < 4; i++) {
-        var X = from[i][0], Y = from[i][1], u = to[i][0], v = to[i][1];
-        A.push([X, Y, 1, 0, 0, 0, -X * u, -Y * u]); b.push(u);
-        A.push([0, 0, 0, X, Y, 1, -X * v, -Y * v]); b.push(v);
-      }
-      var k = bSolve(A, b);
-      return 'matrix3d(' + [k[0], k[3], 0, k[6], k[1], k[4], 0, k[7], 0, 0, 1, 0, k[2], k[5], 0, 1].map(function (n) { return n.toFixed(6); }).join(',') + ')';
-    };
-    var bFrame = function () {
-      var y = scrollY; bVel += ((y - bPrev) - bVel) * 0.12; bPrev = y;
-      var s = Math.min(1, Math.abs(bVel) / 40);
-      var vw = innerWidth, vh = innerHeight, cx = vw / 2, cy = vh / 2;
-      var R = (Math.max(vw, vh) * 0.75) / (0.0001 + s * 1.6);
-      var proj = function (x, yy) {
-        var dx = x - cx, dy = yy - cy, r = Math.sqrt(dx * dx + dy * dy);
-        if (r < 0.001 || s < 0.002) return [x, yy];
-        var a = Math.min(r / R, Math.PI / 2), k = (R * Math.sin(a)) / r;
-        return [cx + dx * k, cy + dy * k];
-      };
-      bendEls.forEach(function (el) {
-        el.style.transform = '';
-        if (s < 0.002) return;
-        var r = el.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > vh + 200) return;
-        var c = [proj(r.left, r.top), proj(r.right, r.top), proj(r.right, r.bottom), proj(r.left, r.bottom)]
-          .map(function (p) { return [p[0] - r.left, p[1] - r.top]; });
-        el.style.transform = bQuad(r.width, r.height, c);
-      });
-      if (Math.abs(bVel) < 0.05) { bVel = 0; bendEls.forEach(function (el) { el.style.transform = ''; }); bRaf = null; return; }
-      bRaf = requestAnimationFrame(bFrame);
-    };
-    window.addEventListener('scroll', function () { if (!bRaf) bRaf = requestAnimationFrame(bFrame); }, { passive: true });
-  }
-
   /* ---------- Home gallery ---------- */
   var track = document.getElementById('track');
   if (!track) return;
