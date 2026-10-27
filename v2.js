@@ -139,6 +139,18 @@
     kick();
   }
 
+  /* Archive: highlight the project in the index that is in view */
+  var arcLinks = document.querySelectorAll('.arc__index a');
+  if (arcLinks.length && 'IntersectionObserver' in window) {
+    var arcIo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        arcLinks.forEach(function (l) { l.classList.toggle('is-on', l.dataset.arc === e.target.id.replace('arc-', '')); });
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('.arc__item').forEach(function (it) { arcIo.observe(it); });
+  }
+
   /* ---------- Home gallery ---------- */
   var track = document.getElementById('track');
   if (!track) return;
