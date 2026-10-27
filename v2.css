@@ -373,3 +373,20 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
   .item__media { max-height: 62vh; }
   .hint { top: 22vh; }
 }
+
+/* ---------- Screen sizes, matched to brandonyasin.com ----------
+   Web screens: one large image across nearly the full page. Phone screens: about a quarter
+   of the page each, in a row from the left edge with wide gaps. */
+@media (min-width: 761px) {
+  .sec__group:has(.dev--laptop), .sec__group:has(.dev--iphone), .sec__group:has(.dev--android) { margin-left: 0 !important; }
+  .shots:has(.dev--laptop) { display: grid !important; grid-template-columns: 1fr !important; gap: clamp(16px, 1.6vw, 22px); width: 100% !important; }
+  .shots .dev--laptop { width: calc(100vw - 2 * var(--pad)) !important; max-width: 1640px; margin-top: 0 !important; }
+  .shots:has(.dev--iphone), .shots:has(.dev--android) { display: flex !important; flex-wrap: nowrap; gap: 8vw !important; width: calc(100vw - 2 * var(--pad)) !important; }
+  .shots .dev--iphone, .shots .dev--android { flex: 0 1 23vw; width: 23vw !important; min-width: 0; margin-top: 0 !important; }
+  .shots .dev--iphone .dev__screen, .shots .dev--android .dev__screen { aspect-ratio: 9 / 17.6 !important; }
+}
+@media (max-width: 760px) {
+  .shots:has(.dev--iphone), .shots:has(.dev--android) { display: grid !important; grid-template-columns: 1fr 1fr; gap: 14px !important; width: 100% !important; }
+  .shots .dev--iphone, .shots .dev--android { width: 100% !important; margin-top: 0 !important; }
+  .shots .dev--laptop { width: 100% !important; }
+}
