@@ -159,6 +159,10 @@ img, video { display: block; max-width: 100%; }
 .dev--android .dev__screen { margin: 2.8%; aspect-ratio: 9 / 20; border-radius: 8% / 3.6%; }
 .dev--android::before { content: ''; position: absolute; z-index: 2; top: 3.1%; left: 50%; width: 3.6%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: #050505; box-shadow: 0 0 0 1.5px #1d1d1d; }
 /* Laptop: thin black lid, aluminium base with a notch */
+/* phone screens show flat too: same tall phone shape, no bezel, notch, corners or shadow */
+.dev--iphone, .dev--android { background: none !important; border-radius: 0 !important; box-shadow: none !important; padding: 0 !important; }
+.dev--iphone::before, .dev--android::before { display: none !important; }
+.dev--iphone .dev__screen, .dev--android .dev__screen { margin: 0 !important; border-radius: 0 !important; aspect-ratio: 9 / 19.5 !important; background: var(--tile); }
 /* web screens show flat, edge to edge, with no laptop frame (as on brandonyasin.com) */
 .dev--laptop { padding-bottom: 0; }
 .dev--laptop .dev__lid { background: none !important; border-radius: 0 !important; padding: 0 !important; box-shadow: none !important; }
