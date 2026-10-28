@@ -6,14 +6,19 @@
 .intro__scene { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
 .intro__word { font-size: clamp(56px, 13vw, 220px); font-weight: 500; letter-spacing: -0.055em; line-height: 0.9; white-space: nowrap; }
 .intro__line { display: flex; align-items: center; justify-content: center; gap: 0; font-size: clamp(40px, 9vw, 160px); font-weight: 500; letter-spacing: -0.05em; line-height: 0.9; white-space: nowrap; }
-.intro__gap { position: relative; display: block; width: 0; height: 1.25em; margin: 0 0.06em; overflow: hidden; border-radius: 2px; transition: width 0.7s cubic-bezier(0.76, 0, 0.24, 1); }
-.intro__gap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.intro__full { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; }
-.intro__over { position: relative; color: #fff; text-shadow: 0 2px 30px rgba(0, 0, 0, 0.25); }
-.intro__skip { position: absolute; right: var(--pad); bottom: calc(var(--pad) + env(safe-area-inset-bottom, 0px)); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.55; mix-blend-mode: difference; color: #fff; }
-.intro__morph { display: flex; font-size: clamp(56px, 13vw, 220px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.85; }
+.intro__3d { perspective: 1000px; }
+.intro__line > span { display: block; transform-origin: center; }
+.intro__l { transform-origin: right center !important; }
+.intro__r { transform-origin: left center !important; }
+.intro__card { position: relative; display: block; width: 0; height: 0.95em; margin: 0 0.08em; overflow: hidden; border-radius: 999px; box-shadow: 0 30px 60px -30px rgba(17, 17, 17, 0.45); }
+.intro__card img, .intro__bleed { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.intro__take { position: fixed; object-fit: cover; z-index: 3; }
+.intro__bleed { position: absolute; inset: 0; transform-origin: center; }
+.intro__corner { position: absolute; left: var(--pad); right: var(--pad); bottom: calc(var(--pad) + 18px); overflow: hidden; }
+.intro__big { display: block; color: #fff; font-size: clamp(64px, 16vw, 280px); font-weight: 500; letter-spacing: -0.06em; line-height: 0.85; text-shadow: 0 2px 40px rgba(0, 0, 0, 0.25); }
+.intro__fly { position: absolute; left: 50%; top: 50%; width: clamp(110px, 15vw, 240px); aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; box-shadow: 0 30px 60px -30px rgba(17, 17, 17, 0.5); }
+.intro__skip { position: absolute; z-index: 5; right: var(--pad); bottom: calc(var(--pad) + env(safe-area-inset-bottom, 0px)); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.6; mix-blend-mode: difference; color: #fff; }
+.intro__morph { position: relative; z-index: 2; display: flex; font-size: clamp(56px, 13vw, 220px); font-weight: 600; letter-spacing: -0.04em; line-height: 0.85; }
 .intro__morph span { display: inline-block; transform-origin: 50% 70%; will-change: transform; }
-.intro__sign { width: min(46vw, 420px); opacity: 0; transform: scale(0.6); transition: opacity 0.4s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-.intro__sign.is-on { opacity: 1; transform: none; }
+.intro__sign { width: min(46vw, 420px); }
 @media (prefers-reduced-motion: reduce) { .intro { display: none; } }
-.intro.is-seek, .intro.is-seek * { transition: none !important; }
