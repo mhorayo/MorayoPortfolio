@@ -82,12 +82,11 @@
   function finish() {
     if (done) return; done = true;
     try { sessionStorage.setItem('momoReel', '1'); } catch (e) {}
-    // the orbit shrinks into the hero's frame as the intro fades, so the work lands where the hero picks it up
-    var frame = document.querySelector('.hero-l__media'), r = frame && frame.getBoundingClientRect();
-    var to = r ? 'translate(' + (r.left + r.width / 2 - innerWidth / 2) + 'px,' + (r.top + r.height / 2 - innerHeight / 2) + 'px) ' : '';
-    ring.style.transform = to + ring.style.transform.replace(/scale\([^)]*\)/, '') + (r ? ' scale(0.45)' : ' scale(2.6)');
+    // the orbit flies apart as the intro fades, uncovering the hero's scattered field of the same work
+    // (on the home hero the same orbit carries on underneath at the same angle, so this one just fades)
+    if (!document.querySelector('.ho__ring')) ring.style.transform = ring.style.transform.replace(/scale\([^)]*\)/, '') + ' scale(2.6)';
     el.classList.add('is-out');
-    document.dispatchEvent(new Event('intro:done'));
+    document.dispatchEvent(new CustomEvent('intro:done', { detail: { angle: angle } }));
     setTimeout(function () { el.remove(); }, 1100);
   }
 

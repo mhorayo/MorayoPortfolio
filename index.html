@@ -23,9 +23,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="v2.css?v=1793217349" />
-<script>try{if(/[?&]nointro/.test(location.search)||(sessionStorage.getItem('momoReel')&&!/[?&]intro/.test(location.search)))document.documentElement.classList.add('no-intro')}catch(e){}</script>
-<link rel="stylesheet" href="intro.css?v=1793217349" />
+<link rel="stylesheet" href="v2.css?v=1793217842" />
+<script>if(/[?&]nointro/.test(location.search))document.documentElement.classList.add('no-intro')</script>
+<link rel="stylesheet" href="intro.css?v=1793217842" />
 </head>
 <body class="land">
 <div class="intro" id="intro" aria-hidden="true"><div class="intro__stage"></div><span class="intro__skip">Click to skip</span></div>
@@ -41,90 +41,58 @@
   <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
 </header>
 <main class="land__main">
-  <!-- Hero: an editorial cover — the name on the left, one frame on the right wiping through the work -->
-  <section class="hero-l" id="hero">
-    <div class="hero-l__text">
-      <span class="up hero-l__kicker">Portfolio — 2026</span>
-      <h2 class="hero-l__title" aria-label="Morayo Akinkunmi"><span class="ln">morayo</span><span class="ln">akinkunmi</span></h2>
-      <p class="hero-l__line">I make complex products simple enough to trust.</p>
-      <div class="hero-l__ctas"><a class="hbtn" href="#work">See my work</a><a class="hlink" href="contact.html">Get in touch &rarr;</a></div>
-      <div class="meta"><span>Senior Product Designer<br>5 years</span><span>Fintech · AI · SaaS<br>Lagos · Open to relocation</span></div>
+  <!-- Hero: the intro's last scene stays — the six projects keep revolving, the headline settles in under them -->
+  <section class="hero-o" id="hero">
+    <div class="ho__orbit" aria-hidden="true"><div class="ho__pos"><div class="ho__ring"><img class="ho__card" src="bmp-tile.jpg" alt="" /><img class="ho__card" src="ren-tile.jpg" alt="" /><img class="ho__card" src="dox-tile.jpg" alt="" /><img class="ho__card" src="wc-tile.jpg" alt="" /><img class="ho__card" src="own-tile.jpg" alt="" /><img class="ho__card" src="h2p-tile.jpg" alt="" /></div></div></div>
+    <div class="ho__text">
+      <span class="up ho__kicker">Morayo Akinkunmi · Senior Product Designer</span>
+      <h2 class="ho__title">I make complex products simple enough to trust.</h2>
+      <div class="ho__ctas"><a class="hbtn" href="#work">See my work</a><a class="hlink" href="contact.html">Get in touch &rarr;</a></div>
     </div>
-    <div class="hero-l__right">
-    <a class="hero-l__media" href="#work" aria-label="See the work"><img src="bmp-tile.jpg" alt="" data-name="broadmoney" class="is-on" /><img src="ren-tile.jpg" alt="" data-name="renncora" /><img src="dox-tile.jpg" alt="" data-name="doxflowy" /><img src="wc-tile.jpg" alt="" data-name="wecare" /><img src="own-tile.jpg" alt="" data-name="ownit" /><img src="h2p-tile.jpg" alt="" data-name="help2pay" /></a>
-    <div class="hero-l__under"><span class="hero-l__cap up"><span id="heroNo">01 / 06</span><span id="heroName">broadmoney</span></span><div class="momo momo--hero" data-momo="hero" aria-hidden="true"></div></div>
-    </div>
+    <div class="momo momo--hero" data-momo="hero" aria-hidden="true"></div>
   </section>
 
-  <!-- Statement -->
-  <section class="statement reveal" id="statement">
-    <span class="up">(About)</span>
-    <p class="statement__big">I make complex products simple enough to trust. For five years I&rsquo;ve designed products where one confusing screen costs a customer: cross-border payments, digital banking, document automation and AI assistants.</p>
-  </section>
-
-  <!-- Work -->
+  <!-- Work: a plain grid, two across -->
   <section class="work" id="work" aria-label="Selected work">
     <div class="work__head"><span class="up">Selected work</span><span class="up">(06)</span><div class="momo momo--peek" data-momo aria-hidden="true"></div></div>
-    <a class="proj reveal" id="p1" href="case-broadmoney.html">
-      <div class="proj__text">
-        <span class="proj__no up">01 / 06</span>
-        <h3 class="proj__name">broadmoney</h3>
-        <p class="proj__pitch">A UK–Nigeria remittance app where more than half of new users gave up before their first transfer, most of them at identity checks.</p>
-        <p class="proj__out">First-transfer drop-off fell from 55% to 22%.</p>
-        <div class="meta"><span>BroadMoney Payment<br>2024 — Present</span><span>Product design<br>Fintech · Mobile &amp; web</span></div>
-      </div>
-      <div class="proj__media"><img src="bmp-tile.jpg" alt="" loading="lazy" /></div>
-    </a>
-    <a class="proj proj--flip reveal" id="p2" href="case-renncora.html">
-      <div class="proj__text">
-        <span class="proj__no up">02 / 06</span>
-        <h3 class="proj__name">renncora</h3>
-        <p class="proj__pitch">A live streaming and creator platform with a voice-first AI assistant that answers in Nigerian Pidgin and English.</p>
-        <p class="proj__out">Seven modules, one system, WCAG AA.</p>
-        <div class="meta"><span>Renncora<br>2026 — Present</span><span>Lead product design<br>AI · Android &amp; iOS</span></div>
-      </div>
-      <div class="proj__media"><video src="ren-tile.mp4" poster="ren-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-    </a>
-    <a class="proj reveal" href="case-doxflowy.html">
-      <div class="proj__text">
-        <span class="proj__no up">03 / 06</span>
-        <h3 class="proj__name">doxflowy</h3>
-        <p class="proj__pitch">A document automation and e-signature platform where thousands of visitors downloaded free templates and left without signing up.</p>
-        <p class="proj__out">Sign-ups up 42%. Rage taps down 31%.</p>
-        <div class="meta"><span>Useful Media<br>2026</span><span>Product design<br>B2B SaaS · Web</span></div>
-      </div>
-      <div class="proj__media"><img src="dox-tile.jpg" alt="" loading="lazy" /></div>
-    </a>
-    <a class="proj proj--flip reveal" href="case-wecare.html">
-      <div class="proj__text">
-        <span class="proj__no up">04 / 06</span>
-        <h3 class="proj__name">wecare</h3>
-        <p class="proj__pitch">When a parent comes home from hospital in Nigeria, families have no trusted way to find a qualified carer.</p>
-        <p class="proj__out">A working prototype, built in real code.</p>
-        <div class="meta"><span>WeCare<br>2026</span><span>Product design · Founder<br>Healthcare · Mobile</span></div>
-      </div>
-      <div class="proj__media"><img src="wc-tile.jpg" alt="" loading="lazy" /></div>
-    </a>
-    <a class="proj reveal" href="case-ownit.html">
-      <div class="proj__text">
-        <span class="proj__no up">05 / 06</span>
-        <h3 class="proj__name">ownit</h3>
-        <p class="proj__pitch">Photographers, designers and filmmakers often have to send their work before they are paid, then hope the client pays.</p>
-        <p class="proj__out">A live, clickable prototype.</p>
-        <div class="meta"><span>OwnIt<br>2026</span><span>Product design · Founder<br>Creator SaaS · Web</span></div>
-      </div>
-      <div class="proj__media"><video src="own-tile.mp4" poster="own-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-    </a>
-    <a class="proj proj--flip reveal" href="case-help2pay.html">
-      <div class="proj__text">
-        <span class="proj__no up">06 / 06</span>
-        <h3 class="proj__name">help2pay</h3>
-        <p class="proj__pitch">A crypto-to-fiat payments platform bringing USDT-to-Naira conversion, gift cards, bills and transfers into one app across four markets.</p>
-        <p class="proj__out">Send-flow drop-off down 40%.</p>
-        <div class="meta"><span>Help2Pay<br>2025</span><span>Product design<br>Payments · Mobile &amp; web</span></div>
-      </div>
-      <div class="proj__media"><video src="h2p-tile.mp4" poster="h2p-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-    </a>
+    <div class="wgrid">
+      <a class="wcard reveal" href="case-broadmoney.html">
+        <div class="wcard__media"><img src="bmp-tile.jpg" alt="" loading="lazy" /></div>
+        <div class="wcard__row"><h3 class="wcard__name">broadmoney</h3><span class="wcard__no up">01</span></div>
+        <p class="wcard__out">First-transfer drop-off fell from 55% to 22%.</p>
+        <span class="wcard__tags up">Fintech · Mobile &amp; web</span>
+      </a>
+      <a class="wcard reveal" href="case-renncora.html">
+        <div class="wcard__media"><video src="ren-tile.mp4" poster="ren-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+        <div class="wcard__row"><h3 class="wcard__name">renncora</h3><span class="wcard__no up">02</span></div>
+        <p class="wcard__out">A voice-first AI assistant in Pidgin and English.</p>
+        <span class="wcard__tags up">AI · Android &amp; iOS</span>
+      </a>
+      <a class="wcard reveal" href="case-doxflowy.html">
+        <div class="wcard__media"><img src="dox-tile.jpg" alt="" loading="lazy" /></div>
+        <div class="wcard__row"><h3 class="wcard__name">doxflowy</h3><span class="wcard__no up">03</span></div>
+        <p class="wcard__out">Sign-ups up 42%. Rage taps down 31%.</p>
+        <span class="wcard__tags up">B2B SaaS · Web</span>
+      </a>
+      <a class="wcard reveal" href="case-wecare.html">
+        <div class="wcard__media"><img src="wc-tile.jpg" alt="" loading="lazy" /></div>
+        <div class="wcard__row"><h3 class="wcard__name">wecare</h3><span class="wcard__no up">04</span></div>
+        <p class="wcard__out">Trusted home care for families in Nigeria.</p>
+        <span class="wcard__tags up">Healthcare · Mobile</span>
+      </a>
+      <a class="wcard reveal" href="case-ownit.html">
+        <div class="wcard__media"><video src="own-tile.mp4" poster="own-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+        <div class="wcard__row"><h3 class="wcard__name">ownit</h3><span class="wcard__no up">05</span></div>
+        <p class="wcard__out">Creators get paid before they hand over work.</p>
+        <span class="wcard__tags up">Creator SaaS · Web</span>
+      </a>
+      <a class="wcard reveal" href="case-help2pay.html">
+        <div class="wcard__media"><video src="h2p-tile.mp4" poster="h2p-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+        <div class="wcard__row"><h3 class="wcard__name">help2pay</h3><span class="wcard__no up">06</span></div>
+        <p class="wcard__out">Send-flow drop-off down 40%.</p>
+        <span class="wcard__tags up">Payments · Mobile &amp; web</span>
+      </a>
+    </div>
   </section>
 
   <!-- About -->
@@ -154,9 +122,9 @@
     <div class="foot__base up"><span>Lagos · Open to relocation &amp; remote</span><img class="sign" src="signature.png" alt="Morayo Akinkunmi signature" /><span>&copy; 2026</span></div>
   </footer>
 </main>
-<script src="intro.js?v=1793217349"></script>
-<script src="momo-line.js?v=1793217349"></script>
-<script src="land.js?v=1793217349"></script>
+<script src="intro.js?v=1793217842"></script>
+<script src="momo-line.js?v=1793217842"></script>
+<script src="land.js?v=1793217842"></script>
 <script src="v2.js?v=1793215915"></script>
 </body>
 </html>

@@ -19,41 +19,28 @@
   var hero = document.getElementById('hero');
   if (!hero) return;
 
-  /* Name: letters rise in one after another */
-  hero.querySelectorAll('.hero-l__title .ln').forEach(function (ln, row) {
-    var t = ln.textContent; ln.textContent = '';
-    t.split('').forEach(function (c, i) {
-      var sp = document.createElement('span'); sp.className = 'ch'; sp.textContent = c;
-      sp.style.transitionDelay = (row * 0.12 + i * 0.035) + 's';
-      ln.appendChild(sp);
+  /* Hero orbit: the intro's cylinder of the six projects, carried on at the same angle; scrolling spins it */
+  var ring = hero.querySelector('.ho__ring'), cards = Array.prototype.slice.call(ring.children);
+  var angle = 0, boost = 0, last = 0, lastY = window.scrollY;
+  function place() {
+    var R = innerWidth <= 760 ? innerWidth * 0.26 : Math.min(innerWidth * 0.18, 300);
+    cards.forEach(function (c, i) {
+      var a = i / cards.length * 360, y = [-9, 7, -3, 10, -8, 4][i], tz = [4, -6, 8, -3, 6, -8][i];
+      c.style.transform = 'translate(-50%,-50%) rotateY(' + a + 'deg) translateZ(' + R + 'px) translateY(' + y + 'vh) rotateZ(' + tz + 'deg)';
     });
-  });
-  var on = function () { hero.classList.add('is-on'); };
-  if (document.getElementById('intro') && !document.documentElement.classList.contains('no-intro')) document.addEventListener('intro:done', on, { once: true });
-  else requestAnimationFrame(function () { requestAnimationFrame(on); });
-
-  /* Frame: each project wipes up over the last; caption follows */
-  var media = hero.querySelector('.hero-l__media');
-  var imgs = Array.prototype.slice.call(media.querySelectorAll('img'));
-  var no = document.getElementById('heroNo'), name = document.getElementById('heroName');
-  var cur = 0;
-  if (!reduce) setInterval(function () {
-    if (document.hidden) return;
-    var prev = imgs[cur]; cur = (cur + 1) % imgs.length;
-    imgs.forEach(function (im) { im.classList.remove('is-prev'); });
-    prev.classList.remove('is-on'); prev.classList.add('is-prev');
-    imgs[cur].classList.add('is-on');
-    no.textContent = '0' + (cur + 1) + ' / 0' + imgs.length;
-    name.textContent = imgs[cur].dataset.name;
-  }, 3200);
-
-  /* A gentle tilt toward the pointer */
-  if (!reduce && window.matchMedia('(pointer: fine)').matches) {
-    media.addEventListener('mousemove', function (e) {
-      var r = media.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-      media.style.transform = 'perspective(1200px) rotateY(' + (x * 4) + 'deg) rotateX(' + (-y * 4) + 'deg)';
-    });
-    media.addEventListener('mouseleave', function () { media.style.transform = ''; });
   }
+  place(); window.addEventListener('resize', place);
+  window.addEventListener('scroll', function () { boost += Math.abs(window.scrollY - lastY) * 0.6; lastY = window.scrollY; }, { passive: true });
+  (function spin(now) {
+    var dt = last ? Math.min(0.05, (now - last) / 1000) : 0; last = now;
+    if (!reduce) { angle += (14 + boost) * dt; boost *= Math.pow(0.04, dt); }
+    ring.style.transform = 'rotateX(-8deg) rotateY(' + angle + 'deg)';
+    requestAnimationFrame(spin);
+  })(performance.now());
+
+  /* After the intro: the orbit glides up and the headline rises in under it */
+  var settle = function () { hero.classList.add('is-on'); };
+  if (document.getElementById('intro') && !document.documentElement.classList.contains('no-intro')) {
+    document.addEventListener('intro:done', function (e) { if (e.detail && e.detail.angle != null) angle = e.detail.angle; setTimeout(settle, 250); }, { once: true });
+  } else requestAnimationFrame(function () { requestAnimationFrame(settle); });
 })();

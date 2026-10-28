@@ -68,12 +68,12 @@
   }, { threshold: 0.35 });
   all.forEach(function (s) { io.observe(s.el); });
 
-  // hero: as the intro fades she flows back in as a line, peeking from under the frame
+  // hero: she stands where the intro left her, so after the intro she is simply there; without it she flows in
   var hero = all.filter(function (s) { return s.el.dataset.momo === 'hero'; })[0];
   if (hero) {
-    var start = function () {
+    var start = function (formed) {
       heroReady = true;
-      setTimeout(function () { hero.go(1, 1800); }, 500);
+      if (formed === true) hero.draw(1); else setTimeout(function () { hero.go(1, 1800); }, 500);
       // every so often she slips into the line and back again
       setInterval(function () {
         if (!hero.inView || hero.raf || document.hidden) return;
@@ -82,7 +82,7 @@
       }, 14000);
     };
     var intro = document.getElementById('intro');
-    if (intro && !document.documentElement.classList.contains('no-intro')) document.addEventListener('intro:done', start, { once: true });
+    if (intro && !document.documentElement.classList.contains('no-intro')) document.addEventListener('intro:done', function () { start(true); }, { once: true });
     else start();
   }
 })();
