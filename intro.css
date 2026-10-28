@@ -1,12 +1,15 @@
-/* Intro — Momo peeps in, her story types out, she flows into a 3D orbit of the work (see intro.js). */
+/* Intro — Momo steps out of her door and waves, her name types out, then she flows into a 3D orbit of the work (see intro.js). */
 .intro { position: fixed; inset: 0; z-index: 2000; background: var(--paper); color: var(--ink); overflow: hidden; cursor: pointer; transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1); }
 .no-intro .intro { display: none; }
 .intro.is-out { transform: translateY(-100%); }
-/* 1 · Momo in the bottom-right corner, partly below the edge */
-.mm__girl { position: absolute; right: 6vw; bottom: -16vh; height: min(78vh, 760px); width: auto; transform-origin: 60% 100%; will-change: transform, opacity; }
-.mm__text { position: absolute; right: calc(6vw + min(78vh, 760px) * 0.38 + 2vw); bottom: 22vh; max-width: min(44vw, 640px); text-align: right; }
-.mm__hello { margin: 0 0 0.35em; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.95; min-height: 0.95em; }
-.mm__story { margin: 0; font-size: clamp(20px, 2.15vw, 32px); line-height: 1.18; letter-spacing: -0.02em; color: var(--ink-soft); min-height: 2.4em; }
+/* A · Momo out of her door: white line art dropped onto the cream page; the bottom fades so a cropped body never ends in a hard edge */
+.mi { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: clamp(0px, 1vw, 20px); }
+.mi__video { height: min(92vh, 980px); width: auto; max-width: none; mix-blend-mode: multiply; transform-origin: 50% 12%; -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent); mask-image: linear-gradient(to bottom, #000 78%, transparent); }
+.mi__text { margin: 0; min-width: 7.6em; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.95; }
+.mi__l1, .mi__l2 { display: block; min-height: 0.95em; }
+.mi__l2 { color: var(--ink-soft); }
+.mi__caret { display: inline-block; width: 0.06em; height: 0.85em; margin-left: 0.04em; vertical-align: -0.08em; background: currentColor; animation: mi-blink 0.9s steps(1) infinite; }
+@keyframes mi-blink { 50% { opacity: 0; } }
 /* 2 · the ribbons she unravels into */
 .mm__flow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .mm__flow path { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
@@ -16,10 +19,9 @@
 .mm__card { position: absolute; left: 0; top: 0; max-width: none; width: clamp(110px, 13vw, 220px); aspect-ratio: 4 / 5; object-fit: cover; border-radius: 3px; box-shadow: 0 30px 60px -34px rgba(17, 17, 17, 0.5); backface-visibility: visible; }
 .intro__skip { position: absolute; z-index: 5; right: var(--pad); top: calc(var(--pad) + env(safe-area-inset-top, 0px)); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
 @media (max-width: 760px) {
-  .mm__girl { right: -6vw; height: 62vh; bottom: -12vh; }
-  .mm__text { right: 6vw; left: 6vw; bottom: auto; top: 18vh; max-width: none; text-align: left; }
-  .mm__hello { font-size: clamp(34px, 10vw, 52px); }
-  .mm__story { font-size: 19px; }
+  .mi { flex-direction: column; justify-content: center; gap: 0; }
+  .mi__video { height: 62vh; }
+  .mi__text { min-width: 0; text-align: center; font-size: clamp(32px, 9vw, 48px); }
   .mm__orbit { --r: 40vw; }
   .mm__card { width: 30vw; }
 }
