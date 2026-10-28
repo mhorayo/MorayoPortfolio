@@ -17,3 +17,11 @@
   .mi__text { min-width: 0; text-align: center; font-size: clamp(32px, 9vw, 48px); }
 }
 @media (prefers-reduced-motion: reduce) { .intro { display: none; } }
+/* phase B: the unwinding line */
+.mi__svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; }
+.mi__svg polyline { stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+/* phase C: the orbit */
+.mo { position: absolute; inset: 0; opacity: 0; }
+.mo__card { position: absolute; left: 50%; top: 50%; width: clamp(56px, 6vw, 104px); aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; box-shadow: 0 20px 40px -24px rgba(17, 17, 17, 0.45); will-change: transform; }
+.mo__centre { position: absolute; left: 50%; top: 50%; z-index: 2; overflow: hidden; background: #fff; border-radius: 4px; box-shadow: 0 40px 80px -40px rgba(17, 17, 17, 0.5); will-change: transform; }
+.mo__centre img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
