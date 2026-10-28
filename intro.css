@@ -14,8 +14,8 @@
 .mm__orbit { position: absolute; inset: 0; z-index: 1; isolation: isolate; perspective: 1100px; perspective-origin: 50% 50%; opacity: 0; --r: min(30vw, 460px); }
 .mm__ring { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; will-change: transform; }
 .mm__card { position: absolute; left: 0; top: 0; max-width: none; width: clamp(110px, 13vw, 220px); aspect-ratio: 4 / 5; object-fit: cover; border-radius: 3px; box-shadow: 0 30px 60px -34px rgba(17, 17, 17, 0.5); backface-visibility: visible; }
-.mm__girl { position: absolute; right: 1vw; bottom: calc(min(70vh, 680px) * -0.5); height: min(70vh, 680px); width: auto; max-width: none; transform-origin: 100% 100%; z-index: 4; opacity: 0; will-change: transform; }
-#intro .mm__text { margin: 0; position: absolute; z-index: 5; right: calc(1vw + min(70vh, 680px) * 0.62); bottom: 5vh; max-width: min(30vw, 420px); text-align: right; padding: 10px 14px; border-radius: 6px; background: rgba(248, 246, 242, 0.88); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.mm__girl { position: absolute; right: -5vw; bottom: calc(min(70vh, 680px) * -0.56); height: min(70vh, 680px); width: auto; max-width: none; transform-origin: 100% 100%; z-index: 4; opacity: 0; will-change: transform; }
+#intro .mm__text { margin: 0; position: absolute; z-index: 5; right: calc(min(70vh, 680px) * 0.5); bottom: 4vh; max-width: min(30vw, 420px); text-align: right; padding: 10px 14px; border-radius: 6px; background: rgba(248, 246, 242, 0.88); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 #intro .mm__hello { margin: 0 0 0.3em; font-size: clamp(26px, 3vw, 48px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.95; min-height: 0.95em; }
 #intro .mm__story { margin: 0; font-size: clamp(15px, 1.25vw, 19px); line-height: 1.3; letter-spacing: -0.01em; color: var(--ink-soft); min-height: 1.3em; }
 .mm__caret { display: inline-block; width: 1px; height: 1em; margin-left: 2px; vertical-align: -0.12em; background: currentColor; animation: mi-blink 0.9s steps(1) infinite; }
@@ -25,7 +25,7 @@
   .mi { flex-direction: column; justify-content: center; gap: 0; }
   .mi__video { height: 62vh; }
   #intro .mi__text { min-width: 0; text-align: center; font-size: clamp(32px, 9vw, 48px); }
-  .mm__girl { right: -2vw; height: 50vh; bottom: -25vh; }
+  .mm__girl { right: -12vw; height: 50vh; bottom: -28vh; }
   #intro .mm__text { left: 6vw; right: 6vw; top: 10vh; bottom: auto; max-width: none; text-align: left; }
   #intro .mm__hello { font-size: 28px; }
   #intro .mm__story { font-size: 15px; }
