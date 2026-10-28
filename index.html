@@ -23,62 +23,140 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="v2.css?v=1793216350" />
+<link rel="stylesheet" href="v2.css?v=1793217349" />
 <script>try{if(/[?&]nointro/.test(location.search)||(sessionStorage.getItem('momoReel')&&!/[?&]intro/.test(location.search)))document.documentElement.classList.add('no-intro')}catch(e){}</script>
-<link rel="stylesheet" href="intro.css" />
+<link rel="stylesheet" href="intro.css?v=1793217349" />
 </head>
-<body class="home">
+<body class="land">
 <div class="intro" id="intro" aria-hidden="true"><div class="intro__stage"></div><span class="intro__skip">Click to skip</span></div>
 <h1 class="sr-only">Morayo Akinkunmi — Senior Product Designer. I make complex products simple enough to trust. Fintech, AI and SaaS.</h1>
-<header class="bar">
-  <div class="bar__col up"><a href="index.html">Morayo<br>Akinkunmi</a></div>
-  <div class="bar__col bar__col--sign"><a href="index.html" aria-label="Home"><img class="sign" src="signature.png" alt="Morayo Akinkunmi signature" /></a></div>
-  <nav class="bar__col bar__nav" aria-label="Main">
-    <a class="bar__link up" aria-current="page" href="index.html">Work</a>
-    <a class="bar__link up" href="archive.html">Archive</a>
-    <a class="bar__link up" href="about.html">About</a>
-    <button type="button" class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
-    <a class="bar__cta up" href="contact.html">Contact</a>
+<header class="nav" id="nav">
+  <a class="nav__name" href="index.html">Morayo Akinkunmi</a>
+  <nav class="nav__links" id="navLinks" aria-label="Main">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="archive.html">Archive</a>
+    <a class="nav__cta" href="contact.html">Contact</a>
   </nav>
+  <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
 </header>
-<main class="stage">
-  <div class="track" id="track" aria-label="Selected work. Scroll sideways to explore.">
-    <a class="item" href="case-broadmoney.html">
-      <span class="item__title">BroadMoney</span>
-      <span class="item__media"><img src="bmp-tile.jpg" alt="BroadMoney — Fintech · 55% → 22% drop-off" draggable="false" /></span>
+<main class="land__main">
+  <!-- Hero: an editorial cover — the name on the left, one frame on the right wiping through the work -->
+  <section class="hero-l" id="hero">
+    <div class="hero-l__text">
+      <span class="up hero-l__kicker">Portfolio — 2026</span>
+      <h2 class="hero-l__title" aria-label="Morayo Akinkunmi"><span class="ln">morayo</span><span class="ln">akinkunmi</span></h2>
+      <p class="hero-l__line">I make complex products simple enough to trust.</p>
+      <div class="hero-l__ctas"><a class="hbtn" href="#work">See my work</a><a class="hlink" href="contact.html">Get in touch &rarr;</a></div>
+      <div class="meta"><span>Senior Product Designer<br>5 years</span><span>Fintech · AI · SaaS<br>Lagos · Open to relocation</span></div>
+    </div>
+    <div class="hero-l__right">
+    <a class="hero-l__media" href="#work" aria-label="See the work"><img src="bmp-tile.jpg" alt="" data-name="broadmoney" class="is-on" /><img src="ren-tile.jpg" alt="" data-name="renncora" /><img src="dox-tile.jpg" alt="" data-name="doxflowy" /><img src="wc-tile.jpg" alt="" data-name="wecare" /><img src="own-tile.jpg" alt="" data-name="ownit" /><img src="h2p-tile.jpg" alt="" data-name="help2pay" /></a>
+    <div class="hero-l__under"><span class="hero-l__cap up"><span id="heroNo">01 / 06</span><span id="heroName">broadmoney</span></span><div class="momo momo--hero" data-momo="hero" aria-hidden="true"></div></div>
+    </div>
+  </section>
+
+  <!-- Statement -->
+  <section class="statement reveal" id="statement">
+    <span class="up">(About)</span>
+    <p class="statement__big">I make complex products simple enough to trust. For five years I&rsquo;ve designed products where one confusing screen costs a customer: cross-border payments, digital banking, document automation and AI assistants.</p>
+  </section>
+
+  <!-- Work -->
+  <section class="work" id="work" aria-label="Selected work">
+    <div class="work__head"><span class="up">Selected work</span><span class="up">(06)</span><div class="momo momo--peek" data-momo aria-hidden="true"></div></div>
+    <a class="proj reveal" id="p1" href="case-broadmoney.html">
+      <div class="proj__text">
+        <span class="proj__no up">01 / 06</span>
+        <h3 class="proj__name">broadmoney</h3>
+        <p class="proj__pitch">A UK–Nigeria remittance app where more than half of new users gave up before their first transfer, most of them at identity checks.</p>
+        <p class="proj__out">First-transfer drop-off fell from 55% to 22%.</p>
+        <div class="meta"><span>BroadMoney Payment<br>2024 — Present</span><span>Product design<br>Fintech · Mobile &amp; web</span></div>
+      </div>
+      <div class="proj__media"><img src="bmp-tile.jpg" alt="" loading="lazy" /></div>
     </a>
-    <a class="item" href="case-renncora.html">
-      <span class="item__title">Renncora</span>
-      <span class="item__media"><video src="ren-tile.mp4?v=1793109889" poster="ren-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Renncora — AI &amp; social · Lead designer"></video></span>
+    <a class="proj proj--flip reveal" id="p2" href="case-renncora.html">
+      <div class="proj__text">
+        <span class="proj__no up">02 / 06</span>
+        <h3 class="proj__name">renncora</h3>
+        <p class="proj__pitch">A live streaming and creator platform with a voice-first AI assistant that answers in Nigerian Pidgin and English.</p>
+        <p class="proj__out">Seven modules, one system, WCAG AA.</p>
+        <div class="meta"><span>Renncora<br>2026 — Present</span><span>Lead product design<br>AI · Android &amp; iOS</span></div>
+      </div>
+      <div class="proj__media"><video src="ren-tile.mp4" poster="ren-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
     </a>
-    <a class="item" href="case-doxflowy.html">
-      <span class="item__title">Doxflowy</span>
-      <span class="item__media"><img src="dox-tile.jpg" alt="Doxflowy — B2B SaaS · +42% sign-ups" draggable="false" /></span>
+    <a class="proj reveal" href="case-doxflowy.html">
+      <div class="proj__text">
+        <span class="proj__no up">03 / 06</span>
+        <h3 class="proj__name">doxflowy</h3>
+        <p class="proj__pitch">A document automation and e-signature platform where thousands of visitors downloaded free templates and left without signing up.</p>
+        <p class="proj__out">Sign-ups up 42%. Rage taps down 31%.</p>
+        <div class="meta"><span>Useful Media<br>2026</span><span>Product design<br>B2B SaaS · Web</span></div>
+      </div>
+      <div class="proj__media"><img src="dox-tile.jpg" alt="" loading="lazy" /></div>
     </a>
-    <a class="item" href="case-wecare.html">
-      <span class="item__title">WeCare</span>
-      <span class="item__media"><img src="wc-tile.jpg" alt="WeCare — Healthcare marketplace · Own product" draggable="false" /></span>
+    <a class="proj proj--flip reveal" href="case-wecare.html">
+      <div class="proj__text">
+        <span class="proj__no up">04 / 06</span>
+        <h3 class="proj__name">wecare</h3>
+        <p class="proj__pitch">When a parent comes home from hospital in Nigeria, families have no trusted way to find a qualified carer.</p>
+        <p class="proj__out">A working prototype, built in real code.</p>
+        <div class="meta"><span>WeCare<br>2026</span><span>Product design · Founder<br>Healthcare · Mobile</span></div>
+      </div>
+      <div class="proj__media"><img src="wc-tile.jpg" alt="" loading="lazy" /></div>
     </a>
-    <a class="item" href="case-ownit.html">
-      <span class="item__title">OwnIt</span>
-      <span class="item__media"><video src="own-tile.mp4?v=1793110973" poster="own-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-label="OwnIt — Creator SaaS · Own product"></video></span>
+    <a class="proj reveal" href="case-ownit.html">
+      <div class="proj__text">
+        <span class="proj__no up">05 / 06</span>
+        <h3 class="proj__name">ownit</h3>
+        <p class="proj__pitch">Photographers, designers and filmmakers often have to send their work before they are paid, then hope the client pays.</p>
+        <p class="proj__out">A live, clickable prototype.</p>
+        <div class="meta"><span>OwnIt<br>2026</span><span>Product design · Founder<br>Creator SaaS · Web</span></div>
+      </div>
+      <div class="proj__media"><video src="own-tile.mp4" poster="own-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
     </a>
-    <a class="item" href="case-help2pay.html">
-      <span class="item__title">Help2Pay</span>
-      <span class="item__media"><video src="h2p-tile.mp4?v=1793124397" poster="h2p-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Help2Pay — Crypto payments · −40% send drop-off"></video></span>
+    <a class="proj proj--flip reveal" href="case-help2pay.html">
+      <div class="proj__text">
+        <span class="proj__no up">06 / 06</span>
+        <h3 class="proj__name">help2pay</h3>
+        <p class="proj__pitch">A crypto-to-fiat payments platform bringing USDT-to-Naira conversion, gift cards, bills and transfers into one app across four markets.</p>
+        <p class="proj__out">Send-flow drop-off down 40%.</p>
+        <div class="meta"><span>Help2Pay<br>2025</span><span>Product design<br>Payments · Mobile &amp; web</span></div>
+      </div>
+      <div class="proj__media"><video src="h2p-tile.mp4" poster="h2p-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
     </a>
-  </div>
+  </section>
+
+  <!-- About -->
+  <section class="about-home reveal" id="about">
+    <figure class="about-home__photo"><img src="morayo-portrait.jpg" alt="Morayo Akinkunmi" loading="lazy" /><div class="momo momo--about" data-momo aria-hidden="true"></div></figure>
+    <div class="about-home__body">
+      <span class="up">(Who I am)</span>
+      <p class="about-home__lead">I own design end to end, from research to post-launch analytics, and I build design systems engineers actually use.</p>
+      <p>I&rsquo;m currently Lead Product Designer at Renncora, and the founder of The Design Geeks Community, where I run design critiques and mentor product designers.</p>
+      <div class="about-home__caps">
+        <div><h3>Product design</h3><ul><li>End-to-end product design</li><li>UX and UI</li><li>Prototyping</li><li>Mobile and web</li></ul></div>
+        <div><h3>Research and data</h3><ul><li>Monthly UX audits</li><li>Microsoft Clarity</li><li>UXCam and PostHog</li><li>Funnel analysis</li></ul></div>
+        <div><h3>Systems and AI</h3><ul><li>Design systems from scratch</li><li>Tokens and documentation</li><li>AI product design</li><li>WCAG AA accessibility</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="foot reveal" id="contact">
+    <div class="foot__top"><a class="foot__title" href="contact.html">let&rsquo;s talk</a><div class="momo momo--foot" data-momo aria-hidden="true"></div></div>
+    <div class="foot__row">
+      <a class="foot__mail" href="mailto:teeakinkunmi@gmail.com">teeakinkunmi@gmail.com</a>
+      <nav class="foot__links up" aria-label="Elsewhere">
+        <a href="https://www.linkedin.com/in/morayo-akinkunmi/">LinkedIn</a><a href="https://dribbble.com/momo98765">Dribbble</a><a href="https://medium.com/@YourTechGeeks">Medium</a><a href="https://www.youtube.com/@Design-geeks">YouTube</a><a href="https://x.com/morayo1025">X</a><a href="cv.pdf">CV</a>
+      </nav>
+    </div>
+    <div class="foot__base up"><span>Lagos · Open to relocation &amp; remote</span><img class="sign" src="signature.png" alt="Morayo Akinkunmi signature" /><span>&copy; 2026</span></div>
+  </footer>
 </main>
-<div class="hint" id="hint" aria-hidden="true"><span class="hint__text">Scroll to explore</span><span class="hint__arrow"></span></div>
-<div class="cursor" id="cursor" aria-hidden="true">Scroll</div>
-<nav class="menu" id="menu" aria-label="Pages" hidden>
-  <button type="button" class="menu__close" id="menuClose">Close ✕</button>
-  <a class="card" href="index.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">work</span><span class="card__strip"><img src="work-hero.jpg" alt="" /><img src="ren-live-poster.jpg" alt="" /><img src="dox-poster.jpg" alt="" /></span></a>
-  <a class="card" href="archive.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">archive</span><span class="card__strip"><img src="wosi-phone-couch.jpg" alt="" /><img src="kunchi-phone-rug.jpg" alt="" /><img src="tax-laptop-bench.jpg" alt="" /></span></a>
-  <a class="card" href="about.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">about</span><span class="card__text">Senior Product Designer with 5 years across fintech, AI &amp; SaaS. Founder of The Design Geeks Community.</span></a>
-  <a class="card" href="contact.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">contact</span><span class="card__text">Senior Product Designer · Fintech, AI &amp; SaaS. Open to relocation and available for remote. teeakinkunmi@gmail.com</span></a>
-</nav>
-<script src="intro.js"></script>
-<script src="v2.js?v=1793216350"></script>
+<script src="intro.js?v=1793217349"></script>
+<script src="momo-line.js?v=1793217349"></script>
+<script src="land.js?v=1793217349"></script>
+<script src="v2.js?v=1793215915"></script>
 </body>
 </html>
