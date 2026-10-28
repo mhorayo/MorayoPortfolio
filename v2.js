@@ -227,7 +227,7 @@
   /* Intro: images stack and shuffle in the centre, then open into the row — first load of the visit only */
   var shuffled = false;
   try { shuffled = sessionStorage.getItem('momoShuffle') === '1'; sessionStorage.setItem('momoShuffle', '1'); } catch (e) {}
-  if (!reduce && !shuffled) {
+  var runShuffle = function () {
     root.classList.add('is-intro');
     var visible = Array.prototype.filter.call(track.querySelectorAll('.item'), function (it) {
       var r = it.getBoundingClientRect(); return r.right > 0 && r.left < innerWidth;
@@ -261,6 +261,11 @@
         }, 1500);
       }
     }, 170);
+  };
+  if (!reduce && !shuffled) {
+    // wait for the intro reel (if it is playing) before the photos burst in
+    if (document.getElementById('intro') && !root.classList.contains('no-intro')) document.addEventListener('intro:done', runShuffle, { once: true });
+    else runShuffle();
   }
 
   /* Click: other projects fade, the chosen image grows towards the case hero, then navigate */
