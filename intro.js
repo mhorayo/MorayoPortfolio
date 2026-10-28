@@ -15,7 +15,7 @@
   var LINES = ['Momo', 'Product Designer'], CPS = 45;             // typewriter, ms per character
   var TYPE_MS = (LINES[0].length + 2 + LINES[1].length) * CPS + 450;
   var HELLO = 'Hi, I\u2019m Momo.';
-  var STORY = 'For five years I\u2019ve designed fintech, AI and SaaS products \u2014 making complex things simple enough to trust.';
+  var STORY = 'I design fintech and AI products people trust.';
   var T = { vanish: [0, 700], orbit: [300, 1100], peep: [900, 1600], hello: 1500, story: 2200 };   // phase B, ms after the typing
   var LEAVE = 1400;                                               // px of scrolling that opens the site
 
@@ -53,7 +53,7 @@
   }
 
   // phase B — Momo dissolves away; the six images revolve (and answer to scroll); Momo peeps in and her story types out
-  var spinBoost = 0, scrolled = 0, lastT = 0, angle = 0;
+  var spinBoost = 0, scrolled = 0, lastT = 0, angle = 0, caretB = document.createElement('i'); caretB.className = 'mm__caret';
   function render(t) {
     var va = io(prog(t, T.vanish[0], T.vanish[1]));
     A.style.opacity = 1 - va;
@@ -64,17 +64,19 @@
     var dt = Math.max(0, t - lastT) / 1000; lastT = t;
     angle += (14 + spinBoost) * dt; spinBoost *= Math.pow(0.04, dt);                 // slow drift + scroll momentum
     ring.style.transform = 'rotateX(-8deg) rotateY(' + angle + 'deg) scale(' + lerp(0.7, 1, ap) + ')';
-    var R = innerWidth <= 760 ? innerWidth * 0.36 : Math.min(innerWidth * 0.28, 440);
+    var R = innerWidth <= 760 ? innerWidth * 0.26 : Math.min(innerWidth * 0.18, 300);
     cards.forEach(function (c, i) {
-      var a = i / cards.length * 360, y = [-14, 10, -4, 16, -12, 6][i], tz = [4, -6, 8, -3, 6, -8][i];
+      var a = i / cards.length * 360, y = [-9, 7, -3, 10, -8, 4][i], tz = [4, -6, 8, -3, 6, -8][i];
       c.style.transform = 'translate(-50%,-50%) rotateY(' + a + 'deg) translateZ(' + R + 'px) translateY(' + y + 'vh) rotateZ(' + tz + 'deg)';
     });
     var pe = out(prog(t, T.peep[0], T.peep[1]));
-    girl.style.transform = 'translateY(' + lerp(60, 0, pe) + '%) rotate(' + lerp(-10, -4, pe) + 'deg)';      // rises just far enough to peek over the edge
+    girl.style.transform = 'translateY(' + lerp(60, 0, pe) + '%) rotate(' + lerp(-4, -16, pe) + 'deg)';     // rises and tilts out of the corner to peek
     girl.style.opacity = pe > 0 ? 1 : 0;
-    hello.textContent = typed(HELLO, T.hello, t, 45);
-    story.textContent = typed(STORY, T.story, t, 28);
-    hint.style.opacity = io(prog(t, T.story + STORY.length * 28, T.story + STORY.length * 28 + 500));
+    hello.textContent = typed(HELLO, T.hello, t, 55);
+    story.textContent = typed(STORY, T.story, t, 40);
+    caretB.style.visibility = t >= T.hello ? 'visible' : 'hidden';
+    (story.textContent ? story : hello).appendChild(caretB);
+    hint.style.opacity = io(prog(t, T.story + STORY.length * 40, T.story + STORY.length * 40 + 500));
   }
 
   function finish() {
