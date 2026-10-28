@@ -30,47 +30,34 @@
   }
   var word = function (id, bg, fg, txt, cls) { build(id, bg, fg, '<span class="ir-w ' + (cls || '') + '">' + txt + '</span>'); };
 
-  // Momo, our own single-line character: round head, bow, soft dress, real legs (thigh + shin) and arms.
-  var GIRL = '<svg class="ir-girl" viewBox="0 0 200 420" aria-hidden="true">' +
-    '<g id="gb">' +
-      '<g id="lgB" transform="translate(92 262)"><path d="M0 0 L0 70"/><g class="sh" transform="translate(0 70)"><path d="M0 0 L0 66 L12 70"/></g></g>' +
-      '<g id="arB" transform="translate(84 130)"><path d="M0 0 C-4 30 -6 60 -4 86"/></g>' +
-      '<path class="fill" d="M100 104 C78 104 74 124 72 150 C68 200 62 240 58 268 L142 268 C138 240 132 200 128 150 C126 124 122 104 100 104 Z"/>' +
-      '<g id="lgF" transform="translate(108 262)"><path d="M0 0 L0 70"/><g class="sh" transform="translate(0 70)"><path d="M0 0 L0 66 L12 70"/></g></g>' +
-      '<g id="arF" transform="translate(116 130)"><path d="M0 0 C4 30 6 60 4 86"/><path class="hand" d="M4 86 c-4 6 -2 12 3 12 c5 0 6 -6 3 -12"/></g>' +
-      '<path class="fill" d="M100 30 C78 30 66 46 66 66 C66 88 82 100 100 100 C118 100 134 88 134 66 C134 46 122 30 100 30 Z"/>' +
-      '<circle cx="88" cy="62" r="7"/><circle cx="112" cy="62" r="7"/><circle class="dot" cx="89" cy="63" r="2"/><circle class="dot" cx="113" cy="63" r="2"/>' +
-      '<path d="M90 80 C96 86 104 86 110 80"/>' +
-      '<path class="fill" d="M112 34 C104 18 92 18 96 30 C100 40 110 38 112 34 C114 38 124 40 128 30 C132 18 120 18 112 34 Z"/><circle class="fill" cx="112" cy="33" r="4"/>' +
-    '</g></svg>';
+  // Momo — Morayo's own line drawing. She has no legs, so she "walks" in steps: each step lifts, pushes
+  // forward and lands softly with a little side-to-side weight shift, one after another.
+  var GIRL = '<img class="ir-girl" src="momo-char.png" alt="">';
+  var STEPS = 5, STEP = 300;                                            // 5 steps, 0.3s each
 
-  function girl(t, x, waving) {
+  function girl(t, waving) {
     var g = $('.ir-girl'); if (!g) return;
-    g.style.transform = 'translateX(' + x + 'vw)';
-    var walking = !waving && t < 1500, ph = t / 300 * Math.PI;           // ~1.6 steps per second
-    var sw = walking ? Math.sin(ph) : 0, bob = walking ? Math.abs(Math.sin(ph)) * 5 : 0;
-    var rot = function (id, deg, knee) {
-      var n = g.querySelector('#' + id); if (!n) return;
-      var base = n.getAttribute('transform').split(' rotate')[0];
-      n.setAttribute('transform', base + ' rotate(' + deg + ')');
-      if (knee != null) { var s = n.querySelector('.sh'); s.setAttribute('transform', 'translate(0 70) rotate(' + knee + ')'); }
-    };
-    // legs: thighs swing opposite; the knee bends as each leg passes under the body
-    rot('lgF', 24 * sw, walking ? Math.max(0, Math.sin(ph + 1.2)) * 34 : 0);
-    rot('lgB', -24 * sw, walking ? Math.max(0, Math.sin(ph + 1.2 + Math.PI)) * 34 : 0);
-    // arms swing against the legs; the front arm waves once she stops
-    rot('arB', 18 * sw);
-    if (waving) { var wv = clamp((t - 1500) / 250); rot('arF', lerp(0, -150, wv) + Math.sin((t - 1500) / 110) * 14 * wv); }
-    else rot('arF', -18 * sw);
-    g.querySelector('#gb').setAttribute('transform', 'translate(0 ' + (-bob) + ')');
+    var x, y = 0, r = 0, sy = 1;
+    if (!waving) {
+      var s = Math.min(STEPS - 1, Math.floor(t / STEP)), f = clamp((t - s * STEP) / STEP);
+      var push = out(f);                                                 // forward push of this step
+      x = lerp(-58, 0, (s + push) / STEPS);
+      y = -Math.sin(f * Math.PI) * 4;                                    // lift, then land
+      r = (s % 2 ? 1 : -1) * 3 * Math.sin(f * Math.PI) + 2;              // lean into the step, shift weight
+      sy = 1 - Math.max(0, Math.sin((f - 0.85) / 0.15 * Math.PI)) * 0.03; // soft squash on landing
+    } else {
+      var w = (t - STEPS * STEP);
+      x = 0; y = -Math.abs(Math.sin(w / 160)) * 1.5;
+      r = Math.sin(w / 160) * 3.5 * Math.max(0, 1 - w / 1800) + 1;     // happy little sway while she waves
+    }
+    g.style.transform = 'translateX(' + x + 'vw) translateY(' + y + '%) rotate(' + r + 'deg) scaleY(' + sy + ')';
   }
 
   function render(t) {
     // 1 · she walks in, stops and waves; Welcome / to the work / of appear beside her
     if (t < 3600) {
       if (build('hello', paper, ink, '<div class="ir-hello">' + GIRL + '<span class="ir-w ir-side" id="hw"></span></div>')) {}
-      var x = lerp(-60, 0, out(prog(t, 0, 1500)));
-      girl(t, x, t >= 1500);
+      girl(t, t >= STEPS * STEP);
       var hw = $('#hw'), txt = t < 2000 ? '' : t < 2600 ? 'Welcome' : t < 3150 ? 'to the work' : 'of';
       if (hw.textContent !== txt) hw.textContent = txt;
       el.style.background = (t >= 2600 && t < 3150) ? nude : paper;
