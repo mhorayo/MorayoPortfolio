@@ -1,7 +1,10 @@
 /* Intro — Momo steps out of her door and waves; then a scroll-reactive 3D orbit of the work, with Momo peeping in and her story typing out (see intro.js). */
-#intro.intro { display: block; padding: 0; position: fixed; inset: 0; z-index: 2000; background: var(--paper); color: var(--ink); overflow: hidden; cursor: pointer; transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1); }
+#intro.intro { display: block; padding: 0; position: fixed; inset: 0; z-index: 2000; background: var(--paper); color: var(--ink); overflow: hidden; cursor: pointer; }
 .no-intro .intro { display: none; }
-.intro.is-out { transform: translateY(-100%); }
+.intro.is-out { opacity: 0; transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s; pointer-events: none; }
+/* on the way out the orbit flies apart into the hero's scattered field */
+.intro.is-out .mm__ring { transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1); }
+.intro.is-out .mm__text, .intro.is-out .mm__hint { opacity: 0 !important; transition: opacity 0.3s; }
 /* A · Momo out of her door: white line art dropped onto the cream page; the bottom fades so a cropped body never ends in a hard edge */
 .mi { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: clamp(0px, 1vw, 20px); }
 .mi__video { height: min(92vh, 980px); width: auto; max-width: none; mix-blend-mode: multiply; transform-origin: 50% 12%; -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent); mask-image: linear-gradient(to bottom, #000 78%, transparent); }

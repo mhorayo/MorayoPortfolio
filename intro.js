@@ -82,9 +82,11 @@
   function finish() {
     if (done) return; done = true;
     try { sessionStorage.setItem('momoReel', '1'); } catch (e) {}
+    // the orbit flies apart as the intro fades, uncovering the hero's scattered field of the same work
+    ring.style.transform = ring.style.transform.replace(/scale\([^)]*\)/, '') + ' scale(2.6)';
     el.classList.add('is-out');
     document.dispatchEvent(new Event('intro:done'));
-    setTimeout(function () { el.remove(); }, 800);
+    setTimeout(function () { el.remove(); }, 1100);
   }
 
   var seek = (location.search.match(/[?&]reelAt=(\d+)/) || [])[1];
