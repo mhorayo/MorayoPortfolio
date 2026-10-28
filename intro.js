@@ -64,13 +64,13 @@
     var dt = Math.max(0, t - lastT) / 1000; lastT = t;
     angle += (14 + spinBoost) * dt; spinBoost *= Math.pow(0.04, dt);                 // slow drift + scroll momentum
     ring.style.transform = 'rotateX(-8deg) rotateY(' + angle + 'deg) scale(' + lerp(0.7, 1, ap) + ')';
-    var R = innerWidth <= 760 ? innerWidth * 0.36 : Math.min(innerWidth * 0.26, 420);
+    var R = innerWidth <= 760 ? innerWidth * 0.36 : Math.min(innerWidth * 0.28, 440);
     cards.forEach(function (c, i) {
       var a = i / cards.length * 360, y = [-14, 10, -4, 16, -12, 6][i], tz = [4, -6, 8, -3, 6, -8][i];
       c.style.transform = 'translate(-50%,-50%) rotateY(' + a + 'deg) translateZ(' + R + 'px) translateY(' + y + 'vh) rotateZ(' + tz + 'deg)';
     });
     var pe = out(prog(t, T.peep[0], T.peep[1]));
-    girl.style.transform = 'translateY(' + lerp(100, 0, pe) + '%) rotate(' + lerp(-14, -6, pe) + 'deg)';
+    girl.style.transform = 'translateY(' + lerp(60, 0, pe) + '%) rotate(' + lerp(-10, -4, pe) + 'deg)';      // rises just far enough to peek over the edge
     girl.style.opacity = pe > 0 ? 1 : 0;
     hello.textContent = typed(HELLO, T.hello, t, 45);
     story.textContent = typed(STORY, T.story, t, 28);

@@ -11,11 +11,11 @@
 .mi__caret { display: inline-block; width: 0.06em; height: 0.85em; margin-left: 0.04em; vertical-align: -0.08em; background: currentColor; animation: mi-blink 0.9s steps(1) infinite; }
 @keyframes mi-blink { 50% { opacity: 0; } }
 /* 3 · the six project images on a slowly turning cylinder */
-.mm__orbit { position: absolute; inset: 0; z-index: 1; isolation: isolate; perspective: 1100px; perspective-origin: 40% 50%; opacity: 0; --r: min(30vw, 460px); }
-.mm__ring { position: absolute; left: 34%; top: 43%; transform-style: preserve-3d; will-change: transform; }
+.mm__orbit { position: absolute; inset: 0; z-index: 1; isolation: isolate; perspective: 1100px; perspective-origin: 50% 50%; opacity: 0; --r: min(30vw, 460px); }
+.mm__ring { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; will-change: transform; }
 .mm__card { position: absolute; left: 0; top: 0; max-width: none; width: clamp(110px, 13vw, 220px); aspect-ratio: 4 / 5; object-fit: cover; border-radius: 3px; box-shadow: 0 30px 60px -34px rgba(17, 17, 17, 0.5); backface-visibility: visible; }
-.mm__girl { position: absolute; right: 5vw; bottom: -18vh; height: min(70vh, 680px); width: auto; max-width: none; transform-origin: 60% 100%; z-index: 4; opacity: 0; will-change: transform; }
-.mm__text { position: absolute; z-index: 5; right: calc(5vw + min(70vh, 680px) * 0.42); bottom: 14vh; max-width: min(36vw, 560px); text-align: right; padding: 14px 18px; border-radius: 6px; background: rgba(248, 246, 242, 0.88); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.mm__girl { position: absolute; right: 3vw; bottom: calc(min(96vh, 940px) * -0.52); height: min(96vh, 940px); width: auto; max-width: none; transform-origin: 60% 100%; z-index: 4; opacity: 0; will-change: transform; }
+.mm__text { position: absolute; z-index: 5; right: calc(3vw + min(96vh, 940px) * 0.47); bottom: 9vh; max-width: min(36vw, 560px); text-align: right; padding: 14px 18px; border-radius: 6px; background: rgba(248, 246, 242, 0.88); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .mm__hello { margin: 0 0 0.3em; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.95; min-height: 0.95em; }
 .mm__story { margin: 0; font-size: clamp(18px, 1.7vw, 26px); line-height: 1.22; letter-spacing: -0.015em; color: var(--ink-soft); min-height: 3.6em; }
 .mm__hint { position: absolute; left: 50%; bottom: calc(var(--pad) + 6px); transform: translateX(-50%); z-index: 3; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); opacity: 0; }
@@ -24,7 +24,7 @@
   .mi { flex-direction: column; justify-content: center; gap: 0; }
   .mi__video { height: 62vh; }
   .mi__text { min-width: 0; text-align: center; font-size: clamp(32px, 9vw, 48px); }
-  .mm__girl { right: -8vw; height: 52vh; bottom: -12vh; }
+  .mm__girl { right: -4vw; height: 70vh; bottom: -36vh; }
   .mm__text { left: 6vw; right: 6vw; top: 10vh; bottom: auto; max-width: none; text-align: left; }
   .mm__hello { font-size: clamp(32px, 9vw, 48px); }
   .mm__story { font-size: 17px; }
