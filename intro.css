@@ -3,10 +3,10 @@
 .no-intro .intro { display: none; }
 .intro.is-out { transform: translateY(-100%); }
 .ir-scene { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.ir-w { position: relative; z-index: 2; font-size: clamp(44px, 6.4vw, 108px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.92; white-space: nowrap; }
+.ir-w { position: relative; z-index: 2; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.92; white-space: nowrap; }
 .ir-xl { font-size: clamp(64px, 18vw, 320px); font-weight: 600; letter-spacing: -0.06em; }
 .ir-lg { font-size: clamp(48px, 11vw, 200px); font-weight: 600; letter-spacing: -0.055em; }
-.ir-line { display: flex; align-items: center; justify-content: center; font-size: clamp(44px, 6.4vw, 108px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.9; white-space: nowrap; position: relative; z-index: 2; }
+.ir-line { display: flex; align-items: center; justify-content: center; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.9; white-space: nowrap; position: relative; z-index: 2; }
 .ir-3d { perspective: 1000px; }
 .ir-l, .ir-r { display: block; }
 .ir-l { transform-origin: right center; }
@@ -27,3 +27,9 @@
 .ir-sign { width: min(36vw, 340px); }
 .intro__skip { position: absolute; z-index: 5; right: var(--pad); bottom: calc(var(--pad) + env(safe-area-inset-bottom, 0px)); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.6; mix-blend-mode: difference; color: #fff; }
 @media (prefers-reduced-motion: reduce) { .intro { display: none; } }
+.ir-hello { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 2vw, 32px); }
+.ir-girl { height: min(56vh, 500px); width: auto; overflow: visible; will-change: transform; }
+.ir-girl path, .ir-girl circle { fill: none; stroke: var(--ink); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.ir-girl .fill { fill: var(--paper); }
+.ir-girl .dot { fill: var(--ink); stroke: none; }
+.ir-side { min-width: 6.5em; text-align: left; }
