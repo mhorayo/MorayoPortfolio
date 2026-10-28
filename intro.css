@@ -1,35 +1,19 @@
-/* Intro reel — kinetic-type opener (see intro.js). Images appear only as cards. */
+/* Intro — Momo walks out and waves, then her name types out beside her (see intro.js). */
 .intro { position: fixed; inset: 0; z-index: 2000; background: var(--paper); color: var(--ink); overflow: hidden; cursor: pointer; transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1); }
 .no-intro .intro { display: none; }
 .intro.is-out { transform: translateY(-100%); }
-.ir-scene { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.ir-w { position: relative; z-index: 2; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.92; white-space: nowrap; }
-.ir-xl { font-size: clamp(64px, 18vw, 320px); font-weight: 600; letter-spacing: -0.06em; }
-.ir-lg { font-size: clamp(48px, 11vw, 200px); font-weight: 600; letter-spacing: -0.055em; }
-.ir-line { display: flex; align-items: center; justify-content: center; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.9; white-space: nowrap; position: relative; z-index: 2; }
-.ir-3d { perspective: 1000px; }
-.ir-l, .ir-r { display: block; }
-.ir-l { transform-origin: right center; }
-.ir-r { transform-origin: left center; }
-.ir-card { position: relative; display: block; overflow: hidden; border-radius: 10px; box-shadow: 0 30px 60px -30px rgba(17, 17, 17, 0.5); background: var(--tile); }
-.ir-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.ir-line .ir-card { margin: 0 0.08em; flex: none; }
-.ir-pill { border-radius: 999px; width: 0; }
-.ir-fly, .ir-slide, .ir-phone { position: absolute; left: 50%; top: 50%; }
-.ir-fly { width: clamp(90px, 10vw, 170px); aspect-ratio: 4 / 5; opacity: 0; z-index: 1; }
-.ir-slide { width: clamp(130px, 18vw, 280px); aspect-ratio: 4 / 3; z-index: 1; }
-.ir-front { color: var(--ink); }
-.ir-phone { width: clamp(120px, 17vw, 260px); aspect-ratio: 9 / 19; border-radius: 14px; opacity: 0; }
-.ir-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.4vw; width: 86vw; height: 80vh; }
-.ir-grid span { background: var(--tile); border-radius: 6px; will-change: transform; }
-.ir-ribbon { display: flex; font-size: clamp(44px, 6.4vw, 108px); font-weight: 500; letter-spacing: -0.05em; line-height: 0.85; }
-.ir-ribbon span { display: inline-block; transform-origin: 50% 60%; will-change: transform; }
-.ir-sign { width: min(36vw, 340px); }
-.intro__skip { position: absolute; z-index: 5; right: var(--pad); bottom: calc(var(--pad) + env(safe-area-inset-bottom, 0px)); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.6; mix-blend-mode: difference; color: #fff; }
+.mi { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: clamp(0px, 1vw, 20px); }
+/* the video is white line art: multiply drops the white onto the cream page; the bottom fades so a cropped body never ends in a hard edge */
+.mi__video { height: min(92vh, 980px); width: auto; mix-blend-mode: multiply; transform-origin: 50% 12%; -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent); mask-image: linear-gradient(to bottom, #000 78%, transparent); }
+.mi__text { margin: 0; min-width: 7.6em; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.95; }
+.mi__l1, .mi__l2 { display: block; min-height: 0.95em; }
+.mi__l2 { color: var(--ink-soft); }
+.mi__caret { display: inline-block; width: 0.06em; height: 0.85em; margin-left: 0.04em; vertical-align: -0.08em; background: currentColor; animation: mi-blink 0.9s steps(1) infinite; }
+@keyframes mi-blink { 50% { opacity: 0; } }
+.intro__skip { position: absolute; z-index: 5; right: var(--pad); bottom: calc(var(--pad) + env(safe-area-inset-bottom, 0px)); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
+@media (max-width: 760px) {
+  .mi { flex-direction: column; justify-content: center; gap: 0; }
+  .mi__video { height: 62vh; }
+  .mi__text { min-width: 0; text-align: center; font-size: clamp(32px, 9vw, 48px); }
+}
 @media (prefers-reduced-motion: reduce) { .intro { display: none; } }
-.ir-hello { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 2vw, 32px); }
-.ir-girl { height: min(58vh, 520px); width: auto; transform-origin: 50% 100%; will-change: transform; }
-.ir-girl path, .ir-girl circle { fill: none; stroke: var(--ink); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
-.ir-girl .fill { fill: var(--paper); }
-.ir-girl .dot { fill: var(--ink); stroke: none; }
-.ir-side { min-width: 6.5em; text-align: left; }
