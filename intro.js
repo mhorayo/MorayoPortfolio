@@ -1,117 +1,78 @@
-/* Intro — one continuous piece (~8s), first visit of the session only; click/tap/key skips.
-   A · Momo (Morayo's line character) steps out of her door at double speed, walks over and waves;
-       "Momo / Product Designer" types out beside her.
-   B · Momo unwinds into a single ink line: it traces her body, straightens into a horizontal stroke,
-       then wraps into the outline of a card.
-   C · The card fills with the work and becomes the centre of a 3D orbit of project images.
-   ?reelAt=ms (ms into phase B) freezes the line/orbit for review. */
+/* Intro — one continuous piece (~6.8s), first visit of the session only; click/tap/key skips.
+   1 · Momo (Morayo's line drawing) peeps in from the bottom-right corner; her story types out beside her.
+   2 · She flows away: her line unravels into curving ribbons that stream to where the work appears.
+   3 · The six project images revolve on a 3D cylinder, as in the reference.
+   One clock drives every frame (render(t)); ?reelAt=ms freezes any moment for review. */
 (function () {
   var el = document.getElementById('intro');
   if (!el) return;
   var root = document.documentElement;
   if (root.classList.contains('no-intro')) { el.remove(); return; }
 
-  var START = 0.8, RATE = 2.1, WAVE = 8.6;                      // video seconds
-  var LINES = ['Momo', 'Product Designer'], CPS = 45;            // ms per character
-  var CENTRE = ['bmp-web-dashboard.jpg', 'dox-clarity.jpg', 'own-project-2x.jpg', 'h2p-20-web-dashboard-flat.jpg'];
-  var ORBIT = ['bmp-tile.jpg', 'ren-tile.jpg', 'dox-tile.jpg', 'wc-tile.jpg', 'h2p-tile.jpg', 'own-tile.jpg', 'bmp-home-new.jpg', 'ren-welcome.jpg',
-               'wc-home.jpg', 'ren-live-watching.jpg', 'own-payments-2x.jpg', 'dox-signature.jpg', 'wc-matches.jpg', 'bmp-kyc-start.jpg', 'h2p-tile.jpg', 'ren-tile.jpg'];
-  var N = 64;                                                    // points on the line
+  var WORK = ['bmp-tile.jpg', 'ren-tile.jpg', 'dox-tile.jpg', 'wc-tile.jpg', 'own-tile.jpg', 'h2p-tile.jpg'];
+  var HELLO = 'Hi, I’m Momo.', STORY = 'I design fintech and AI products people trust.';
+  var T = { peep: [0, 800], hello: 900, story: 1650, flow: [3500, 4600], orbit: 4300, end: 6800 };
 
   var stage = el.querySelector('.intro__stage'), done = false;
   stage.innerHTML =
-    '<div class="mi" id="miA">' +
-      '<video class="mi__video" src="momo-intro.mp4" muted playsinline preload="auto"></video>' +
-      '<p class="mi__text"><span class="mi__l1"></span><span class="mi__l2"></span><i class="mi__caret"></i></p>' +
-    '</div>' +
-    '<svg class="mi__svg" id="miLine"><polyline fill="none" /></svg>' +
-    '<div class="mo" id="miC">' + ORBIT.map(function (s) { return '<img class="mo__card" src="' + s + '" alt="">'; }).join('') +
-      '<div class="mo__centre"><img src="' + CENTRE[0] + '" alt=""></div></div>';
-
+    '<img class="mm__girl" src="momo-char.png" alt="">' +
+    '<div class="mm__text"><p class="mm__hello"></p><p class="mm__story"></p></div>' +
+    '<svg class="mm__flow"></svg>' +
+    '<div class="mm__orbit"><div class="mm__ring">' + WORK.map(function (s) { return '<img class="mm__card" src="' + s + '" alt="">'; }).join('') + '</div></div>';
   var $ = function (s) { return stage.querySelector(s); };
-  var A = $('#miA'), v = $('.mi__video'), l1 = $('.mi__l1'), l2 = $('.mi__l2'), caret = $('.mi__caret');
-  var svg = $('#miLine'), line = svg.querySelector('polyline'), C = $('#miC'), centre = $('.mo__centre'), cimg = centre.firstChild;
-  var cards = Array.prototype.slice.call(stage.querySelectorAll('.mo__card'));
+  var girl = $('.mm__girl'), text = $('.mm__text'), hello = $('.mm__hello'), story = $('.mm__story'), flow = $('.mm__flow'), orbit = $('.mm__orbit'), ring = $('.mm__ring');
+  var cards = Array.prototype.slice.call(stage.querySelectorAll('.mm__card'));
+
   var clamp = function (x) { return Math.max(0, Math.min(1, x)); };
   var prog = function (t, a, b) { return clamp((t - a) / (b - a)); };
   var io = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
   var out = function (x) { return 1 - Math.pow(1 - x, 3); };
   var lerp = function (a, b, p) { return a + (b - a) * p; };
+  var typed = function (s, t0, t, ms) { return s.slice(0, Math.max(0, Math.floor((t - t0) / ms))); };
 
-  // ---------- phase A: Momo ----------
-  function renderA(vs, typed) {
-    var k = io(clamp((vs - 5) / 3.2));
-    v.style.transform = 'scale(' + (1 - 0.42 * k) + ')';
-    var n = Math.max(0, Math.floor(typed / CPS));
-    var a = Math.min(LINES[0].length, n), b = Math.max(0, Math.min(LINES[1].length, n - LINES[0].length - 2));
-    l1.textContent = LINES[0].slice(0, a); l2.textContent = LINES[1].slice(0, b);
-    caret.style.visibility = typed > 0 ? 'visible' : 'hidden';
-    (b > 0 ? l2 : l1).after(caret);
-  }
-  var TYPE_MS = (LINES[0].length + 2 + LINES[1].length) * CPS + 350;
-
-  // ---------- phase B/C: line → card → orbit ----------
-  var shapes = null;
-  function sample(fn) { var p = []; for (var i = 0; i < N; i++) p.push(fn(i / (N - 1))); return p; }
-  function makeShapes() {
-    var vw = innerWidth, vh = innerHeight, r = v.getBoundingClientRect();
-    // her body: head → neck → soft S down to the hem (fractions of the video box)
-    var body = [[0.47, 0.14], [0.44, 0.22], [0.46, 0.34], [0.5, 0.48], [0.49, 0.62], [0.45, 0.78], [0.43, 0.96]];
-    var along = function (pts, u) {
-      var f = u * (pts.length - 1), i = Math.min(pts.length - 2, Math.floor(f)), t = f - i;
-      return [lerp(pts[i][0], pts[i + 1][0], t), lerp(pts[i][1], pts[i + 1][1], t)];
-    };
-    var cw = Math.min(vw * 0.5, 780), ch = cw * 0.62, cx = vw / 2, cy = vh / 2;
-    var rect = function (u) {                                     // perimeter, starting top-left, clockwise
-      var P = 2 * (cw + ch), d = u * P, x0 = cx - cw / 2, y0 = cy - ch / 2;
-      if (d < cw) return [x0 + d, y0]; d -= cw;
-      if (d < ch) return [x0 + cw, y0 + d]; d -= ch;
-      if (d < cw) return [x0 + cw - d, y0 + ch]; d -= cw;
-      return [x0, y0 + ch - d];
-    };
-    shapes = {
-      body: sample(function (u) { var p = along(body, u); return [r.left + p[0] * r.width, r.top + p[1] * r.height]; }),
-      flat: sample(function (u) { return [lerp(cx - cw / 2, cx + cw / 2, u), cy - ch / 2]; }),   // = the card's top edge
-      card: sample(rect),
-      box: { w: cw, h: ch }, top: cw / (2 * (cw + ch))
-    };
-    svg.setAttribute('viewBox', '0 0 ' + vw + ' ' + vh);
-  }
-  function mix(a, b, p) { return a.map(function (q, i) { return [lerp(q[0], b[i][0], p), lerp(q[1], b[i][1], p)]; }); }
-  function setLine(pts, drawn) {
-    line.setAttribute('points', pts.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '));
-    var len = 0; for (var i = 1; i < pts.length; i++) len += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
-    line.style.strokeDasharray = len; line.style.strokeDashoffset = len * (1 - drawn);
+  // ribbons: six curves from points on her body out to the six orbit slots
+  var ribbons = null;
+  function makeRibbons() {
+    var vw = innerWidth, vh = innerHeight, r = girl.getBoundingClientRect();
+    flow.setAttribute('viewBox', '0 0 ' + vw + ' ' + vh);
+    var body = [[0.42, 0.10], [0.36, 0.24], [0.40, 0.36], [0.47, 0.5], [0.44, 0.66], [0.40, 0.82]];
+    var cx = vw / 2, cy = vh / 2, rx = Math.min(vw * 0.36, 620), ry = vh * 0.18;
+    flow.innerHTML = body.map(function (b, i) {
+      var sx = r.left + b[0] * r.width, sy = r.top + b[1] * r.height;
+      var a = i / 6 * Math.PI * 2 - Math.PI / 2, ex = cx + Math.cos(a) * rx, ey = cy + Math.sin(a) * ry;
+      // two soft S-bends per ribbon so the line swirls rather than shoots
+      var mx = lerp(sx, ex, 0.5) + (i % 2 ? 1 : -1) * vw * 0.08, my = lerp(sy, ey, 0.5) - vh * (0.22 - i * 0.05);
+      var c1x = sx - vw * (0.1 + i * 0.02), c1y = sy - vh * 0.28, c2x = mx + vw * 0.12, c2y = my + vh * 0.16;
+      var c3x = mx - vw * 0.12, c3y = my - vh * 0.16, c4x = ex + (i % 2 ? -1 : 1) * vw * 0.1, c4y = ey - vh * 0.18;
+      return '<path d="M' + sx + ' ' + sy + ' C' + c1x + ' ' + c1y + ' ' + c2x + ' ' + c2y + ' ' + mx + ' ' + my + ' C' + c3x + ' ' + c3y + ' ' + c4x + ' ' + c4y + ' ' + ex + ' ' + ey + '"/>';
+    }).join('');
+    ribbons = Array.prototype.slice.call(flow.querySelectorAll('path')).map(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = L; return { p: p, L: L }; });
   }
 
-  var B_END = 4400;
-  function renderB(t) {
-    if (!shapes) makeShapes();
-    // Momo fades out as the line traces her body
-    A.style.opacity = 1 - io(prog(t, 0, 450));
-    var draw = io(prog(t, 0, 450)), straighten = io(prog(t, 450, 950)), wrap = io(prog(t, 950, 1500));
-    // the straight line lands as the card's top edge, then keeps drawing round the rest of the outline
-    if (wrap > 0) setLine(shapes.card, lerp(shapes.top, 1, wrap));
-    else setLine(mix(shapes.body, shapes.flat, straighten), draw);
-    svg.style.opacity = 1 - io(prog(t, 1500, 1800));
-    // the card fills and the orbit begins
-    var fill = io(prog(t, 1450, 1800));
-    C.style.opacity = fill > 0 ? 1 : 0;
-    var tilt = prog(t, 1500, B_END);
-    centre.style.width = shapes.box.w + 'px'; centre.style.height = shapes.box.h + 'px';
-    centre.style.opacity = fill;
-    centre.style.transform = 'translate(-50%,-50%) perspective(1200px) rotateY(' + lerp(0, -14, io(tilt)) + 'deg) rotateX(' + lerp(0, 6, io(tilt)) + 'deg)';
-    var k = Math.min(CENTRE.length - 1, Math.floor(prog(t, 1800, B_END - 300) * CENTRE.length));
-    if (cimg.getAttribute('src') !== CENTRE[k]) cimg.src = CENTRE[k];
-    var spin = (t - 1500) / 1000 * 0.55, appear = io(prog(t, 1500, 2300));
-    var vw = innerWidth, vh = innerHeight, R = Math.min(vw * 0.62, vh * 0.95);
+  function render(t) {
+    // 1 · peep in from the bottom-right corner, leaning in
+    var pe = out(prog(t, T.peep[0], T.peep[1])), fl = prog(t, T.flow[0], T.flow[1]);
+    girl.style.transform = 'translateY(' + lerp(100, 0, pe) + '%) rotate(' + lerp(-14, -6, pe) + 'deg) scaleY(' + lerp(1, 1.08, io(clamp(fl * 2))) + ')';
+    girl.style.opacity = 1 - io(clamp((fl - 0.05) / 0.35));
+    hello.textContent = typed(HELLO, T.hello, t, 45);
+    story.textContent = typed(STORY, T.story, t, 34);
+    text.style.opacity = 1 - io(clamp(fl / 0.3));
+    // 2 · her line unravels into ribbons that travel out to the work
+    if (t >= T.flow[0] - 50 && !ribbons) makeRibbons();
+    if (ribbons) ribbons.forEach(function (r, i) {
+      var p = io(clamp((fl - i * 0.04) / 0.8));
+      r.p.style.strokeDashoffset = r.L * (1 - p * 2);              // draws out, then the tail follows: a travelling line
+      r.p.style.opacity = p > 0 && p < 1 ? 1 : 0;
+    });
+    // 3 · the six images revolve on a cylinder
+    var ap = io(prog(t, T.orbit, T.orbit + 600));
+    orbit.style.opacity = ap;
+    var spin = (t - T.orbit) / 1000 * 38;                           // degrees per second
+    ring.style.transform = 'rotateX(-8deg) rotateY(' + spin + 'deg) scale(' + lerp(0.7, 1, ap) + ')';
+    var R = innerWidth <= 760 ? innerWidth * 0.4 : Math.min(innerWidth * 0.3, 460);
     cards.forEach(function (c, i) {
-      var lat = ((i * 0.61803) % 1 - 0.5) * 1.6, a = i / cards.length * Math.PI * 2 + spin;
-      var x = Math.cos(a) * R * Math.cos(lat), z = Math.sin(a) * R * Math.cos(lat) * 0.7, y = Math.sin(lat) * R * 0.62;
-      var s = 900 / (900 - z * 0.9) * lerp(0.2, 1, appear);
-      c.style.transform = 'translate(-50%,-50%) translate(' + (x * appear) + 'px,' + (y * appear) + 'px) scale(' + s + ') rotate(' + (Math.sin(a + i) * 22) + 'deg) rotateY(' + (Math.cos(a) * -40) + 'deg)';
-      c.style.zIndex = z > 0 ? 3 : 1;
-      c.style.opacity = appear * (z > 0 && Math.abs(x) < shapes.box.w * 0.45 && Math.abs(y) < shapes.box.h * 0.45 ? 0.35 : 0.6 + 0.4 * (z / R + 1) / 2);
+      var a = i / cards.length * 360, y = [-14, 10, -4, 16, -12, 6][i], tz = [4, -6, 8, -3, 6, -8][i];
+      c.style.transform = 'translate(-50%,-50%) rotateY(' + a + 'deg) translateZ(' + R + 'px) translateY(' + y + 'vh) rotateZ(' + tz + 'deg)';
     });
   }
 
@@ -124,31 +85,16 @@
   }
 
   var seek = (location.search.match(/[?&]reelAt=(\d+)/) || [])[1];
-  if (seek != null) {                                            // review: freeze phase B at reelAt ms
-    renderA(9.5, 99999); renderB(+seek);
-    return;
-  }
-
-  var waveAt = null, bAt = null;
-  v.addEventListener('loadedmetadata', function () { v.currentTime = START; v.playbackRate = RATE; }, { once: true });
+  if (seek != null) { if (+seek >= T.flow[0]) makeRibbons(); render(+seek); return; }
+  var t0 = null;
   (function loop(now) {
     if (done) return;
-    if (waveAt == null) {
-      renderA(v.currentTime, 0);
-      if (v.currentTime >= WAVE) { waveAt = now; v.playbackRate = 1; }
-    } else if (bAt == null) {
-      renderA(v.currentTime, now - waveAt);
-      if (now - waveAt >= TYPE_MS) { bAt = now; v.pause(); }
-    } else {
-      var t = now - bAt; renderB(t);
-      if (t >= B_END) { finish(); return; }
-    }
+    if (t0 == null) t0 = now;
+    var t = now - t0; render(t);
+    if (t >= T.end) { finish(); return; }
     requestAnimationFrame(loop);
   })(performance.now());
-
-  var p = v.play(); if (p && p.catch) p.catch(finish);
-  setTimeout(function () { if (v.currentTime <= START) finish(); }, 3000);
-  addEventListener('resize', function () { shapes = null; });
+  addEventListener('resize', function () { ribbons = null; });
   el.addEventListener('click', finish);
   window.addEventListener('keydown', finish, { once: true });
 })();

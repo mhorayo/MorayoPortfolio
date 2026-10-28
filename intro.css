@@ -1,27 +1,26 @@
-/* Intro — Momo walks out and waves, then her name types out beside her (see intro.js). */
+/* Intro — Momo peeps in, her story types out, she flows into a 3D orbit of the work (see intro.js). */
 .intro { position: fixed; inset: 0; z-index: 2000; background: var(--paper); color: var(--ink); overflow: hidden; cursor: pointer; transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1); }
 .no-intro .intro { display: none; }
 .intro.is-out { transform: translateY(-100%); }
-.mi { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: clamp(0px, 1vw, 20px); }
-/* the video is white line art: multiply drops the white onto the cream page; the bottom fades so a cropped body never ends in a hard edge */
-.mi__video { height: min(92vh, 980px); width: auto; mix-blend-mode: multiply; transform-origin: 50% 12%; -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent); mask-image: linear-gradient(to bottom, #000 78%, transparent); }
-.mi__text { margin: 0; min-width: 7.6em; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.95; }
-.mi__l1, .mi__l2 { display: block; min-height: 0.95em; }
-.mi__l2 { color: var(--ink-soft); }
-.mi__caret { display: inline-block; width: 0.06em; height: 0.85em; margin-left: 0.04em; vertical-align: -0.08em; background: currentColor; animation: mi-blink 0.9s steps(1) infinite; }
-@keyframes mi-blink { 50% { opacity: 0; } }
-.intro__skip { position: absolute; z-index: 5; right: var(--pad); bottom: calc(var(--pad) + env(safe-area-inset-bottom, 0px)); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
+/* 1 · Momo in the bottom-right corner, partly below the edge */
+.mm__girl { position: absolute; right: 6vw; bottom: -16vh; height: min(78vh, 760px); width: auto; transform-origin: 60% 100%; will-change: transform, opacity; }
+.mm__text { position: absolute; right: calc(6vw + min(78vh, 760px) * 0.38 + 2vw); bottom: 22vh; max-width: min(44vw, 640px); text-align: right; }
+.mm__hello { margin: 0 0 0.35em; font-size: clamp(36px, 5.2vw, 88px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.95; min-height: 0.95em; }
+.mm__story { margin: 0; font-size: clamp(20px, 2.15vw, 32px); line-height: 1.18; letter-spacing: -0.02em; color: var(--ink-soft); min-height: 2.4em; }
+/* 2 · the ribbons she unravels into */
+.mm__flow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.mm__flow path { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
+/* 3 · the six project images on a slowly turning cylinder */
+.mm__orbit { position: absolute; inset: 0; perspective: 1100px; opacity: 0; --r: min(30vw, 460px); }
+.mm__ring { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; will-change: transform; }
+.mm__card { position: absolute; left: 0; top: 0; max-width: none; width: clamp(110px, 13vw, 220px); aspect-ratio: 4 / 5; object-fit: cover; border-radius: 3px; box-shadow: 0 30px 60px -34px rgba(17, 17, 17, 0.5); backface-visibility: visible; }
+.intro__skip { position: absolute; z-index: 5; right: var(--pad); top: calc(var(--pad) + env(safe-area-inset-top, 0px)); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
 @media (max-width: 760px) {
-  .mi { flex-direction: column; justify-content: center; gap: 0; }
-  .mi__video { height: 62vh; }
-  .mi__text { min-width: 0; text-align: center; font-size: clamp(32px, 9vw, 48px); }
+  .mm__girl { right: -6vw; height: 62vh; bottom: -12vh; }
+  .mm__text { right: 6vw; left: 6vw; bottom: auto; top: 18vh; max-width: none; text-align: left; }
+  .mm__hello { font-size: clamp(34px, 10vw, 52px); }
+  .mm__story { font-size: 19px; }
+  .mm__orbit { --r: 40vw; }
+  .mm__card { width: 30vw; }
 }
 @media (prefers-reduced-motion: reduce) { .intro { display: none; } }
-/* phase B: the unwinding line */
-.mi__svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; }
-.mi__svg polyline { stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-/* phase C: the orbit */
-.mo { position: absolute; inset: 0; opacity: 0; }
-.mo__card { position: absolute; left: 50%; top: 50%; width: clamp(56px, 6vw, 104px); aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; box-shadow: 0 20px 40px -24px rgba(17, 17, 17, 0.45); will-change: transform; }
-.mo__centre { position: absolute; left: 50%; top: 50%; z-index: 2; overflow: hidden; background: #fff; border-radius: 4px; box-shadow: 0 40px 80px -40px rgba(17, 17, 17, 0.5); will-change: transform; }
-.mo__centre img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
