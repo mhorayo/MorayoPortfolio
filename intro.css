@@ -3,10 +3,10 @@
 .no-intro .intro { display: none; }
 .intro.is-out { transform: translateY(-100%); }
 .ir-scene { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.ir-w { position: relative; z-index: 2; font-size: clamp(44px, 9.5vw, 170px); font-weight: 500; letter-spacing: -0.05em; line-height: 0.9; white-space: nowrap; }
+.ir-w { position: relative; z-index: 2; font-size: clamp(44px, 6.4vw, 108px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.92; white-space: nowrap; }
 .ir-xl { font-size: clamp(64px, 18vw, 320px); font-weight: 600; letter-spacing: -0.06em; }
 .ir-lg { font-size: clamp(48px, 11vw, 200px); font-weight: 600; letter-spacing: -0.055em; }
-.ir-line { display: flex; align-items: center; justify-content: center; font-size: clamp(40px, 8.4vw, 150px); font-weight: 400; letter-spacing: -0.05em; line-height: 0.9; white-space: nowrap; position: relative; z-index: 2; }
+.ir-line { display: flex; align-items: center; justify-content: center; font-size: clamp(44px, 6.4vw, 108px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.9; white-space: nowrap; position: relative; z-index: 2; }
 .ir-3d { perspective: 1000px; }
 .ir-l, .ir-r { display: block; }
 .ir-l { transform-origin: right center; }
@@ -16,14 +16,14 @@
 .ir-line .ir-card { margin: 0 0.08em; flex: none; }
 .ir-pill { border-radius: 999px; width: 0; }
 .ir-fly, .ir-slide, .ir-phone { position: absolute; left: 50%; top: 50%; }
-.ir-fly { width: clamp(110px, 13vw, 220px); aspect-ratio: 4 / 5; opacity: 0; z-index: 1; }
-.ir-slide { width: clamp(160px, 24vw, 380px); aspect-ratio: 4 / 3; z-index: 1; }
-.ir-front { color: var(--paper); }
+.ir-fly { width: clamp(90px, 10vw, 170px); aspect-ratio: 4 / 5; opacity: 0; z-index: 1; }
+.ir-slide { width: clamp(130px, 18vw, 280px); aspect-ratio: 4 / 3; z-index: 1; }
+.ir-front { color: var(--ink); }
 .ir-phone { width: clamp(120px, 17vw, 260px); aspect-ratio: 9 / 19; border-radius: 14px; opacity: 0; }
 .ir-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.4vw; width: 86vw; height: 80vh; }
 .ir-grid span { background: var(--tile); border-radius: 6px; will-change: transform; }
-.ir-ribbon { display: flex; font-size: clamp(56px, 12vw, 210px); font-weight: 700; letter-spacing: -0.05em; line-height: 0.85; }
+.ir-ribbon { display: flex; font-size: clamp(44px, 6.4vw, 108px); font-weight: 500; letter-spacing: -0.05em; line-height: 0.85; }
 .ir-ribbon span { display: inline-block; transform-origin: 50% 60%; will-change: transform; }
-.ir-sign { width: min(42vw, 400px); filter: invert(1); }
+.ir-sign { width: min(36vw, 340px); }
 .intro__skip { position: absolute; z-index: 5; right: var(--pad); bottom: calc(var(--pad) + env(safe-area-inset-bottom, 0px)); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.6; mix-blend-mode: difference; color: #fff; }
 @media (prefers-reduced-motion: reduce) { .intro { display: none; } }

@@ -1,4 +1,4 @@
-/* Intro reel — ~12s kinetic-type opener modelled shot-for-shot on the reference film, first visit only.
+/* Intro reel — ~5.5s kinetic-type opener modelled shot-for-shot on the reference film, first visit only.
    One clock drives every frame (render(t)); ?reelAt=ms freezes any moment for review. Click/tap/key skips.
    Images are always cards — never full-screen. */
 (function () {
@@ -8,10 +8,9 @@
   if (root.classList.contains('no-intro')) { el.remove(); return; }
 
   var stage = el.querySelector('.intro__stage');
-  var paper = '#F8F6F2', ink = '#111111', clay = '#B98C72', olive = '#7A7866', tile = '#ECE8E0';
+  var paper = '#F8F6F2', ink = '#111111', clay = '#B98C72', tile = '#ECE8E0', nude = '#E6D5C5';
   var work = ['bmp-tile.jpg', 'ren-tile.jpg', 'dox-tile.jpg', 'wc-tile.jpg', 'h2p-tile.jpg', 'own-tile.jpg'];
-  var phones = ['bmp-home-new.jpg', 'ren-live-watching.jpg', 'h2p-n-wallets.png'];
-  var END = 12300, done = false, scene = '';
+  var END = 5600, done = false, scene = '';
   var seek = (location.search.match(/[?&]reelAt=(\d+)/) || [])[1];
   seek = seek == null ? null : +seek;
 
@@ -32,114 +31,58 @@
   var word = function (id, bg, fg, txt, cls) { build(id, bg, fg, '<span class="ir-w ' + (cls || '') + '">' + txt + '</span>'); };
 
   function render(t) {
-    // 1 · Welcome / to / to the work / of
-    if (t < 450) return word('welcome', paper, ink, 'Welcome');
-    if (t < 750) return word('to', ink, paper, 'to');
-    if (t < 1200) return word('tothe', ink, paper, 'to the work');
-    if (t < 1500) return word('of', paper, ink, 'of');
+    // 1 · Welcome / to the work / of
+    if (t < 350) return word('welcome', paper, ink, 'Welcome');
+    if (t < 750) return word('tothe', nude, ink, 'to the work');
+    if (t < 1000) return word('of', paper, ink, 'of');
 
-    // 2 · Morayo · Akinkunmi — a dot grows into a card, the card swings in 3D through the work, then turns diagonal
-    if (t < 3900) {
+    // 2 · Morayo · Akinkunmi — a dot grows into a card that swings in 3D through the work
+    if (t < 2700) {
       build('name', paper, ink, '<div class="ir-line ir-3d"><span class="ir-l" id="a">Morayo</span>' + card(work[0], '', ' id="c"') + '<span class="ir-r" id="b">Akinkunmi</span></div>');
       var A = $('#a'), B = $('#b'), C = $('#c'), im = C.firstChild;
-      var dot = io(prog(t, 1750, 2050)), grow = io(prog(t, 2050, 2700)), swing = io(prog(t, 2700, 3400)), diag = io(prog(t, 3300, 3900));
-      var w = lerp(0.12, 1.1, dot) + grow * 1.1 + swing * 1.4, h = lerp(0.12, 1.0, dot) + grow * 0.9 + swing * 1.8;
-      C.style.width = w + 'em'; C.style.height = h + 'em';
-      C.style.borderRadius = (dot < 1 ? 999 : lerp(10, 8, grow)) + 'px';
-      C.style.transform = 'perspective(900px) rotateY(' + (-30 * swing) + 'deg) rotateX(' + (8 * swing) + 'deg) rotate(' + lerp(0, -24, diag) + 'deg) scale(' + lerp(1, 2.1, diag) + ')';
-      var k = Math.min(work.length - 1, Math.floor(prog(t, 2300, 3700) * work.length));
+      var dot = io(prog(t, 1150, 1400)), grow = io(prog(t, 1400, 1900)), swing = io(prog(t, 1900, 2450)), leave = io(prog(t, 2400, 2700));
+      C.style.width = (lerp(0.12, 1, dot) + grow * 0.7 + swing * 0.5) + 'em';
+      C.style.height = (lerp(0.12, 0.9, dot) + grow * 0.6 + swing * 0.7) + 'em';
+      C.style.borderRadius = (dot < 1 ? 999 : 8) + 'px';
+      C.style.transform = 'perspective(900px) rotateY(' + (-26 * swing) + 'deg) rotateX(' + (7 * swing) + 'deg) scale(' + (1 - leave) + ')';
+      var k = Math.min(work.length - 1, Math.floor(prog(t, 1500, 2500) * work.length));
       if (im.getAttribute('src') !== work[k]) im.src = work[k];
-      A.style.fontWeight = B.style.fontWeight = grow > 0.4 ? 700 : 400;
-      A.style.transform = 'translateX(' + (-60 * diag) + 'vw) scaleX(' + lerp(1, 0.82, swing) + ')';
-      B.style.transform = 'translateX(' + (60 * diag) + 'vw) scale(' + lerp(1, 1.25, grow) + ')';
-      el.style.background = diag > 0.35 ? clay : paper;
+      A.style.transform = 'translateX(' + (-60 * leave) + 'vw) scaleX(' + lerp(1, 0.86, swing) + ')';
+      B.style.transform = 'translateX(' + (60 * leave) + 'vw) scaleX(' + lerp(1, 1.18, grow) + ')';
       return;
     }
 
-    // 3 · A / Product Designer
-    if (t < 4250) return word('a', paper, ink, 'A');
-    if (t < 4900) {
-      word('pd', ink, paper, 'Product Designer', 'ir-lg');
-      $('.ir-w').style.transform = 'scale(' + lerp(1.08, 1, out(prog(t, 4250, 4600))) + ')';
-      return;
-    }
-
-    // 4 · Fintech · AI · SaaS — a pill opens, the words widen, the work scatters around in 3D and flies apart
-    if (t < 7000) {
+    // 3 · Fintech AI · SaaS — a pill opens, the words widen, the work scatters around in 3D and flies apart
+    if (t < 4300) {
       build('fas', paper, ink,
         work.map(function (s, i) { return card(s, 'ir-fly', ' data-i="' + i + '"'); }).join('') +
         '<div class="ir-line ir-3d"><span class="ir-l" id="a">Fintech AI</span>' + card(work[1], 'ir-pill', ' id="c"') + '<span class="ir-r" id="b">SaaS</span></div>');
       var A2 = $('#a'), B2 = $('#b'), P = $('#c');
-      var op = io(prog(t, 5150, 5550)), wide = io(prog(t, 5500, 6100)), fly = prog(t, 5600, 6900);
-      P.style.width = lerp(0, 1.25, op) + 'em'; P.style.height = lerp(0.9, 1.5, op) + 'em';
-      P.style.opacity = 1 - io(prog(t, 6200, 6500));
-      A2.style.transform = 'scaleX(' + lerp(1, 0.86, wide) + ')'; B2.style.transform = 'scaleX(' + lerp(1, 1.55, wide) + ')';
-      A2.style.fontWeight = B2.style.fontWeight = wide > 0.3 ? 800 : 400;
-      var gone = io(prog(t, 6550, 6950));
+      var op = io(prog(t, 2800, 3150)), wide = io(prog(t, 3100, 3600)), fly = prog(t, 3200, 4250), gone = io(prog(t, 3950, 4300));
+      P.style.width = lerp(0, 1, op) + 'em'; P.style.height = lerp(0.85, 1.2, op) + 'em';
+      P.style.opacity = 1 - io(prog(t, 3700, 3950));
+      A2.style.transform = 'scaleX(' + lerp(1, 0.9, wide) + ')'; B2.style.transform = 'scaleX(' + lerp(1, 1.35, wide) + ')';
       A2.style.opacity = B2.style.opacity = 1 - gone;
       $$('.ir-fly').forEach(function (f, i) {
         var a = (i / work.length) * Math.PI * 2 + 0.3, p = io(clamp(fly * 1.2 - i * 0.05));
-        var rad = lerp(6, 38, Math.min(1, p * 1.4)) + Math.max(0, p - 0.7) * 120;
-        f.style.transform = 'translate(-50%,-50%) translate(' + Math.cos(a) * rad + 'vw,' + Math.sin(a) * rad * 0.62 + 'vh) rotate(' + ((i % 2 ? 1 : -1) * (14 + 30 * p)) + 'deg) rotateY(' + ((i % 2 ? -1 : 1) * 35 * p) + 'deg) scale(' + lerp(0.2, 1, Math.min(1, p * 1.6)) + ')';
+        var rad = lerp(6, 32, Math.min(1, p * 1.4)) + Math.max(0, p - 0.7) * 120;
+        f.style.transform = 'translate(-50%,-50%) translate(' + Math.cos(a) * rad + 'vw,' + Math.sin(a) * rad * 0.62 + 'vh) rotate(' + ((i % 2 ? 1 : -1) * (12 + 26 * p)) + 'deg) rotateY(' + ((i % 2 ? -1 : 1) * 30 * p) + 'deg) scale(' + lerp(0.2, 1, Math.min(1, p * 1.6)) + ')';
         f.style.opacity = p <= 0 ? 0 : 1;
       });
       return;
     }
 
-    // 5 · Research. (cards slide behind) / tile grid ripple / Design. / Ship.
-    if (t < 7650) {
-      build('research', olive, paper, [0, 1, 2, 3].map(function (i) { return card(work[i + 1], 'ir-slide', ' data-i="' + i + '"'); }).join('') + '<span class="ir-w ir-lg ir-front">Research.</span>');
-      var sp = prog(t, 7000, 7650);
-      $$('.ir-slide').forEach(function (s, i) { s.style.transform = 'translate(-50%,-50%) translateX(' + lerp(120 - i * 34, -40 - i * 34, sp) + 'vw)'; });
+    // 4 · Research. (cards slide behind) / Design. / Ship.
+    if (t < 4800) {
+      build('research', nude, ink, [0, 1, 2].map(function (i) { return card(work[i + 2], 'ir-slide', ' data-i="' + i + '"'); }).join('') + '<span class="ir-w ir-front">Research.</span>');
+      var sp = prog(t, 4300, 4800);
+      $$('.ir-slide').forEach(function (s, i) { s.style.transform = 'translate(-50%,-50%) translateX(' + lerp(90 - i * 30, -30 - i * 30, sp) + 'vw)'; });
       return;
     }
-    if (t < 8200) {
-      if (build('grid', clay, ink, '<div class="ir-grid">' + new Array(24).join('<span></span>') + '<span></span></div>')) { /* 24 tiles */ }
-      var gp = (t - 7650) / 550;
-      $$('.ir-grid span').forEach(function (s, i) {
-        var x = i % 6, y = Math.floor(i / 6), ph = gp * Math.PI * 2 + x * 0.7 + y * 0.9;
-        s.style.transform = 'translate(' + Math.sin(ph) * 14 + '%,' + Math.cos(ph * 0.8) * 12 + '%) rotate(' + Math.sin(ph + 1) * 8 + 'deg) scale(' + (0.9 + Math.sin(ph) * 0.12) + ',' + (0.9 + Math.cos(ph) * 0.12) + ')';
-      });
-      return;
-    }
-    if (t < 8600) return word('design', tile, ink, 'Design.', 'ir-xl');
-    if (t < 9000) return word('ship', clay, ink, 'Ship.', 'ir-xl');
+    if (t < 5100) return word('design', tile, ink, 'Design.');
+    if (t < 5400) return word('ship', clay, ink, 'Ship.');
 
-    // 6 · one card turning through the phone screens, ending as a triptych
-    if (t < 10100) {
-      build('trip', ink, paper, phones.map(function (s, i) { return card(s, 'ir-phone', ' data-i="' + i + '"'); }).join(''));
-      var tp = io(prog(t, 9550, 10050)), spin = prog(t, 9000, 9600);
-      $$('.ir-phone').forEach(function (p, i) {
-        var off = i - 1, showAlone = Math.floor(spin * 3) === i;
-        var x = off * 23 * tp, ry = tp < 1 ? lerp(spin * 720 % 360 > 180 ? -25 : 25, off * -18, tp) : off * -18;
-        p.style.transform = 'translate(-50%,-50%) translateX(' + x + 'vw) perspective(900px) rotateY(' + ry + 'deg) scale(' + lerp(1.1, 1, tp) + ')';
-        p.style.opacity = tp > 0.02 ? 1 : (showAlone ? 1 : 0);
-        p.style.zIndex = off === 0 ? 2 : 1;
-      });
-      return;
-    }
-
-    // 7 · The future of / fintech / is / simple — then "simple" bends like a ribbon and collapses into the signature
-    if (t < 10400) return word('fut', paper, ink, 'The future of');
-    if (t < 10750) return word('fin', ink, paper, 'fintech', 'ir-xl');
-    if (t < 11000) return word('is', paper, ink, 'is');
-    if (t < 11800) {
-      build('simple', paper, ink, '<div class="ir-ribbon" id="rb">' + 'simple'.split('').map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>');
-      var rp = prog(t, 11000, 11800), bend = io(clamp(rp / 0.7)), col = io(prog(t, 11550, 11800));
-      var L = $$('#rb span'), n = L.length;
-      L.forEach(function (s, i) {
-        var u = i / (n - 1) - 0.5;                                   // -0.5 … 0.5 along the word
-        var wave = Math.sin(u * Math.PI * 2.2 + rp * 4);
-        var sy = lerp(1, 3.2 + Math.abs(wave) * 1.6, bend), sx = lerp(1, 1.6, bend);
-        var r = lerp(0, Math.cos(u * Math.PI * 2.2 + rp * 4) * 34, bend);
-        var x = lerp(0, u * 140, bend), y = lerp(0, wave * 70, bend);
-        s.style.transform = 'translate(' + lerp(x, 0, col) + '%,' + lerp(y, 0, col) + '%) rotate(' + lerp(r, 0, col) + 'deg) scale(' + lerp(sx, 0.02, col) + ',' + lerp(sy, 0.02, col) + ')';
-      });
-      return;
-    }
-    build('end', ink, paper, '<img class="ir-sign" id="sg" src="signature.png" alt="Morayo Akinkunmi">');
-    var ep = out(prog(t, 11800, 12150)), sg = $('#sg');
-    sg.style.opacity = ep; sg.style.transform = 'scale(' + lerp(0.5, 1, ep) + ')';
+    return word('ship', clay, ink, 'Ship.');
   }
 
   function finish() {
