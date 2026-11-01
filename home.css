@@ -71,16 +71,20 @@
 .chap:hover a { opacity: 1; transform: none; }
 
 /* ---------- Work: one project at a time; its name huge along the bottom, its pictures stacking in the middle ---------- */
-.pw { position: relative; height: 460vh; margin: 0 calc(-1 * var(--pad)); }
+.pw { position: relative; height: 720vh; margin: 0 calc(-1 * var(--pad)); }
 .pw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .pw__head { position: absolute; z-index: 4; left: var(--pad); right: calc(var(--pad) + 60px); top: 84px; display: flex; justify-content: space-between; color: var(--ink-soft); }
 .pw__head .hlink { text-transform: none; font-size: 13px; color: var(--ink); }
-.pw__stack { position: absolute; inset: 0; z-index: 1; perspective: 1400px; }
-.pw__card { position: absolute; left: 50%; top: 46%; height: min(64vh, 58vw); aspect-ratio: 3 / 4; background: var(--tile); box-shadow: 0 40px 70px -40px rgba(17, 17, 17, 0.5); transform: translate(-50%, -50%); will-change: transform; visibility: hidden; }
-.pw__card img, .pw__card video { display: block; width: 100%; height: 100%; object-fit: cover; }
-/* the names run as one long strip; the one in focus is solid ink, the rest faint */
-.pw__names { position: absolute; z-index: 2; left: 0; bottom: -0.06em; display: flex; gap: 0.3em; font-size: min(15vw, 30vh); white-space: nowrap; pointer-events: none; will-change: transform; }
+/* the names run as one long strip behind the cards; the one in focus solid ink, the next faint */
+.pw__names { position: absolute; z-index: 1; left: 0; bottom: -0.07em; display: flex; gap: 0.3em; font-size: min(15vw, 30vh); white-space: nowrap; pointer-events: none; will-change: transform; }
 .pw__name { text-transform: uppercase; font-weight: 500; letter-spacing: -0.06em; line-height: 0.8; opacity: 0; }
+.pw__stack { position: absolute; inset: 0; z-index: 2; }
+.pw__card, .pw__reel { position: absolute; left: 50%; top: 43%; height: min(66vh, 60vw); aspect-ratio: 3 / 4; transform: translate(-50%, -50%); }
+.pw__card { background: var(--tile); will-change: transform; visibility: hidden; }
+.pw__card img, .pw__card video, .pw__col img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* the opening reel: cut off at the card's top edge, free below, so the pictures rise into the frame from the page */
+.pw__reel { z-index: 2; clip-path: inset(0 0 -300vh 0); pointer-events: none; visibility: hidden; }
+.pw__col { will-change: transform; }
 .pw__info { position: absolute; z-index: 3; transition: opacity 0.4s; left: var(--pad); top: 50%; transform: translateY(-50%); width: min(300px, 22vw); display: grid; }
 .pw__p { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 10px; opacity: 0; transform: translateY(12px); visibility: hidden; transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), visibility 0s 0.5s; }
 .pw__p.is-on { opacity: 1; transform: none; visibility: visible; transition-delay: 0.08s, 0.08s, 0s; }
@@ -168,11 +172,10 @@
   .hx__story::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgba(248, 246, 242, 0), var(--paper) 22%); opacity: 0; transition: opacity 0.6s; }
   .hx__story.is-on::before { opacity: 1; }
   .hx__type { font-size: 23px; min-height: 0; }
-  .pw { height: 440svh; }
+  .pw { height: 680svh; }
   .pw__pin { height: 100svh; }
-  .pw__card { top: 38%; height: min(46svh, 84vw); }
-  .pw__names { bottom: calc(46svh - 0.06em); font-size: 18vw; }
-  .pw__card { top: 36%; }
+  .pw__card, .pw__reel { top: 38%; height: min(50svh, 84vw); }
+  .pw__names { bottom: calc(30svh - 0.06em); font-size: 20vw; }
   .pw__info { top: auto; bottom: 22px; right: var(--pad); width: auto; transform: none; }
   .pw__title { display: none; }
   .pw__lead { font-size: 13px; }

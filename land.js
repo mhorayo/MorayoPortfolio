@@ -149,69 +149,76 @@
     } else setTimeout(build, 60);
   }
 
-  /* Work: one project at a time. As the section scrolls on, the pictures rise from below as a loose column and gather into
-     one card in the middle, and the first name fades in along the bottom. Then each next picture slides in from the right,
-     turned a little in 3D, over the last, which drifts left and sinks back; the strip of huge names glides along with it,
-     the one in focus solid ink. At the end every card shrinks and scatters into a small constellation. Eased after the scroll. */
+  /* Work: one project at a time. As the section pins, a reel of pictures runs up through the card's frame and stops on the
+     first project; its name then fades in, grey to ink, huge along the bottom behind the card. Each project holds still for a
+     while; then its card grows, tilts and flies off to one side (alternating left and right) to show the next card waiting
+     underneath, peeking out on the other side, while the strip of names glides on to the next. After the last card leaves,
+     the six cards come back small, scattered like a constellation. Eased after the scroll. */
   var pw = document.getElementById('work'), pstack = document.getElementById('pwStack');
   if (pw && pstack) {
     var pcards = $$('.pw__card', pstack), pnames = $$('.pw__name', pw), pinfos = $$('.pw__p', pw);
     var ptrack = pw.querySelector('.pw__names'), pinfo = pw.querySelector('.pw__info');
-    var pN = pcards.length, curW = -2, wP = 0, wT = 0, wRaf = 0, noff = [];
-    var spots = [[-0.3, -0.24], [0.27, -0.3], [-0.16, 0.2], [0.33, 0.12], [0.04, -0.06], [-0.36, -0.02]];
-    var pease = function (x) { return 1 - Math.pow(1 - x, 3); };
+    var preel = pw.querySelector('.pw__reel'), pcol = pw.querySelector('.pw__col');
+    var pN = pcards.length, curW = -2, wP = 0, wT = 0, wRaf = 0, noff = [], nend = 0;
+    var E1 = 0.07, E2 = 0.1, X = 0.86, C = 0.9, SEG = (X - E2) / pN, HOLD = 0.5;
+    var spots = [[-0.24, -0.2, -4], [0.2, -0.26, 3], [-0.07, 0.04, -2], [0.27, 0.1, 5], [-0.3, 0.16, 2], [0.06, -0.16, -3]];
+    var sm = function (x) { return x * x * (3 - 2 * x); };
+    var outc = function (x) { return 1 - Math.pow(1 - x, 3); };
     var mix = function (a, b, t) { return a + (b - a) * t; };
-    var measure = function () { noff = pnames.map(function (n) { return n.offsetLeft; }); };
-    var show = function (c, on) {
+    var measure = function () { noff = pnames.map(function (n) { return n.offsetLeft; }); nend = ptrack.scrollWidth + innerWidth * 0.1; };
+    var pshow = function (c, on) {
       if (c._on === on) return;
       c._on = on; c.style.visibility = on ? 'visible' : 'hidden';
       var v = c.querySelector('video');
       if (v) { if (on && !reduce) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); }
     };
+    var pplace = function (c, x, y, s, rz, z) {
+      c.style.zIndex = z;
+      c.style.transform = 'translate(-50%,-50%) translate(' + x + 'px,' + y + 'px) rotate(' + rz + 'deg) scale(' + s + ')';
+    };
     var drawPw = function () {
-      var vh = innerHeight, vw = innerWidth;
-      var en = pease(clamp(wP / 0.14, 0, 1)), m = clamp((wP - 0.14) / 0.74, 0, 1) * (pN - 1), ex = pease(clamp((wP - 0.88) / 0.12, 0, 1));
-      pcards.forEach(function (c, i) {
-        var r = parseFloat(c.style.getPropertyValue('--r')), d = m - i, x = 0, y = 0, s = 1, ry = 0, rz = r, b = 1, on = true, z = i;
-        if (en < 1) {                                      // rising as a column; the first lands on top
-          y = (1 - en) * (vh * 0.35 + i * vh * 0.42); z = pN - i; on = i === 0 || en < 0.98;
-          rz = r * (1 + (1 - en) * 2);
-        } else if (d < -1) on = false;
-        else if (d < 0) {                                   // sliding in from the right, turned in 3D
-          var u = 1 - pease(d + 1); x = u * vw * 0.6; ry = -u * 28; rz = r + u * 7;
-        } else {                                            // drifting left and sinking back
-          var t = Math.min(d, 1.2); x = -t * vw * 0.07; s = 1 - 0.07 * t; b = 1 - 0.18 * t; on = d < 1.2;
-        }
-        if (ex > 0) {                                       // the constellation
-          on = true; var sp = spots[i % spots.length];
-          x = mix(i === pN - 1 ? 0 : -vw * 0.07, sp[0] * vw, ex); y = mix(0, sp[1] * vh, ex);
-          s = mix(i === pN - 1 ? 1 : 0.92, 0.24, ex); ry = 0; b = 1; z = i;
-        }
-        show(c, on);
-        if (!on) return;
-        c.style.zIndex = z;
-        c.style.transform = 'translate(-50%,-50%) translate(' + x + 'px,' + y + 'px) rotateY(' + ry + 'deg) rotate(' + rz + 'deg) scale(' + s + ')';
-        c.style.filter = b < 1 ? 'brightness(' + b + ')' : '';
-      });
-      // the name strip: slides so the name in focus starts at the page margin
+      var vh = innerHeight, vw = innerWidth, H = preel.offsetHeight;
       if (!noff.length) measure();
-      var fi = Math.floor(m), ff = m - fi, pad = parseFloat(getComputedStyle(pw.querySelector('.pw__head')).left) || 24;
-      var off = mix(noff[fi], noff[Math.min(fi + 1, pN - 1)], ff);
-      ptrack.style.transform = 'translateX(' + (pad - off) + 'px)';
-      pnames.forEach(function (n, i) { n.style.opacity = (1 - Math.min(1, Math.abs(m - i)) * 0.9) * clamp((en - 0.4) / 0.6, 0, 1) * (1 - ex); });
-      pinfo.style.opacity = clamp((en - 0.6) / 0.4, 0, 1) * (1 - Math.min(1, ex * 3));
-      var top = Math.round(m);
-      if (top !== curW) { curW = top; pinfos.forEach(function (el, i) { el.classList.toggle('is-on', i === top); }); }
+      // the opening reel: the column rises and slows to a stop on the first project (the last picture in the column)
+      var e1 = clamp(wP / E1, 0, 1), landed = e1 >= 1;
+      preel.style.visibility = landed ? 'hidden' : 'visible';
+      if (!landed) pcol.style.transform = 'translateY(' + mix(vh * 0.6, -(pcol.children.length - 1) * H, outc(e1)) + 'px)';
+      // which project, and how far through its hand-off to the next
+      var q = clamp((wP - E2) / SEG, 0, pN - 0.0001), i = Math.floor(q), t = sm(clamp(((q - i) - HOLD) / (1 - HOLD), 0, 1));
+      if (wP >= X) { i = pN - 1; t = 1; }
+      var cst = outc(clamp((wP - C) / (1 - C), 0, 1)), dir = i % 2 ? 1 : -1;
+      pcards.forEach(function (c, k) {
+        if (cst > 0) {                                     // the constellation
+          var sp = spots[k % spots.length], a = clamp(cst * 1.6 - k * 0.1, 0, 1);
+          pshow(c, a > 0); pplace(c, sp[0] * vw, sp[1] * vh, mix(0.05, 0.22, outc(a)), sp[2], k); c.style.opacity = a; return;
+        }
+        c.style.opacity = '';
+        if (!landed) { pshow(c, false); return; }
+        if (k === i) { pshow(c, t < 1); pplace(c, dir * t * vw * 0.62, -t * vh * 0.04, 1 + 0.22 * t, dir * t * 9, 3); }
+        else if (k === i + 1 && t > 0) { pshow(c, true); pplace(c, -dir * (1 - t) * vw * 0.05, 0, 0.97 + 0.03 * t, -dir * (1 - t) * 3, 2); }
+        else pshow(c, false);
+      });
+      // the name strip: holds on the name in focus, then glides on to the next (and off, after the last)
+      var pad = parseFloat(getComputedStyle(pw.querySelector('.pw__head')).left) || 24;
+      var from = noff[i], to = i < pN - 1 ? noff[i + 1] : nend;
+      ptrack.style.transform = 'translateX(' + (pad - mix(from, to, t)) + 'px)';
+      var nIn = clamp((wP - E1) / (E2 - E1), 0, 1);
+      pnames.forEach(function (n, k) {
+        var o = k <= i ? 1 : k === i + 1 ? mix(0.08, 1, t) : 0.08;
+        n.style.opacity = o * nIn;
+      });
+      var top = Math.min(pN - 1, Math.round(i + t));
+      pinfo.style.opacity = nIn * (wP >= X - SEG * 0.25 ? 0 : 1);
+      if (top !== curW) { curW = top; pinfos.forEach(function (el, k) { el.classList.toggle('is-on', k === top); }); }
     };
     var tickPw = function () {
-      wP += (wT - wP) * 0.1;
+      wP += (wT - wP) * 0.12;
       if (Math.abs(wT - wP) < 0.0002) wP = wT;
       drawPw();
       wRaf = wP !== wT ? requestAnimationFrame(tickPw) : 0;
     };
-    // progress starts while the section is still coming up from below, so the column rises with the page
     var renderPw = function () {
-      wT = clamp((window.scrollY - pw.offsetTop + innerHeight * 0.6) / (pw.offsetHeight - innerHeight * 0.4), 0, 1);
+      wT = clamp((window.scrollY - pw.offsetTop) / (pw.offsetHeight - innerHeight), 0, 1);
       if (reduce) { wP = wT; drawPw(); } else if (!wRaf) wRaf = requestAnimationFrame(tickPw);
     };
     window.addEventListener('scroll', renderPw, { passive: true });
