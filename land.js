@@ -158,9 +158,9 @@
   if (pw && pstack) {
     var pcards = $$('.pw__card', pstack), pnames = $$('.pw__name', pw), pinfos = $$('.pw__p', pw);
     var ptrack = pw.querySelector('.pw__names'), pinfo = pw.querySelector('.pw__info');
-    var preel = pw.querySelector('.pw__reel'), pcol = pw.querySelector('.pw__col');
+    var preel = pw.querySelector('.pw__reel'), pframes = $$('img', preel);
     var pN = pcards.length, curW = -2, wP = 0, wT = 0, wRaf = 0, noff = [], nend = 0;
-    var E1 = 0.07, E2 = 0.1, X = 0.86, C = 0.9, SEG = (X - E2) / pN, HOLD = 0.5;
+    var E1 = 0.09, E2 = 0.12, X = 0.86, C = 0.9, SEG = (X - E2) / pN, HOLD = 0.5;
     var spots = [[-0.24, -0.2, -4], [0.2, -0.26, 3], [-0.07, 0.04, -2], [0.27, 0.1, 5], [-0.3, 0.16, 2], [0.06, -0.16, -3]];
     var sm = function (x) { return x * x * (3 - 2 * x); };
     var outc = function (x) { return 1 - Math.pow(1 - x, 3); };
@@ -179,10 +179,14 @@
     var drawPw = function () {
       var vh = innerHeight, vw = innerWidth, H = preel.offsetHeight;
       if (!noff.length) measure();
-      // the opening reel: the column rises and slows to a stop on the first project (the last picture in the column)
-      var e1 = clamp(wP / E1, 0, 1), landed = e1 >= 1;
+      // the opening: frames rise from below one after another; each stops in the card's place, over the one before; the
+      // last to land is the first project
+      var e1 = clamp(wP / E1, 0, 1), landed = e1 >= 1, gap = H * 0.55, nf = pframes.length;
       preel.style.visibility = landed ? 'hidden' : 'visible';
-      if (!landed) pcol.style.transform = 'translateY(' + mix(vh * 0.6, -(pcol.children.length - 1) * H, outc(e1)) + 'px)';
+      if (!landed) {
+        var base = mix(vh * 0.75, -(nf - 1) * gap, outc(e1));
+        pframes.forEach(function (f, k) { f.style.transform = 'translateY(' + Math.max(0, base + k * gap) + 'px)'; });
+      }
       // which project, and how far through its hand-off to the next
       var q = clamp((wP - E2) / SEG, 0, pN - 0.0001), i = Math.floor(q), t = sm(clamp(((q - i) - HOLD) / (1 - HOLD), 0, 1));
       if (wP >= X) { i = pN - 1; t = 1; }
