@@ -71,17 +71,15 @@
 .chap:hover a { opacity: 1; transform: none; }
 
 /* ---------- Work: one project at a time; its name huge along the bottom, its pictures stacking in the middle ---------- */
-.pw { position: relative; z-index: 5; height: 700vh; margin: 0 calc(-1 * var(--pad)); }
+.pw { position: relative; z-index: 5; height: 640vh; margin: 0 calc(-1 * var(--pad)); }
 .pw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; pointer-events: none; }
-.pw__dots { position: absolute; inset: 0; z-index: 2; }
-.pw__dots img { position: absolute; left: 50%; top: 50%; width: 60px; aspect-ratio: 3 / 4; margin: -40px 0 0 -30px; object-fit: cover; visibility: hidden; will-change: transform; }
 .pw__veil { position: absolute; inset: 0; z-index: 0; background: var(--paper); opacity: 0; }
 .pw__card, .pw__head a { pointer-events: auto; }
 .pw__head { position: absolute; z-index: 4; left: var(--pad); right: calc(var(--pad) + 60px); top: 84px; display: flex; justify-content: space-between; color: var(--ink-soft); opacity: 0; }
 .pw__head .hlink { text-transform: none; font-size: 13px; color: var(--ink); }
-/* the names run as one long strip behind the cards; the one in focus solid ink, the next faint */
-.pw__names { position: absolute; z-index: 1; left: 0; bottom: -0.07em; display: flex; gap: 0.3em; font-size: min(15vw, 30vh); white-space: nowrap; pointer-events: none; will-change: transform; }
-.pw__name { text-transform: uppercase; font-weight: 500; letter-spacing: -0.06em; line-height: 0.8; opacity: 0; }
+/* the project name sits behind the cards at the bottom left and fades softly from one to the next */
+.pw__names { position: absolute; z-index: 1; left: var(--pad); bottom: -0.06em; display: grid; font-size: min(9vw, 18vh); white-space: nowrap; pointer-events: none; }
+.pw__name { grid-area: 1 / 1; text-transform: uppercase; font-weight: 500; letter-spacing: -0.05em; line-height: 0.8; opacity: 0; }
 .pw__stack { position: absolute; inset: 0; z-index: 2; }
 .pw__card, .pw__reel, .pw__reel img { position: absolute; left: 50%; top: 49%; height: min(72vh, 64vw); aspect-ratio: 3 / 4; transform: translate(-50%, -50%); }
 .pw__card { background: var(--tile); will-change: transform; visibility: hidden; }
@@ -177,7 +175,7 @@
   .pw__pin { height: 100svh; }
   .pw__card, .pw__reel, .pw__reel img { top: 36%; height: min(48svh, 84vw); }
   .pw__reel img { top: 0; height: 100%; }
-  .pw__names { bottom: calc(26svh - 0.06em); font-size: 20vw; }
+  .pw__names { bottom: calc(26svh - 0.06em); font-size: 13vw; }
   .pw__info { top: auto; bottom: 22px; right: var(--pad); width: auto; transform: none; }
   .pw__head { right: var(--pad); top: 76px; }
   .ab { grid-template-columns: 1fr; padding: 90px 0; }

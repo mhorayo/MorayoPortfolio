@@ -165,20 +165,15 @@
   var pw = document.getElementById('work'), pstack = document.getElementById('pwStack');
   if (pw && pstack) {
     var pcards = $$('.pw__card', pstack), pnames = $$('.pw__name', pw), pinfos = $$('.pw__p', pw);
-    var ptrack = pw.querySelector('.pw__names'), pinfo = pw.querySelector('.pw__info');
-    var pdots = $$('.pw__dots img', pw), dpos = pdots.map(function (d, k) {
-      var a = k * 2.399, r = 0.25 + (k % 5) * 0.17;                          // spread round the middle, near and far
-      return [Math.cos(a) * r, Math.sin(a) * r * 0.75, 1 + ((k * 7) % 18) / 9, ((k * 13) % 17) - 8];
-    });
+    var pinfo = pw.querySelector('.pw__info');
     var pveil = pw.querySelector('.pw__veil'), phead = pw.querySelector('.pw__head');
     var preel = pw.querySelector('.pw__reel'), pframes = $$('img', preel);
-    var pN = pcards.length, curW = -2, wP = 0, wT = 0, wRaf = 0, noff = [], nend = 0;
-    var E1 = 0.09, E2 = 0.12, X = 0.84, C = 0.85, SEG = (X - E2) / pN, HOLD = 0.38;
+    var pN = pcards.length, curW = -2, wP = 0, wT = 0, wRaf = 0;
+    var E1 = 0.09, E2 = 0.12, X = 0.95, SEG = (X - E2) / pN, HOLD = 0.38;
     var spots = [[-0.24, -0.2, -4], [0.2, -0.26, 3], [-0.07, 0.04, -2], [0.27, 0.1, 5], [-0.3, 0.16, 2], [0.06, -0.16, -3]];
     var sm = function (x) { return x * x * (3 - 2 * x); };
     var outc = function (x) { return 1 - Math.pow(1 - x, 3); };
     var mix = function (a, b, t) { return a + (b - a) * t; };
-    var measure = function () { noff = pnames.map(function (n) { return n.offsetLeft; }); nend = ptrack.scrollWidth + innerWidth * 0.1; };
     var pshow = function (c, on) {
       if (c._on === on) return;
       c._on = on; c.style.visibility = on ? 'visible' : 'hidden';
@@ -191,7 +186,6 @@
     };
     var drawPw = function () {
       var vh = innerHeight, vw = innerWidth, H = preel.offsetHeight;
-      if (!noff.length) measure();
       // the opening: frames rise from below one after another; each stops in the card's place, over the one before; the
       // last to land is the first project
       var e1 = clamp((innerHeight - pw.getBoundingClientRect().top) / innerHeight * 0.55 + wP / E1 * 0.45, 0, 1), landed = e1 >= 1, gap = H * 0.55, nf = pframes.length;
@@ -204,7 +198,7 @@
       // which project, and how far through its hand-off to the next
       var q = clamp((wP - E2) / SEG, 0, pN - 0.0001), i = Math.floor(q), t = sm(clamp(((q - i) - HOLD) / (1 - HOLD), 0, 1));
       if (wP >= X) { i = pN - 1; t = 1; }
-      var cst = outc(clamp((wP - C) / (1 - C), 0, 1)), dir = i % 2 ? 1 : -1;
+      var cst = 0, dir = i % 2 ? 1 : -1;
       pcards.forEach(function (c, k) {
         if (cst > 0) { pshow(c, false); return; }
         c.style.opacity = '';
@@ -213,24 +207,12 @@
         else if (k === i + 1 && t > 0) { pshow(c, true); pplace(c, -dir * (1 - t) * vw * 0.05, 0, 0.97 + 0.03 * t, -dir * (1 - t) * 3, 2); }
         else pshow(c, false);
       });
-      // the cluster: a small cloud of the projects in the middle; the camera flies forward through it until it's gone
-      var cam = cst * 3.1;
-      pdots.forEach(function (d, k) {
-        var p3 = dpos[k], dz = p3[2] - cam, on = cst > 0 && dz > 0.06;
-        if (d._on !== on) { d._on = on; d.style.visibility = on ? 'visible' : 'hidden'; }
-        if (!on) return;
-        var f = 1 / dz;
-        d.style.transform = 'translate(' + p3[0] * vw * 0.22 * f + 'px,' + p3[1] * vh * 0.3 * f + 'px) rotate(' + p3[3] + 'deg) scale(' + 0.32 * f + ')';
-        d.style.opacity = clamp(cst * 8, 0, 1);
-      });
-      // the name strip: holds on the name in focus, then glides on to the next (and off, after the last)
-      var pad = parseFloat(getComputedStyle(pw.querySelector('.pw__head')).left) || 24;
-      var from = noff[i], to = i < pN - 1 ? noff[i + 1] : nend;
-      ptrack.style.transform = 'translateX(' + (pad - mix(from, to, t)) + 'px)';
+      // the name: the one in focus fades out as its card leaves, and the next fades in, rising a touch
       var nIn = clamp((wP - E1) / (E2 - E1), 0, 1);
       pnames.forEach(function (n, k) {
-        var o = k <= i ? 1 : k === i + 1 ? mix(0.08, 1, t) : 0.08;
+        var o = k === i ? 1 - t : k === i + 1 ? t : 0;
         n.style.opacity = o * nIn;
+        n.style.transform = k === i + 1 ? 'translateY(' + (1 - t) * 0.08 + 'em)' : '';
       });
       var top = Math.min(pN - 1, Math.round(i + t));
       pinfo.style.opacity = nIn * (wP >= X - SEG * 0.25 ? 0 : 1);
@@ -247,8 +229,7 @@
       if (reduce) { wP = wT; drawPw(); } else if (!wRaf) wRaf = requestAnimationFrame(tickPw);
     };
     window.addEventListener('scroll', renderPw, { passive: true });
-    window.addEventListener('resize', function () { measure(); drawPw(); });
-    window.addEventListener('load', function () { measure(); drawPw(); });
+    window.addEventListener('resize', drawPw);
     renderPw(); wP = wT; drawPw();
   }
 
@@ -258,10 +239,11 @@
   var po = document.getElementById('story-ring');
   if (po) {
     var pits = $$('.po__it', po), pbeats = $$('.po__b', po), oP = 0, oT = 0, oRaf = 0;
-    var beatT = [[0.2, 0.26, 0.4, 0.44], [0.45, 0.51, 0.62, 0.66], [0.67, 0.73, 0.8, 0.84], [0.85, 0.9, 2, 3]];
+    var beatT = [[0.14, 0.2, 0.33, 0.37], [0.38, 0.44, 0.55, 0.59], [0.6, 0.66, 0.74, 0.78], [0.82, 0.88, 2, 3]];
     var drawPo = function () {
       var vw = innerWidth, vh = innerHeight, n = pits.length, far = Math.hypot(vw, vh) * 0.62;
-      var g = clamp((oP - 0.03) / 0.9, 0, 1), r = far * Math.pow(g, 0.8), turn = oP * 1.3;
+      var r0 = Math.min(vh * 0.4, vw * 0.3), open = clamp((oP - 0.02) / 0.13, 0, 1), spin = clamp((oP - 0.15) / 0.62, 0, 1), out = clamp((oP - 0.77) / 0.15, 0, 1);
+      var g = open, r = open < 1 ? r0 * (1 - Math.pow(1 - open, 3)) : r0 + (far - r0) * out * out, turn = spin * Math.PI * 2 + out * 0.5;
       pits.forEach(function (it, k) {
         var on = g > 0 && r < far * 0.99;
         if (it._on !== on) {
