@@ -71,9 +71,11 @@
 .chap:hover a { opacity: 1; transform: none; }
 
 /* ---------- Work: one project at a time; its name huge along the bottom, its pictures stacking in the middle ---------- */
-.pw { position: relative; height: 720vh; margin: 0 calc(-1 * var(--pad)); }
-.pw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
-.pw__head { position: absolute; z-index: 4; left: var(--pad); right: calc(var(--pad) + 60px); top: 84px; display: flex; justify-content: space-between; color: var(--ink-soft); }
+.pw { position: relative; z-index: 5; height: 720vh; margin: -70vh calc(-1 * var(--pad)) 0; }
+.pw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; pointer-events: none; }
+.pw__veil { position: absolute; inset: 0; z-index: 0; background: var(--paper); opacity: 0; }
+.pw__card, .pw__head a { pointer-events: auto; }
+.pw__head { position: absolute; z-index: 4; left: var(--pad); right: calc(var(--pad) + 60px); top: 84px; display: flex; justify-content: space-between; color: var(--ink-soft); opacity: 0; }
 .pw__head .hlink { text-transform: none; font-size: 13px; color: var(--ink); }
 /* the names run as one long strip behind the cards; the one in focus solid ink, the next faint */
 .pw__names { position: absolute; z-index: 1; left: 0; bottom: -0.07em; display: flex; gap: 0.3em; font-size: min(15vw, 30vh); white-space: nowrap; pointer-events: none; will-change: transform; }
@@ -96,27 +98,13 @@
 .pw__res { grid-column: 3; grid-row: 5; margin: 0 0 14px; font-size: clamp(17px, 1.4vw, 21px); line-height: 1.3; letter-spacing: -0.02em; }
 .pw__p .pblock__go { grid-column: 3; grid-row: 6; justify-self: start; font-size: 13px; }
 
-/* ---------- About ---------- */
-.ab { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 90px); padding: clamp(100px, 14vw, 200px) 0; }
-.ab__pin { position: sticky; top: 90px; align-self: start; }
-.ab__burst { position: relative; margin: 0; aspect-ratio: 4 / 5; max-height: calc(100vh - 230px); background: var(--tile); cursor: pointer; }
-.ab__f { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; opacity: 0; }
-.ab__f--momo { object-fit: contain; padding: 7% 0 0; background: var(--paper); box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.12); }
-.ab__f.is-on { opacity: 1; }
-.ab__burst--still { cursor: auto; }
+/* ---------- About: a small portrait, centred, and a few short centred lines under it ---------- */
+.ab { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: clamp(110px, 16vw, 220px) 0 clamp(90px, 12vw, 180px); text-align: center; }
+.ab__pic { width: clamp(110px, 10vw, 150px); aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; }
+.ab__body { display: flex; flex-direction: column; align-items: center; gap: 1.1em; max-width: 34em; font-size: clamp(15px, 1.15vw, 17px); line-height: 1.45; }
+.ab__body p { margin: 0; }
+.ab__more { margin-top: 8px; }
 .land .nav.is-scrolled { border-bottom-color: transparent; }
-.ab__burst.is-snap .ab__f.is-on { transform: scale(1.012); }
-.ab__cap { position: absolute; left: 0; right: 0; bottom: -28px; display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-soft); }
-.ab__body { display: flex; flex-direction: column; gap: 22px; justify-content: center; max-width: 36em; }
-.ab__body > p:not(.ab__big) { margin: 0; font-size: clamp(16px, 1.3vw, 20px); line-height: 1.4; color: var(--ink-soft); }
-.ab__body .mo__caps { margin-top: 14px; padding-top: 18px; }
-.ab__story { display: flex; flex-direction: column; gap: clamp(80px, 16vh, 180px); padding-top: 4vh; }
-.ab__k { color: var(--ink-soft); }
-.ab__beat { display: flex; flex-direction: column; gap: 18px; max-width: 34em; }
-.ab__beat .up { color: var(--ink-soft); }
-.ab__big { margin: 0; font-size: clamp(28px, 3vw, 50px); line-height: 1.05; letter-spacing: -0.035em; }
-.ab__beat p:not(.ab__big) { margin: 0; font-size: clamp(16px, 1.3vw, 20px); line-height: 1.4; color: var(--ink-soft); }
-.ab__more { align-self: flex-start; }
 
 /* ---------- More (sticky index + large rows) ---------- */
 .mo { display: grid; grid-template-columns: minmax(120px, 0.6fr) 4fr; gap: var(--pad); }

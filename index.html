@@ -23,10 +23,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="v2.css?v=1793573000" />
+<link rel="stylesheet" href="v2.css?v=1793574000" />
 <script>if(/[?&]nointro/.test(location.search))document.documentElement.classList.add('no-intro')</script>
-<link rel="stylesheet" href="intro.css?v=1793573000" />
-<link rel="stylesheet" href="home.css?v=1793573000" />
+<link rel="stylesheet" href="intro.css?v=1793574000" />
+<link rel="stylesheet" href="home.css?v=1793574000" />
 </head>
 <body class="land">
 <div class="intro" id="intro" aria-hidden="true"><div class="intro__stage"></div><span class="intro__skip">Click to skip</span></div>
@@ -86,6 +86,7 @@
     <!-- Work: one project at a time. A reel of pictures runs up and stops on the first; each project then holds, and its
          card flies off to one side to show the next underneath. The names run huge along the bottom; the story sits on the left -->
     <div class="pw__pin">
+      <div class="pw__veil" aria-hidden="true"></div>
       <div class="pw__head up"><span>Selected work</span><a class="hlink" href="archive.html">View all work &rarr;</a></div>
       <div class="pw__names" aria-hidden="true">
       <span class="pw__name" data-p="0">BroadMoney</span>
@@ -95,7 +96,7 @@
       <span class="pw__name" data-p="4">OwnIt</span>
       <span class="pw__name" data-p="5">Help2Pay</span>
       </div>
-      <div class="pw__reel" aria-hidden="true"><img src="wc-tile.jpg" alt="" /><img src="own-tile.jpg" alt="" /><img src="h2p-tile.jpg" alt="" /><img src="dox-tile.jpg" alt="" /><img src="ren-tile.jpg" alt="" /><img src="bmp-tile.jpg" alt="" /></div>
+      <div class="pw__reel" aria-hidden="true"><img src="h2p-tile.jpg" alt="" /><img src="own-tile.jpg" alt="" /><img src="wc-tile.jpg" alt="" /><img src="dox-tile.jpg" alt="" /><img src="ren-tile.jpg" alt="" /><img src="bmp-tile.jpg" alt="" /></div>
       <div class="pw__stack" id="pwStack">
         <a class="pw__card" href="case-broadmoney.html" data-p="0" style="--r:-3deg" aria-label="BroadMoney case study"><img src="bmp-tile.jpg" alt="" /></a>
         <a class="pw__card" href="case-renncora.html" data-p="1" style="--r:2.5deg" aria-label="Renncora case study"><video src="ren-tile.mp4" poster="ren-tile.jpg" muted loop playsinline preload="none"></video></a>
@@ -152,21 +153,14 @@
   </section>
 
   <!-- About: her photo, who I am beside it -->
+  <!-- About: a small portrait, centred, and a few short lines under it -->
   <section class="ab" id="about" aria-label="About">
-    <div class="ab__pin">
-      <figure class="ab__burst ab__burst--still">
-        <img class="ab__f is-on" src="morayo-portrait.jpg" alt="Morayo Akinkunmi" loading="lazy" />
-      </figure>
-    </div>
+    <img class="ab__pic" src="morayo-portrait.jpg" alt="Morayo Akinkunmi" loading="lazy" />
     <div class="ab__body reveal">
-      <span class="up ab__k">(About)</span>
-      <p class="ab__big">Hi, I&rsquo;m Morayo.</p>
-      <p>Senior Product Designer with five years across fintech, AI and SaaS. Based in Lagos, open to relocation and remote.</p>
-      <div class="mo__caps">
-        <div><h3>Product design</h3><ul><li>End-to-end product design</li><li>UX and UI</li><li>Prototyping</li><li>Mobile and web</li></ul></div>
-        <div><h3>Research and data</h3><ul><li>Monthly UX audits</li><li>Microsoft Clarity</li><li>UXCam and PostHog</li><li>Funnel analysis</li></ul></div>
-        <div><h3>Systems and AI</h3><ul><li>Design systems from scratch</li><li>Tokens and documentation</li><li>AI product design</li><li>WCAG AA accessibility</li></ul></div>
-      </div>
+      <p>Hi, I&rsquo;m Morayo. I&rsquo;m a Senior Product Designer in Lagos, with five years designing fintech, AI and SaaS products that people trust with their money and their time.</p>
+      <p>I studied computer engineering, but I was always the one obsessing over how things look and feel. After university I taught myself Webflow, then Figma, designed for a fashion e-commerce brand, and took Google&rsquo;s UX courses. Then came fintech: remittance, digital banking, document automation and AI.</p>
+      <p>It clicked when I started watching analytics: real people moving from screen A to screen B exactly the way I&rsquo;d imagined. Design stopped being decoration and became proof. I love order, routine and beautiful things. Design is how I see the world.</p>
+      <p>Open to visa-sponsored roles in the UK and Europe, and to remote roles worldwide, in any time zone.</p>
       <a class="hlink ab__more" href="about.html">More about me &rarr;</a>
     </div>
   </section>
@@ -197,8 +191,8 @@
     <div class="fx__base"><span>&copy; 2026 Morayo Akinkunmi</span><img class="sign" src="signature.png" alt="Morayo Akinkunmi signature" /></div>
   </footer>
 </main>
-<script src="intro.js?v=1793573000"></script>
-<script src="land.js?v=1793573000"></script>
-<script src="v2.js?v=1793573000"></script>
+<script src="intro.js?v=1793574000"></script>
+<script src="land.js?v=1793574000"></script>
+<script src="v2.js?v=1793574000"></script>
 </body>
 </html>

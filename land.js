@@ -158,6 +158,7 @@
   if (pw && pstack) {
     var pcards = $$('.pw__card', pstack), pnames = $$('.pw__name', pw), pinfos = $$('.pw__p', pw);
     var ptrack = pw.querySelector('.pw__names'), pinfo = pw.querySelector('.pw__info');
+    var pveil = pw.querySelector('.pw__veil'), phead = pw.querySelector('.pw__head');
     var preel = pw.querySelector('.pw__reel'), pframes = $$('img', preel);
     var pN = pcards.length, curW = -2, wP = 0, wT = 0, wRaf = 0, noff = [], nend = 0;
     var E1 = 0.09, E2 = 0.12, X = 0.86, C = 0.9, SEG = (X - E2) / pN, HOLD = 0.5;
@@ -183,6 +184,7 @@
       // last to land is the first project
       var e1 = clamp(wP / E1, 0, 1), landed = e1 >= 1, gap = H * 0.55, nf = pframes.length;
       preel.style.visibility = landed ? 'hidden' : 'visible';
+      pveil.style.opacity = clamp(e1 * 1.4, 0, 1); phead.style.opacity = clamp(e1 * 2 - 1, 0, 1);
       if (!landed) {
         var base = mix(vh * 0.75, -(nf - 1) * gap, outc(e1));
         pframes.forEach(function (f, k) { f.style.transform = 'translateY(' + Math.max(0, base + k * gap) + 'px)'; });
