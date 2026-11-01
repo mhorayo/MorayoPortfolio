@@ -4,6 +4,14 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var clamp = function (x, a, b) { return Math.max(a, Math.min(b, x)); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  /* smooth scrolling for the whole page, held still while the intro plays; with it on, the scenes follow the scroll
+     directly (SK 1), otherwise each eases on its own */
+  var lenis = null, SK = 0.12;
+  if (!reduce && window.Lenis) {
+    lenis = new window.Lenis({ lerp: 0.085, wheelMultiplier: 0.9 }); SK = 1;
+    var lraf = function (t) { if (document.body.classList.contains('intro-on')) lenis.stop(); else lenis.start(); lenis.raf(t); requestAnimationFrame(lraf); };
+    requestAnimationFrame(lraf);
+  }
 
   /* Navbar: a hairline once you scroll; on phones a Menu button opens the links */
   var nav = document.getElementById('nav'), toggle = document.getElementById('navToggle');
@@ -158,10 +166,14 @@
   if (pw && pstack) {
     var pcards = $$('.pw__card', pstack), pnames = $$('.pw__name', pw), pinfos = $$('.pw__p', pw);
     var ptrack = pw.querySelector('.pw__names'), pinfo = pw.querySelector('.pw__info');
+    var pdots = $$('.pw__dots img', pw), dpos = pdots.map(function (d, k) {
+      var a = k * 2.399, r = 0.25 + (k % 5) * 0.17;                          // spread round the middle, near and far
+      return [Math.cos(a) * r, Math.sin(a) * r * 0.75, 1 + ((k * 7) % 18) / 9, ((k * 13) % 17) - 8];
+    });
     var pveil = pw.querySelector('.pw__veil'), phead = pw.querySelector('.pw__head');
     var preel = pw.querySelector('.pw__reel'), pframes = $$('img', preel);
     var pN = pcards.length, curW = -2, wP = 0, wT = 0, wRaf = 0, noff = [], nend = 0;
-    var E1 = 0.09, E2 = 0.12, X = 0.86, C = 0.9, SEG = (X - E2) / pN, HOLD = 0.5;
+    var E1 = 0.09, E2 = 0.12, X = 0.84, C = 0.85, SEG = (X - E2) / pN, HOLD = 0.38;
     var spots = [[-0.24, -0.2, -4], [0.2, -0.26, 3], [-0.07, 0.04, -2], [0.27, 0.1, 5], [-0.3, 0.16, 2], [0.06, -0.16, -3]];
     var sm = function (x) { return x * x * (3 - 2 * x); };
     var outc = function (x) { return 1 - Math.pow(1 - x, 3); };
@@ -194,15 +206,22 @@
       if (wP >= X) { i = pN - 1; t = 1; }
       var cst = outc(clamp((wP - C) / (1 - C), 0, 1)), dir = i % 2 ? 1 : -1;
       pcards.forEach(function (c, k) {
-        if (cst > 0) {                                     // the cluster: gathers small in the middle, then flies out past you
-          var sp = spots[k % spots.length], a = clamp(cst * 3 - k * 0.12, 0, 1), z = mix(0.12, 2.6, Math.pow(cst, 1.6));
-          pshow(c, a > 0 && cst < 0.995); pplace(c, sp[0] * vw * z, sp[1] * vh * z, mix(0.05, 0.7, Math.pow(cst, 1.4)), sp[2], k); c.style.opacity = a; return;
-        }
+        if (cst > 0) { pshow(c, false); return; }
         c.style.opacity = '';
         if (!landed) { pshow(c, false); return; }
         if (k === i) { pshow(c, t < 1); pplace(c, dir * t * vw * 0.62, -t * vh * 0.04, 1 + 0.22 * t, dir * t * 9, 3); }
         else if (k === i + 1 && t > 0) { pshow(c, true); pplace(c, -dir * (1 - t) * vw * 0.05, 0, 0.97 + 0.03 * t, -dir * (1 - t) * 3, 2); }
         else pshow(c, false);
+      });
+      // the cluster: a small cloud of the projects in the middle; the camera flies forward through it until it's gone
+      var cam = cst * 3.1;
+      pdots.forEach(function (d, k) {
+        var p3 = dpos[k], dz = p3[2] - cam, on = cst > 0 && dz > 0.06;
+        if (d._on !== on) { d._on = on; d.style.visibility = on ? 'visible' : 'hidden'; }
+        if (!on) return;
+        var f = 1 / dz;
+        d.style.transform = 'translate(' + p3[0] * vw * 0.22 * f + 'px,' + p3[1] * vh * 0.3 * f + 'px) rotate(' + p3[3] + 'deg) scale(' + 0.32 * f + ')';
+        d.style.opacity = clamp(cst * 8, 0, 1);
       });
       // the name strip: holds on the name in focus, then glides on to the next (and off, after the last)
       var pad = parseFloat(getComputedStyle(pw.querySelector('.pw__head')).left) || 24;
@@ -218,7 +237,7 @@
       if (top !== curW) { curW = top; pinfos.forEach(function (el, k) { el.classList.toggle('is-on', k === top); }); }
     };
     var tickPw = function () {
-      wP += (wT - wP) * 0.12;
+      wP += (wT - wP) * SK;
       if (Math.abs(wT - wP) < 0.0002) wP = wT;
       drawPw();
       wRaf = wP !== wT ? requestAnimationFrame(tickPw) : 0;
@@ -238,14 +257,13 @@
      the end the ring flies apart off the screen and the last line stays. */
   var po = document.getElementById('story-ring');
   if (po) {
-    var pits = $$('.po__it', po), pbeats = $$('.po__b', po), oP = 0, oT = 0, oRaf = 0, curB = -1;
-    var oout = function (x) { return 1 - Math.pow(1 - x, 3); };
+    var pits = $$('.po__it', po), pbeats = $$('.po__b', po), oP = 0, oT = 0, oRaf = 0;
+    var beatT = [[0.2, 0.26, 0.4, 0.44], [0.45, 0.51, 0.62, 0.66], [0.67, 0.73, 0.8, 0.84], [0.85, 0.9, 2, 3]];
     var drawPo = function () {
-      var vw = innerWidth, vh = innerHeight, n = pits.length;
-      var grow = oout(clamp(oP / 0.14, 0, 1)), fly = Math.pow(clamp((oP - 0.72) / 0.16, 0, 1), 1.5);
-      var rx = Math.min(vw * 0.36, vh * 0.62) * (grow + fly * 1.6), ry = vh * 0.42 * (grow + fly * 1.6), turn = oP * 4.2;
+      var vw = innerWidth, vh = innerHeight, n = pits.length, far = Math.hypot(vw, vh) * 0.62;
+      var g = clamp((oP - 0.03) / 0.9, 0, 1), r = far * Math.pow(g, 0.8), turn = oP * 1.3;
       pits.forEach(function (it, k) {
-        var on = grow > 0 && fly < 1;
+        var on = g > 0 && r < far * 0.99;
         if (it._on !== on) {
           it._on = on; it.style.visibility = on ? 'visible' : 'hidden';
           var v = it.querySelector('video');
@@ -253,14 +271,18 @@
         }
         if (!on) return;
         var ang = k / n * Math.PI * 2 + turn;
-        it.style.transform = 'translate(' + Math.cos(ang) * rx + 'px,' + Math.sin(ang) * ry + 'px) rotate(calc(' + it.style.getPropertyValue('--t') + ' + ' + turn * 20 + 'deg)) scale(' + (0.3 + 0.7 * grow + fly * 0.8) + ')';
-        it.style.opacity = 1 - fly;
+        it.style.transform = 'translate(' + Math.cos(ang) * r + 'px,' + Math.sin(ang) * r + 'px) rotate(calc(' + it.style.getPropertyValue('--t') + ' + ' + (ang * 57.3 + 90) + 'deg)) scale(' + clamp(g * 6, 0.15, 1) + ')';
       });
-      var b = oP < 0.1 ? -1 : oP >= 0.72 ? pbeats.length - 1 : Math.min(pbeats.length - 2, Math.floor((oP - 0.1) / 0.62 * (pbeats.length - 1)));
-      if (b !== curB) { curB = b; pbeats.forEach(function (el, k) { el.classList.toggle('is-on', k === b); }); }
+      pbeats.forEach(function (el, k) {
+        var b = beatT[k], m = clamp((oP - b[0]) / (b[1] - b[0]), 0, 1), o = 1 - clamp((oP - b[2]) / (b[3] - b[2]), 0, 1);
+        var cut = m * 130, mk = m >= 1 ? 'none' : 'linear-gradient(to bottom, #000 ' + (cut - 30) + '%, transparent ' + cut + '%)';
+        el.style.webkitMaskImage = mk; el.style.maskImage = mk;
+        el.style.opacity = m > 0 ? o : 0;
+        el.style.transform = 'translateY(' + (-14 * (1 - o)) + 'px)';
+      });
     };
     var tickPo = function () {
-      oP += (oT - oP) * 0.1;
+      oP += (oT - oP) * SK;
       if (Math.abs(oT - oP) < 0.0002) oP = oT;
       drawPo();
       oRaf = oP !== oT ? requestAnimationFrame(tickPo) : 0;

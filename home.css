@@ -10,7 +10,7 @@
 .intro-on .nav, .intro-on .chap { opacity: 0; pointer-events: none; }
 
 /* ---------- Hero ---------- */
-.hx { position: relative; height: 240vh; margin: 0 calc(-1 * var(--pad)); }
+.hx { position: relative; height: 200vh; margin: 0 calc(-1 * var(--pad)); }
 .hx__stage { position: sticky; top: 0; height: 100vh; overflow: clip; }
 .hx__head { position: absolute; z-index: 1; left: 0; right: 0; top: clamp(78px, 11vh, 124px); text-align: center; pointer-events: none; }
 .hx__kick { margin: 0 0 clamp(6px, 1vh, 14px); color: var(--ink-soft); font-size: 12px; letter-spacing: 0.08em; opacity: 0; transition: opacity 1s var(--ease) 0.5s; }
@@ -71,8 +71,10 @@
 .chap:hover a { opacity: 1; transform: none; }
 
 /* ---------- Work: one project at a time; its name huge along the bottom, its pictures stacking in the middle ---------- */
-.pw { position: relative; z-index: 5; height: 720vh; margin: -50vh calc(-1 * var(--pad)) 0; }
+.pw { position: relative; z-index: 5; height: 700vh; margin: -100vh calc(-1 * var(--pad)) 0; }
 .pw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; pointer-events: none; }
+.pw__dots { position: absolute; inset: 0; z-index: 2; }
+.pw__dots img { position: absolute; left: 50%; top: 50%; width: 60px; aspect-ratio: 3 / 4; margin: -40px 0 0 -30px; object-fit: cover; visibility: hidden; will-change: transform; }
 .pw__veil { position: absolute; inset: 0; z-index: 0; background: var(--paper); opacity: 0; }
 .pw__card, .pw__head a { pointer-events: auto; }
 .pw__head { position: absolute; z-index: 4; left: var(--pad); right: calc(var(--pad) + 60px); top: 84px; display: flex; justify-content: space-between; color: var(--ink-soft); opacity: 0; }
@@ -98,14 +100,13 @@
 .pw__p .pblock__go { align-self: flex-start; margin-top: 4px; font-size: 11px; }
 
 /* ---------- My story: a ring of the projects turning round a short paragraph that changes as you scroll ---------- */
-.po { position: relative; height: 460vh; margin: 0 calc(-1 * var(--pad)); }
+.po { position: relative; height: 520vh; margin: 0 calc(-1 * var(--pad)); }
 .po__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .po__ring { position: absolute; inset: 0; }
 .po__it { position: absolute; left: 50%; top: 50%; width: clamp(54px, 5.6vw, 86px); aspect-ratio: 3 / 4; margin: calc(clamp(54px, 5.6vw, 86px) * -0.667) 0 0 calc(clamp(54px, 5.6vw, 86px) * -0.5); background: var(--tile); visibility: hidden; will-change: transform; }
 .po__it img, .po__it video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .po__beats { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(25em, 76vw); display: grid; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.4; }
-.po__b { grid-area: 1 / 1; margin: 0; opacity: 0; transform: translateY(14px); transition: opacity 0.7s var(--ease), transform 0.9s var(--ease); }
-.po__b.is-on { opacity: 1; transform: none; }
+.po__b { grid-area: 1 / 1; margin: 0; opacity: 0; }
 
 /* ---------- About: a small portrait, centred, and a few short centred lines under it ---------- */
 .ab { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: clamp(110px, 16vw, 220px) 0 clamp(90px, 12vw, 180px); text-align: center; }
@@ -165,7 +166,7 @@
   .hx__more { display: none; }
   .hx__cue { left: 50%; transform: translateX(-50%); bottom: 22px; text-align: center; }
   .hx__cue::after { margin: 8px auto 0; height: 22px; }
-  .hx { height: 220svh; }
+  .hx { height: 190svh; }
   .hx__stage { height: 100svh; }
   .hx__story { left: 0; right: 0; top: auto; bottom: 0; padding: 12svh 7vw 9svh; transform: none; }
   /* a soft paper backdrop so the story reads over her, fading in only once it starts */
@@ -201,3 +202,7 @@
   .hx__cue::after { animation: none; }
   .hm__sway, .hm__breathe { animation: none; }
 }
+
+/* smooth scrolling (Lenis) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
