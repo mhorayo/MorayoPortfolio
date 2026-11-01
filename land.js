@@ -184,7 +184,7 @@
       // last to land is the first project
       var e1 = clamp(wP / E1, 0, 1), landed = e1 >= 1, gap = H * 0.55, nf = pframes.length;
       preel.style.visibility = landed ? 'hidden' : 'visible';
-      pveil.style.opacity = clamp(e1 * 1.4, 0, 1); phead.style.opacity = clamp(e1 * 2 - 1, 0, 1);
+      pveil.style.opacity = clamp(e1 * 3, 0, 1); phead.style.opacity = clamp(e1 * 2 - 1, 0, 1);
       if (!landed) {
         var base = mix(vh * 0.75, -(nf - 1) * gap, outc(e1));
         pframes.forEach(function (f, k) { f.style.transform = 'translateY(' + Math.max(0, base + k * gap) + 'px)'; });
@@ -194,9 +194,9 @@
       if (wP >= X) { i = pN - 1; t = 1; }
       var cst = outc(clamp((wP - C) / (1 - C), 0, 1)), dir = i % 2 ? 1 : -1;
       pcards.forEach(function (c, k) {
-        if (cst > 0) {                                     // the constellation
-          var sp = spots[k % spots.length], a = clamp(cst * 1.6 - k * 0.1, 0, 1);
-          pshow(c, a > 0); pplace(c, sp[0] * vw, sp[1] * vh, mix(0.05, 0.22, outc(a)), sp[2], k); c.style.opacity = a; return;
+        if (cst > 0) {                                     // the cluster: gathers small in the middle, then flies out past you
+          var sp = spots[k % spots.length], a = clamp(cst * 3 - k * 0.12, 0, 1), z = mix(0.12, 2.6, Math.pow(cst, 1.6));
+          pshow(c, a > 0 && cst < 0.995); pplace(c, sp[0] * vw * z, sp[1] * vh * z, mix(0.05, 0.7, Math.pow(cst, 1.4)), sp[2], k); c.style.opacity = a; return;
         }
         c.style.opacity = '';
         if (!landed) { pshow(c, false); return; }
@@ -231,6 +231,47 @@
     window.addEventListener('resize', function () { measure(); drawPw(); });
     window.addEventListener('load', function () { measure(); drawPw(); });
     renderPw(); wP = wT; drawPw();
+  }
+
+  /* My story: twelve small pictures of the six projects on a ring (an oval, wider than tall) that grows in from the middle
+     and turns slowly as you scroll, each card on its own tilt; one short paragraph in the middle changes beat by beat. Near
+     the end the ring flies apart off the screen and the last line stays. */
+  var po = document.getElementById('story-ring');
+  if (po) {
+    var pits = $$('.po__it', po), pbeats = $$('.po__b', po), oP = 0, oT = 0, oRaf = 0, curB = -1;
+    var oout = function (x) { return 1 - Math.pow(1 - x, 3); };
+    var drawPo = function () {
+      var vw = innerWidth, vh = innerHeight, n = pits.length;
+      var grow = oout(clamp(oP / 0.14, 0, 1)), fly = Math.pow(clamp((oP - 0.72) / 0.16, 0, 1), 1.5);
+      var rx = Math.min(vw * 0.36, vh * 0.62) * (grow + fly * 1.6), ry = vh * 0.42 * (grow + fly * 1.6), turn = oP * 4.2;
+      pits.forEach(function (it, k) {
+        var on = grow > 0 && fly < 1;
+        if (it._on !== on) {
+          it._on = on; it.style.visibility = on ? 'visible' : 'hidden';
+          var v = it.querySelector('video');
+          if (v) { if (on && !reduce) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); }
+        }
+        if (!on) return;
+        var ang = k / n * Math.PI * 2 + turn;
+        it.style.transform = 'translate(' + Math.cos(ang) * rx + 'px,' + Math.sin(ang) * ry + 'px) rotate(calc(' + it.style.getPropertyValue('--t') + ' + ' + turn * 20 + 'deg)) scale(' + (0.3 + 0.7 * grow + fly * 0.8) + ')';
+        it.style.opacity = 1 - fly;
+      });
+      var b = oP < 0.1 ? -1 : oP >= 0.72 ? pbeats.length - 1 : Math.min(pbeats.length - 2, Math.floor((oP - 0.1) / 0.62 * (pbeats.length - 1)));
+      if (b !== curB) { curB = b; pbeats.forEach(function (el, k) { el.classList.toggle('is-on', k === b); }); }
+    };
+    var tickPo = function () {
+      oP += (oT - oP) * 0.1;
+      if (Math.abs(oT - oP) < 0.0002) oP = oT;
+      drawPo();
+      oRaf = oP !== oT ? requestAnimationFrame(tickPo) : 0;
+    };
+    var renderPo = function () {
+      oT = clamp((window.scrollY - po.offsetTop) / (po.offsetHeight - innerHeight), 0, 1);
+      if (reduce) { oP = oT; drawPo(); } else if (!oRaf) oRaf = requestAnimationFrame(tickPo);
+    };
+    window.addEventListener('scroll', renderPo, { passive: true });
+    window.addEventListener('resize', drawPo);
+    renderPo(); oP = oT; drawPo();
   }
 
   /* About: a burst shot — a quick run of frames flicking between Morayo and Momo, landing on the other one */

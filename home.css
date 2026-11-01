@@ -71,7 +71,7 @@
 .chap:hover a { opacity: 1; transform: none; }
 
 /* ---------- Work: one project at a time; its name huge along the bottom, its pictures stacking in the middle ---------- */
-.pw { position: relative; z-index: 5; height: 720vh; margin: -70vh calc(-1 * var(--pad)) 0; }
+.pw { position: relative; z-index: 5; height: 720vh; margin: -50vh calc(-1 * var(--pad)) 0; }
 .pw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; pointer-events: none; }
 .pw__veil { position: absolute; inset: 0; z-index: 0; background: var(--paper); opacity: 0; }
 .pw__card, .pw__head a { pointer-events: auto; }
@@ -87,16 +87,25 @@
 /* the opening: frames rise from below one after another, each stopping in the card's place over the one before */
 .pw__reel { z-index: 2; pointer-events: none; visibility: hidden; }
 .pw__reel img { left: 0; top: 0; height: 100%; transform: none; object-fit: cover; will-change: transform; }
-/* the story flanks the card: who and what on the left, level with its top; the result and the link on the right, lower down */
-.pw__info { position: absolute; z-index: 3; left: var(--pad); right: calc(var(--pad) + 60px); top: 20vh; bottom: 30vh; display: grid; transition: opacity 0.4s; pointer-events: none; }
-.pw__p { grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, 290px) 1fr minmax(0, 250px); grid-template-rows: auto auto auto 1fr auto auto; column-gap: 24px; opacity: 0; transform: translateY(12px); visibility: hidden; transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), visibility 0s 0.5s; }
+/* the project's label: small, at the left, level with the middle of the card */
+.pw__info { position: absolute; z-index: 3; left: var(--pad); top: 49%; transform: translateY(-50%); width: min(250px, 20vw); display: grid; transition: opacity 0.4s; pointer-events: none; }
+.pw__p { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 6px; opacity: 0; transform: translateY(8px); visibility: hidden; transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), visibility 0s 0.5s; }
 .pw__p.is-on { opacity: 1; transform: none; visibility: visible; pointer-events: auto; transition-delay: 0.08s, 0.08s, 0s; }
-.pw__n, .pw__title, .pw__lead { grid-column: 1; }
-.pw__n { color: var(--ink-soft); font-size: 11px; }
-.pw__title { margin: 12px 0 14px; font-weight: 400; font-size: clamp(26px, 2.4vw, 38px); letter-spacing: -0.04em; line-height: 1; }
-.pw__lead { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
-.pw__res { grid-column: 3; grid-row: 5; margin: 0 0 14px; font-size: clamp(17px, 1.4vw, 21px); line-height: 1.3; letter-spacing: -0.02em; }
-.pw__p .pblock__go { grid-column: 3; grid-row: 6; justify-self: start; font-size: 13px; }
+.pw__n { color: var(--ink-soft); font-size: 10px; letter-spacing: 0.06em; }
+.pw__title { margin: 0; font-weight: 400; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+.pw__lead { display: none; }
+.pw__res { margin: 0; font-size: 11px; line-height: 1.4; color: var(--ink-soft); }
+.pw__p .pblock__go { align-self: flex-start; margin-top: 4px; font-size: 11px; }
+
+/* ---------- My story: a ring of the projects turning round a short paragraph that changes as you scroll ---------- */
+.po { position: relative; height: 460vh; margin: 0 calc(-1 * var(--pad)); }
+.po__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.po__ring { position: absolute; inset: 0; }
+.po__it { position: absolute; left: 50%; top: 50%; width: clamp(54px, 5.6vw, 86px); aspect-ratio: 3 / 4; margin: calc(clamp(54px, 5.6vw, 86px) * -0.667) 0 0 calc(clamp(54px, 5.6vw, 86px) * -0.5); background: var(--tile); visibility: hidden; will-change: transform; }
+.po__it img, .po__it video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.po__beats { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(25em, 76vw); display: grid; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.4; }
+.po__b { grid-area: 1 / 1; margin: 0; opacity: 0; transform: translateY(14px); transition: opacity 0.7s var(--ease), transform 0.9s var(--ease); }
+.po__b.is-on { opacity: 1; transform: none; }
 
 /* ---------- About: a small portrait, centred, and a few short centred lines under it ---------- */
 .ab { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: clamp(110px, 16vw, 220px) 0 clamp(90px, 12vw, 180px); text-align: center; }
@@ -168,11 +177,7 @@
   .pw__card, .pw__reel, .pw__reel img { top: 36%; height: min(48svh, 84vw); }
   .pw__reel img { top: 0; height: 100%; }
   .pw__names { bottom: calc(26svh - 0.06em); font-size: 20vw; }
-  .pw__info { top: auto; bottom: 20px; right: var(--pad); }
-  .pw__p { display: flex; flex-direction: column; gap: 8px; }
-  .pw__title { display: none; }
-  .pw__lead { font-size: 13px; }
-  .pw__res { margin: 0; font-size: 15px; }
+  .pw__info { top: auto; bottom: 22px; right: var(--pad); width: auto; transform: none; }
   .pw__head { right: var(--pad); top: 76px; }
   .ab { grid-template-columns: 1fr; padding: 90px 0; }
   .ab__body { padding-top: 40px; }
