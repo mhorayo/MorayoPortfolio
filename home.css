@@ -71,7 +71,7 @@
 .chap:hover a { opacity: 1; transform: none; }
 
 /* ---------- Work: one project at a time; its name huge along the bottom, its pictures stacking in the middle ---------- */
-.pw { position: relative; z-index: 5; height: 700vh; margin: -100vh calc(-1 * var(--pad)) 0; }
+.pw { position: relative; z-index: 5; height: 700vh; margin: 0 calc(-1 * var(--pad)); }
 .pw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; pointer-events: none; }
 .pw__dots { position: absolute; inset: 0; z-index: 2; }
 .pw__dots img { position: absolute; left: 50%; top: 50%; width: 60px; aspect-ratio: 3 / 4; margin: -40px 0 0 -30px; object-fit: cover; visibility: hidden; will-change: transform; }

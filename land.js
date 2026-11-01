@@ -194,7 +194,7 @@
       if (!noff.length) measure();
       // the opening: frames rise from below one after another; each stops in the card's place, over the one before; the
       // last to land is the first project
-      var e1 = clamp(wP / E1, 0, 1), landed = e1 >= 1, gap = H * 0.55, nf = pframes.length;
+      var e1 = clamp((innerHeight - pw.getBoundingClientRect().top) / innerHeight * 0.55 + wP / E1 * 0.45, 0, 1), landed = e1 >= 1, gap = H * 0.55, nf = pframes.length;
       preel.style.visibility = landed ? 'hidden' : 'visible';
       pveil.style.opacity = clamp(e1 * 3, 0, 1); phead.style.opacity = clamp(e1 * 2 - 1, 0, 1);
       if (!landed) {
