@@ -149,53 +149,75 @@
     } else setTimeout(build, 60);
   }
 
-  /* Work: the cards line the inside of a curved wall, like standing in front of a cylinder. The middle of the wall is farthest
-     away, so the card in the middle is smallest; towards the edges the wall curves forward, so cards grow, come closer and
-     turn in towards the centre. Scrolling slides them right to left along the curve, scattered high and low, each with its own
-     tilt. The motion eases after the scroll. The project nearest the middle is named. */
-  var gw = document.getElementById('work'), wall = document.getElementById('gwWall');
-  if (gw && wall) {
-    var gpin = gw.querySelector('.gw__pin'), gcards = $$('.gw__card', wall), infos = $$('.gw__p', gw);
-    var curP = -1, len = 0, R = 1, gP = 0, gT = 0, gRaf = 0;
-    var layout = function () {
-      var x = 0, gap = innerWidth * 0.025;
-      R = innerWidth * 0.9;
-      gpin.style.perspective = Math.round(innerWidth * 0.7) + 'px';
-      gcards.forEach(function (c) {
-        c._w = c.offsetWidth; c._h = c.offsetHeight; c._x = x; x += c._w + gap;
-        c.style.marginLeft = -c._w / 2 + 'px'; c.style.marginTop = -c._h / 2 + 'px';
-        c._y = parseFloat(c.style.getPropertyValue('--y')) * innerHeight / 100;
-        c._z = parseFloat(c.style.getPropertyValue('--z'));
+  /* Work: one project at a time. As the section scrolls on, the pictures rise from below as a loose column and gather into
+     one card in the middle, and the first name fades in along the bottom. Then each next picture slides in from the right,
+     turned a little in 3D, over the last, which drifts left and sinks back; the strip of huge names glides along with it,
+     the one in focus solid ink. At the end every card shrinks and scatters into a small constellation. Eased after the scroll. */
+  var pw = document.getElementById('work'), pstack = document.getElementById('pwStack');
+  if (pw && pstack) {
+    var pcards = $$('.pw__card', pstack), pnames = $$('.pw__name', pw), pinfos = $$('.pw__p', pw);
+    var ptrack = pw.querySelector('.pw__names'), pinfo = pw.querySelector('.pw__info');
+    var pN = pcards.length, curW = -2, wP = 0, wT = 0, wRaf = 0, noff = [];
+    var spots = [[-0.3, -0.24], [0.27, -0.3], [-0.16, 0.2], [0.33, 0.12], [0.04, -0.06], [-0.36, -0.02]];
+    var pease = function (x) { return 1 - Math.pow(1 - x, 3); };
+    var mix = function (a, b, t) { return a + (b - a) * t; };
+    var measure = function () { noff = pnames.map(function (n) { return n.offsetLeft; }); };
+    var show = function (c, on) {
+      if (c._on === on) return;
+      c._on = on; c.style.visibility = on ? 'visible' : 'hidden';
+      var v = c.querySelector('video');
+      if (v) { if (on && !reduce) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); }
+    };
+    var drawPw = function () {
+      var vh = innerHeight, vw = innerWidth;
+      var en = pease(clamp(wP / 0.14, 0, 1)), m = clamp((wP - 0.14) / 0.74, 0, 1) * (pN - 1), ex = pease(clamp((wP - 0.88) / 0.12, 0, 1));
+      pcards.forEach(function (c, i) {
+        var r = parseFloat(c.style.getPropertyValue('--r')), d = m - i, x = 0, y = 0, s = 1, ry = 0, rz = r, b = 1, on = true, z = i;
+        if (en < 1) {                                      // rising as a column; the first lands on top
+          y = (1 - en) * (vh * 0.35 + i * vh * 0.42); z = pN - i; on = i === 0 || en < 0.98;
+          rz = r * (1 + (1 - en) * 2);
+        } else if (d < -1) on = false;
+        else if (d < 0) {                                   // sliding in from the right, turned in 3D
+          var u = 1 - pease(d + 1); x = u * vw * 0.6; ry = -u * 28; rz = r + u * 7;
+        } else {                                            // drifting left and sinking back
+          var t = Math.min(d, 1.2); x = -t * vw * 0.07; s = 1 - 0.07 * t; b = 1 - 0.18 * t; on = d < 1.2;
+        }
+        if (ex > 0) {                                       // the constellation
+          on = true; var sp = spots[i % spots.length];
+          x = mix(i === pN - 1 ? 0 : -vw * 0.07, sp[0] * vw, ex); y = mix(0, sp[1] * vh, ex);
+          s = mix(i === pN - 1 ? 1 : 0.92, 0.24, ex); ry = 0; b = 1; z = i;
+        }
+        show(c, on);
+        if (!on) return;
+        c.style.zIndex = z;
+        c.style.transform = 'translate(-50%,-50%) translate(' + x + 'px,' + y + 'px) rotateY(' + ry + 'deg) rotate(' + rz + 'deg) scale(' + s + ')';
+        c.style.filter = b < 1 ? 'brightness(' + b + ')' : '';
       });
-      len = x - gap;
+      // the name strip: slides so the name in focus starts at the page margin
+      if (!noff.length) measure();
+      var fi = Math.floor(m), ff = m - fi, pad = parseFloat(getComputedStyle(pw.querySelector('.pw__head')).left) || 24;
+      var off = mix(noff[fi], noff[Math.min(fi + 1, pN - 1)], ff);
+      ptrack.style.transform = 'translateX(' + (pad - off) + 'px)';
+      pnames.forEach(function (n, i) { n.style.opacity = (1 - Math.min(1, Math.abs(m - i)) * 0.9) * clamp((en - 0.4) / 0.6, 0, 1) * (1 - ex); });
+      pinfo.style.opacity = clamp((en - 0.6) / 0.4, 0, 1) * (1 - Math.min(1, ex * 3));
+      var top = Math.round(m);
+      if (top !== curW) { curW = top; pinfos.forEach(function (el, i) { el.classList.toggle('is-on', i === top); }); }
     };
-    var drawGw = function () {
-      var vw = innerWidth, off = vw * 0.55 - gP * (len - vw * 0.1), best = 1e9, bestP = 0;
-      gcards.forEach(function (c) {
-        var s = off + c._x + c._w / 2 - vw / 2, t = s / R;
-        if (Math.abs(t) > 1.05) { c.style.visibility = 'hidden'; return; }
-        c.style.visibility = '';
-        c.style.transform = 'translate3d(' + R * Math.sin(t) + 'px,' + c._y + 'px,' + R * (1 - Math.cos(t)) + 'px) rotateY(' + (-t * 180 / Math.PI) + 'deg) rotateZ(' + c._z + 'deg)';
-        if (Math.abs(s) < best) { best = Math.abs(s); bestP = +c.getAttribute('data-p'); }
-      });
-      if (bestP !== curP) { curP = bestP; infos.forEach(function (el, i) { el.classList.toggle('is-on', i === curP); }); }
+    var tickPw = function () {
+      wP += (wT - wP) * 0.1;
+      if (Math.abs(wT - wP) < 0.0002) wP = wT;
+      drawPw();
+      wRaf = wP !== wT ? requestAnimationFrame(tickPw) : 0;
     };
-    var tickGw = function () {
-      gP += (gT - gP) * 0.09;
-      if (Math.abs(gT - gP) < 0.0002) gP = gT;
-      drawGw();
-      gRaf = gP !== gT ? requestAnimationFrame(tickGw) : 0;
+    // progress starts while the section is still coming up from below, so the column rises with the page
+    var renderPw = function () {
+      wT = clamp((window.scrollY - pw.offsetTop + innerHeight * 0.6) / (pw.offsetHeight - innerHeight * 0.4), 0, 1);
+      if (reduce) { wP = wT; drawPw(); } else if (!wRaf) wRaf = requestAnimationFrame(tickPw);
     };
-    var renderGw = function () {
-      gT = clamp((window.scrollY - gw.offsetTop) / (gw.offsetHeight - innerHeight), 0, 1);
-      if (reduce) { gP = gT; drawGw(); } else if (!gRaf) gRaf = requestAnimationFrame(tickGw);
-    };
-    wall.addEventListener('mouseover', function (e) { wall.classList.toggle('is-hover', !!e.target.closest('.gw__card')); });
-    wall.addEventListener('mouseleave', function () { wall.classList.remove('is-hover'); });
-    window.addEventListener('scroll', renderGw, { passive: true });
-    window.addEventListener('resize', function () { layout(); drawGw(); });
-    window.addEventListener('load', function () { layout(); drawGw(); });
-    layout(); renderGw(); gP = gT; drawGw();
+    window.addEventListener('scroll', renderPw, { passive: true });
+    window.addEventListener('resize', function () { measure(); drawPw(); });
+    window.addEventListener('load', function () { measure(); drawPw(); });
+    renderPw(); wP = wT; drawPw();
   }
 
   /* About: a burst shot — a quick run of frames flicking between Morayo and Momo, landing on the other one */
