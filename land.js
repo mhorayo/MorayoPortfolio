@@ -75,9 +75,11 @@
       });
       storyBeats[1].classList.toggle('is-in', p >= 0.76);
       storyBeats[2].classList.toggle('is-in', p >= 0.84);
-      // leaving: the whole scene fades out over the last stretch before the work comes up
-      var fadeY = (y - (span - vh * 0.4)) / (vh * 0.4);
-      heroStage.style.opacity = clamp(1 - fadeY, 0, 1);
+      // leaving: the scene settles back into a rounded card, a little smaller, as the work comes up behind it
+      var outY = clamp((y - (span - vh * 0.4)) / (vh * 0.4), 0, 1);
+      heroStage.style.transform = outY ? 'scale(' + (1 - 0.08 * outY) + ')' : '';
+      heroStage.style.borderRadius = (outY * 28) + 'px';
+      heroStage.style.boxShadow = outY ? '0 40px 90px -50px rgba(17, 17, 17,' + (0.35 * outY) + ')' : '';
     };
     /* Momo, alive, drawn live on one canvas from three parts cut out of her one drawing: the body, the arm and the two empty
        eye circles. Her arm bends like a noodle to wave (each row turns round the elbow 534,745: not at all at the elbow, fully at
@@ -257,36 +259,51 @@
     renderPw(); wP = wT; drawPw();
   }
 
-  /* Work: one big picture with its story beside it. Each project holds; then the next picture grows out of the frame's
-     bottom-right corner to fill it while the current one shrinks into the top-left corner and goes. The first one grows in
-     from small as the section arrives. The story beside it changes halfway through each hand-over. */
+  /* Work: a big picture in the middle, the last one small at its top-left corner, the next small at its bottom-right, and
+     its story in a narrow column beside it. Each project holds; then the big one shrinks into the top-left spot while the
+     bottom-right one grows into the middle, and a new one appears small at the bottom-right. */
   var jw = document.getElementById('work'), jframe = document.getElementById('jwFrame');
   if (jw && jframe) {
-    var jm = $$('.jw__m', jframe), jt = $$('.jw__t', jw), jN = jm.length, jCur = -1, jP = 0, jT = 0, jRaf = 0;
+    var jm = $$('.jw__m', jframe), jt = $$('.jw__t', jw), jtext = document.getElementById('jwText'), jcount = document.getElementById('jwCount');
+    var jN = jm.length, jCur = -1, jP = 0, jT = 0, jRaf = 0, S = {};
     var jsm = function (x) { return x * x * (3 - 2 * x); };
-    var jput = function (el, on, s, origin, o) {
-      if (el._on !== on) {
-        el._on = on; el.style.visibility = on ? 'visible' : 'hidden';
-        var v = el.querySelector('video');
-        if (v) { if (on && !reduce) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); }
-      }
-      if (!on) return;
-      el.style.transformOrigin = origin; el.style.transform = 'scale(' + s + ')'; el.style.opacity = o;
+    var jmix = function (a, b, t) { return a + (b - a) * t; };
+    var slots = function () {
+      var vw = innerWidth, vh = innerHeight, phone = vw <= 760;
+      var H = phone ? Math.min(vh * 0.44, vw * 0.9) : Math.min(vh * 0.72, vw * 0.5), W = H * 0.8, g = phone ? 10 : Math.max(14, vw * 0.012);
+      var x = phone ? (vw - W) / 2 : vw * 0.47 - W / 2, y = phone ? vh * 0.2 : (vh - H) / 2 + 20, tw = W * (phone ? 0.2 : 0.19), th = tw * 1.25;
+      S = { W: W, H: H,
+        big: [x, y, W], prev: [x - g - tw, y, tw], next: [x + W + g, y + H - th, tw],
+        gone: [x - g - tw, y, 0.0001], soon: [x + W + g + tw, y + H, 0.0001] };
+      jm.forEach(function (el) { el.style.width = W + 'px'; el.style.height = H + 'px'; });
+      if (phone) { jtext.style.left = 'var(--pad)'; jtext.style.right = 'var(--pad)'; jtext.style.top = (y + H + 22) + 'px'; jtext.style.width = 'auto'; }
+      else { jtext.style.left = (x + W + g) + 'px'; jtext.style.top = (y + H * 0.1) + 'px'; jtext.style.width = Math.min(300, vw - (x + W + g) - 40) + 'px'; jtext.style.right = 'auto'; }
+    };
+    var slotAt = function (d) {                       // d: 0 middle, -1 top-left, +1 bottom-right, beyond: shrinking away
+      if (d <= -2) return S.gone; if (d >= 2) return S.soon;
+      var a, b, t;
+      if (d < -1) { a = S.gone; b = S.prev; t = d + 2; } else if (d < 0) { a = S.prev; b = S.big; t = d + 1; }
+      else if (d < 1) { a = S.big; b = S.next; t = d; } else { a = S.next; b = S.soon; t = d - 1; }
+      return [jmix(a[0], b[0], t), jmix(a[1], b[1], t), jmix(a[2], b[2], t)];
     };
     var drawJw = function () {
-      var top = jw.getBoundingClientRect().top, vh = innerHeight;
-      var arrive = jsm(clamp(1 - top / vh, 0, 1));                       // the first picture grows in as the section comes up
-      var q = clamp(jP * jN, 0, jN - 0.0001), i = Math.floor(q), t = jsm(clamp(((q - i) - 0.5) / 0.5, 0, 1));
-      if (i >= jN - 1) t = 0;
+      var arrive = jsm(clamp(1 - jw.getBoundingClientRect().top / innerHeight, 0, 1));
+      var q = clamp(jP * (jN - 1) * 1.08, 0, jN - 1), i = Math.floor(q), f = q - i, pos = i + jsm(clamp((f - 0.45) / 0.55, 0, 1));
       jm.forEach(function (el, k) {
-        if (k === i) jput(el, true, i === 0 ? 0.22 + 0.78 * arrive - 0.82 * t : 1 - 0.82 * t, i === 0 && t === 0 ? '50% 50%' : '0 0', 1 - clamp((t - 0.7) / 0.3, 0, 1));
-        else if (k === i + 1 && t > 0) jput(el, true, 0.18 + 0.82 * t, '100% 100%', 1);
-        else jput(el, false);
-        el.style.zIndex = k === i + 1 ? 2 : 1;
+        var d = k - pos, on = d > -1.98 && d < 1.98;
+        if (el._on !== on) {
+          el._on = on; el.style.visibility = on ? 'visible' : 'hidden';
+          var v = el.querySelector('video');
+          if (v) { if (on && !reduce) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); }
+        }
+        if (!on) return;
+        var r = slotAt(d), sc = r[2] / S.W;
+        if (k === 0 && pos < 0.01) sc *= 0.35 + 0.65 * arrive;      // the first grows in as the section comes up
+        el.style.zIndex = Math.abs(d) < 0.5 ? 3 : 2;
+        el.style.transform = 'translate(' + r[0] + 'px,' + r[1] + 'px) scale(' + sc + ')';
       });
-      var on = t > 0.5 ? i + 1 : i;
-      if (arrive < 0.5) on = -1;
-      if (on !== jCur) { jCur = on; jt.forEach(function (el, k) { el.classList.toggle('is-on', k === on); }); }
+      var mv = pos - Math.floor(pos), on = arrive < 0.6 || (mv > 0.12 && mv < 0.88) ? -1 : Math.round(pos);   // the story steps aside while the pictures move
+      if (on !== jCur) { jCur = on; jt.forEach(function (el, k) { el.classList.toggle('is-on', k === on); }); if (on >= 0) jcount.textContent = '0' + (on + 1) + ' / 0' + jN; }
     };
     var tickJw = function () {
       jP += (jT - jP) * SK;
@@ -299,8 +316,8 @@
       if (reduce) { jP = jT; drawJw(); } else if (!jRaf) jRaf = requestAnimationFrame(tickJw);
     };
     window.addEventListener('scroll', renderJw, { passive: true });
-    window.addEventListener('resize', drawJw);
-    renderJw(); jP = jT; drawJw();
+    window.addEventListener('resize', function () { slots(); drawJw(); });
+    slots(); renderJw(); jP = jT; drawJw();
   }
 
   /* My story: twelve small pictures of the six projects on a ring (an oval, wider than tall) that grows in from the middle

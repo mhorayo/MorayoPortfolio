@@ -11,7 +11,7 @@
 
 /* ---------- Hero ---------- */
 .hx { position: relative; height: 220vh; margin: 0 calc(-1 * var(--pad)); }
-.hx__stage { position: sticky; top: 0; height: 100vh; overflow: clip; }
+.hx__stage { position: sticky; top: 0; height: 100vh; overflow: clip; background: var(--paper); transform-origin: 50% 0; }
 .hx__head { position: absolute; z-index: 1; left: 0; right: 0; top: clamp(78px, 11vh, 124px); text-align: center; pointer-events: none; }
 .hx__kick { margin: 0 0 clamp(6px, 1vh, 14px); color: var(--ink-soft); font-size: 12px; letter-spacing: 0.08em; opacity: 0; transition: opacity 1s var(--ease) 0.5s; }
 .hx__name { margin: 0; font-size: min(10.2vw, 19vh); line-height: 0.84; letter-spacing: -0.065em; white-space: nowrap; text-transform: uppercase; font-weight: 400; }
@@ -101,21 +101,23 @@
 .pw__res { margin: 0; font-size: 11px; line-height: 1.4; color: var(--ink-soft); }
 .pw__p .pblock__go { align-self: flex-start; margin-top: 4px; font-size: 11px; }
 
-/* ---------- Work: one big picture, its story beside it; pictures hand over corner to corner ---------- */
+/* ---------- Work: a big picture in the middle; the last one small at its top-left, the next small at its bottom-right;
+   the story in a narrow column beside it ---------- */
 .jw { position: relative; height: 620vh; margin: 0 calc(-1 * var(--pad)); }
-.jw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: clamp(30px, 5vw, 90px); padding: 0 var(--pad); }
+.jw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .jw__head { position: absolute; z-index: 3; left: var(--pad); right: var(--pad); top: 84px; display: flex; justify-content: space-between; color: var(--ink-soft); }
 .jw__head .hlink { text-transform: none; font-size: 13px; color: var(--ink); }
-.jw__frame { position: relative; justify-self: end; height: min(70vh, 58vw); aspect-ratio: 4 / 5; margin-top: 40px; }
-.jw__m { position: absolute; inset: 0; overflow: hidden; background: var(--tile); visibility: hidden; will-change: transform; }
+.jw__frame { position: absolute; inset: 0; }
+.jw__m { position: absolute; left: 0; top: 0; overflow: hidden; background: var(--tile); visibility: hidden; transform-origin: 0 0; will-change: transform; }
 .jw__m img, .jw__m video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.jw__text { display: grid; max-width: 30em; margin-top: 40px; }
-.jw__t { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 16px; opacity: 0; visibility: hidden; transform: translateY(18px); transition: opacity 0.6s var(--ease), transform 0.8s var(--ease), visibility 0s 0.6s; }
-.jw__t.is-on { opacity: 1; visibility: visible; transform: none; transition-delay: 0.1s, 0.1s, 0s; }
-.jw__h { margin: 0; font-weight: 400; font-size: clamp(36px, 4.4vw, 80px); line-height: 0.98; letter-spacing: -0.045em; }
-.jw__b { margin: 0; font-size: clamp(15px, 1.15vw, 18px); line-height: 1.5; color: var(--ink-soft); }
-.jw__r { margin: 6px 0 0; font-size: clamp(17px, 1.4vw, 22px); line-height: 1.3; letter-spacing: -0.02em; }
-.jw__t .hlink { align-self: flex-start; font-size: 13px; }
+.jw__text { position: absolute; z-index: 2; display: grid; }
+.jw__t { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 12px; opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity 0.5s var(--ease), transform 0.7s var(--ease), visibility 0s 0.5s; }
+.jw__t.is-on { opacity: 1; visibility: visible; transform: none; transition-delay: 0.08s, 0.08s, 0s; }
+.jw__h { margin: 0; font-weight: 400; font-size: clamp(22px, 2vw, 36px); line-height: 1.02; letter-spacing: -0.035em; }
+.jw__b { margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-soft); display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+.jw__r { margin: 2px 0 0; font-size: 14px; line-height: 1.35; }
+.jw__t .hlink { align-self: flex-start; font-size: 12px; }
+.jw__foot { position: absolute; left: var(--pad); right: var(--pad); bottom: 28px; display: flex; justify-content: space-between; color: var(--ink-soft); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* ---------- My story: a ring of the projects turning round a short paragraph that changes as you scroll ---------- */
 .po { position: relative; height: 380vh; margin: 0 calc(-1 * var(--pad)); }
@@ -192,11 +194,8 @@
   .hx__story.is-on::before { opacity: 1; }
   .hx__type { font-size: 23px; min-height: 0; }
   .jw { height: 620svh; }
-  .jw__pin { height: 100svh; grid-template-columns: 1fr; align-content: start; gap: 18px; padding-top: 110px; }
-  .jw__frame { justify-self: center; height: min(44svh, 80vw); margin-top: 0; }
-  .jw__text { margin-top: 0; }
-  .jw__h { font-size: 30px; }
-  .jw__b { font-size: 14px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .jw__pin { height: 100svh; }
+  .jw__b { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
   .pw { height: 680svh; }
   .pw__pin { height: 100svh; }
   .pw__card, .pw__reel, .pw__reel img { top: 36%; height: min(48svh, 84vw); }
@@ -230,3 +229,6 @@
 /* smooth scrolling (Lenis) */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* the contact button in the nav is a round pill */
+.nav__cta { border-radius: 999px !important; }
