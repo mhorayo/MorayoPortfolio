@@ -75,11 +75,6 @@
       });
       storyBeats[1].classList.toggle('is-in', p >= 0.76);
       storyBeats[2].classList.toggle('is-in', p >= 0.84);
-      // leaving: the scene settles back into a rounded card, a little smaller, as the work comes up behind it
-      var outY = clamp((y - (span - vh * 0.4)) / (vh * 0.4), 0, 1);
-      heroStage.style.transform = outY ? 'scale(' + (1 - 0.08 * outY) + ')' : '';
-      heroStage.style.borderRadius = (outY * 28) + 'px';
-      heroStage.style.boxShadow = outY ? '0 40px 90px -50px rgba(17, 17, 17,' + (0.35 * outY) + ')' : '';
     };
     /* Momo, alive, drawn live on one canvas from three parts cut out of her one drawing: the body, the arm and the two empty
        eye circles. Her arm bends like a noodle to wave (each row turns round the elbow 534,745: not at all at the elbow, fully at
@@ -270,14 +265,14 @@
     var jmix = function (a, b, t) { return a + (b - a) * t; };
     var slots = function () {
       var vw = innerWidth, vh = innerHeight, phone = vw <= 760;
-      var H = phone ? Math.min(vh * 0.44, vw * 0.9) : Math.min(vh * 0.72, vw * 0.5), W = H * 0.8, g = phone ? 10 : Math.max(14, vw * 0.012);
-      var x = phone ? (vw - W) / 2 : vw * 0.47 - W / 2, y = phone ? vh * 0.2 : (vh - H) / 2 + 20, tw = W * (phone ? 0.2 : 0.19), th = tw * 1.25;
+      var H = phone ? Math.min(vh * 0.48, vw * 0.95) : Math.min(vh * 0.82, vw * 0.56), W = H * 0.8, g = phone ? 10 : Math.max(14, vw * 0.012);
+      var x = phone ? (vw - W) / 2 : vw * 0.44 - W / 2, y = phone ? vh * 0.16 : (vh - H) / 2 + 24, tw = W * (phone ? 0.2 : 0.19), th = tw * 1.25;
       S = { W: W, H: H,
         big: [x, y, W], prev: [x - g - tw, y, tw], next: [x + W + g, y + H - th, tw],
         gone: [x - g - tw, y, 0.0001], soon: [x + W + g + tw, y + H, 0.0001] };
       jm.forEach(function (el) { el.style.width = W + 'px'; el.style.height = H + 'px'; });
       if (phone) { jtext.style.left = 'var(--pad)'; jtext.style.right = 'var(--pad)'; jtext.style.top = (y + H + 22) + 'px'; jtext.style.width = 'auto'; }
-      else { jtext.style.left = (x + W + g) + 'px'; jtext.style.top = (y + H * 0.1) + 'px'; jtext.style.width = Math.min(300, vw - (x + W + g) - 40) + 'px'; jtext.style.right = 'auto'; }
+      else { jtext.style.left = (x + W + g) + 'px'; jtext.style.top = (y + H * 0.1) + 'px'; jtext.style.width = Math.min(340, vw - (x + W + g) - 40) + 'px'; jtext.style.right = 'auto'; }
     };
     var slotAt = function (d) {                       // d: 0 middle, -1 top-left, +1 bottom-right, beyond: shrinking away
       if (d <= -2) return S.gone; if (d >= 2) return S.soon;
@@ -288,7 +283,7 @@
     };
     var drawJw = function () {
       var arrive = jsm(clamp(1 - jw.getBoundingClientRect().top / innerHeight, 0, 1));
-      var q = clamp(jP * (jN - 1) * 1.08, 0, jN - 1), i = Math.floor(q), f = q - i, pos = i + jsm(clamp((f - 0.45) / 0.55, 0, 1));
+      var q = clamp(jP * (jN - 1) * 1.04, 0, jN - 1), i = Math.floor(q), f = q - i, pos = i + jsm(clamp((f - 0.45) / 0.55, 0, 1)) - (1 - arrive);
       jm.forEach(function (el, k) {
         var d = k - pos, on = d > -1.98 && d < 1.98;
         if (el._on !== on) {
@@ -298,11 +293,10 @@
         }
         if (!on) return;
         var r = slotAt(d), sc = r[2] / S.W;
-        if (k === 0 && pos < 0.01) sc *= 0.35 + 0.65 * arrive;      // the first grows in as the section comes up
         el.style.zIndex = Math.abs(d) < 0.5 ? 3 : 2;
         el.style.transform = 'translate(' + r[0] + 'px,' + r[1] + 'px) scale(' + sc + ')';
       });
-      var mv = pos - Math.floor(pos), on = arrive < 0.6 || (mv > 0.12 && mv < 0.88) ? -1 : Math.round(pos);   // the story steps aside while the pictures move
+      var mv = pos - Math.floor(pos), on = arrive < 0.9 || (mv > 0.12 && mv < 0.88) ? -1 : Math.round(pos);   // the story steps aside while the pictures move
       if (on !== jCur) { jCur = on; jt.forEach(function (el, k) { el.classList.toggle('is-on', k === on); }); if (on >= 0) jcount.textContent = '0' + (on + 1) + ' / 0' + jN; }
     };
     var tickJw = function () {
@@ -326,10 +320,10 @@
   var po = document.getElementById('story-ring');
   if (po) {
     var pits = $$('.po__it', po), pbeats = $$('.po__b', po), oP = 0, oT = 0, oRaf = 0;
-    var beatT = [[0.07, 0.13, 0.4, 0.44], [0.46, 0.52, 2, 3]];
+    var beatT = [[0.02, 0.08, 0.4, 0.44], [0.46, 0.52, 2, 3]];
     var drawPo = function () {
       var vw = innerWidth, vh = innerHeight, n = pits.length, far = Math.hypot(vw, vh) * 0.62;
-      var r0 = Math.min(vh * 0.4, vw * 0.3), open = clamp(oP / 0.09, 0, 1), spin = clamp((oP - 0.06) / 0.62, 0, 1), out = clamp((oP - 0.66) / 0.2, 0, 1);
+      var r0 = Math.min(vh * 0.4, vw * 0.3), open = Math.max(clamp(oP / 0.09, 0, 1), clamp(1 - po.getBoundingClientRect().top / vh, 0, 1)), spin = clamp((oP - 0.06) / 0.62, 0, 1), out = clamp((oP - 0.66) / 0.2, 0, 1);
       var g = open, r = open < 1 ? r0 * (1 - Math.pow(1 - open, 3)) : r0 + (far - r0) * out * out, turn = spin * Math.PI * 2 + out * 0.5;
       pits.forEach(function (it, k) {
         var on = g > 0 && r < far * 0.99;

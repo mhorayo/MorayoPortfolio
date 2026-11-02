@@ -11,7 +11,7 @@
 
 /* ---------- Hero ---------- */
 .hx { position: relative; height: 220vh; margin: 0 calc(-1 * var(--pad)); }
-.hx__stage { position: sticky; top: 0; height: 100vh; overflow: clip; background: var(--paper); transform-origin: 50% 0; }
+.hx__stage { position: sticky; top: 0; height: 100vh; overflow: clip; }
 .hx__head { position: absolute; z-index: 1; left: 0; right: 0; top: clamp(78px, 11vh, 124px); text-align: center; pointer-events: none; }
 .hx__kick { margin: 0 0 clamp(6px, 1vh, 14px); color: var(--ink-soft); font-size: 12px; letter-spacing: 0.08em; opacity: 0; transition: opacity 1s var(--ease) 0.5s; }
 .hx__name { margin: 0; font-size: min(10.2vw, 19vh); line-height: 0.84; letter-spacing: -0.065em; white-space: nowrap; text-transform: uppercase; font-weight: 400; }
@@ -103,7 +103,7 @@
 
 /* ---------- Work: a big picture in the middle; the last one small at its top-left, the next small at its bottom-right;
    the story in a narrow column beside it ---------- */
-.jw { position: relative; height: 620vh; margin: 0 calc(-1 * var(--pad)); }
+.jw { position: relative; height: 560vh; margin: 0 calc(-1 * var(--pad)); }
 .jw__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .jw__head { position: absolute; z-index: 3; left: var(--pad); right: var(--pad); top: 84px; display: flex; justify-content: space-between; color: var(--ink-soft); }
 .jw__head .hlink { text-transform: none; font-size: 13px; color: var(--ink); }
@@ -114,7 +114,7 @@
 .jw__t { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 12px; opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity 0.5s var(--ease), transform 0.7s var(--ease), visibility 0s 0.5s; }
 .jw__t.is-on { opacity: 1; visibility: visible; transform: none; transition-delay: 0.08s, 0.08s, 0s; }
 .jw__h { margin: 0; font-weight: 400; font-size: clamp(22px, 2vw, 36px); line-height: 1.02; letter-spacing: -0.035em; }
-.jw__b { margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-soft); display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+.jw__b { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
 .jw__r { margin: 2px 0 0; font-size: 14px; line-height: 1.35; }
 .jw__t .hlink { align-self: flex-start; font-size: 12px; }
 .jw__foot { position: absolute; left: var(--pad); right: var(--pad); bottom: 28px; display: flex; justify-content: space-between; color: var(--ink-soft); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
