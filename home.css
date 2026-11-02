@@ -91,8 +91,8 @@
 /* the opening: frames rise from below one after another, each stopping in the card's place over the one before */
 .pw__reel { z-index: 2; pointer-events: none; visibility: hidden; }
 .pw__reel img { left: 0; top: 0; height: 100%; transform: none; object-fit: cover; will-change: transform; }
-/* the project's label: small, at the left, level with the middle of the card */
-.pw__info { position: absolute; z-index: 3; left: var(--pad); top: 49%; transform: translateY(-50%); width: min(250px, 20vw); display: grid; transition: opacity 0.4s; pointer-events: none; }
+/* the project's label: small, at the left, level with the top of the card */
+.pw__info { position: absolute; z-index: 3; left: var(--pad); top: 13vh; width: min(250px, 20vw); display: grid; transition: opacity 0.4s; pointer-events: none; }
 .pw__p { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 6px; opacity: 0; transform: translateY(8px); visibility: hidden; transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), visibility 0s 0.5s; }
 .pw__p.is-on { opacity: 1; transform: none; visibility: visible; pointer-events: auto; transition-delay: 0.08s, 0.08s, 0s; }
 .pw__n { color: var(--ink-soft); font-size: 10px; letter-spacing: 0.06em; }
