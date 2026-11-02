@@ -203,9 +203,10 @@
       var v = c.querySelector('video');
       if (v) { if (on && !reduce) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); }
     };
-    var pplace = function (c, x, y, s, rz, z) {
+    // fl: how much the card flexes as it slides, like a sheet of paper bending against the air (0 = flat)
+    var pplace = function (c, x, y, s, rz, z, fl) {
       c.style.zIndex = z;
-      c.style.transform = 'translate(-50%,-50%) translate(' + x + 'px,' + y + 'px) rotate(' + rz + 'deg) scale(' + s + ')';
+      c.style.transform = 'translate(-50%,-50%) translate(' + x + 'px,' + y + 'px) perspective(1200px) rotate(' + rz + 'deg) rotateY(' + (fl || 0) * 22 + 'deg) skewY(' + (fl || 0) * -5 + 'deg) scale(' + s + ')';
     };
     var drawPw = function () {
       var vh = innerHeight, vw = innerWidth, H = preel.offsetHeight;
@@ -226,8 +227,8 @@
         if (cst > 0) { pshow(c, false); return; }
         c.style.opacity = '';
         if (!landed) { pshow(c, false); return; }
-        if (k === i) { pshow(c, t < 1); pplace(c, dir * t * vw * 0.62, -t * vh * 0.04, 1 + 0.22 * t, dir * t * 9, 3); }
-        else if (k === i + 1 && t > 0) { pshow(c, true); pplace(c, -dir * (1 - t) * vw * 0.05, 0, 0.97 + 0.03 * t, -dir * (1 - t) * 3, 2); }
+        if (k === i) { pshow(c, t < 1); pplace(c, dir * t * vw * 0.62, -t * vh * 0.04, 1 + 0.22 * t, dir * t * 9, 3, dir * Math.sin(Math.PI * Math.min(1, t * 1.4))); }
+        else if (k === i + 1 && t > 0) { pshow(c, true); pplace(c, -dir * (1 - t) * vw * 0.05, 0, 0.97 + 0.03 * t, -dir * (1 - t) * 3, 2, -dir * 0.35 * Math.sin(Math.PI * t)); }
         else pshow(c, false);
       });
       // the name: the one in focus fades out as its card leaves, and the next fades in, rising a touch
