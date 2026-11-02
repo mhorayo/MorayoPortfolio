@@ -10,7 +10,7 @@
 .intro-on .nav, .intro-on .chap { opacity: 0; pointer-events: none; }
 
 /* ---------- Hero ---------- */
-.hx { position: relative; height: 200vh; margin: 0 calc(-1 * var(--pad)); }
+.hx { position: relative; height: 220vh; margin: 0 calc(-1 * var(--pad)); }
 .hx__stage { position: sticky; top: 0; height: 100vh; overflow: clip; }
 .hx__head { position: absolute; z-index: 1; left: 0; right: 0; top: clamp(78px, 11vh, 124px); text-align: center; pointer-events: none; }
 .hx__kick { margin: 0 0 clamp(6px, 1vh, 14px); color: var(--ink-soft); font-size: 12px; letter-spacing: 0.08em; opacity: 0; transition: opacity 1s var(--ease) 0.5s; }
@@ -166,7 +166,7 @@
   .hx__cue::after { margin: 8px auto 0; height: 22px; }
   .hx { height: 190svh; }
   .hx__stage { height: 100svh; }
-  .hx__story { left: 0; right: 0; top: auto; bottom: 0; padding: 12svh 7vw 9svh; transform: none; }
+  .hx__story { z-index: 6; left: 0; right: 0; top: auto; bottom: 0; padding: 12svh 7vw 9svh; transform: none; }
   /* a soft paper backdrop so the story reads over her, fading in only once it starts */
   .hx__story::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgba(248, 246, 242, 0), var(--paper) 22%); opacity: 0; transition: opacity 0.6s; }
   .hx__story.is-on::before { opacity: 1; }

@@ -54,7 +54,7 @@
       }
       // the story, in order as she arrives: the label, each line, the link last, all in by the time she has settled
       story.classList.toggle('is-on', p >= 0.3);
-      storyBeats.forEach(function (el, i) { el.classList.toggle('is-in', p >= 0.35 + i * (0.6 / (storyBeats.length - 1)) - 0.001); });
+      storyBeats.forEach(function (el, i) { el.classList.toggle('is-in', p >= 0.3 + i * (0.5 / (storyBeats.length - 1)) - 0.001); });
     };
     /* Momo, alive, drawn live on one canvas from three parts cut out of her one drawing: the body, the arm and the two empty
        eye circles. Her arm bends like a noodle to wave (each row turns round the elbow 534,745: not at all at the elbow, fully at
@@ -141,7 +141,7 @@
         var tt = goal.turn * on, d = tt - st.turn;                                            // then she turns, all the way, never stopping
         st.turn = Math.abs(d) < 0.03 ? tt : st.turn + 0.03 * (d > 0 ? 1 : -1) * (0.45 + Math.sin(Math.PI * st.turn));   //   half-way; eased in and out
         var pr = clamp((heroP - 0.55) / 0.45, 0, 1); pr = pr * pr * (3 - 2 * pr);   // as she settles on the left, her arm reaches out
-        st.arm = 32 * pr;                                                              // towards the story, presenting it
+        st.arm = 0;                                                                    // she settles calmly (the presenting arm is gone)
         if (waveT0 >= 0) { var p = Math.min(1, (now - waveT0) / 1900); st.arm += angleAt(p); if (p >= 1) waveT0 = -1; }
         if (blinkT0 >= 0) { var q = (now - blinkT0) / (150 * blinks); if (q >= 1) { blinkT0 = -1; st.blink = 1; } else st.blink = 1 - 0.92 * Math.sin(Math.PI * ((q * blinks) % 1)); }
         var key = [st.gx, st.gy, frameNo(), st.arm, st.blink].map(function (v) { return v.toFixed(2); }).join();
