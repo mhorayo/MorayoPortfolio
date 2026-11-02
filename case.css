@@ -65,3 +65,5 @@
   .cs__cover { aspect-ratio: 4 / 5; }
 }
 @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } }
+.tw__caret { display: inline-block; width: 0.06em; height: 0.82em; margin-left: 0.06em; vertical-align: -0.06em; background: currentColor; animation: tw-blink 0.9s steps(1) infinite; }
+@keyframes tw-blink { 50% { opacity: 0; } }

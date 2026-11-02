@@ -1,0 +1,67 @@
+/* Work, Archive and About — the same paper, ink and type as the home page and the case studies. Less is more. */
+.pg { padding-top: 64px; }
+.pg .k { display: block; color: var(--ink-soft); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.pg__hero { display: flex; flex-direction: column; gap: clamp(16px, 3vh, 30px); padding: clamp(70px, 14vh, 150px) var(--pad) clamp(50px, 9vh, 100px); }
+.pg__title { margin: 0; font-weight: 500; font-size: min(17vw, 34vh); line-height: 0.8; letter-spacing: -0.065em; text-transform: uppercase; }
+.pg__title sup { font-size: 0.16em; letter-spacing: 0; vertical-align: top; margin-left: 0.2em; color: var(--ink-soft); }
+.pg__lead { margin: 0; max-width: 20em; font-size: clamp(22px, 2.6vw, 44px); line-height: 1.08; letter-spacing: -0.035em; }
+
+/* Work: two columns of big project tiles, the right one set lower, each picture drifting inside its frame */
+.wk { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vh, 110px) clamp(18px, 3vw, 56px); padding: 0 var(--pad) clamp(80px, 14vh, 160px); }
+.wk__t { display: flex; flex-direction: column; gap: 14px; color: inherit; text-decoration: none; }
+.wk__t:nth-child(even) { margin-top: clamp(80px, 22vh, 260px); }
+.wk__img { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--tile); }
+.wk__img img, .wk__img video { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; object-fit: cover; transition: transform 1.2s var(--ease); will-change: transform; }
+.wk__t:hover .wk__img img, .wk__t:hover .wk__img video { transform: scale(1.04); }
+.wk__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.wk__name { margin: 0; font-weight: 500; font-size: clamp(32px, 4.4vw, 76px); line-height: 0.9; letter-spacing: -0.05em; text-transform: uppercase; }
+.wk__res { margin: 0; max-width: 28em; font-size: 14px; line-height: 1.4; color: var(--ink-soft); }
+.wk__go { font-size: 13px; border-bottom: 1px solid currentColor; padding-bottom: 2px; align-self: flex-start; opacity: 0; transform: translateY(6px); transition: opacity 0.4s, transform 0.5s var(--ease); }
+.wk__t:hover .wk__go { opacity: 1; transform: none; }
+
+/* Archive (and the "more work" list): a quiet index; hovering a row floats its picture beside the cursor */
+.ix { padding: 0 var(--pad) clamp(80px, 14vh, 160px); }
+.ix__h { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 18px; }
+.ix__r { display: grid; grid-template-columns: 3em minmax(0, 1fr) minmax(0, 0.8fr) 7em; align-items: baseline; gap: 16px; padding: clamp(14px, 2.2vh, 22px) 0; color: inherit; text-decoration: none; transition: color 0.3s, padding 0.5s var(--ease); }
+.ix__r > span { font-size: 13px; color: var(--ink-soft); }
+.ix__r strong { font-weight: 500; font-size: clamp(30px, 5vw, 88px); line-height: 0.92; letter-spacing: -0.05em; text-transform: uppercase; }
+.ix__r .ix__y { text-align: right; }
+.ix:hover .ix__r { color: rgba(17, 17, 17, 0.28); }
+.ix .ix__r:hover { color: var(--ink); padding-left: 14px; }
+.ix__thumb { display: none; }
+.fl { position: fixed; z-index: 30; left: 0; top: 0; width: clamp(180px, 18vw, 280px); aspect-ratio: 4 / 5; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(0.9); transition: opacity 0.3s, transform 0.4s var(--ease); overflow: hidden; }
+.fl.is-on { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(-3deg); }
+.fl img { width: 100%; height: 100%; object-fit: cover; }
+
+/* About: a small portrait in the middle, one statement that lights up word by word as you scroll, then the rest, quietly */
+.ab2 { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(28px, 5vh, 50px); padding: clamp(90px, 16vh, 180px) var(--pad) clamp(60px, 10vh, 110px); }
+.ab2__pic { width: clamp(130px, 12vw, 190px); aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; transition: transform 0.6s var(--ease); will-change: transform; }
+.ab2__state { margin: 0; max-width: 17em; font-weight: 400; font-size: clamp(30px, 4.4vw, 78px); line-height: 1.02; letter-spacing: -0.045em; }
+.ab2__body { display: flex; flex-direction: column; gap: 1.1em; max-width: 34em; font-size: clamp(16px, 1.2vw, 19px); line-height: 1.5; color: var(--ink-soft); }
+.ab2__body p { margin: 0; }
+.ab2__cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 4vw, 60px); padding: clamp(40px, 8vh, 90px) var(--pad); }
+.ab2__cols h3 { margin: 0 0 12px; font-size: 11px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+.ab2__cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: clamp(17px, 1.4vw, 22px); letter-spacing: -0.02em; }
+.ab2__exp { padding: clamp(60px, 10vh, 120px) var(--pad); }
+.ab2__exp ul { list-style: none; margin: 18px 0 0; padding: 0; }
+.ab2__exp li { display: grid; grid-template-columns: 10em minmax(0, 1fr) minmax(0, 0.7fr); gap: 16px; padding: 14px 0; align-items: baseline; }
+.ab2__exp li span:first-child, .ab2__exp li span:last-child { font-size: 13px; color: var(--ink-soft); }
+.ab2__exp li span:nth-child(2) { font-size: clamp(20px, 2vw, 32px); letter-spacing: -0.03em; }
+
+/* shared: rise in as it comes into view; typewriter caret */
+.rv { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1.2s var(--ease); }
+.rv.is-in { opacity: 1; transform: none; }
+.tw__caret { display: inline-block; width: 0.06em; height: 0.82em; margin-left: 0.06em; vertical-align: -0.06em; background: currentColor; animation: tw-blink 0.9s steps(1) infinite; }
+@keyframes tw-blink { 50% { opacity: 0; } }
+
+@media (max-width: 760px) {
+  .wk { grid-template-columns: 1fr; }
+  .wk__t:nth-child(even) { margin-top: 0; }
+  .wk__go { opacity: 1; transform: none; }
+  .ix__r { grid-template-columns: 2.2em minmax(0, 1fr); }
+  .ix__r .ix__tag, .ix__r .ix__y { display: none; }
+  .ix__thumb { display: block; grid-column: 2; width: 46%; aspect-ratio: 4 / 5; object-fit: cover; margin-top: 10px; }
+  .ab2__cols { grid-template-columns: 1fr; }
+  .ab2__exp li { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .tw__caret { display: none; } }
