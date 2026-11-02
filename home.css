@@ -30,6 +30,10 @@
 .hm__sway { animation: hm-sway 9s ease-in-out infinite; }
 .hm__breathe { animation: hm-breathe 4.2s ease-in-out infinite; }
 .hm__l { pointer-events: none; user-select: none; }
+/* the turn-and-think clip: her bust-up frames, sitting exactly over the same part of her drawing */
+.hm__think { position: absolute; left: 20.14%; top: 14.06%; width: 69.44%; height: 52.11%; pointer-events: none; visibility: hidden; }
+.hm.is-think .hm__cv { opacity: 0; }
+.hm.is-think .hm__think { visibility: visible; }
 .hm__whole { transition: opacity 0.2s; }
 .hm.is-ready .hm__whole { opacity: 0; }
 @keyframes hm-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.004, 1.009); } }

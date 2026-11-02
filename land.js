@@ -33,6 +33,8 @@
   if (hero) {
     var fig = document.getElementById('momoFig'), fades = $$('.hx__head, .hx__side, .hx__cue', hero);
     var story = hero.querySelector('.hx__story'), storyBeats = $$('.hx__sk, .hx__ln, .hx__slink', story);
+    var hmEl = document.getElementById('hm'), thinkImg = document.getElementById('hmThink'), thinkF = [];
+    setTimeout(function () { for (var k = 0; k < 30; k++) { var im = new Image(); im.src = 'momo/think/t' + (k < 10 ? '0' : '') + k + '.png'; thinkF.push(im); } }, 1200);
     var built = false, S0 = 0.78, heroP = 0;
     var ease = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
     var renderHero = function () {
@@ -51,6 +53,13 @@
         var cx = fig.offsetLeft + w / 2, tx = phone ? innerWidth / 2 : innerWidth * 0.27;
         var cy = fig.offsetTop + 0.12 * h + s * 0.29 * h, ty = phone ? vh * 0.26 : vh * 0.52;   // the middle of that frame, scaling from 50% 12%
         fig.style.transform = 'translate(' + ((tx - cx) * p) + 'px,' + ((ty - cy) * p) + 'px) scale(' + s + ')';
+      }
+      // as she arrives at her bust-up she turns about 45° and settles into a smiling, thinking pose: the clip's frames follow
+      // the scroll (frame 0 is the same picture as her drawing, so the swap doesn't show)
+      if (thinkF.length) {
+        var tq = clamp((p - 0.45) / 0.55, 0, 1), tf = Math.round(tq * (thinkF.length - 1));
+        hmEl.classList.toggle('is-think', tq > 0);
+        if (tq > 0 && thinkImg._f !== tf) { thinkImg._f = tf; thinkImg.src = thinkF[tf].src; }
       }
       // the story, in order as she arrives: the label, each line, the link last, all in by the time she has settled
       story.classList.toggle('is-on', p >= 0.3);
