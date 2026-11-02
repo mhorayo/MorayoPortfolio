@@ -23,11 +23,6 @@
       "statusCode": 301
     },
     {
-      "source": "/work.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/index-v2.html",
       "destination": "/",
       "permanent": true
