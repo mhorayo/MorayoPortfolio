@@ -25,16 +25,16 @@
 .cs__num { display: block; font-weight: 500; font-size: min(30vw, 52vh); line-height: 0.8; letter-spacing: -0.07em; }
 
 /* screens: phones in a row, big; web screens full width */
-.cs__phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2.4vw, 40px); align-items: start; padding: 0 var(--pad); }
-.cs__phones--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 980px; margin: 0 auto; }
+.cs__phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2.4vw, 40px); align-items: start; max-width: 820px; margin: 0 auto; padding: 0 var(--pad); }
+.cs__phones--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 560px; }
 .cs__shot { margin: 0; display: flex; flex-direction: column; gap: 12px; }
 .cs__shot img { width: 100%; height: auto; border-radius: clamp(14px, 1.8vw, 28px); background: var(--tile); box-shadow: 0 40px 80px -50px rgba(17, 17, 17, 0.45); }
 .cs__shot figcaption { font-size: 12px; color: var(--ink-soft); }
 .cs__phones .cs__shot:nth-child(2) { margin-top: clamp(30px, 8vh, 110px); }
-.cs__web { padding: 0 var(--pad); display: grid; gap: clamp(16px, 2vw, 32px); }
+.cs__web { max-width: 960px; margin-left: auto; margin-right: auto; padding: 0 var(--pad); display: grid; gap: clamp(16px, 2vw, 32px); }
 .cs__web img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 40px 90px -60px rgba(17, 17, 17, 0.5); }
 .cs__web--2 { grid-template-columns: 1fr 1fr; }
-.cs__ds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); padding: 0 var(--pad); }
+.cs__ds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); max-width: 900px; margin-left: auto; margin-right: auto; padding: 0 var(--pad); }
 .cs__ds img { width: 100%; height: auto; background: var(--tile); }
 
 /* the result, as big as the problem */
