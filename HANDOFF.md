@@ -145,3 +145,28 @@ WHAT'S BUILT (local, approved by her unless noted):
 HER LATEST NOTES (not built): (1) a 3D camera feel in the zoom (scene tilts in perspective, parallax depth layers, settles flat when the story lands) — test first; (2) Momo looks BLURRY at bust-up (720px art) → trace to SVG; gesture frames at 1080p/Topaz; (3) THINK → THUMBS UP during the zoom: think-2.mp4 has the right motion but pupil dots at 1.0–2.5s → regenerate (22.5 credits) with no eye-direction words.
 
 PREVIEW: launch config "momo-test" (port 5190) serves scratchpad/momo-test of the 30 Oct session — rsync the repo (minus .git/_imagery/zips/*.sb-*) into it; with a new session's scratchpad, update the path in ~/Documents/My Portfolio/.claude/launch.json. Open /index.html (intro) or ?nointro.
+
+======================================================================
+## NEW-CHAT SUMMARY #2 (written Mon 2 Nov 2026, ~11:00 WAT; end of the 1–2 Nov chat)
+Deadline: Tuesday 3 Nov. Branch intro-reel, ALL work committed and pushed (last: "cluster removed; names fade; ring 360"). main / morayoakinkunmi.com untouched.
+Preview (always newest): https://morayo-portfolio-git-intro-reel-teeakinkunmi-6064s-projects.vercel.app/  (add ?nointro to skip the intro)
+Usage: she wants it said as "20% a day" only (never cumulative 40/60%). Monday: 12 of 20% used at ~11:00. Heads-up at 10 of 20, warn near 20, stop at 20 (memory usage-alert).
+
+HOME PAGE ORDER NOW: intro → hero + zoom story (Momo) → Work (Per Appelgren style) → Story ring → About → Experience → footer.
+- Zoom story copy LOCKED and live: "(Who I am)" + 3 lines "Computer engineer by training. Designer by nature. / I design fintech and AI products that people trust with their money. / And I prove it in the data." + body "It clicked the first time I watched analytics…" + "See the proof →".
+- Work (#work, .pw in index.html/home.css, land.js "Work:" block): reference = perappelgren.de (her recordings on Desktop, 1 Nov 9.23/9.35/10.56/11.05 PM). One card per project (main tile; Renncora/OwnIt/Help2Pay play their videos). Opening = stacking wipe: frames rise from below and stop in the card's place, reverse order, landing on BroadMoney, as the section comes up the page (NO overlap with the story section — she disliked the overlap). Each project holds, then its card grows/tilts and flies off to alternating sides over the next card underneath. Name: smaller (min(9vw,18vh)), bottom-left, behind the cards, FADES in place (she hated it sliding with the images). Small label at left (number·tag, name, result, View case study). Cluster/constellation REMOVED at her request.
+- Story ring (#story-ring, .po): 12 small tilted project cards open from a dot into a ring, turn a full 360° round a centred paragraph that wipes in line by line (4 beats: engineering→Webflow/Figma; first analytics session; 55%→22% + sign-ups + AI creator platform; final "My work has shaped products at BroadMoney, Renncora, Doxflowy, Help2Pay and Kunchi MFB. I don't just design screens. I design the moment people decide to trust a product."), then expands off screen.
+- About (Per style): small centred portrait (morayo-portrait.jpg only, no Momo swap) + short centred paragraphs + availability line.
+- Removed: all divider lines, chapter rail. Smooth scrolling = Lenis 1.1.13 (jsdelivr), paused while the intro plays; scenes follow scroll directly (SK=1).
+- The round dark button on previews is Vercel's toolbar, not the site.
+
+OPEN / NEXT (her list, smallest first):
+1. Her review of the latest build on a real trackpad; she sent a 11:22 PM recording I couldn't read (it was in a macOS temp folder) — ask her to drag the Desktop copy in, then study + apply.
+2. Second section (zoom) polish — she wanted ~2% on it: options were layout/spacing/timing, or removing the old 32° reaching arm.
+3. Phone check of work, ring and About (not checked since the rebuilds).
+4. Wire locked copy: hero lead "Senior Product Designer for fintech and AI. I design products people trust with their money and their time."; footer "Hiring a product designer who thinks before she designs? Let's talk." Her answers still needed: internship company, faith line in/out, booking link for "Book a call".
+5. Think → thumbs-up clip (regenerate 1080p, 22.5 credits, no eye-direction words; eyes = empty circles) replacing the reaching arm.
+6. Lighten momo/turn frames (4.7 MB), speed, reduced motion; Experience dates = CV.
+7. Go live: merge intro-reel → main on her yes.
+Later: work gallery page, sharp vector Momo, 3D camera feel, case-study rewrites (BroadMoney first), recruiter FAQ, Loom.
+Testing note: the preview pane is often hidden → rAF stalls; in the page run window.requestAnimationFrame = cb => setTimeout(() => cb(performance.now()), 16) before checking. Preview: launch config "momo-test" (port 5190) serves this session's scratchpad/momo-test — update the path in ~/Documents/My Portfolio/.claude/launch.json for a new session and rsync the repo into it.
