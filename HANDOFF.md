@@ -171,3 +171,17 @@ OPEN / NEXT (her list, smallest first):
 Later: work gallery page, sharp vector Momo, 3D camera feel, case-study rewrites (BroadMoney first), recruiter FAQ, Loom.
 Testing note: the preview pane is often hidden → rAF stalls; in the page run window.requestAnimationFrame = cb => setTimeout(() => cb(performance.now()), 16) before checking. Preview: launch config "momo-test" (port 5190) serves this session's scratchpad/momo-test — update the path in ~/Documents/My Portfolio/.claude/launch.json for a new session and rsync the repo into it.
 - NOTE (Mon 2 Nov, after budget stop): the think → smile/thumbs-up Higgsfield clip must be generated FROM HER BUST-UP framing (start frame = momo-hero cropped to the bust-up the zoom lands on, upscaled), at 1080p, so she is sharp in the zoom. Also study her 3D example first: ~/Desktop/Screen Recording 2026-11-01 at 9.32.52 PM.mov. Eyes = empty circles; no eye-direction words in the prompt.
+
+======================================================================
+## NEW-CHAT SUMMARY #3 (Mon 2 Nov 2026, evening) — read this first
+Deadline: Tue 3 Nov — tomorrow she wants: (1) IMAGE QUALITY (sharper Momo; screens/tiles), (2) STORYTELLING copy (she still finds it not captivating), (3) the fade / fade-out transitions, then WRAP UP and GO LIVE (merge intro-reel → main on her yes).
+Usage: weekly 32% at end of Monday (override used). Say "20% a day"; Tue–Fri have ~68% left (~17%/day to stay even). Higgsfield credits: 269.8.
+Preview (always newest): https://morayo-portfolio-git-intro-reel-teeakinkunmi-6064s-projects.vercel.app/ — tell her to use a private window if a page looks old (an old /work.html redirect was removed from vercel.json today; browsers may have cached it).
+
+BUILT TODAY (all pushed to intro-reel):
+- Home order: intro → hero/zoom (Momo bust-up; 45° turn + smiling hand-at-chin clip momo/think/t00–t29 from Seedance 2.0 720p, played by scroll; bottom fades like her legs; story lines rise in, NO typewriter) → Work (#work .jw: Joby-style — big picture centred, last one small top-left, next small bottom-right, narrow story column with big bold headline + short selling body; first picture grows in from bottom-right as the section arrives) → Story ring (#story-ring: "THE STORY SO FAR" heading, ring turns 360° round 2 paragraphs, then expands) → About (bigger centred portrait) → footer. Experience removed from home. Smooth scroll = Lenis. Old .pw (Per Appelgren) code is still in home.css/land.js but unused.
+- Case studies: all 10 rebuilt on case-broadmoney.html's template (case.css), generator /scratchpad/gen/cases.py (copy it into _tools if a new session needs it; old pages kept as case-*-v1.html). Screens square, smaller, aligned with the text column, on one line; next case has an arrow.
+- New pages: work.html (6 tiles), archive.html (4 rows, explanation in the column beside each name, floating hover preview), about.html (tilting portrait, story, skills, experience), contact.html (big email, working formsubmit form). pages.css, type.js (typewriter on case/page headlines — still ON there). Generator: scratchpad/gen/pages.py.
+- Nav: Work → work.html, About → about.html; Contact button is a plain rectangle (radius 0).
+REJECTED today: 3D CSS tilt of the flat drawing; card-shrink exit of the zoom; overlap of work over the story; constellation/cluster; Per-style sliding names.
+Still unknown from her: internship company, faith line, booking link. Phone check of all new pages not done.
