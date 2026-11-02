@@ -23,10 +23,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="v2.css?v=1793579000" />
+<link rel="stylesheet" href="v2.css?v=1793585000" />
 <script>if(/[?&]nointro/.test(location.search))document.documentElement.classList.add('no-intro')</script>
-<link rel="stylesheet" href="intro.css?v=1793579000" />
-<link rel="stylesheet" href="home.css?v=1793579000" />
+<link rel="stylesheet" href="intro.css?v=1793585000" />
+<link rel="stylesheet" href="home.css?v=1793585000" />
 </head>
 <body class="land">
 <div class="intro" id="intro" aria-hidden="true"><div class="intro__stage"></div><span class="intro__skip">Click to skip</span></div>
@@ -82,71 +82,61 @@
   </section>
 
   <!-- Work: a wall of tilted work drifting past as you scroll; the project in focus is named bottom-left -->
-  <section class="pw" id="work" aria-label="Selected work">
-    <!-- Work: one project at a time. A reel of pictures runs up and stops on the first; each project then holds, and its
-         card flies off to one side to show the next underneath. The names run huge along the bottom; the story sits on the left -->
-    <div class="pw__pin">
-      <div class="pw__veil" aria-hidden="true"></div>
-      <div class="pw__head up"><span>Selected work</span><a class="hlink" href="work.html">View all work &rarr;</a></div>
-      <div class="pw__names" aria-hidden="true">
-      <span class="pw__name" data-p="0">BroadMoney</span>
-      <span class="pw__name" data-p="1">Renncora</span>
-      <span class="pw__name" data-p="2">Doxflowy</span>
-      <span class="pw__name" data-p="3">WeCare</span>
-      <span class="pw__name" data-p="4">OwnIt</span>
-      <span class="pw__name" data-p="5">Help2Pay</span>
+  <section class="jw" id="work" aria-label="Selected work">
+    <!-- Work: one big picture with its story beside it. The next picture starts small in the bottom-right corner and grows
+         to fill the frame while the current one shrinks into the top-left corner and goes; the story changes with it -->
+    <div class="jw__pin">
+      <div class="jw__head up"><span>Selected work</span><a class="hlink" href="work.html">View all work &rarr;</a></div>
+      <div class="jw__frame" id="jwFrame">
+        <a class="jw__m" href="case-broadmoney.html" aria-label="BroadMoney case study"><img src="bmp-tile.jpg" alt="" /></a>
+        <a class="jw__m" href="case-renncora.html" aria-label="Renncora case study"><video src="ren-tile.mp4" poster="ren-tile.jpg" muted loop playsinline preload="none"></video></a>
+        <a class="jw__m" href="case-doxflowy.html" aria-label="Doxflowy case study"><img src="dox-tile.jpg" alt="" /></a>
+        <a class="jw__m" href="case-wecare.html" aria-label="WeCare case study"><img src="wc-tile.jpg" alt="" /></a>
+        <a class="jw__m" href="case-ownit.html" aria-label="OwnIt case study"><video src="own-tile.mp4" poster="own-tile.jpg" muted loop playsinline preload="none"></video></a>
+        <a class="jw__m" href="case-help2pay.html" aria-label="Help2Pay case study"><video src="h2p-tile.mp4" poster="h2p-tile.jpg" muted loop playsinline preload="none"></video></a>
       </div>
-      <div class="pw__reel" aria-hidden="true"><img src="h2p-tile.jpg" alt="" /><img src="own-tile.jpg" alt="" /><img src="wc-tile.jpg" alt="" /><img src="dox-tile.jpg" alt="" /><img src="ren-tile.jpg" alt="" /><img src="bmp-tile.jpg" alt="" /></div>
-      <div class="pw__stack" id="pwStack">
-        <a class="pw__card" href="case-broadmoney.html" data-p="0" style="--r:-3deg" aria-label="BroadMoney case study"><img src="bmp-tile.jpg" alt="" /></a>
-        <a class="pw__card" href="case-renncora.html" data-p="1" style="--r:2.5deg" aria-label="Renncora case study"><video src="ren-tile.mp4" poster="ren-tile.jpg" muted loop playsinline preload="none"></video></a>
-        <a class="pw__card" href="case-doxflowy.html" data-p="2" style="--r:-2deg" aria-label="Doxflowy case study"><img src="dox-tile.jpg" alt="" /></a>
-        <a class="pw__card" href="case-wecare.html" data-p="3" style="--r:3deg" aria-label="WeCare case study"><img src="wc-tile.jpg" alt="" /></a>
-        <a class="pw__card" href="case-ownit.html" data-p="4" style="--r:-2.5deg" aria-label="OwnIt case study"><video src="own-tile.mp4" poster="own-tile.jpg" muted loop playsinline preload="none"></video></a>
-        <a class="pw__card" href="case-help2pay.html" data-p="5" style="--r:1.5deg" aria-label="Help2Pay case study"><video src="h2p-tile.mp4" poster="h2p-tile.jpg" muted loop playsinline preload="none"></video></a>
-      </div>
-      <div class="pw__info">
-        <div class="pw__p" data-p="0">
-          <span class="up pw__n">(01 / 06) &middot; Fintech · UK–Nigeria</span>
-          <h3 class="pw__title">BroadMoney</h3>
-          <p class="pw__lead">BroadMoney processes millions of pounds for families sending money between the UK and Nigeria. But more than half of new users gave up before their first transfer, most of them at identity checks. I rebuilt the path to trust.</p>
-          <p class="pw__res">Drop-off fell from 55% to 22%. First-month transactions up 2.3&times;.</p>
-          <a class="pblock__go" href="case-broadmoney.html">View case study &rarr;</a>
+      <div class="jw__text">
+        <div class="jw__t" data-i="0">
+          <span class="k">(01 / 06) &middot; BroadMoney &middot; Fintech · UK–Nigeria remittance</span>
+          <h3 class="jw__h">Millions of pounds. One trusted way home.</h3>
+          <p class="jw__b">BroadMoney processes millions of pounds for families sending money between the UK and Nigeria, one of the busiest remittance corridors in the world. When more than half of new users quit at identity checks, that was revenue walking out of the door. I rebuilt the path to trust, from sign-up to the first transfer.</p>
+          <p class="jw__r">First-transfer drop-off 55% → 22%. First-month transactions up 2.3×.</p>
+          <a class="hlink" href="case-broadmoney.html">View case study &rarr;</a>
         </div>
-        <div class="pw__p" data-p="1">
-          <span class="up pw__n">(02 / 06) &middot; Creator platform · AI</span>
-          <h3 class="pw__title">Renncora</h3>
-          <p class="pw__lead">Renncora is building the home for African creators: live streaming, community, and an AI assistant that speaks Nigerian Pidgin and English. I lead its product design, from the first screen to launch.</p>
-          <p class="pw__res">Lead Product Designer, end to end. Accessible to WCAG AA.</p>
-          <a class="pblock__go" href="case-renncora.html">View case study &rarr;</a>
+        <div class="jw__t" data-i="1">
+          <span class="k">(02 / 06) &middot; Renncora &middot; Creator platform · AI</span>
+          <h3 class="jw__h">Africa&rsquo;s creators, live.</h3>
+          <p class="jw__b">Renncora is building the home for African creators: live streaming, community, and an AI assistant that speaks Nigerian Pidgin and English. In a space ruled by global giants, it has to feel local and world-class at once. I lead its product design, end to end.</p>
+          <p class="jw__r">Lead Product Designer, from the first screen to launch. Accessible to WCAG AA.</p>
+          <a class="hlink" href="case-renncora.html">View case study &rarr;</a>
         </div>
-        <div class="pw__p" data-p="2">
-          <span class="up pw__n">(03 / 06) &middot; Document automation · B2B SaaS</span>
-          <h3 class="pw__title">Doxflowy</h3>
-          <p class="pw__lead">Doxflowy lets businesses create, automate and e-sign documents, in a market led by giants like DocuSign. Thousands of people came for its free templates and left without signing up.</p>
-          <p class="pw__res">Sign-ups up 42%. Rage taps down 31%.</p>
-          <a class="pblock__go" href="case-doxflowy.html">View case study &rarr;</a>
+        <div class="jw__t" data-i="2">
+          <span class="k">(03 / 06) &middot; Doxflowy &middot; Document automation · B2B SaaS</span>
+          <h3 class="jw__h">Taking on DocuSign.</h3>
+          <p class="jw__b">Doxflowy lets businesses create, automate and e-sign documents, in a market led by giants like DocuSign. Thousands of people came for its free templates and left without signing up. I turned that traffic into accounts.</p>
+          <p class="jw__r">Sign-ups up 42%. Rage taps down 31%.</p>
+          <a class="hlink" href="case-doxflowy.html">View case study &rarr;</a>
         </div>
-        <div class="pw__p" data-p="3">
-          <span class="up pw__n">(04 / 06) &middot; My own product · Health</span>
-          <h3 class="pw__title">WeCare</h3>
-          <p class="pw__lead">When a parent comes home from hospital in Nigeria, families are left asking around for a carer they can trust. I&rsquo;m designing the trusted way to find one.</p>
-          <p class="pw__res">A working prototype, built in real code.</p>
-          <a class="pblock__go" href="case-wecare.html">View case study &rarr;</a>
+        <div class="jw__t" data-i="3">
+          <span class="k">(04 / 06) &middot; WeCare &middot; My own product · Health</span>
+          <h3 class="jw__h">Care you can trust, at home.</h3>
+          <p class="jw__b">When a parent comes home from hospital in Nigeria, families are left asking around for a carer they can trust. WeCare is the trusted way to find one. I designed it, researched it and built it.</p>
+          <p class="jw__r">A working prototype, built in real code.</p>
+          <a class="hlink" href="case-wecare.html">View case study &rarr;</a>
         </div>
-        <div class="pw__p" data-p="4">
-          <span class="up pw__n">(05 / 06) &middot; My own product · Creative economy</span>
-          <h3 class="pw__title">OwnIt</h3>
-          <p class="pw__lead">Creatives send their work first and hope to get paid. I&rsquo;m building the app that flips that.</p>
-          <p class="pw__res">A live, clickable prototype.</p>
-          <a class="pblock__go" href="case-ownit.html">View case study &rarr;</a>
+        <div class="jw__t" data-i="4">
+          <span class="k">(05 / 06) &middot; OwnIt &middot; My own product · Creative economy</span>
+          <h3 class="jw__h">Get paid before you hand it over.</h3>
+          <p class="jw__b">Photographers, designers and filmmakers send their work first and hope the client pays. OwnIt flips that: the work stays protected until the money arrives.</p>
+          <p class="jw__r">A live, clickable prototype.</p>
+          <a class="hlink" href="case-ownit.html">View case study &rarr;</a>
         </div>
-        <div class="pw__p" data-p="5">
-          <span class="up pw__n">(06 / 06) &middot; Crypto payments · Four markets</span>
-          <h3 class="pw__title">Help2Pay</h3>
-          <p class="pw__lead">Help2Pay turns crypto into everyday money: USDT to Naira, bills, gift cards and transfers, across four markets. Every failed send meant real money stuck.</p>
-          <p class="pw__res">Send-flow drop-off down 40%.</p>
-          <a class="pblock__go" href="case-help2pay.html">View case study &rarr;</a>
+        <div class="jw__t" data-i="5">
+          <span class="k">(06 / 06) &middot; Help2Pay &middot; Crypto payments · Four markets</span>
+          <h3 class="jw__h">Crypto, turned into everyday money.</h3>
+          <p class="jw__b">Help2Pay brings USDT-to-Naira conversion, bills, gift cards and transfers into one app across four markets. When a send fails, real money is stuck, so every step had to feel certain.</p>
+          <p class="jw__r">Send-flow drop-off down 40%.</p>
+          <a class="hlink" href="case-help2pay.html">View case study &rarr;</a>
         </div>
       </div>
     </div>
@@ -217,8 +207,8 @@
   </footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="intro.js?v=1793579000"></script>
-<script src="land.js?v=1793579000"></script>
-<script src="v2.js?v=1793579000"></script>
+<script src="intro.js?v=1793585000"></script>
+<script src="land.js?v=1793585000"></script>
+<script src="v2.js?v=1793585000"></script>
 </body>
 </html>

@@ -257,6 +257,52 @@
     renderPw(); wP = wT; drawPw();
   }
 
+  /* Work: one big picture with its story beside it. Each project holds; then the next picture grows out of the frame's
+     bottom-right corner to fill it while the current one shrinks into the top-left corner and goes. The first one grows in
+     from small as the section arrives. The story beside it changes halfway through each hand-over. */
+  var jw = document.getElementById('work'), jframe = document.getElementById('jwFrame');
+  if (jw && jframe) {
+    var jm = $$('.jw__m', jframe), jt = $$('.jw__t', jw), jN = jm.length, jCur = -1, jP = 0, jT = 0, jRaf = 0;
+    var jsm = function (x) { return x * x * (3 - 2 * x); };
+    var jput = function (el, on, s, origin, o) {
+      if (el._on !== on) {
+        el._on = on; el.style.visibility = on ? 'visible' : 'hidden';
+        var v = el.querySelector('video');
+        if (v) { if (on && !reduce) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); }
+      }
+      if (!on) return;
+      el.style.transformOrigin = origin; el.style.transform = 'scale(' + s + ')'; el.style.opacity = o;
+    };
+    var drawJw = function () {
+      var top = jw.getBoundingClientRect().top, vh = innerHeight;
+      var arrive = jsm(clamp(1 - top / vh, 0, 1));                       // the first picture grows in as the section comes up
+      var q = clamp(jP * jN, 0, jN - 0.0001), i = Math.floor(q), t = jsm(clamp(((q - i) - 0.5) / 0.5, 0, 1));
+      if (i >= jN - 1) t = 0;
+      jm.forEach(function (el, k) {
+        if (k === i) jput(el, true, i === 0 ? 0.22 + 0.78 * arrive - 0.82 * t : 1 - 0.82 * t, i === 0 && t === 0 ? '50% 50%' : '0 0', 1 - clamp((t - 0.7) / 0.3, 0, 1));
+        else if (k === i + 1 && t > 0) jput(el, true, 0.18 + 0.82 * t, '100% 100%', 1);
+        else jput(el, false);
+        el.style.zIndex = k === i + 1 ? 2 : 1;
+      });
+      var on = t > 0.5 ? i + 1 : i;
+      if (arrive < 0.5) on = -1;
+      if (on !== jCur) { jCur = on; jt.forEach(function (el, k) { el.classList.toggle('is-on', k === on); }); }
+    };
+    var tickJw = function () {
+      jP += (jT - jP) * SK;
+      if (Math.abs(jT - jP) < 0.0002) jP = jT;
+      drawJw();
+      jRaf = jP !== jT ? requestAnimationFrame(tickJw) : 0;
+    };
+    var renderJw = function () {
+      jT = clamp((window.scrollY - jw.offsetTop) / (jw.offsetHeight - innerHeight), 0, 1);
+      if (reduce) { jP = jT; drawJw(); } else if (!jRaf) jRaf = requestAnimationFrame(tickJw);
+    };
+    window.addEventListener('scroll', renderJw, { passive: true });
+    window.addEventListener('resize', drawJw);
+    renderJw(); jP = jT; drawJw();
+  }
+
   /* My story: twelve small pictures of the six projects on a ring (an oval, wider than tall) that grows in from the middle
      and turns slowly as you scroll, each card on its own tilt; one short paragraph in the middle changes beat by beat. Near
      the end the ring flies apart off the screen and the last line stays. */
