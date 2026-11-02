@@ -21,63 +21,93 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="v2.css?v=1793126127" />
+<link rel="stylesheet" href="v2.css?v=1793582000" />
+<link rel="stylesheet" href="home.css?v=1793582000" />
+<link rel="stylesheet" href="case.css?v=1793582000" />
 </head>
-<body>
-<header class="bar">
-  <div class="bar__col up"><a href="index.html">Morayo<br>Akinkunmi</a></div>
-  <div class="bar__col bar__col--sign"><a href="index.html" aria-label="Home"><img class="sign" src="signature.png" alt="Morayo Akinkunmi signature" /></a></div>
-  <nav class="bar__col bar__nav" aria-label="Main">
-    <a class="bar__link up" aria-current="page" href="index.html">Work</a>
-    <a class="bar__link up" href="archive.html">Archive</a>
-    <a class="bar__link up" href="about.html">About</a>
-    <button type="button" class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
-    <a class="bar__cta up" href="contact.html">Contact</a>
+<body class="land">
+<header class="nav" id="nav">
+  <a class="nav__name" href="index.html">Morayo Akinkunmi</a>
+  <nav class="nav__links" id="navLinks" aria-label="Main">
+    <a href="index.html#work" >Work</a>
+    <a href="index.html#about">About</a>
+    <a href="archive.html">Archive</a>
+    <a class="nav__cta" href="contact.html">Contact</a>
   </nav>
+  <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
 </header>
-<main class="case">
-  <section class="hero">
-    <div class="hero__img"><img src="tax-laptop-bench.jpg" alt="Tax Clarity" /></div>
-    <div class="hero__text">
-      <h1 class="hero__title">Tax Clarity</h1>
-      <div class="meta"><span>Community project<br>2026</span><span>Product design<br>Civic tech · Web</span></div>
+<main class="cs land__main">
+  <section class="cs__hero">
+    <span class="k rv">Case study &middot; 2026</span>
+    <h1 class="cs__name rv">Tax Clarity</h1>
+    <p class="cs__sell rv">A free web platform that turns Nigeria's 2026 tax reforms into a plain-language, personal answer for freelancers, small business owners and salaried workers.</p>
+    <dl class="cs__facts rv">
+      <div><dt class="k">Company</dt><dd>Community project</dd></div>
+      <div><dt class="k">Role</dt><dd>Product design</dd></div>
+      <div><dt class="k">Platforms</dt><dd>Civic tech · Web</dd></div>
+      <div><dt class="k">Result</dt><dd>Tax law, answered in three questions.</dd></div>
+    </dl>
+  </section>
+  <figure class="cs__cover rv"><img data-par src="tax-laptop-bench.jpg" alt="Tax Clarity" /></figure>
+
+  <section class="cs__ch">
+    <span class="k rv">00 &mdash; The brief</span>
+    <div>
+      <h2 class="cs__big rv">Three questions replace the legal text: income type, income range and business registration. The result says what changed, what to do next, and when you're clear.</h2>
     </div>
   </section>
-  <section class="intro reveal"><p>A free web platform that turns Nigeria's 2026 tax reforms into a plain-language, personal answer for freelancers, small business owners and salaried workers.</p><p>Three questions replace the legal text: income type, income range and business registration. The result says what changed, what to do next, and when you're clear.</p></section>
-  <section class="sec reveal pos-b">
-    <div class="sec__group">
-      <div class="shots shots--wide"><span class="dev dev--laptop"><span class="dev__lid"><span class="dev__screen"><img src="tax-landing-page.jpg" alt="Tax Clarity — Landing page" loading="lazy" /></span></span></span></div>
-      <div class="sec__label"><span>01.</span><span>Landing page</span></div>
+
+  <section class="cs__ch">
+    <span class="k rv">01 &mdash; Landing page</span>
+    <div><h2 class="cs__big rv">Landing page</h2></div>
+  </section>
+  <div class="cs__web"><img class="rv" src="tax-landing-page.jpg" alt="Tax Clarity — Landing page" loading="lazy" /></div>
+
+  <section class="cs__ch">
+    <span class="k rv">02 &mdash; Three questions</span>
+    <div><h2 class="cs__big rv">Three questions</h2></div>
+  </section>
+  <div class="cs__web cs__web--2"><img class="rv" src="tax-income-type-selection.jpg" alt="Tax Clarity — Three questions" loading="lazy" /><img class="rv" src="tax-income-range-selection.jpg" alt="Tax Clarity — Three questions" loading="lazy" /></div>
+
+  <section class="cs__ch">
+    <span class="k rv">03 &mdash; Your personal summary</span>
+    <div><h2 class="cs__big rv">Your personal summary</h2></div>
+  </section>
+  <div class="cs__web cs__web--2"><img class="rv" src="tax-your-2026-tax-summary-what.jpg" alt="Tax Clarity — Your personal summary" loading="lazy" /><img class="rv" src="tax-what-you-should-do-next.jpg" alt="Tax Clarity — Your personal summary" loading="lazy" /></div>
+
+  <section class="cs__out">
+    <span class="k rv">The result</span>
+    <p class="cs__res rv">Tax law, answered in three questions.</p>
+    <p class="cs__p rv">Built for people who have never read a tax act, and shouldn't have to.</p>
+  </section>
+
+  <a class="cs__next rv" href="case-stacklayer.html"><span><span class="k">Next case</span><strong>Stack Layer</strong></span><img src="stack-laptop-table.jpg" alt="" loading="lazy" /></a>
+
+  <footer class="fx" id="contact">
+    <span class="up fx__k">Let&rsquo;s talk</span>
+    <div class="fx__line">
+      <a class="fx__mail" href="mailto:teeakinkunmi@gmail.com"><span>teeakinkunmi@gmail.com</span><span class="fx__arrow">&rarr;</span></a>
     </div>
-  </section>
-  <section class="sec reveal pos-a">
-    <div class="sec__group">
-      <div class="shots shots--pair"><span class="dev dev--laptop"><span class="dev__lid"><span class="dev__screen"><img src="tax-income-type-selection.jpg" alt="Tax Clarity — Three questions" loading="lazy" /></span></span></span><span class="dev dev--laptop"><span class="dev__lid"><span class="dev__screen"><img src="tax-income-range-selection.jpg" alt="Tax Clarity — Three questions" loading="lazy" /></span></span></span></div>
-      <div class="sec__label"><span>02.</span><span>Three questions</span></div>
+    <div class="fx__cols">
+      <div><h3>Based in</h3><ul><li>Lagos</li><li>Open to relocation &amp; remote</li></ul></div>
+      <div><h3>Elsewhere</h3><ul><li><a href="https://www.linkedin.com/in/morayo-akinkunmi/">LinkedIn</a></li><li><a href="https://dribbble.com/momo98765">Dribbble</a></li><li><a href="https://medium.com/@YourTechGeeks">Medium</a></li><li><a href="https://www.youtube.com/@Design-geeks">YouTube</a></li><li><a href="https://x.com/morayo1025">X</a></li></ul></div>
+      <div><h3>Pages</h3><ul><li><a href="index.html#work">Work</a></li><li><a href="about.html">About</a></li><li><a href="archive.html">Archive</a></li><li><a href="contact.html">Contact</a></li><li><a href="cv.pdf">CV</a></li></ul></div>
     </div>
-  </section>
-  <section class="sec reveal pos-a">
-    <div class="sec__group">
-      <div class="shots shots--pair"><span class="dev dev--laptop"><span class="dev__lid"><span class="dev__screen"><img src="tax-your-2026-tax-summary-what.jpg" alt="Tax Clarity — Your personal summary" loading="lazy" /></span></span></span><span class="dev dev--laptop"><span class="dev__lid"><span class="dev__screen"><img src="tax-what-you-should-do-next.jpg" alt="Tax Clarity — Your personal summary" loading="lazy" /></span></span></span></div>
-      <div class="sec__label"><span>03.</span><span>Your personal summary</span></div>
-    </div>
-  </section>
-  <section class="outcome reveal">
-    <span class="outcome__label">Outcome</span>
-    <div class="outcome__body"><p class="outcome__big">Tax law, answered in three questions.</p><p>Built for people who have never read a tax act, and shouldn't have to.</p></div>
-  </section>
-  <a class="next" href="case-stacklayer.html">
-    <span class="next__title">next case<br>Stack Layer</span>
-    <span class="next__thumb"><img src="stack-laptop-table.jpg" alt="" loading="lazy" /></span>
-  </a>
+    <div class="fx__base"><span>&copy; 2026 Morayo Akinkunmi</span><img class="sign" src="signature.png" alt="Morayo Akinkunmi signature" /></div>
+  </footer>
 </main>
-<nav class="menu" id="menu" aria-label="Pages" hidden>
-  <button type="button" class="menu__close" id="menuClose">Close ✕</button>
-  <a class="card" href="index.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">work</span><span class="card__strip"><img src="work-hero.jpg" alt="" /><img src="ren-live-poster.jpg" alt="" /><img src="dox-poster.jpg" alt="" /></span></a>
-  <a class="card" href="archive.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">archive</span><span class="card__strip"><img src="wosi-phone-couch.jpg" alt="" /><img src="kunchi-phone-rug.jpg" alt="" /><img src="tax-laptop-bench.jpg" alt="" /></span></a>
-  <a class="card" href="about.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">about</span><span class="card__text">Senior Product Designer with 5 years across fintech, AI &amp; SaaS. Founder of The Design Geeks Community.</span></a>
-  <a class="card" href="contact.html"><span class="card__top"><span>Morayo Akinkunmi</span><span>Menu · Contact</span></span><span class="card__title">contact</span><span class="card__text">Senior Product Designer · Fintech, AI &amp; SaaS. Open to relocation and available for remote. teeakinkunmi@gmail.com</span></a>
-</nav>
-<script src="v2.js?v=1793124686"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+/* smooth scroll; things rise in as they come into view; the cover drifts a little slower than the page */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && window.Lenis) { var l = new Lenis({ lerp: 0.085 }); (function f(t) { l.raf(t); requestAnimationFrame(f); })(0); }
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
+  document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+  var par = document.querySelector('[data-par]');
+  if (par && !reduce) window.addEventListener('scroll', function () { var r = par.parentNode.getBoundingClientRect(); par.style.transform = 'translateY(' + (-r.top * 0.12 - 40) + 'px)'; }, { passive: true });
+})();
+</script>
+<script src="v2.js?v=1793580000"></script>
 </body>
 </html>
