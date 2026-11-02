@@ -65,14 +65,9 @@
       }
       // the story, in order as she arrives: the label, each line, the link last, all in by the time she has settled
       story.classList.toggle('is-on', p >= 0.3);
-      // the label first, then the three lines type out like a typewriter, then the body and the link
+      // the label first, then each line rises in, then the body and the link
       storyBeats[0].classList.toggle('is-in', p >= 0.3);
-      var typed = Math.round(clamp((p - 0.34) / 0.38, 0, 1) * typeTotal);
-      typeLines.forEach(function (el, i) {
-        var n = clamp(typed, 0, typeText[i].length); typed -= typeText[i].length;
-        if (el._n !== n) { el._n = n; el.textContent = typeText[i].slice(0, n); }
-        el.classList.add('is-in');
-      });
+      typeLines.forEach(function (el, i) { el.classList.toggle('is-in', p >= 0.38 + i * 0.12); });
       storyBeats[1].classList.toggle('is-in', p >= 0.76);
       storyBeats[2].classList.toggle('is-in', p >= 0.84);
     };
@@ -319,7 +314,7 @@
      the end the ring flies apart off the screen and the last line stays. */
   var po = document.getElementById('story-ring');
   if (po) {
-    var pits = $$('.po__it', po), pbeats = $$('.po__b', po), oP = 0, oT = 0, oRaf = 0;
+    var pits = $$('.po__it', po), pbeats = $$('.po__b', po), ptitle = po.querySelector('.po__title'), oP = 0, oT = 0, oRaf = 0;
     var beatT = [[0.02, 0.08, 0.4, 0.44], [0.46, 0.52, 2, 3]];
     var drawPo = function () {
       var vw = innerWidth, vh = innerHeight, n = pits.length, far = Math.hypot(vw, vh) * 0.62;
@@ -336,6 +331,7 @@
         var ang = k / n * Math.PI * 2 + turn;
         it.style.transform = 'translate(' + Math.cos(ang) * r + 'px,' + Math.sin(ang) * r + 'px) rotate(calc(' + it.style.getPropertyValue('--t') + ' + ' + (ang * 57.3 + 90) + 'deg)) scale(' + clamp(g * 6, 0.15, 1) + ')';
       });
+      if (ptitle) ptitle.style.opacity = clamp(open * 1.5 - 0.3, 0, 1) * (1 - out);
       pbeats.forEach(function (el, k) {
         var b = beatT[k], m = clamp((oP - b[0]) / (b[1] - b[0]), 0, 1), o = 1 - clamp((oP - b[2]) / (b[3] - b[2]), 0, 1);
         var cut = m * 130, mk = m >= 1 ? 'none' : 'linear-gradient(to bottom, #000 ' + (cut - 30) + '%, transparent ' + cut + '%)';
