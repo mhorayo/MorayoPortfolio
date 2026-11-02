@@ -102,7 +102,7 @@
 .pw__p .pblock__go { align-self: flex-start; margin-top: 4px; font-size: 11px; }
 
 /* ---------- My story: a ring of the projects turning round a short paragraph that changes as you scroll ---------- */
-.po { position: relative; height: 520vh; margin: 0 calc(-1 * var(--pad)); }
+.po { position: relative; height: 380vh; margin: 0 calc(-1 * var(--pad)); }
 .po__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .po__ring { position: absolute; inset: 0; }
 .po__it { position: absolute; left: 50%; top: 50%; width: clamp(54px, 5.6vw, 86px); aspect-ratio: 3 / 4; margin: calc(clamp(54px, 5.6vw, 86px) * -0.667) 0 0 calc(clamp(54px, 5.6vw, 86px) * -0.5); background: var(--tile); visibility: hidden; will-change: transform; }

@@ -32,7 +32,9 @@
   var hero = document.getElementById('hero');
   if (hero) {
     var fig = document.getElementById('momoFig'), fades = $$('.hx__head, .hx__side, .hx__cue', hero);
-    var story = hero.querySelector('.hx__story'), storyBeats = $$('.hx__sk, .hx__ln, .hx__slink', story);
+    var story = hero.querySelector('.hx__story'), storyBeats = $$('.hx__sk, .hx__body, .hx__slink', story);
+    var typeLines = $$('.hx__type .hx__ln', story), typeText = typeLines.map(function (el) { return el.textContent; });
+    var typeTotal = typeText.reduce(function (n, s) { return n + s.length; }, 0), heroStage = hero.querySelector('.hx__stage');
     var hmEl = document.getElementById('hm'), thinkImg = document.getElementById('hmThink'), thinkF = [];
     setTimeout(function () { for (var k = 0; k < 30; k++) { var im = new Image(); im.src = 'momo/think/t' + (k < 10 ? '0' : '') + k + '.png'; thinkF.push(im); } }, 1200);
     var built = false, S0 = 0.78, heroP = 0;
@@ -63,7 +65,19 @@
       }
       // the story, in order as she arrives: the label, each line, the link last, all in by the time she has settled
       story.classList.toggle('is-on', p >= 0.3);
-      storyBeats.forEach(function (el, i) { el.classList.toggle('is-in', p >= 0.3 + i * (0.5 / (storyBeats.length - 1)) - 0.001); });
+      // the label first, then the three lines type out like a typewriter, then the body and the link
+      storyBeats[0].classList.toggle('is-in', p >= 0.3);
+      var typed = Math.round(clamp((p - 0.34) / 0.38, 0, 1) * typeTotal);
+      typeLines.forEach(function (el, i) {
+        var n = clamp(typed, 0, typeText[i].length); typed -= typeText[i].length;
+        if (el._n !== n) { el._n = n; el.textContent = typeText[i].slice(0, n); }
+        el.classList.add('is-in');
+      });
+      storyBeats[1].classList.toggle('is-in', p >= 0.76);
+      storyBeats[2].classList.toggle('is-in', p >= 0.84);
+      // leaving: the whole scene fades out over the last stretch before the work comes up
+      var fadeY = (y - (span - vh * 0.4)) / (vh * 0.4);
+      heroStage.style.opacity = clamp(1 - fadeY, 0, 1);
     };
     /* Momo, alive, drawn live on one canvas from three parts cut out of her one drawing: the body, the arm and the two empty
        eye circles. Her arm bends like a noodle to wave (each row turns round the elbow 534,745: not at all at the elbow, fully at
@@ -178,7 +192,7 @@
     var pveil = pw.querySelector('.pw__veil'), phead = pw.querySelector('.pw__head');
     var preel = pw.querySelector('.pw__reel'), pframes = $$('img', preel);
     var pN = pcards.length, curW = -2, wP = 0, wT = 0, wRaf = 0;
-    var E1 = 0.09, E2 = 0.12, X = 0.95, SEG = (X - E2) / pN, HOLD = 0.38;
+    var E1 = 0.09, E2 = 0.12, X = 0.985, SEG = (X - E2) / pN, HOLD = 0.38;
     var spots = [[-0.24, -0.2, -4], [0.2, -0.26, 3], [-0.07, 0.04, -2], [0.27, 0.1, 5], [-0.3, 0.16, 2], [0.06, -0.16, -3]];
     var sm = function (x) { return x * x * (3 - 2 * x); };
     var outc = function (x) { return 1 - Math.pow(1 - x, 3); };
@@ -248,10 +262,10 @@
   var po = document.getElementById('story-ring');
   if (po) {
     var pits = $$('.po__it', po), pbeats = $$('.po__b', po), oP = 0, oT = 0, oRaf = 0;
-    var beatT = [[0.14, 0.2, 0.33, 0.37], [0.38, 0.44, 0.55, 0.59], [0.6, 0.66, 0.74, 0.78], [0.82, 0.88, 2, 3]];
+    var beatT = [[0.07, 0.13, 0.4, 0.44], [0.46, 0.52, 2, 3]];
     var drawPo = function () {
       var vw = innerWidth, vh = innerHeight, n = pits.length, far = Math.hypot(vw, vh) * 0.62;
-      var r0 = Math.min(vh * 0.4, vw * 0.3), open = clamp((oP - 0.02) / 0.13, 0, 1), spin = clamp((oP - 0.15) / 0.62, 0, 1), out = clamp((oP - 0.77) / 0.15, 0, 1);
+      var r0 = Math.min(vh * 0.4, vw * 0.3), open = clamp(oP / 0.09, 0, 1), spin = clamp((oP - 0.06) / 0.62, 0, 1), out = clamp((oP - 0.66) / 0.2, 0, 1);
       var g = open, r = open < 1 ? r0 * (1 - Math.pow(1 - open, 3)) : r0 + (far - r0) * out * out, turn = spin * Math.PI * 2 + out * 0.5;
       pits.forEach(function (it, k) {
         var on = g > 0 && r < far * 0.99;
