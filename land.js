@@ -33,6 +33,7 @@
   if (hero) {
     var fig = document.getElementById('momoFig'), fades = $$('.hx__head, .hx__side, .hx__cue', hero);
     var story = hero.querySelector('.hx__story'), storyBeats = $$('.hx__sk, .hx__ln, .hx__slink', story);
+    var headEl = hero.querySelector('.hx__head');
     var built = false, S0 = 0.78, heroP = 0;
     var ease = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
     var renderHero = function () {
@@ -50,8 +51,15 @@
         var s = S0 + (s1 - S0) * p;
         var cx = fig.offsetLeft + w / 2, tx = phone ? innerWidth / 2 : innerWidth * 0.27;
         var cy = fig.offsetTop + 0.12 * h + s * 0.29 * h, ty = phone ? vh * 0.26 : vh * 0.52;   // the middle of that frame, scaling from 50% 12%
-        fig.style.transform = 'translate(' + ((tx - cx) * p) + 'px,' + ((ty - cy) * p) + 'px) scale(' + s + ')';
+        // the camera arcs round her as she comes closer: she turns and tilts in perspective, most at the middle of the move,
+        // and settles flat, facing us, as she arrives
+        var arc = Math.sin(Math.PI * p), cam = (phone ? 20 : 32) * arc;
+        fig.style.transform = 'translate(' + ((tx - cx) * p) + 'px,' + ((ty - cy) * p) + 'px) perspective(1400px) rotateY(' + (-cam) + 'deg) rotateX(' + (arc * 5) + 'deg) scale(' + s + ')';
       }
+      // depth: her name sits far back and swings less, sinking away; the story sits in front and swings the other way
+      var arc2 = Math.sin(Math.PI * p), cam2 = (innerWidth <= 760 ? 20 : 32) * arc2;
+      headEl.style.transform = 'translateY(' + (-p * 40) + 'px) perspective(1400px) rotateY(' + (-cam2 * 0.4) + 'deg) translateZ(' + (-p * 260) + 'px)';
+      story.style.transform = (innerWidth <= 760 ? '' : 'translateY(-50%) ') + 'perspective(1400px) rotateY(' + (cam2 * 0.45) + 'deg) translateZ(' + (arc2 * 70) + 'px)';
       // the story, in order as she arrives: the label, each line, the link last, all in by the time she has settled
       story.classList.toggle('is-on', p >= 0.3);
       storyBeats.forEach(function (el, i) { el.classList.toggle('is-in', p >= 0.3 + i * (0.5 / (storyBeats.length - 1)) - 0.001); });
