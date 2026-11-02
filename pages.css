@@ -24,6 +24,7 @@
 .ix__h { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 18px; }
 .ix__r { display: grid; grid-template-columns: 3em minmax(0, 1fr) minmax(0, 0.8fr) 7em; align-items: baseline; gap: 16px; padding: clamp(14px, 2.2vh, 22px) 0; color: inherit; text-decoration: none; transition: color 0.3s, padding 0.5s var(--ease); }
 .ix__r > span { font-size: 13px; color: var(--ink-soft); }
+.ix__r .ix__tag { line-height: 1.5; max-width: 30em; }
 .ix__r strong { font-weight: 500; font-size: clamp(30px, 5vw, 88px); line-height: 0.92; letter-spacing: -0.05em; text-transform: uppercase; }
 .ix__r .ix__y { text-align: right; }
 .ix:hover .ix__r { color: rgba(17, 17, 17, 0.28); }
@@ -76,8 +77,8 @@
   .wk__t:nth-child(even) { margin-top: 0; }
   .wk__go { opacity: 1; transform: none; }
   .ix__r { grid-template-columns: 2.2em minmax(0, 1fr); }
-  .ix__r .ix__tag, .ix__r .ix__y { display: none; }
-  .ix__d { font-size: 13px; }
+  .ix__r .ix__y { display: none; }
+  .ix__r .ix__tag { grid-column: 2; margin-top: 6px; }
   .ab2__cols { grid-template-columns: 1fr; }
   .ct { grid-template-columns: 1fr; }
   .ab2__exp li { grid-template-columns: 1fr; gap: 4px; }
