@@ -53,3 +53,10 @@
   .orb__key { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { .orb__ring, .orb__t > .orb__in, .orb__core::before, .orb__core::after { animation: none; } }
+
+/* 3D animation previews */
+.ab3d { padding: clamp(30px, 6vh, 70px) var(--pad) clamp(30px, 6vh, 60px); text-align: center; }
+.ab3d__t { margin: 12px auto 0; max-width: 24em; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.35; letter-spacing: -0.02em; }
+.ab3d__g { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 1.2vw, 16px); margin-top: clamp(24px, 4vh, 40px); }
+.ab3d__g video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; background: #1b140d; }
+@media (max-width: 760px) { .ab3d__g { grid-template-columns: 1fr 1fr; } }

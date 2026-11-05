@@ -1,4 +1,4 @@
-/* Intro — plays on every visit.
+/* Intro — plays once per browser (then the home page opens straight on the hero; ?intro replays it).
    Momo (Morayo's line character) steps out of her door at double speed, walks over and waves;
    "Don't wait for change. / Design it." types out beside her. Then the intro hands over to the hero without a cut:
    the hero underneath is the same frame (same Momo, same words, same place), so the overlay simply goes
@@ -8,6 +8,7 @@
   if (!el) return;
   var root = document.documentElement;
   if (root.classList.contains('no-intro')) { el.remove(); return; }
+  try { localStorage.setItem('mk_intro_seen', '1'); } catch (e) {}   // plays once per browser; ?intro replays it
 
   var START = 0.8, RATE = 2.1, WAVE = 8.6;                       // video seconds: door → walk → wave, at double speed
   var LINES = ['Don’t wait for change.', 'Design it.'], CPS = 32;             // typewriter, ms per character
