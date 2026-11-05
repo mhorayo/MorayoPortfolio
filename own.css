@@ -9,9 +9,9 @@
 
 /* ---- notes: torn invoice slips, a crimson stamp drawing itself ---- */
 .ow-notes { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 2vw, 30px); margin: 0 var(--pad) 0 var(--col); max-width: 1180px; padding: 18px 0 26px; }
-.ow-note { position: relative; margin: 0; padding: 16% 11% 12%; display: flex; flex-direction: column; min-height: 100%; background: #FBF8F2; transform: rotate(var(--t)); box-shadow: 0 1px 0 rgba(17, 17, 17, 0.05), 0 26px 40px -30px rgba(60, 20, 25, 0.45); transition: transform 0.5s var(--ease);
+.ow-note { position: relative; margin: 0; padding: 16% 11% 12%; display: flex; flex-direction: column; min-height: 100%; background: #F5D7DD; transform: rotate(var(--t)); box-shadow: 0 1px 0 rgba(17, 17, 17, 0.06), 0 30px 44px -28px rgba(60, 20, 25, 0.55); transition: transform 0.5s var(--ease);
   -webkit-mask: radial-gradient(circle 5px at 50% 0, transparent 98%, #000) 0 0 / 16px 100% repeat-x; mask: radial-gradient(circle 5px at 50% 0, transparent 98%, #000) 0 0 / 16px 100% repeat-x; }
-.ow-note::before { content: ""; position: absolute; left: 11%; right: 11%; top: 9%; border-top: 1px dashed rgba(87, 2, 25, 0.28); }
+.ow-note::before { content: ""; position: absolute; left: 11%; right: 11%; top: 9%; border-top: 1px dashed rgba(87, 2, 25, 0.35); }
 .ow-note:hover { transform: rotate(0deg) translateY(-5px); }
 .ow-note svg { width: 30%; height: auto; margin: 0 0 8%; overflow: visible; }
 .ow-note svg path, .ow-note svg circle, .ow-note svg rect { fill: none; stroke: var(--cr2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -19,11 +19,15 @@
 .ow-note.is-in svg .draw { stroke-dashoffset: 0; }
 .ow-note b { display: block; margin-bottom: 4px; font-size: 10px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(87, 2, 25, 0.6); }
 .ow-note p { margin: 0; font-family: "Caveat", cursive; font-size: clamp(17px, 1.3vw, 22px); line-height: 1.05; color: #2a1015; }
-.ow-note:nth-child(1) { --t: -1.6deg; }
-.ow-note:nth-child(2) { --t: 1.2deg; background: #F6EFE6; }
-.ow-note:nth-child(3) { --t: -0.8deg; }
-.ow-note:nth-child(4) { --t: 1.8deg; background: #F6EFE6; }
-.ow-note:nth-child(5) { --t: -1.2deg; }
+.ow-note:nth-child(1) { --t: -1.6deg; background: #F5D7DD; }
+.ow-note:nth-child(2) { --t: 1.2deg; background: #F2E2BE; }
+.ow-note:nth-child(3) { --t: -0.8deg; background: #E9D3E6; }
+.ow-note:nth-child(4) { --t: 1.8deg; background: #F7DCCB; }
+.ow-note:nth-child(5) { --t: -1.2deg; background: #570219; }
+.ow-note:nth-child(5) b { color: rgba(250, 250, 250, 0.6); }
+.ow-note:nth-child(5) p { color: #FAFAFA; }
+.ow-note:nth-child(5) svg path, .ow-note:nth-child(5) svg circle { stroke: #F5D7DD; }
+.ow-note:nth-child(5)::before { border-top-color: rgba(250, 250, 250, 0.3); }
 
 /* ---- the loop, sketched on paper ---- */
 .ow-loop { margin: 0 var(--pad) 0 var(--col); max-width: 1000px; padding: clamp(18px, 3vw, 40px); background: #FBF8F2; box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.05), 0 40px 70px -50px rgba(60, 20, 25, 0.4); background-image: linear-gradient(rgba(87, 2, 25, 0.05) 1px, transparent 1px); background-size: 100% 28px; }
@@ -48,6 +52,19 @@
 .ow-stage .bm-steps li, .ow-stage .bm-steps li::before { color: rgba(250, 250, 250, 0.45); }
 .ow-stage .bm-steps li.is-now, .ow-stage .bm-steps li.is-now::before { color: #FAFAFA; }
 .ow-stage .k { color: rgba(250, 250, 250, 0.5); display: block; margin-bottom: 16px; }
+
+/* ---- the web app in a desktop monitor, full width ---- */
+.ow-web { margin: 0 var(--pad); max-width: none; }
+.ow-mac { width: 100%; }
+.ow-mac__body { padding: 1.1% 1.1% 0; border-radius: 1.4% / 2.2%; background: linear-gradient(180deg, #ECE9E4, #DAD6CF); box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.07), 0 70px 110px -70px rgba(40, 20, 20, 0.6); }
+.ow-mac__scr { padding: 0.9%; border-radius: 0.8% / 1.3%; background: #050505; }
+.ow .ow-mac .bm-ph { width: 100%; aspect-ratio: 1440 / 900; border-radius: 0; box-shadow: none; background: var(--blk); }
+.ow-mac__chin { height: clamp(22px, 3.6vw, 60px); }
+.ow-mac__neck { width: 15%; height: clamp(34px, 6vw, 96px); margin: 0 auto; background: linear-gradient(180deg, #C9C5BE, #DCD8D1 30%, #CFCBC4); clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%); }
+.ow-mac__foot { width: 21%; height: clamp(5px, 0.6vw, 9px); margin: 0 auto; border-radius: 0 0 8px 8px; background: #C7C2BA; box-shadow: 0 14px 18px -10px rgba(40, 20, 20, 0.45); }
+.ow-web .bm-steps--row { margin-top: 22px; }
+.ow-web .bm-tap { width: 2.6%; margin: -1.3% 0 0 -1.3%; }
+.ow-gap { height: clamp(40px, 7vh, 90px); }
 
 /* ---- the creative's desk: two windows ---- */
 .ow-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 28px); margin: 0 var(--pad) 0 var(--col); max-width: 1180px; }
@@ -99,6 +116,7 @@
   .ow-stage .bm-ph { width: 62vw; }
   .ow .bm-proto .bm-ph { width: 64vw; justify-self: center; }
   .ow .bm-proto--web .bm-ph { width: 100%; }
+  .ow-web .bm-tap { width: 6%; margin: -3% 0 0 -3%; }
   .ow-pair { grid-template-columns: 1fr; }
   .ow-dec { grid-template-columns: 1fr; }
   .ow-test { grid-template-columns: 1fr 1fr; }

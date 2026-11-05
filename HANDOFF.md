@@ -275,3 +275,9 @@ Screens: own2-*.jpg captured from the LIVE app with headless Chrome CDP: phone 3
 Open for her: (1) research wording ("I talked with creatives around me", "wrote the white paper") and the 4 "what we're testing" items are my wording from her brief, confirm. (2) No paper sketches of hers on this Mac; the loop sketch is drawn in SVG. Swap in photos of her real sketches if she has them.
 Committed locally on intro-reel; NOT pushed (push needs her yes). Preview "dox" (port 5198) serves scratchpad copy at 192935f1…/scratchpad/site (recreated by rsync this chat).
 NEXT: Help2Pay, then small Work + About changes, then launch.
+
+## NEW-CHAT SUMMARY #12 (Thu 5 Nov 2026, ~17:45 WAT) — OwnIt round 2
+Her feedback: show the WEB APP first and fully (intro → onboarding → core MVP flow), full width, very sharp; keep the phones after; the notes blended into the page; mention lead product designer + shareholder.
+Done: sections 04–06 are now the web app inside a CSS desktop monitor (.ow-mac, full content width): 04 own3-intro.mp4 (web intro, 1440x900 @2x recorded in slow motion via CDP Animation.setPlaybackRate + time dilation, then sped back up: smooth, 2560 wide), 05 onboarding proto (10 frames own3-*), 06 whole loop proto (upload → uploaded → details → price/fee → share on WhatsApp → client view → locked files → checkout → bank transfer → paid → delivery → dashboard Paid). 07 = the same journey on phone (old own2 phone pieces). Notes recoloured (blush, sand, lilac, peach, one crimson). Hero role: "Lead product designer, and a shareholder in the company"; letter + My part mention it.
+own3-*.jpg = desktop 1440x900 @2x, saved at 2560 wide. Capture tools: scratchpad tools/cap.mjs (steps incl. "slow") + web.json.
+Committed locally on intro-reel; NOT pushed.

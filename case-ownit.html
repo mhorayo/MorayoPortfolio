@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="v2.css?v=1793582000" />
 <link rel="stylesheet" href="home.css?v=1793602000" />
 <link rel="stylesheet" href="bm.css?v=1793920000" />
-<link rel="stylesheet" href="own.css?v=1793991000" />
+<link rel="stylesheet" href="own.css?v=1793995000" />
 <link rel="stylesheet" href="case.css?v=1793588000" />
 </head>
 <body class="land">
@@ -46,8 +46,8 @@
     <h1 class="cs__name rv">OwnIt</h1>
     <p class="cs__sell rv">Creatives send their work first and hope the client pays. I&rsquo;ve done it, and so have many creatives I know. OwnIt lets you show the work safely and get paid before you hand it over.</p>
     <dl class="cs__facts rv">
-      <div><dt class="k">Role</dt><dd>Product designer: research, UX and UI</dd></div>
-      <div><dt class="k">Team</dt><dd>A small startup team</dd></div>
+      <div><dt class="k">Role</dt><dd>Lead product designer, and a shareholder in the company</dd></div>
+      <div><dt class="k">Team</dt><dd>A small startup team; I lead research, UX and UI</dd></div>
       <div><dt class="k">Stage</dt><dd>Live web prototype, in internal usability testing</dd></div>
       <div><dt class="k">Market</dt><dd>Nigerian photographers, designers and filmmakers first</dd></div>
     </dl>
@@ -64,6 +64,7 @@
     <p>Sometimes they pay. Sometimes they ask for &ldquo;one more change&rdquo;, then go quiet. Sometimes your work turns up online with your watermark cropped out, and you never see the money.</p>
     <p>I&rsquo;ve been that creative. So have photographers, designers and filmmakers around me. We all had the same workaround: blurry previews, screenshots with big watermarks, half the files now and half later, and a lot of awkward chasing.</p>
     <p class="soft">Nobody should have to choose between showing their work and protecting it.</p>
+    <p>So I&rsquo;m building it. I&rsquo;m the lead product designer on OwnIt, and I own shares in the company. This isn&rsquo;t a client project for me. It&rsquo;s mine.</p>
     <p><span class="ow-hand">This is my change. My solution.</span></p>
   </div>
 
@@ -121,19 +122,97 @@
     <div><p class="ow-hmw rv">How might we let a client <em>see everything</em> without giving anything away, and get the creative <em>paid before</em> they deliver?</p></div>
   </section>
 
-  <!-- 04 The first five seconds -->
+  <!-- 04 The web app: the first five seconds -->
   <section class="cs__ch">
     <span class="k rv">04 &mdash; What is? The first five seconds</span>
     <div>
       <h2 class="cs__big rv">Before anything else, OwnIt says who it&rsquo;s for.</h2>
-      <p class="cs__p rv">The intro plays once, the first time you open OwnIt. Small cards of creatives&rsquo; work fly towards you, the line cycles through who it&rsquo;s for, and it lands on the promise: <strong>Your work. Your terms.</strong> It&rsquo;s about four seconds, with a Skip button, because nobody opens a tool to watch a film.</p>
-      <p class="cs__p rv">I kept the motion flat and calm on purpose. My first version was heavier, and on Safari it broke the sign-in video behind it. The final one uses only movement and fade, and the sign-in video waits until the intro is gone.</p>
+      <p class="cs__p rv">OwnIt is a web app first, because creatives deliver from their laptops. The intro plays once, the first time you open it. Small cards of creatives&rsquo; work fly towards you, the line cycles through who it&rsquo;s for, and it lands on the promise: <strong>Your work. Your terms.</strong> About four seconds, with a Skip button, because nobody opens a tool to watch a film.</p>
+      <p class="cs__p rv">I kept the motion flat and calm on purpose. My first version was heavier, and on Safari it broke the sign-in video behind it. The final one uses only movement and fade, and the sign-in film waits until the intro is gone.</p>
+    </div>
+  </section>
+  <div class="bm-proto bm-proto--web ow-web rv" data-rec>
+    <div class="ow-mac" aria-hidden="false">
+      <div class="ow-mac__body"><div class="ow-mac__scr"><div class="bm-ph">
+        <video src="own3-intro.mp4" poster="own3-intro-poster.jpg" data-times="0 0.6 3.6" autoplay muted loop playsinline preload="metadata" aria-label="The OwnIt web app intro: creatives' work flies in, A new home for designers, filmmakers, creatives, then Your work. Your terms. Get started"></video>
+      </div></div><div class="ow-mac__chin"></div></div>
+      <div class="ow-mac__neck"></div><div class="ow-mac__foot"></div>
+    </div>
+    <ol class="bm-steps bm-steps--row"><li>Creatives&rsquo; work flies in</li><li>&ldquo;A new home for photographers, designers, filmmakers, creatives.&rdquo;</li><li>Your work. Your terms. Get started</li></ol>
+  </div>
+
+  <!-- 05 Onboarding, web -->
+  <section class="cs__ch">
+    <span class="k rv">05 &mdash; What is? Onboarding</span>
+    <div>
+      <h2 class="cs__big rv">Four short questions, and the client&rsquo;s page builds itself.</h2>
+      <p class="cs__p rv">Sign up with an email code, no password to forget. Then one question per screen: your name, what you create, your studio and brand colour, and where the money should go. On the studio step, a <strong>live preview</strong> beside the form shows exactly what your client will see as you type.</p>
+      <p class="cs__p rv">The payout step checks the account name with the bank before you save it, and says plainly that OwnIt never holds the money. You can skip it, but OwnIt reminds you before your first client pays, so no money gets stuck.</p>
+    </div>
+  </section>
+  <div class="bm-proto bm-proto--web ow-web rv" data-proto data-hold="2000">
+    <div class="ow-mac" aria-hidden="false">
+      <div class="ow-mac__body"><div class="ow-mac__scr"><div class="bm-ph">
+        <img src="own3-intro-end.jpg" alt="Your work. Your terms. Get started" data-step="0" data-tap="50 67" />
+        <img src="own3-signup.jpg" alt="Create your account, with the sign-in film of a creative at work on the left" data-step="0" data-hold="1500" />
+        <img src="own3-email.jpg" alt="Email typed: adaeze@lagoslens.studio, Continue with email" data-step="0" data-tap="74.5 52" />
+        <img src="own3-code.jpg" alt="Check your inbox: enter the 6-digit code" data-step="0" data-hold="1100" />
+        <img src="own3-code-typing.jpg" alt="The code going in, digit by digit" data-step="0" data-hold="1300" />
+        <img src="own3-name-filled.jpg" alt="Welcome to OwnIt. What's your name? Adaeze Okafor" data-step="1" data-tap="34.5 68" />
+        <img src="own3-craft-picked.jpg" alt="What do you create, Adaeze? Photography and Video and film" data-step="1" data-tap="21 77" />
+        <img src="own3-studio.jpg" alt="Make it yours: studio name, logo and brand colour, with a live preview of the client's page beside it" data-step="2" data-tap="16 94" data-hold="3200" />
+        <img src="own3-payout-ok.jpg" alt="Where should we send your money? GTBank, account name confirmed: ADAEZE OKAFOR" data-step="3" data-tap="37 73" data-hold="2600" />
+        <img src="own3-welcome.jpg" alt="Welcome, Adaeze. Let's get your first client paid. Start your first project, with a Get set up checklist" data-step="3" data-hold="3000" />
+        <i class="bm-tap" aria-hidden="true"></i>
+      </div></div><div class="ow-mac__chin"></div></div>
+      <div class="ow-mac__neck"></div><div class="ow-mac__foot"></div>
+    </div>
+    <ol class="bm-steps bm-steps--row"><li>Sign up with an email code</li><li>Your name, and what you create</li><li>Your studio, with a live preview</li><li>Where the money goes</li></ol>
+  </div>
+
+  <!-- 06 The core MVP flow, web -->
+  <section class="cs__ch">
+    <span class="k rv">06 &mdash; What if? The whole loop, live</span>
+    <div>
+      <h2 class="cs__big rv">From finished work to money in the bank, in one flow.</h2>
+      <p class="cs__p rv">Drop in the work. Photos, videos and PDFs become watermarked previews. PSDs, RAW files and ZIPs stay <strong>locked until paid</strong>, so the client can see they exist without opening them. Then who it&rsquo;s for, the price, and how long the link lives. Before the link is made, OwnIt shows the client&rsquo;s price, the 1.5% fee and <strong>what you&rsquo;ll receive</strong>.</p>
+      <p class="cs__p rv">One tap shares it on WhatsApp. The client opens it with no app, no account and no sign-in. The page carries the creative&rsquo;s studio name, and the work shows at full quality with a small OwnIt mark and <strong>the client&rsquo;s own email</strong> in the corner, enough to make a leak traceable. They pay with Paystack, by card, bank transfer or USSD, straight to the creative&rsquo;s bank. The files unlock, and the creative&rsquo;s dashboard shows it&rsquo;s paid.</p>
+    </div>
+  </section>
+  <div class="bm-proto bm-proto--web ow-web rv" data-proto data-hold="2200">
+    <div class="ow-mac" aria-hidden="false">
+      <div class="ow-mac__body"><div class="ow-mac__scr"><div class="bm-ph">
+        <img src="own3-upload.jpg" alt="Add the work: drop files or choose from your computer" data-step="0" data-tap="50 50" data-hold="1700" />
+        <img src="own3-uploaded.jpg" alt="Files uploaded: photos and a video as watermarked previews, a PSD and a ZIP locked till paid" data-step="0" data-hold="2800" />
+        <img src="own3-details.jpg" alt="Who's it for? Project name, client, email, price and how long the link lives" data-step="1" data-hold="2400" />
+        <img src="own3-price.jpg" alt="Client pays 150,000 naira, OwnIt fee 1.5%, you receive 147,750 naira. Create preview link" data-step="1" data-tap="39 91" data-hold="2400" />
+        <img src="own3-share.jpg" alt="Your link is ready: copy link, email to client, share on WhatsApp" data-step="2" data-tap="62.5 49" data-hold="2600" />
+        <img src="own3-client.jpg" alt="What the client sees: Lagos Lens Studio, Wedding, Tolu and Dami, the work at full quality, Pay 150,000 naira to unlock" data-step="3" data-hold="3000" />
+        <img src="own3-client-locked.jpg" alt="Unlocks after payment: the PSD and the RAW selects, with sizes" data-step="3" data-tap="87 97" data-hold="2400" />
+        <img src="own3-checkout.jpg" alt="Paystack checkout over the page: card, bank transfer or USSD" data-step="4" data-tap="55 35" data-hold="2000" />
+        <img src="own3-transfer.jpg" alt="Bank transfer: account details, I've sent the money" data-step="4" data-tap="50 70" data-hold="2200" />
+        <img src="own3-paid.jpg" alt="Payment successful, 150,000 naira. View and download your files" data-step="5" data-tap="49.5 65" data-hold="2200" />
+        <img src="own3-delivery.jpg" alt="Payment received. Your files are unlocked. Download all" data-step="5" data-hold="3000" />
+        <img src="own3-dash-after.jpg" alt="Back on the creative's dashboard: the project now shows Paid" data-step="5" data-hold="2800" />
+        <i class="bm-tap" aria-hidden="true"></i>
+      </div></div><div class="ow-mac__chin"></div></div>
+      <div class="ow-mac__neck"></div><div class="ow-mac__foot"></div>
+    </div>
+    <ol class="bm-steps bm-steps--row"><li>Upload the work</li><li>Who it&rsquo;s for, the price, the fee</li><li>Share on WhatsApp</li><li>The client views, free</li><li>The client pays</li><li>Files unlock, the creative is paid</li></ol>
+  </div>
+
+  <!-- 07 The same product on a phone -->
+  <section class="cs__ch">
+    <span class="k rv">07 &mdash; What wows? The same OwnIt, on a phone</span>
+    <div>
+      <h2 class="cs__big rv">Most clients open the link on their phone, inside WhatsApp. So every screen works there too.</h2>
+      <p class="cs__p rv">The whole web app is responsive, from the intro to checkout. Here is the same journey on a phone: the intro, onboarding, sharing, and what the client sees.</p>
     </div>
   </section>
   <div class="ow-stage rv" data-rec>
     <div class="bm-ph"><video src="own2-intro.mp4" poster="own2-intro-poster.jpg" data-times="0 0.9 3.6" autoplay muted loop playsinline preload="metadata" aria-label="The OwnIt intro: creatives' work flies in, A new home for photographers, designers, filmmakers, creatives, then Your work. Your terms. and Get started"></video></div>
     <div>
-      <span class="k">The startup animation, recorded from the live app</span>
+      <span class="k">The intro on a phone</span>
       <ol class="bm-steps">
         <li>Creatives&rsquo; work flies in from far away</li>
         <li>&ldquo;A new home for photographers, designers, filmmakers, creatives.&rdquo;</li>
@@ -142,15 +221,7 @@
     </div>
   </div>
 
-  <!-- 05 Onboarding -->
-  <section class="cs__ch">
-    <span class="k rv">05 &mdash; What is? Onboarding</span>
-    <div>
-      <h2 class="cs__big rv">Four short questions, and the client&rsquo;s page builds itself.</h2>
-      <p class="cs__p rv">Sign up with an email code, no password to forget. Then one question per screen: your name, what you create, your studio and brand colour, and where the money should go. On the studio step, a <strong>live preview</strong> shows exactly what your client will see as you type.</p>
-      <p class="cs__p rv">The payout step checks the account name with the bank before you save it, and says plainly that OwnIt never holds the money. You can skip it, but OwnIt reminds you before your first client pays, so no money gets stuck.</p>
-    </div>
-  </section>
+  <div class="ow-gap"></div>
   <div class="bm-proto rv" data-proto data-hold="1900">
     <div class="bm-ph">
       <img src="own2-intro-end.jpg" alt="Your work. Your terms. Show clients your work without handing it over. Get paid, then deliver. Get started" data-step="0" data-tap="50 62" />
@@ -170,16 +241,7 @@
       <li>Where the money goes, checked with the bank</li>
     </ol>
   </div>
-
-  <!-- 06 Upload and share -->
-  <section class="cs__ch">
-    <span class="k rv">06 &mdash; What if? Upload, then share on WhatsApp</span>
-    <div>
-      <h2 class="cs__big rv">Three steps from finished work to a link in the client&rsquo;s WhatsApp.</h2>
-      <p class="cs__p rv">Drop in the work. Photos, videos and PDFs become watermarked previews. PSDs, RAW files and ZIPs stay <strong>locked until paid</strong>, so the client can see they exist without opening them.</p>
-      <p class="cs__p rv">Then who it&rsquo;s for, the price, and how long the link lives. Before you create the link, OwnIt shows the client&rsquo;s price, the 1.5% OwnIt fee and <strong>what you&rsquo;ll receive</strong>, so there are no surprises. Then one tap shares it on WhatsApp, where Nigerian creatives already talk to their clients.</p>
-    </div>
-  </section>
+  <div class="ow-gap"></div>
   <div class="bm-proto rv" data-proto data-hold="2100">
     <div class="bm-ph">
       <img src="own2-upload.jpg" alt="Add the work: photos uploaded as watermarked previews; a PSD and a ZIP locked till paid" data-step="0" data-hold="2600" />
@@ -195,16 +257,7 @@
       <li>Share on WhatsApp, email, or copy the link</li>
     </ol>
   </div>
-
-  <!-- 07 The client's side -->
-  <section class="cs__ch">
-    <span class="k rv">07 &mdash; What wows? What the client sees</span>
-    <div>
-      <h2 class="cs__big rv">The client opens the link in WhatsApp. No app, no account, no sign-in.</h2>
-      <p class="cs__p rv">The page carries the creative&rsquo;s studio name and colour, not ours. The work shows at full quality with a small OwnIt mark and <strong>the client&rsquo;s own email</strong> in the corner. Not a tiled watermark across the work, just enough to make a leak traceable. The locked files are listed with their sizes, so the client knows exactly what they&rsquo;re paying for.</p>
-      <p class="cs__p rv">One button: Pay. Checkout is Paystack, by card, bank transfer or USSD, and the money goes straight to the creative&rsquo;s bank. The moment it clears, the delivery page unlocks the full files.</p>
-    </div>
-  </section>
+  <div class="ow-gap"></div>
   <div class="bm-proto rv" data-proto data-hold="2300">
     <div class="bm-ph">
       <img src="own2-client.jpg" alt="Preview for Tolu Bankole: Wedding, Tolu and Dami, a message from Adaeze, watermarked previews, Pay 150,000 naira" data-step="0" data-hold="2800" />
@@ -217,16 +270,6 @@
       <li>What unlocks after payment, with file sizes</li>
       <li>Pay with Paystack, straight to the creative&rsquo;s bank</li>
     </ol>
-  </div>
-  <div class="bm-proto bm-proto--web rv" data-proto data-hold="3200" style="margin-top: clamp(40px, 6vh, 80px)">
-    <div class="bm-web">
-      <div class="bm-web__bar" aria-hidden="true"><i></i><i></i><i></i><span>ownit &middot; client preview</span></div>
-      <div class="bm-ph">
-        <img src="own2-client-web.jpg" alt="The client preview on a laptop: Wedding, Tolu and Dami, the work, and Pay 150,000 naira to unlock" data-step="0" />
-        <img src="own2-delivery.jpg" alt="After payment: Payment received. Your files are unlocked. Download all" data-step="1" />
-      </div>
-    </div>
-    <ol class="bm-steps bm-steps--row"><li>The preview, on a laptop</li><li>After payment: the files unlock</li></ol>
   </div>
 
   <!-- 08 The creative's desk -->
@@ -297,6 +340,7 @@
     <span class="k rv">11 &mdash; My part, and what&rsquo;s next</span>
     <div>
       <h2 class="cs__big rv">From a problem I lived to a link you can open.</h2>
+      <p class="cs__p rv">I&rsquo;m the lead product designer and a shareholder, so I design it like an owner: every screen has to earn its place in the business, not just look good.</p>
       <ul class="bm-owned rv">
         <li>The research and the white paper</li>
         <li>The loop, the flows and the MVP scope</li>
