@@ -21,3 +21,12 @@ Build only after Momo says "ok finish" / "go ahead".
 - About: one paragraph fewer; new copy about who she is at her core.
 - Momo: hero looks a bit blue, make it neutral; nicer gestures; head/eyes follow the mouse up and down too, not only sideways.
 - Footer: Momo sits on a double line; she must sit on the footer's one line.
+
+## ROUND 2 (asked 5 Nov, waiting for "go ahead")
+- Hero: "Don't wait for change. Design it." REPLACES the big "Momo / Product Designer" text (same place, same size). Move body text + buttons up.
+- Who I am: a hand-drawn doodle underline under "Design is where they meet."
+- Beyond the screens: heading left-aligned with the body text, bold, same size family; paragraph 1 has the heading; paragraph 2 gets its own heading.
+- Footer: double line still visible on her screen (Momo's drawn ledge sits ~4px above the footer line). Robust fix: crop the drawn ledge out of momo-peek.png itself.
+- Momo: her whole head tilts up/down with the mouse, not only the eyes (eye movement isn't visible enough).
+- BroadMoney case: hero image too zoomed in -> a subtle video (soft moving light rays); other assets too zoomed in too. Full story-led rewrite (see chat); BMP story from her next.
+- Case studies: LESS IS MORE always. Show business problem / user needs / opportunities / metrics as cute sticky notes (hand-drawn, paper feel), not heavy tables.

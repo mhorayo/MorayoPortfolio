@@ -185,3 +185,27 @@ BUILT TODAY (all pushed to intro-reel):
 - Nav: Work → work.html, About → about.html; Contact button is a plain rectangle (radius 0).
 REJECTED today: 3D CSS tilt of the flat drawing; card-shrink exit of the zoom; overlap of work over the story; constellation/cluster; Per-style sliding names.
 Still unknown from her: internship company, faith line, booking link. Phone check of all new pages not done.
+
+## NEW-CHAT SUMMARY #4 (Wed 4 Nov 2026, ~18:00 WAT) — read this first
+Usage: weekly 60% now. Monday ended at 32%, Tuesday at ~51% (19 of 20 used). Wednesday so far: 9 of 20 used. 40% left for the rest of the week, so stay at about 16% a day (Thu/Fri). Always say "today X of 20% used" (memory usage-alert).
+Links: live https://morayoakinkunmi.com/ · newest preview https://morayo-portfolio-git-intro-reel-teeakinkunmi-6064s-projects.vercel.app/ (private window if a page looks old). Still not merged to main: wait for her yes.
+Direction (memory identity-and-voice-nov3): proud Yoruba/Lagos identity; a "be the change you want to see" hero line; a Lagos street scene in line art with Momo walking through it before the footer; per-product process write-ups with motion prototypes of her real screens and her branding work.
+NEXT: Renncora story-time. She talks, I shape it, one small question at a time. First question (not answered yet): "What is Renncora, and who was it for? Tell it like you'd tell a friend." Existing page: case-renncora.html (generator scratchpad/gen/cases.py, copy into _tools if needed); assets are the ren-*.jpg/mp4 files in the repo.
+SEO/AEO (memory seo-aeo-checklist): Search Console and Bing done. Open: request indexing after go-live, LinkedIn/bios, recruiter FAQ, case summaries, alt text, update llms.txt (remove Leadership, add Lagos/Yoruba) and sitemap (add work.html, refresh lastmod). With each case rewrite, update that page's meta, summary, alt text and llms.txt line.
+Still unknown from her: internship company, faith line, booking link. Phone check of the new pages not done.
+
+## NEW-CHAT SUMMARY #5 (Thu 5 Nov 2026, ~10:35 WAT) — read this first
+Usage: weekly 64% now. Wednesday ended at about 60–61%, so today ≈ 3–4 of 20% used. Say "today X of 20% used". Write down the weekly % at the end of each chat so the next day's count is exact.
+Method (memory bulk-brainstorm-then-build): she sends changes in bulk, we talk, I build ONLY when she says "ok finish" / "go ahead". Before building, recap the agreed list.
+Preview: https://morayo-portfolio-git-intro-reel-teeakinkunmi-6064s-projects.vercel.app/ (not merged to main; wait for her yes).
+Local preview: launch config "final" in ~/Documents/My Portfolio/.claude/launch.json serves a COPY in this chat's scratchpad; in a new chat rsync the repo to your own scratchpad/site and point a new config at it (the server can't serve ~/Documents directly).
+
+DONE + PUSHED today (commit 6d78421): new hero headline + Lagos sub line, "Trained as an engineer. Born a designer." story (3 lines + 2 paragraphs), square buttons everywhere (.hbtn, .hbtn--line, .hbtn--sm in home.css), white ↗ hover circle on work pictures (home + work.html), new copy for Doxflowy/WeCare/OwnIt/Help2Pay ("Founder project"), "Beyond the screens" (Design Geeks: YouTube + community + 1-on-1 mentoring; no people count known), shorter About, Momo's eyes move up/down (land.js gx 6 / gy 9), footer peek CSS shift, phone ring is an oval. Change list: _tools/final-round.md.
+
+NEXT, ROUND 2 (agreed asks, she hasn't said "go ahead" yet — recap then build): see _tools/final-round.md "ROUND 2":
+- Hero: "Don't wait for change. Design it." replaces the big "Momo / Product Designer" text; body + buttons move up.
+- Doodle underline under "Design is where they meet."
+- Beyond the screens: left-aligned bold heading; a second heading for paragraph 2.
+- Footer double line STILL shows on her screen: crop the drawn ledge (bottom ~4 rows) out of momo-peek.png itself.
+- Momo's whole head tilts up/down with the mouse (eyes alone aren't visible enough).
+THEN BroadMoney case study: her full story is in _tools/bmp-story.md. Template + rules in memory case-study-rewrite-plan (less is more, sticky notes, What is/What if/What wows/What works, video prototypes from her real BMP screens, paper sketches, light-ray hero video, less zoomed assets, CV-matching dates). Ask her for the real before/after transaction figures; never invent.
