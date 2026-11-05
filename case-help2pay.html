@@ -4,25 +4,27 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Crypto-to-Fiat Payments App UX Case Study — Help2Pay | Morayo Akinkunmi</title>
-<meta name="description" content="Case study: Designing a multi-currency payment platform — merchant onboarding, gift cards, real-time transfers, and e-commerce integration across web and mobile." />
+<meta name="description" content="Help2Pay: crypto to naira made easy, plus bills, gift cards and shopping in one app. Competitor research, paper sketches, internal moderated usability testing, a redesigned dashboard, send money and gift cards, a WCAG-checked design system and a documented developer handover." />
 <link rel="canonical" href="https://morayoakinkunmi.com/case-help2pay.html" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Morayo Akinkunmi — Product Designer" />
 <meta property="og:title" content="Crypto-to-Fiat Payments App UX Case Study — Help2Pay | Morayo Akinkunmi" />
-<meta property="og:description" content="Case study: Designing a multi-currency payment platform — merchant onboarding, gift cards, real-time transfers, and e-commerce integration across web and mobile." />
+<meta property="og:description" content="Help2Pay: crypto to naira made easy, plus bills, gift cards and shopping in one app. Tested, reiterated and handed over properly." />
 <meta property="og:url" content="https://morayoakinkunmi.com/case-help2pay.html" />
 <meta property="og:image" content="https://morayoakinkunmi.com/h2p-tile.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Crypto-to-Fiat Payments App UX Case Study — Help2Pay | Morayo Akinkunmi" />
-<meta name="twitter:description" content="Case study: Designing a multi-currency payment platform — merchant onboarding, gift cards, real-time transfers, and e-commerce integration across web and mobile." />
+<meta name="twitter:description" content="Help2Pay: crypto to naira made easy, plus bills, gift cards and shopping in one app. Tested, reiterated and handed over properly." />
 <meta name="twitter:image" content="https://morayoakinkunmi.com/h2p-tile.jpg" />
 <meta name="author" content="Morayo Akinkunmi" />
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Help2Pay — multi-currency payments", "headline": "Crypto-to-Fiat Payments App UX Case Study — Help2Pay | Morayo Akinkunmi", "description": "Case study: Designing a multi-currency payment platform — merchant onboarding, gift cards, real-time transfers, and e-commerce integration across web and mobile.", "url": "https://morayoakinkunmi.com/case-help2pay.html", "image": "https://morayoakinkunmi.com/h2p-phone-plate.jpg", "author": {"@type": "Person", "@id": "https://morayoakinkunmi.com/#person", "name": "Morayo Akinkunmi", "alternateName": "Akinkunmi Taiwo Morayo", "jobTitle": "Senior Product Designer", "description": "Senior Product Designer with 5 years across fintech, AI and SaaS. Founder of The Design Geeks Community.", "url": "https://morayoakinkunmi.com/", "image": "https://morayoakinkunmi.com/morayo-portrait.jpg", "email": "mailto:teeakinkunmi@gmail.com", "sameAs": ["https://www.linkedin.com/in/morayo-akinkunmi/", "https://dribbble.com/momo98765", "https://medium.com/@YourTechGeeks", "https://www.youtube.com/@Design-geeks", "https://x.com/morayo1025"], "knowsAbout": ["Product design", "UX design", "UI design", "Fintech", "Payments", "Digital banking", "AI products", "Design systems", "SaaS"]}, "creator": {"@id": "https://morayoakinkunmi.com/#person"}, "genre": "Product design case study"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Help2Pay — crypto to fiat, bills, gift cards and shopping in one app", "headline": "Crypto-to-Fiat Payments App UX Case Study — Help2Pay | Morayo Akinkunmi", "description": "UI/UX design for Help2Pay, a crypto-to-fiat payments platform: 1,000+ mobile screens, brand identity, and a documented Figma component library that sped up developer handoff by 30%.", "url": "https://morayoakinkunmi.com/case-help2pay.html", "image": "https://morayoakinkunmi.com/h2p-tile.jpg", "author": {"@type": "Person", "name": "Morayo Akinkunmi", "url": "https://morayoakinkunmi.com/"}, "dateModified": "2026-11-05"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Mrs+Saint+Delafield&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="v2.css?v=1793582000" />
 <link rel="stylesheet" href="home.css?v=1793602000" />
+<link rel="stylesheet" href="bm.css?v=1793920000" />
+<link rel="stylesheet" href="h2p.css?v=1794014000" />
 <link rel="stylesheet" href="case.css?v=1793588000" />
 </head>
 <body class="land">
@@ -36,66 +38,380 @@
   </nav>
   <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
 </header>
-<main class="cs land__main">
+<main class="cs h2 land__main">
+
+  <!-- Hero -->
   <section class="cs__hero">
-    <span class="k rv">Case study &middot; 2025</span>
+    <span class="k rv">Case study &middot; fintech &middot; 2025</span>
     <h1 class="cs__name rv">Help2Pay</h1>
-    <p class="cs__sell rv">Help2Pay turns crypto into everyday money: USDT to Naira, bills, gift cards and transfers, across four markets. Every failed send meant real money stuck.</p>
+    <p class="cs__sell rv">People in Nigeria hold crypto, but life is paid in naira. Help2Pay turns USDT into money in your bank, and puts bills, gift cards and shopping in the same app.</p>
     <dl class="cs__facts rv">
-      <div><dt class="k">Company</dt><dd>Help2Pay</dd></div>
-      <div><dt class="k">Role</dt><dd>Product design</dd></div>
-      <div><dt class="k">Platforms</dt><dd>Payments · Mobile &amp; web</dd></div>
-      <div><dt class="k">Result</dt><dd>Send-flow drop-off down 40%.</dd></div>
+      <div><dt class="k">Role</dt><dd>UI/UX designer: research, UX, UI, brand</dd></div>
+      <div><dt class="k">Scope</dt><dd>1,000+ mobile screens, web app, marketing site</dd></div>
+      <div><dt class="k">Team</dt><dd>Founders, product and engineering, with regular stand-ups</dd></div>
+      <div><dt class="k">When</dt><dd>May to August 2025, Nigeria, remote</dd></div>
     </dl>
   </section>
-  <figure class="cs__cover rv"><video data-par src="h2p-tile.mp4?v=1793124397" poster="h2p-tile.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Help2Pay"></video></figure>
+  <figure class="h2-hero rv" aria-label="A Help2Pay billboard on a street: One wallet. Every currency. A hand holds a phone with the Help2Pay app">
+    <img src="h2p-tile.jpg" alt="" />
+  </figure>
+
+  <!-- 01 Why -->
+  <section class="cs__ch">
+    <span class="k rv">01 &mdash; Why Help2Pay</span>
+    <div><h2 class="cs__big rv">Your money is in crypto. Your light bill is in naira.</h2></div>
+  </section>
+  <div class="h2-letter rv">
+    <p>More and more people get paid in USDT: freelancers, remote workers, traders, families abroad sending money home. But rent, school fees, airtime and electricity are paid in naira.</p>
+    <p>Getting from one to the other usually means a crypto exchange built for traders, a peer-to-peer trade with a stranger, then a second app for bills and a third for gift cards. Every step is another screen of jargon and another place a payment can go wrong.</p>
+    <p class="soft">Help2Pay&rsquo;s goal was simple: make crypto to fiat feel like a normal bank transfer, and keep everyday payments in the same place.</p>
+    <p><span class="h2-hand">One app. From crypto to everyday life.</span></p>
+  </div>
+
+  <!-- 02 The problem -->
+  <section class="cs__ch">
+    <span class="k rv">02 &mdash; The problem</span>
+    <div>
+      <h2 class="cs__big rv">Crypto apps are built for traders. Everyday users just want to pay for things.</h2>
+      <p class="cs__p rv">Help2Pay already had a lot to offer: sending to banks, swaps, bills, gift cards and a shop. The problem was getting people to understand it, find it, and trust it with real money.</p>
+    </div>
+  </section>
+  <div class="h2-notes">
+    <figure class="h2-note rv"><svg viewBox="0 0 60 60" aria-hidden="true"><circle class="draw" pathLength="1" cx="22" cy="30" r="14" /><circle class="draw" pathLength="1" cx="40" cy="30" r="14" /></svg><b>Pattern</b><p>Crypto in one app, bills in another, gift cards in a third.</p></figure>
+    <figure class="h2-note rv"><svg viewBox="0 0 60 60" aria-hidden="true"><path class="draw" pathLength="1" d="M8 44l12-14 10 8 12-18 10 8" /><path class="draw" pathLength="1" d="M8 52h44" /></svg><b>Pattern</b><p>Exchange screens speak trader, not everyday user.</p></figure>
+    <figure class="h2-note rv"><svg viewBox="0 0 60 60" aria-hidden="true"><circle class="draw" pathLength="1" cx="30" cy="30" r="20" /><path class="draw" pathLength="1" d="M30 20v12M30 39v1" /></svg><b>Pattern</b><p>&ldquo;How much will actually land in my bank?&rdquo;</p></figure>
+    <figure class="h2-note rv"><svg viewBox="0 0 60 60" aria-hidden="true"><path class="draw" pathLength="1" d="M10 20h40l-5 22H15z" /><path class="draw" pathLength="1" d="M20 20l4-10M40 20l-4-10" /><circle class="draw" pathLength="1" cx="22" cy="50" r="3" /><circle class="draw" pathLength="1" cx="38" cy="50" r="3" /></svg><b>From testing</b><p>Users didn&rsquo;t know they could shop. The features were hidden.</p></figure>
+    <figure class="h2-note rv"><svg viewBox="0 0 60 60" aria-hidden="true"><path class="draw" pathLength="1" d="M30 6l20 7v14c0 13-9 22-20 27C19 49 10 40 10 27V13z" /><path class="draw" pathLength="1" d="M21 30l7 7 12-14" /></svg><b>Insight</b><p>If home shows it, people use it.</p></figure>
+  </div>
+
+  <!-- 03 Research -->
+  <section class="cs__ch">
+    <span class="k rv">03 &mdash; Research</span>
+    <div>
+      <h2 class="cs__big rv">I studied the apps people already use, and what they leave out.</h2>
+      <p class="cs__p rv">I looked closely at Trust Wallet and Binance, and others in the same business. They&rsquo;re excellent at what they&rsquo;re built for. But neither is built around the moment that matters to an everyday user in Lagos: <strong>turning crypto into naira and paying for something</strong>.</p>
+    </div>
+  </section>
+  <div class="h2-scan rv">
+    <table>
+      <thead><tr><th></th><th>Trust Wallet</th><th>Binance</th><th>Help2Pay</th></tr></thead>
+      <tbody>
+        <tr><th>Built for</th><td>Holding and moving your own crypto</td><td>Trading, with peer-to-peer for local currency</td><td>Everyday spending from crypto</td></tr>
+        <tr><th>Getting naira</th><td>Through outside providers</td><td>A P2P trade with another user</td><td>USDT straight to a Nigerian bank, in the app</td></tr>
+        <tr><th>Everyday payments</th><td>Not the focus</td><td>Not the focus</td><td>Bills, airtime, electricity, gift cards, shopping</td></tr>
+        <tr><th>Language</th><td>Wallet and network terms</td><td>Trader terms: orders, spreads, pairs</td><td>Plain words: send, receive, you&rsquo;ll get</td></tr>
+        <tr><th>What I took</th><td>A clean wallet list</td><td>Live rates and visible fees</td><td colspan="1">Both, in one calm home screen</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- How we worked -->
+  <section class="cs__ch">
+    <span class="k rv">How we worked</span>
+    <div>
+      <h2 class="cs__big rv">Design, test, meet, reiterate. Again.</h2>
+      <p class="cs__p rv">I worked with the founders, product and engineering through stand-ups and many review meetings. Every major flow went through <strong>internal moderated usability testing</strong>: I sat with people, gave them a task like &ldquo;buy a gift card&rdquo; or &ldquo;send USDT to a bank&rdquo;, watched where they got stuck, and took it back to the team.</p>
+    </div>
+  </section>
+  <ol class="h2-steps">
+    <li class="rv"><b>Research</b>Competitors and how people cash out today</li>
+    <li class="rv"><b>Paper sketches</b>The home screen and the core flows</li>
+    <li class="rv"><b>Hi-fi design</b>1,000+ screens, mobile first</li>
+    <li class="rv gd"><b>Moderated testing</b>Real tasks, watched, internally</li>
+    <li class="rv gd"><b>Stand-ups and reiteration</b>Dashboard, send money and gift cards redone</li>
+    <li class="rv"><b>Handover</b>Design system, annotations, notes for developers</li>
+  </ol>
+
+  <!-- 04 What is? The old dashboard -->
+  <section class="cs__ch">
+    <span class="k rv">04 &mdash; What is? The dashboard people didn&rsquo;t understand</span>
+    <div>
+      <h2 class="cs__big rv">A big balance, four buttons, and everything else hidden.</h2>
+      <p class="cs__p rv">The first dashboard was built around the balance: send, receive, swap, approval, then a banner and recent transactions. In testing, many users didn&rsquo;t know what else Help2Pay could do. <strong>They didn&rsquo;t know they could shop</strong>, buy gift cards or pay bills, because none of it was on the home screen. An earlier version with a crypto price list had the same gap.</p>
+    </div>
+  </section>
+  <div class="h2-ba">
+    <figure class="h2-ph rv"><img src="h2p3-before-dash.png" alt="Before: total balance card with Send, Receive, Swap and Approval, a gift card banner and recent transactions" /><figcaption>Before, v1</figcaption></figure>
+    <figure class="h2-ph rv"><img src="h2p3-before-dash-b.png" alt="Before: Hi Alex, total balance, Send, Receive, Buy and Sell, then a list of crypto prices" /><figcaption>Before, v2</figcaption></figure>
+    <p class="rv"><b>What testing showed</b>Shopping, gift cards and bills were real features with no door on the home screen. People only found them by accident, from a banner or the tab bar.</p>
+  </div>
+
+  <!-- Paper sketches -->
+  <section class="cs__ch">
+    <span class="k rv">Paper sketches</span>
+    <div>
+      <h2 class="cs__big rv">On paper first: give every service a door on the home screen.</h2>
+      <p class="cs__p rv">Before touching Figma again, I sketched the home screen with the team&rsquo;s feedback beside it. Keep the balance and the four money actions. Then add a <strong>services grid</strong>, so shopping, airtime, bills and gift cards are one tap from home, and put the exchange rate where people can see it.</p>
+    </div>
+  </section>
+  <div class="bm-sketch rv" aria-label="Paper sketches of the dashboard: version one with only a balance card, four buttons and a list, marked where is shopping; version two adds a services grid of eight icons and an exchange rate card">
+    <figure>
+      <svg viewBox="0 0 220 400" aria-hidden="true">
+        <rect class="pen draw" pathLength="1" x="10" y="6" width="200" height="388" rx="26" />
+        <rect class="pen draw" pathLength="1" x="28" y="44" width="164" height="96" rx="12" />
+        <path class="pen draw" pathLength="1" d="M60 74h100M80 96h60" />
+        <rect class="pen draw" pathLength="1" x="40" y="112" width="26" height="18" rx="4" /><rect class="pen draw" pathLength="1" x="76" y="112" width="26" height="18" rx="4" /><rect class="pen draw" pathLength="1" x="112" y="112" width="26" height="18" rx="4" /><rect class="pen draw" pathLength="1" x="148" y="112" width="26" height="18" rx="4" />
+        <rect class="pen draw" pathLength="1" x="28" y="156" width="164" height="50" rx="10" />
+        <path class="pen draw" pathLength="1" d="M28 236h164M28 266h164M28 296h164M28 326h164" />
+        <path class="red draw" pathLength="1" d="M150 212c20 6 34 22 30 44" />
+        <text class="hand red-t" x="96" y="232">where&rsquo;s shopping?</text>
+        <text class="hand red-t" x="40" y="370">bills? gift cards?</text>
+      </svg>
+      <figcaption>v1: only the balance gets a home</figcaption>
+    </figure>
+    <svg class="bm-arrow" viewBox="0 0 80 30" aria-hidden="true"><path class="pen draw" pathLength="1" d="M4 15c22-6 46-6 68 0M62 7l10 8-10 8" /></svg>
+    <figure>
+      <svg viewBox="0 0 220 400" aria-hidden="true">
+        <rect class="pen draw" pathLength="1" x="10" y="6" width="200" height="388" rx="26" />
+        <path class="pen draw" pathLength="1" d="M28 40h70" />
+        <path class="pen draw" pathLength="1" d="M60 70h100M80 90h60" />
+        <circle class="pen draw" pathLength="1" cx="50" cy="124" r="13" /><circle class="pen draw" pathLength="1" cx="88" cy="124" r="13" /><circle class="pen draw" pathLength="1" cx="126" cy="124" r="13" /><circle class="pen draw" pathLength="1" cx="164" cy="124" r="13" />
+        <text class="hand" x="28" y="172">services</text>
+        <rect class="grn draw" pathLength="1" x="30" y="182" width="30" height="28" rx="6" /><rect class="grn draw" pathLength="1" x="72" y="182" width="30" height="28" rx="6" /><rect class="grn draw" pathLength="1" x="114" y="182" width="30" height="28" rx="6" /><rect class="grn draw" pathLength="1" x="156" y="182" width="30" height="28" rx="6" />
+        <rect class="grn draw" pathLength="1" x="30" y="222" width="30" height="28" rx="6" /><rect class="grn draw" pathLength="1" x="72" y="222" width="30" height="28" rx="6" /><rect class="grn draw" pathLength="1" x="114" y="222" width="30" height="28" rx="6" /><rect class="grn draw" pathLength="1" x="156" y="222" width="30" height="28" rx="6" />
+        <rect class="pen draw" pathLength="1" x="28" y="272" width="164" height="54" rx="10" />
+        <text class="hand" x="40" y="304">$1 = &#8358;2,000</text>
+        <text class="hand grn-t" x="34" y="364">shop, bills, gift cards:</text>
+        <text class="hand grn-t" x="34" y="386">one tap from home</text>
+      </svg>
+      <figcaption>v2: every service gets a door</figcaption>
+    </figure>
+  </div>
+
+  <!-- 05 What if? The new dashboard -->
+  <section class="cs__ch">
+    <span class="k rv">05 &mdash; What if? A home that shows everything</span>
+    <div>
+      <h2 class="cs__big rv">After testing, the dashboard brings the core features to the front.</h2>
+      <p class="cs__p rv">The reiterated home keeps the balance and send, receive, swap and buy at the top. Under it, a services grid: <strong>shopping, airtime top-up, pay bills, gift cards, deals, exchange, referrals</strong>. Then today&rsquo;s exchange rate, so people know what their dollar is worth before they do anything.</p>
+      <p class="cs__p rv">New users get a short guided tour on first open, starting with &ldquo;verify your identity&rdquo;, because nothing else works until that&rsquo;s done.</p>
+    </div>
+  </section>
+  <div class="h2-ba">
+    <div class="h2-cmp rv" data-compare>
+      <img src="h2p3-before-dash.png" alt="Before: balance card, four buttons and recent transactions" />
+      <img class="h2-cmp__a" src="h2p-dashboard-new.png" alt="After: balance, four actions, a services grid and the exchange rate" />
+      <span class="h2-cmp__k h2-cmp__k--b">Before</span><span class="h2-cmp__k h2-cmp__k--a">After</span>
+      <i class="h2-cmp__bar" aria-hidden="true"></i>
+      <input type="range" min="0" max="100" value="50" aria-label="Drag to compare the dashboard before and after" />
+    </div>
+    <figure class="h2-ph rv"><img src="h2p-n-dashboard-tooltip.png" alt="First open: a guided tour card, Verify your identity, step 1 of 3, over the new dashboard" /><figcaption>First open</figcaption></figure>
+    <p class="rv"><b>Drag to compare</b>Same balance, same user. On the right, every service is one tap away, and the rate is right there.</p>
+  </div>
+
+  <!-- 06 Send money -->
+  <section class="cs__ch">
+    <span class="k rv">06 &mdash; What if? Send money, before and after</span>
+    <div>
+      <h2 class="cs__big rv">Show what lands in the bank before anyone taps confirm.</h2>
+      <p class="cs__p rv">The old send screen asked people to pick Bank or Crypto, type a USDT amount, then &ldquo;choose fiat currency&rdquo; and add a bank in separate steps. The naira amount and the bank came last, as if they were an afterthought.</p>
+      <p class="cs__p rv">The new flow puts <strong>the currency pair and the live rate at the top</strong>: USDT to NGN, you send this, they get that. Bank, account number and a note sit right under it, with &ldquo;save as beneficiary&rdquo; for next time. Then a full summary, every fee and the receiving bank, before the money moves.</p>
+    </div>
+  </section>
+  <div class="h2-ba">
+    <figure class="h2-ph rv"><img src="h2p3-before-send.png" alt="Before: Send, Bank or Crypto, 0.00 USDT, choose fiat currency, add receiving bank, Submit" /><figcaption>Before</figcaption></figure>
+    <figure class="h2-ph rv"><img src="h2p3-before-send-filled.png" alt="Before, filled: 0.50 USDT, you receive 800.00, receiving bank details, Submit" /><figcaption>Before, filled</figcaption></figure>
+  </div>
+  <div class="h2-gap"></div>
+  <div class="bm-proto rv" data-proto data-hold="2400">
+    <div class="bm-ph">
+      <img src="h2p3-send.png" alt="After: Send, USDT to NGN, exchange rate, you send and they get, bank name, account number, account name, description" data-step="0" data-hold="3000" />
+      <img src="h2p3-summary.png" alt="Transaction summary: you'll sell 50,000 USDT, you'll receive 200,000 NGN, rate, transfer fee, receiving bank, date, transaction ID. Proceed" data-step="1" data-tap="50 96" data-hold="3000" />
+      <img src="h2p3-success.png" alt="Transaction successful. Done" data-step="2" data-tap="50 64" data-hold="2400" />
+      <i class="bm-tap" aria-hidden="true"></i>
+    </div>
+    <ol class="bm-steps">
+      <li>The pair and live rate first: you send, they get</li>
+      <li>A full summary: every fee and the bank, before it moves</li>
+      <li>Sent, with a clear end</li>
+    </ol>
+  </div>
+
+  <!-- 07 Gift cards -->
+  <section class="cs__ch">
+    <span class="k rv">07 &mdash; What wows? Gift cards, before and after</span>
+    <div>
+      <h2 class="cs__big rv">From a wall of logos to cards you can actually choose.</h2>
+      <p class="cs__p rv">The first gift card screen was a carousel and a grid of logos, with no names, prices or deals. You could spot the brands, but not what you&rsquo;d actually be buying. The reiterated screen <strong>names every card and shows the discount</strong>, and buying one is a single form: price, country, quantity, delivery method, recipient and a personal message.</p>
+    </div>
+  </section>
+  <div class="h2-ba">
+    <div class="h2-cmp rv" data-compare>
+      <img src="h2p3-before-gift.png" alt="Before: gift cards as a carousel and a grid of logos" />
+      <img class="h2-cmp__a" src="h2p3-gifts.png" alt="After: gift cards in a grid with names and discounts" />
+      <span class="h2-cmp__k h2-cmp__k--b">Before</span><span class="h2-cmp__k h2-cmp__k--a">After</span>
+      <i class="h2-cmp__bar" aria-hidden="true"></i>
+      <input type="range" min="0" max="100" value="50" aria-label="Drag to compare the gift card screen before and after" />
+    </div>
+    <figure class="h2-ph rv"><img src="h2p-n-giftcard.png" alt="Buying an Amazon gift card: price chips, country, quantity, delivery method, recipient, personal message, Purchase" /><figcaption>Buying one</figcaption></figure>
+    <p class="rv"><b>Drag to compare</b>Same cards. After: names, discounts, and one clear way to buy.</p>
+  </div>
+
+  <!-- 08 One app -->
+  <section class="cs__ch">
+    <span class="k rv">08 &mdash; The whole app, in motion</span>
+    <div>
+      <h2 class="cs__big rv">From sign-up to electricity, in one place.</h2>
+      <p class="cs__p rv">Here&rsquo;s the journey a new user takes: onboarding in plain words, sign-up, a tiered identity check, then wallets in every currency, swaps with every fee shown, live rates, bills, gift cards and the shop.</p>
+    </div>
+  </section>
+  <div class="h2-stage rv">
+    <div class="bm-proto" data-proto data-hold="2000">
+      <div class="bm-ph">
+        <img src="h2p3-onb1.png" alt="Onboarding: Easy transfer. Step into the future of finance. Get started" data-step="0" />
+        <img src="h2p3-onb2.png" alt="Onboarding: Instant transactions. Transfer coins to your bank. Get started" data-step="0" data-tap="50 87" />
+        <img src="h2p3-signup.png" alt="Create your account: name, date of birth, email, phone, BVN, referral code" data-step="1" />
+        <img src="h2p3-kyc.png" alt="KYC verification, tier 1: personal details, income, upload ID documents. Upgrade tier" data-step="1" data-tap="40 75" />
+        <img src="h2p3-wallets.png" alt="All wallets: Nigeria, United Kingdom, United States, Ghana, Tether USDT, USD Coin, Bitcoin" data-step="2" />
+        <img src="h2p3-ngn.png" alt="The naira wallet: balance, send, receive, buy, more, earn coins, today's transactions" data-step="2" />
+        <img src="h2p3-swap.png" alt="Swap: you send BTC, you get ETH, exchange rate, network fee, price impact, liquidity provider fee. Confirm" data-step="3" />
+        <img src="h2p3-rates.png" alt="Exchange rate: buy and sell rates for NGN, EUR and more, with a price chart" data-step="3" />
+        <img src="h2p3-bills.png" alt="Electricity: select provider, payment method, meter number, amount. Purchase" data-step="4" />
+        <img src="h2p3-gifts.png" alt="Gift cards: Walmart, Sephora, Amazon, Netflix, iTunes, Spotify, with discounts" data-step="4" />
+        <img src="h2p3-shop.png" alt="Shopping: a long-sleeve top with size, colour, quantity and Add to cart" data-step="4" data-hold="2600" />
+        <i class="bm-tap" aria-hidden="true"></i>
+      </div>
+      <ol class="bm-steps">
+        <li>Onboarding in plain words</li>
+        <li>Sign up, then a tiered identity check</li>
+        <li>Wallets in every currency</li>
+        <li>Swaps and rates, every fee shown</li>
+        <li>Bills, gift cards and the shop</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- 09 Web -->
+  <section class="cs__ch">
+    <span class="k rv">09 &mdash; The web app and the marketing site</span>
+    <div>
+      <h2 class="cs__big rv">The same calm, on a bigger screen.</h2>
+      <p class="cs__p rv">The web app carries the same structure for business users: sign-up, a dashboard with live marketplace rates and quick menus, wallets in every currency, and the detail behind each one.</p>
+    </div>
+  </section>
+  <div class="bm-proto bm-proto--web h2-web rv" data-proto data-hold="2800">
+    <div class="bm-ph">
+      <img src="h2p3-web-148.jpg" alt="Web: Sign up to Help2Pay, business type, name, registration number, email, phone" data-step="0" />
+      <img src="h2p3-web-159.jpg" alt="Web dashboard: marketplace rates, balances, quick menus, wallet overview and transaction history" data-step="1" data-hold="3400" />
+      <img src="h2p3-web-162.jpg" alt="Web: wallets overview in GBP, USD, NGN and GHS" data-step="2" />
+      <img src="h2p3-web-163.jpg" alt="Web: the GBP main wallet, account information and recent transactions" data-step="3" />
+      <img src="h2p3-web-164.jpg" alt="Web: the USDT main wallet, wallet address, network fee and limits" data-step="3" />
+    </div>
+    <ol class="bm-steps bm-steps--row"><li>Sign up</li><li>Dashboard</li><li>Wallets</li><li>Wallet detail</li></ol>
+  </div>
+  <div class="h2-gap"></div>
+  <section class="cs__ch">
+    <span class="k rv">The marketing site</span>
+    <div><p class="cs__p rv">For the site, I wrote <strong>jargon-free messaging</strong> and kept sign-up frictionless, to lower the barrier for people who aren&rsquo;t crypto natives.</p></div>
+  </section>
+  <div class="h2-site rv" aria-label="The Help2Pay marketing site, scrolling: Your ultimate payment solution, instant crypto transactions, why choose Help2Pay, testimonials and FAQs"><img src="h2p3-landing.jpg" alt="" loading="lazy" /></div>
+
+  <!-- 10 Design system, accessibility, handover -->
+  <section class="cs__ch">
+    <span class="k rv">10 &mdash; Design system and accessibility</span>
+    <div>
+      <h2 class="cs__big rv">One system, checked against WCAG, documented for the people who build it.</h2>
+      <p class="cs__p rv">I built a proper Figma component library for Help2Pay: colour, type, buttons in every state, action tiles, inputs and cards. Every colour pair was checked against <strong>WCAG AA</strong> contrast before it went into a component. That check set a rule early: <strong>never white text on gold</strong>.</p>
+    </div>
+  </section>
+  <div class="h2-ds">
+    <div class="h2-card rv">
+      <span class="k">Tokens</span>
+      <div class="h2-tok">
+        <div><i style="--c:#264653"></i><b>Deep teal</b>#264653</div>
+        <div><i style="--c:#E8C368"></i><b>Gold</b>#E8C368</div>
+        <div><i style="--c:#FFFFFF"></i><b>White</b>#FFFFFF</div>
+        <div><i style="--c:#000000"></i><b>Black</b>#000000</div>
+      </div>
+      <div class="h2-type"><div class="t">Open Sans, title 24</div><div class="b">Body text 16. One typeface across mobile, web and the site.</div></div>
+      <span class="k" style="margin-top: 24px">Buttons and tiles</span>
+      <div class="h2-btns"><span class="p">Send</span><span class="o">Send</span><em>Primary and secondary</em><span class="h">Send</span><span class="g">Send</span><em>Hover and quiet</em></div>
+      <div class="h2-tiles"><span class="d">Send</span><span class="l">Send</span></div>
+    </div>
+    <div class="h2-card rv">
+      <span class="k">WCAG AA contrast, checked</span>
+      <table class="h2-wcag">
+        <tr><td><span class="sw" style="background:#264653;color:#fff">Aa</span></td><td>White on teal</td><td>10.1 : 1</td><td class="ok">Pass</td></tr>
+        <tr><td><span class="sw" style="background:#F4F4F4;color:#264653">Aa</span></td><td>Teal on light grey</td><td>9.2 : 1</td><td class="ok">Pass</td></tr>
+        <tr><td><span class="sw" style="background:#E8C368;color:#111">Aa</span></td><td>Black on gold</td><td>11.2 : 1</td><td class="ok">Pass</td></tr>
+        <tr><td><span class="sw" style="background:#E8C368;color:#264653">Aa</span></td><td>Teal on gold</td><td>6.0 : 1</td><td class="ok">Pass</td></tr>
+        <tr><td><span class="sw" style="background:#3E6678;color:#fff">Aa</span></td><td>White on hover teal</td><td>6.2 : 1</td><td class="ok">Pass</td></tr>
+        <tr><td><span class="sw" style="background:#E8C368;color:#fff">Aa</span></td><td>White on gold</td><td>1.7 : 1</td><td class="no">Fails, never used</td></tr>
+      </table>
+      <p class="cs__p" style="margin: 14px 0 0; font-size: 13.5px">AA needs 4.5 : 1 for body text. Ratios calculated from the brand colours.</p>
+    </div>
+  </div>
 
   <section class="cs__ch">
-    <span class="k rv">00 &mdash; The brief</span>
+    <span class="k rv">The handover</span>
     <div>
-      <h2 class="cs__big rv">A crypto-to-fiat payments platform bringing USDT-to-Naira conversion, gift cards, bills and transfers into one app across four markets.</h2>
-      <p class="cs__p rv">I replaced crypto jargon with plain language, surfaced fees before confirmation, and brought scattered features into one clear home.</p>
+      <h2 class="cs__big rv">Nothing left for developers to guess.</h2>
+      <p class="cs__p rv">Every screen went to engineering with <strong>annotations and notes</strong>: which component it uses, which state, which token, and what happens on error. The documented library <strong>sped up developer handoff by 30%</strong>.</p>
+    </div>
+  </section>
+  <div class="h2-anno rv">
+    <div class="h2-anno__ph">
+      <figure class="h2-ph"><img src="h2p3-send.png" alt="The send screen with annotation pins" /></figure>
+      <i class="h2-box" style="left:4%;top:9.5%;width:92%;height:7%"></i><i class="h2-pin" style="left:96%;top:9.5%">1</i>
+      <i class="h2-box" style="left:4%;top:18%;width:92%;height:16%"></i><i class="h2-pin" style="left:96%;top:18%">2</i>
+      <i class="h2-box" style="left:4%;top:41%;width:92%;height:31%"></i><i class="h2-pin" style="left:96%;top:41%">3</i>
+    </div>
+    <ol>
+      <li><span><b>Currency pair.</b> Component <code>Select/Currency</code>, two instances. Tapping either opens the currency sheet.</span></li>
+      <li><span><b>Amount and rate.</b> <code>Input/Amount</code> with the live rate above. You send and they get update together.</span></li>
+      <li><span><b>Recipient.</b> <code>Input/Default</code> with label, placeholder and error state. Bank uses <code>Select/Bank</code>. Body text Open Sans 16, teal labels.</span></li>
+    </ol>
+  </div>
+
+  <!-- 11 Brand -->
+  <section class="cs__ch">
+    <span class="k rv">11 &mdash; Brand</span>
+    <div>
+      <h2 class="cs__big rv">A brand that looks like money you can trust.</h2>
+      <p class="cs__p rv">I made the full brand identity from scratch: the logo, colours, typography and iconography. Deep teal for trust, gold for value, and a mark built from blocks, like coins stacking up.</p>
+    </div>
+  </section>
+  <div class="h2-brand rv">
+    <img src="h2p-27-brand.jpg" alt="Help2Pay brand applied to a cap, polo, mug, notebook, letterhead, hoodie, QR card, pen and staff ID" loading="lazy" />
+    <ul class="bm-owned" style="grid-template-columns: 1fr">
+      <li>Logo and mark</li>
+      <li>Deep teal and gold palette</li>
+      <li>Open Sans, title and body scale</li>
+      <li>Iconography</li>
+      <li>Applied: merch, stationery, billboard</li>
+    </ul>
+  </div>
+
+  <!-- 12 What works -->
+  <section class="cs__out">
+    <span class="k rv">12 &mdash; What works?</span>
+    <p class="cs__second rv" style="margin-top: 0">Moderated testing changed three core screens: the dashboard now shows every service, send money shows what lands in the bank before you confirm, and gift cards are named, priced and easy to buy.</p>
+    <div class="cs__nums bm-nums">
+      <div class="rv"><strong>1,000+</strong><span>mobile screens, one connected experience</span></div>
+      <div class="rv"><strong>30%</strong><span>faster developer handoff, from the documented library</span></div>
+      <div class="rv"><strong>1</strong><span>app for crypto to naira, bills, gift cards and shopping</span></div>
     </div>
   </section>
 
+  <!-- 13 My part -->
   <section class="cs__ch">
-    <span class="k rv">01 &mdash; Dashboard, before and after</span>
-    <div><h2 class="cs__big rv">Dashboard, before and after</h2></div>
+    <span class="k rv">13 &mdash; My part</span>
+    <div>
+      <h2 class="cs__big rv">I had a lot of fun with this one.</h2>
+      <ul class="bm-owned rv">
+        <li>Competitor research</li>
+        <li>Paper sketches and flows</li>
+        <li>1,000+ mobile screens</li>
+        <li>Internal moderated usability testing</li>
+        <li>Reiterated dashboard, send and gift cards</li>
+        <li>Web app and marketing site</li>
+        <li>Brand identity</li>
+        <li>Design system, WCAG checks and handover</li>
+      </ul>
+      <p class="cs__p rv" style="margin-top: 28px">Help2Pay taught me that the hardest part of fintech isn&rsquo;t the money. It&rsquo;s making people feel sure enough to press send.</p>
+    </div>
   </section>
-  <div class="cs__phones cs__phones--2"><figure class="cs__shot rv"><img src="h2p-dashboard-old.png" alt="Help2Pay — Dashboard, before and after" loading="lazy" /></figure><figure class="cs__shot rv"><img src="h2p-dashboard-new.png" alt="Help2Pay — Dashboard, before and after" loading="lazy" /></figure></div>
-
-  <section class="cs__ch">
-    <span class="k rv">02 &mdash; Send and confirm</span>
-    <div><h2 class="cs__big rv">Fees and the final amount shown before confirmation, not after.</h2></div>
-  </section>
-  <div class="cs__phones"><figure class="cs__shot rv"><img src="h2p-send-v2.png" alt="Help2Pay — Send and confirm" loading="lazy" /></figure><figure class="cs__shot rv"><img src="h2p-n-send-confirm.png" alt="Help2Pay — Send and confirm" loading="lazy" /></figure><figure class="cs__shot rv"><img src="h2p-n-send-success.png" alt="Help2Pay — Send and confirm" loading="lazy" /></figure></div>
-
-  <section class="cs__ch">
-    <span class="k rv">03 &mdash; Wallets and swap</span>
-    <div><h2 class="cs__big rv">Wallets and swap</h2></div>
-  </section>
-  <div class="cs__phones"><figure class="cs__shot rv"><img src="h2p-n-wallets.png" alt="Help2Pay — Wallets and swap" loading="lazy" /></figure><figure class="cs__shot rv"><img src="h2p-n-wallet-detail.png" alt="Help2Pay — Wallets and swap" loading="lazy" /></figure><figure class="cs__shot rv"><img src="h2p-n-swap.png" alt="Help2Pay — Wallets and swap" loading="lazy" /></figure></div>
-
-  <section class="cs__ch">
-    <span class="k rv">04 &mdash; Web dashboard</span>
-    <div><h2 class="cs__big rv">Web dashboard</h2></div>
-  </section>
-  <div class="cs__web"><img class="rv" src="h2p-20-web-dashboard-flat.jpg" alt="Help2Pay — Web dashboard" loading="lazy" /></div>
-
-  <section class="cs__ch">
-    <span class="k rv">05 &mdash; Brand</span>
-    <div><h2 class="cs__big rv">Brand</h2></div>
-  </section>
-  <div class="cs__web"><img class="rv" src="h2p-27-brand.jpg" alt="Help2Pay — Brand" loading="lazy" /></div>
-
-  <section class="cs__out">
-    <span class="k rv">The result</span>
-    <p class="cs__res rv">Send-flow drop-off down 40%.</p>
-    <p class="cs__p rv">Four markets, three platforms, one consistent experience.</p>
-  </section>
-
   <a class="cs__next rv" href="case-broadmoney.html"><span><span class="k">Next case</span><strong>BroadMoney <span class="cs__arr">&rarr;</span></strong></span><img src="bmp-tile.jpg" alt="" loading="lazy" /></a>
-
   <footer class="fx" id="contact">
     <span class="up fx__k">Let&rsquo;s talk</span>
     <div class="fx__line">
@@ -111,16 +427,15 @@
 </main>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
-/* smooth scroll; things rise in as they come into view; the cover drifts a little slower than the page */
+/* smooth scroll; things rise in as they come into view */
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduce && window.Lenis) { var l = new Lenis({ lerp: 0.085 }); (function f(t) { l.raf(t); requestAnimationFrame(f); })(0); }
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
   document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
-  var par = document.querySelector('[data-par]');
-  if (par && !reduce) window.addEventListener('scroll', function () { var r = par.parentNode.getBoundingClientRect(); par.style.transform = 'translateY(' + (-r.top * 0.12 - 40) + 'px)'; }, { passive: true });
 })();
 </script>
+<script src="bm.js?v=1793920000"></script>
 <script src="type.js?v=1793584000"></script>
 <script src="v2.js?v=1793580000"></script>
 </body>
