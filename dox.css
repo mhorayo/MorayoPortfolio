@@ -3,8 +3,16 @@
    Screens are rendered at 2x from her real builds, never tinted. Shares the prototype parts from bm.css. */
 .dx { --dx: #582FBA; --dx-2: #7C5CFC; --dx-ink: #15121f; }
 
-/* ---- hero: her photo, whole, with the sun drifting (bm-film) ---- */
-.dx .bm-film__in { background: #b9ab98; }
+/* ---- hero: her photo widened to 16:9 (whole, never zoomed), the sharp dashboard laid onto the laptop screen in its
+   own perspective (data-quad, bm.js), and the sun drifting across the wall ---- */
+.dx-hero { position: relative; margin: 0 var(--pad); aspect-ratio: 2688 / 1520; overflow: hidden; background: #b9ab98; }
+.dx-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.dx-hero__scr { position: absolute; left: 0; top: 0; width: 1440px; height: 1041px; transform-origin: 0 0; overflow: hidden; background: #fff; filter: brightness(0.96) contrast(1.02); }
+.dx-hero__scr > img { position: absolute; left: 0; top: 2.9%; width: 100%; height: auto; }
+.dx-hero__bar { position: absolute; left: 0; right: 0; top: 0; height: 2.9%; display: flex; align-items: center; gap: 0.5%; padding-left: 1.2%; background: #EDECEF; }
+.dx-hero__bar b { width: 0.9%; aspect-ratio: 1; border-radius: 50%; background: #FF5F57; }
+.dx-hero__bar b:nth-child(2) { background: #FEBC2E; } .dx-hero__bar b:nth-child(3) { background: #28C840; }
+.dx-hero__scr::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 40%), linear-gradient(to top, rgba(60, 45, 30, 0.08), transparent 30%); }
 
 /* ---- notes: small paper documents with a clip and a tag ---- */
 .dx-notes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2.2vw, 36px); margin: 0 var(--pad) 0 var(--col); max-width: 1080px; padding: 24px 0 20px; }
