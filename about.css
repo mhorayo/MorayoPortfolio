@@ -6,9 +6,9 @@
 .orbx h2 { margin: 14px auto 0; max-width: 15em; font-weight: 400; font-size: clamp(30px, 4vw, 66px); line-height: 1.02; letter-spacing: -0.045em; }
 .orbx > p { margin: 18px auto 0; max-width: 34em; font-size: clamp(16px, 1.2vw, 19px); line-height: 1.5; color: var(--ink-soft); }
 
-.orb { --ink-l: rgba(17, 17, 17, 0.16); position: relative; width: min(860px, 100%); aspect-ratio: 1; margin: clamp(30px, 6vh, 70px) auto 0; container-type: inline-size;
+.orb { --ink-l: rgba(17, 17, 17, 0.42); position: relative; width: min(860px, 100%); aspect-ratio: 1; margin: clamp(30px, 6vh, 70px) auto 0; container-type: inline-size;
   background: radial-gradient(circle at 18% 22%, rgba(17, 17, 17, 0.25) 0 1px, transparent 1.5px), radial-gradient(circle at 82% 14%, rgba(17, 17, 17, 0.2) 0 1px, transparent 1.5px), radial-gradient(circle at 90% 70%, rgba(17, 17, 17, 0.22) 0 1px, transparent 1.5px), radial-gradient(circle at 10% 80%, rgba(17, 17, 17, 0.2) 0 1px, transparent 1.5px), radial-gradient(circle at 60% 95%, rgba(17, 17, 17, 0.18) 0 1px, transparent 1.5px), radial-gradient(circle at 35% 6%, rgba(17, 17, 17, 0.18) 0 1px, transparent 1.5px); }
-.orb__ring { list-style: none; margin: 0; padding: 0; position: absolute; left: 50%; top: 50%; width: calc(var(--r) * 2); aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; border: 1px solid var(--ink-l); animation: orb-spin var(--s) linear infinite; animation-direction: var(--dir, normal); }
+.orb__ring { list-style: none; margin: 0; padding: 0; position: absolute; left: 50%; top: 50%; width: calc(var(--r) * 2); aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; border: 2px solid var(--ink-l); animation: orb-spin var(--s) linear infinite; animation-direction: var(--dir, normal); }
 .orb__ring--1 { --r: 20cqw; --s: 70s; }
 .orb__ring--2 { --r: 33.5cqw; --s: 110s; --dir: reverse; border-style: dashed; }
 .orb__ring--3 { --r: 46.5cqw; --s: 150s; }
@@ -18,17 +18,14 @@
 .orb__dot { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--paper, #F7F6F2); box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.22); transition: box-shadow 0.3s, transform 0.3s var(--ease); }
 .orb__dot svg { width: 20px; height: 20px; fill: var(--ink); }
 .orb__mono { font-size: 12.5px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); }
-.orb__t b { font-weight: 400; font-size: 11.5px; letter-spacing: 0.01em; white-space: nowrap; color: var(--ink-soft); }
+.orb__t b { font-weight: 400; font-size: 11.5px; letter-spacing: 0.01em; white-space: nowrap; color: var(--ink-soft); padding: 0 4px; border-radius: 4px; background: rgba(247, 246, 242, 0.92); }
 .orb__t:hover .orb__dot { box-shadow: inset 0 0 0 1.5px var(--ink); transform: scale(1.08); }
 .orb__t--new .orb__dot { background: transparent; box-shadow: none; border: 1px dashed rgba(17, 17, 17, 0.3); color: rgba(17, 17, 17, 0.45); font-size: 18px; }
 .orb__t--new b { color: rgba(17, 17, 17, 0.4); }
 @keyframes orb-spin { to { rotate: 360deg; } }
 
 /* the user, in the middle of it all */
-.orb__core { position: absolute; left: 50%; top: 50%; width: 21cqw; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink); }
-.orb__core::before, .orb__core::after { content: ""; position: absolute; inset: -1px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.35); animation: orb-pulse 4.5s ease-out infinite; }
-.orb__core::after { animation-delay: 2.25s; }
-@keyframes orb-pulse { 0% { scale: 1; opacity: 0.9; } 100% { scale: 1.6; opacity: 0; } }
+.orb__core { position: absolute; left: 50%; top: 50%; width: 21cqw; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; background: transparent; box-shadow: inset 0 0 0 2px var(--ink); }
 .orb__core svg { width: 34%; height: auto; overflow: visible; }
 .orb__core svg path, .orb__core svg circle { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .orb__core svg .heart { stroke: #C2453B; }
@@ -52,7 +49,7 @@
   .orb__core span { display: none; }
   .orb__key { grid-template-columns: 1fr; }
 }
-@media (prefers-reduced-motion: reduce) { .orb__ring, .orb__t > .orb__in, .orb__core::before, .orb__core::after { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .orb__ring, .orb__t > .orb__in { animation: none; } }
 
 /* 3D animation previews */
 .ab3d { padding: clamp(30px, 6vh, 70px) var(--pad) clamp(30px, 6vh, 60px); text-align: center; }
