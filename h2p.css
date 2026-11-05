@@ -2,8 +2,8 @@
 .h2 { --tl: #264653; --tl2: #3E6678; --gd: #E8C368; }
 
 /* ---- hero: the billboard photo, whole, on a full-width teal band ---- */
-.h2-hero { position: relative; margin: 0 var(--pad); aspect-ratio: 16 / 9; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, #2f5866, var(--tl) 70%); display: flex; justify-content: center; }
-.h2-hero > img { display: block; height: 100%; width: auto; }
+.h2-hero { position: relative; margin: 0 var(--pad); aspect-ratio: 2688 / 1520; overflow: hidden; background: var(--tl); }
+.h2-hero > img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* ---- the story letter ---- */
 .h2-letter { margin: 0 var(--pad) 0 var(--col); max-width: 30em; font-size: clamp(19px, 1.6vw, 26px); }
@@ -142,7 +142,5 @@
   .h2-anno__ph { justify-self: center; }
   .h2-stage, .h2-web { padding: 22px 12px; }
   .h2-web .bm-ph { border-radius: 6px; }
-  .h2-hero { aspect-ratio: 4 / 5; }
-  .h2-hero > img { width: 100%; height: 100%; object-fit: contain; }
 }
 @media (prefers-reduced-motion: reduce) { .h2-note svg .draw { transition: none; stroke-dashoffset: 0; } .h2-site img { animation: none; } }

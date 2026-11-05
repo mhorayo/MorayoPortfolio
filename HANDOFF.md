@@ -301,3 +301,4 @@ Screens: phone ones are only 1x (393 bare, or 528 framed exports cropped to bare
 Removed the unsupported "Send-flow drop-off down 40%" from index.html, work.html, llms.txt (now "1,000+ screens. Developer handoff 30% faster.").
 Open for her: (1) hero could be widened with Higgsfield (2.75 cr) like OwnIt — ask first. (2) She said "dont to include paper prototyping" — read as "don't forget"; sketches included, remove if she meant the opposite. (3) Testing tasks ("buy a gift card", "send USDT to a bank") and the competitor table wording are mine from her brief; confirm.
 Committed locally on intro-reel; NOT pushed.
+- 5 Nov ~19:40: Help2Pay hero = h2p-hero-wide.jpg (Higgsfield GPT Image 2.5 widen of h2p-tile.jpg, 2k high, 2.75 cr; balance ~159.56), full width 16:9, whole photo, sun drift.
