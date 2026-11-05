@@ -1,0 +1,108 @@
+/* OwnIt case study: OwnIt's own pieces on top of bm.css (crimson ink, invoice-slip notes) */
+.ow { --cr: #570219; --cr2: #8E1B36; --blk: #0F0F0F; }
+
+/* ---- the story: a quiet, large-type letter ---- */
+.ow-letter { margin: 0 var(--pad) 0 var(--col); max-width: 30em; font-size: clamp(19px, 1.6vw, 26px); }
+.ow-letter p { margin: 0 0 1.1em; font-size: inherit; line-height: 1.45; letter-spacing: -0.01em; color: var(--ink); }
+.ow-letter p.soft { color: var(--ink-soft); }
+.ow-hand { font-family: "Caveat", cursive; font-size: 1.35em; line-height: 1.1; color: var(--cr2); }
+
+/* ---- notes: torn invoice slips, a crimson stamp drawing itself ---- */
+.ow-notes { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 2vw, 30px); margin: 0 var(--pad) 0 var(--col); max-width: 1180px; padding: 18px 0 26px; }
+.ow-note { position: relative; margin: 0; padding: 16% 11% 12%; display: flex; flex-direction: column; min-height: 100%; background: #FBF8F2; transform: rotate(var(--t)); box-shadow: 0 1px 0 rgba(17, 17, 17, 0.05), 0 26px 40px -30px rgba(60, 20, 25, 0.45); transition: transform 0.5s var(--ease);
+  -webkit-mask: radial-gradient(circle 5px at 50% 0, transparent 98%, #000) 0 0 / 16px 100% repeat-x; mask: radial-gradient(circle 5px at 50% 0, transparent 98%, #000) 0 0 / 16px 100% repeat-x; }
+.ow-note::before { content: ""; position: absolute; left: 11%; right: 11%; top: 9%; border-top: 1px dashed rgba(87, 2, 25, 0.28); }
+.ow-note:hover { transform: rotate(0deg) translateY(-5px); }
+.ow-note svg { width: 30%; height: auto; margin: 0 0 8%; overflow: visible; }
+.ow-note svg path, .ow-note svg circle, .ow-note svg rect { fill: none; stroke: var(--cr2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ow-note svg .draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.2s; }
+.ow-note.is-in svg .draw { stroke-dashoffset: 0; }
+.ow-note b { display: block; margin-bottom: 4px; font-size: 10px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(87, 2, 25, 0.6); }
+.ow-note p { margin: 0; font-family: "Caveat", cursive; font-size: clamp(17px, 1.3vw, 22px); line-height: 1.05; color: #2a1015; }
+.ow-note:nth-child(1) { --t: -1.6deg; }
+.ow-note:nth-child(2) { --t: 1.2deg; background: #F6EFE6; }
+.ow-note:nth-child(3) { --t: -0.8deg; }
+.ow-note:nth-child(4) { --t: 1.8deg; background: #F6EFE6; }
+.ow-note:nth-child(5) { --t: -1.2deg; }
+
+/* ---- the loop, sketched on paper ---- */
+.ow-loop { margin: 0 var(--pad) 0 var(--col); max-width: 1000px; padding: clamp(18px, 3vw, 40px); background: #FBF8F2; box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.05), 0 40px 70px -50px rgba(60, 20, 25, 0.4); background-image: linear-gradient(rgba(87, 2, 25, 0.05) 1px, transparent 1px); background-size: 100% 28px; }
+.ow-loop svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ow-loop .pen { fill: none; stroke: #23211d; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ow-loop .cr { fill: none; stroke: var(--cr2); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ow-loop .hand { font-family: "Caveat", cursive; font-size: 24px; fill: #23211d; }
+.ow-loop .hand.sm { font-size: 18px; fill: #6b625a; }
+.ow-loop .hand.cr-t { fill: var(--cr2); }
+.ow-loop .draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s cubic-bezier(0.65, 0, 0.35, 1) 0.2s; }
+.ow-loop.is-in .draw { stroke-dashoffset: 0; }
+.ow-loop .late { transition-delay: 1.4s; }
+.ow-loop figcaption { margin-top: 10px; font-family: "Caveat", cursive; font-size: 22px; color: #6b625a; }
+
+/* ---- how might we ---- */
+.ow-hmw { margin: 0 var(--pad) 0 var(--col); max-width: 20em; font-size: clamp(26px, 3vw, 48px); line-height: 1.06; letter-spacing: -0.04em; }
+.ow-hmw em { font-style: normal; color: var(--cr2); }
+
+/* ---- the intro film on a near-black stage ---- */
+.ow-stage { position: relative; margin: 0 var(--pad); padding: clamp(36px, 6vw, 90px) var(--pad); background: radial-gradient(ellipse at 50% 30%, #2a0b13, var(--blk) 70%); display: grid; grid-template-columns: auto minmax(0, 22em); gap: clamp(28px, 6vw, 100px); align-items: center; justify-content: center; }
+.ow-stage .bm-ph { width: clamp(200px, 20vw, 300px); background: var(--blk); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 60px 90px -50px rgba(0, 0, 0, 0.9); }
+.ow-stage .bm-steps li, .ow-stage .bm-steps li::before { color: rgba(250, 250, 250, 0.45); }
+.ow-stage .bm-steps li.is-now, .ow-stage .bm-steps li.is-now::before { color: #FAFAFA; }
+.ow-stage .k { color: rgba(250, 250, 250, 0.5); display: block; margin-bottom: 16px; }
+
+/* ---- the creative's desk: two windows ---- */
+.ow-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 28px); margin: 0 var(--pad) 0 var(--col); max-width: 1180px; }
+.ow-pair figure { margin: 0; }
+.ow-pair img { display: block; width: 100%; height: auto; }
+.ow-pair figcaption { margin-top: 10px; font-size: 13px; color: var(--ink-soft); }
+.ow .bm-web__bar { background: #1b1b1d; }
+.ow .bm-web__bar i { background: rgba(255, 255, 255, 0.18); }
+.ow .bm-web__bar span { color: rgba(255, 255, 255, 0.55); }
+.ow .bm-web { background: var(--blk); }
+.ow .bm-proto--web .bm-ph { aspect-ratio: 1440 / 900; background: var(--blk); }
+
+/* ---- decisions: small calls that carry the trust ---- */
+.ow-dec { list-style: none; margin: 0 var(--pad) 0 var(--col); padding: 0; max-width: 1080px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--g); counter-reset: d; }
+.ow-dec li { counter-increment: d; display: grid; grid-template-columns: 2.4em 1fr; gap: 10px; padding: 18px 0 20px; border-top: 1px solid rgba(17, 17, 17, 0.14); }
+.ow-dec li::before { content: counter(d, decimal-leading-zero); font-size: 11px; letter-spacing: 0.08em; padding-top: 0.45em; color: var(--cr2); }
+.ow-dec b { display: block; font-weight: 500; font-size: clamp(16px, 1.25vw, 20px); line-height: 1.3; }
+.ow-dec span { display: block; margin-top: 6px; font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); }
+
+/* ---- what we're testing: dashed, because there are no results yet ---- */
+.ow-test { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 22px); margin-top: 28px; max-width: 1080px; }
+.ow-test div { padding: 18px 16px 20px; border: 1px dashed rgba(87, 2, 25, 0.4); border-radius: 10px; }
+.ow-test b { display: block; font-weight: 500; font-size: 16px; line-height: 1.3; }
+.ow-test span { display: block; margin-top: 8px; font-size: 13.5px; line-height: 1.4; color: var(--ink-soft); }
+
+/* ---- branding: what exists, and what's next ---- */
+.ow-brand { margin: 0 var(--pad) 0 var(--col); max-width: 1080px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(20px, 4vw, 60px); align-items: center; }
+.ow-sw { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.ow-sw i { display: block; aspect-ratio: 3 / 4; border-radius: 6px; background: var(--c); box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.08); }
+.ow-sw span { display: block; margin-top: 6px; font-size: 11px; line-height: 1.3; color: var(--ink-soft); }
+.ow-next { list-style: none; margin: 0; padding: 0; }
+.ow-next li { padding: 12px 0; border-top: 1px dashed rgba(17, 17, 17, 0.25); font-size: clamp(15px, 1.15vw, 18px); color: var(--ink-soft); }
+.ow-next li b { font-weight: 500; color: var(--ink); }
+
+/* ---- the live link ---- */
+.ow-live { display: inline-flex; align-items: center; gap: 12px; margin-top: 26px; padding: 14px 22px; border-radius: 999px; background: var(--cr); color: #FAFAFA; text-decoration: none; font-size: 16px; transition: background 0.3s, transform 0.3s var(--ease); }
+.ow-live:hover { background: var(--cr2); transform: translateY(-2px); }
+.ow-live small { opacity: 0.7; font-size: 12px; }
+
+@media (max-width: 760px) {
+  .ow-letter, .ow-loop, .ow-hmw, .ow-pair, .ow-dec, .ow-brand { margin-left: var(--pad); }
+  .ow-notes { grid-template-columns: 1fr 1fr; margin-left: var(--pad); gap: 18px; }
+  .ow-note:nth-child(5) { grid-column: 1 / -1; }
+  .ow-note:nth-child(5) svg { width: 18%; }
+  .ow-note p { font-size: 19px; }
+  .ow-loop { padding: 10px 4px; overflow-x: auto; }
+  .ow-loop svg { width: 720px; max-width: none; }
+  .ow-stage { grid-template-columns: 1fr; justify-items: center; padding: 36px 20px; }
+  .ow-stage .bm-ph { width: 62vw; }
+  .ow .bm-proto .bm-ph { width: 64vw; justify-self: center; }
+  .ow .bm-proto--web .bm-ph { width: 100%; }
+  .ow-pair { grid-template-columns: 1fr; }
+  .ow-dec { grid-template-columns: 1fr; }
+  .ow-test { grid-template-columns: 1fr 1fr; }
+  .ow-brand { grid-template-columns: 1fr; }
+  .ow-live { flex-direction: column; align-items: flex-start; gap: 2px; border-radius: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .ow-note svg .draw, .ow-loop .draw { transition: none; stroke-dashoffset: 0; } }
