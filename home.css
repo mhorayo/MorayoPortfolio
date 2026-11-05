@@ -287,3 +287,24 @@ html.lenis, html.lenis body { height: auto; }
   .po__title { font-size: 28px; bottom: calc(50% + 112px); }
   .po__beats { width: 64vw; font-size: 15px; }
 }
+
+/* ---------- Final round 2 (5 Nov) ---------- */
+/* hero: the belief takes the old name's place and size; the sub line and buttons sit right under it */
+.hx .mi__text, #intro .mi__text { white-space: nowrap; }
+/* Who I am: a hand-drawn underline that draws itself under the last line */
+.hx__dood { position: relative; display: inline-block; }
+.hx__ul { position: absolute; left: -1%; bottom: -0.3em; width: 102%; height: 0.34em; overflow: visible; pointer-events: none; }
+.hx__ul path { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.55s; }
+.hx__ln.is-in .hx__ul path { stroke-dashoffset: 0; }
+/* Beyond the screens: each paragraph has its own bold heading, left-aligned with it */
+.po__b { text-align: left; }
+.po__b p { margin: 0; }
+.po__h { margin: 0 0 0.5em; font-size: clamp(26px, 2.3vw, 40px); font-weight: 600; line-height: 1; letter-spacing: -0.04em; color: var(--ink); }
+/* footer: the drawn ledge is cropped out of her picture, so she sits straight on the footer's one line */
+.fx__p--peek { bottom: 0; }
+@media (max-width: 760px) { .po__h { font-size: 24px; } }
+@media (prefers-reduced-motion: reduce) { .hx__ul path { transition: none; stroke-dashoffset: 0; } }
+/* the hidden typing caret keeps a third line under "Design it.", so the sub line and buttons tuck up into it */
+.hx__more { margin-top: calc(26px - 0.95 * clamp(36px, 5.2vw, 88px)); }
+@media (max-width: 760px) { .hx__more { margin-top: 14px; } }
+@media (max-width: 359px) { .hx .mi__text, #intro .mi__text { white-space: normal; } }

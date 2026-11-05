@@ -1,6 +1,6 @@
 /* Intro — plays on every visit.
    Momo (Morayo's line character) steps out of her door at double speed, walks over and waves;
-   "Momo / Product Designer" types out beside her. Then the intro hands over to the hero without a cut:
+   "Don't wait for change. / Design it." types out beside her. Then the intro hands over to the hero without a cut:
    the hero underneath is the same frame (same Momo, same words, same place), so the overlay simply goes
    and the page builds around her (land.js). Scrolling, a click or a key skips straight to the site. */
 (function () {
@@ -10,7 +10,7 @@
   if (root.classList.contains('no-intro')) { el.remove(); return; }
 
   var START = 0.8, RATE = 2.1, WAVE = 8.6;                       // video seconds: door → walk → wave, at double speed
-  var LINES = ['Momo', 'Product Designer'], CPS = 45;             // typewriter, ms per character
+  var LINES = ['Don’t wait for change.', 'Design it.'], CPS = 32;             // typewriter, ms per character
   var TYPE_MS = (LINES[0].length + 2 + LINES[1].length) * CPS + 450;
   var BEAT = 650;                                                 // a breath on the finished frame before the page builds
 

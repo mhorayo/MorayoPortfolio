@@ -209,3 +209,10 @@ NEXT, ROUND 2 (agreed asks, she hasn't said "go ahead" yet — recap then build)
 - Footer double line STILL shows on her screen: crop the drawn ledge (bottom ~4 rows) out of momo-peek.png itself.
 - Momo's whole head tilts up/down with the mouse (eyes alone aren't visible enough).
 THEN BroadMoney case study: her full story is in _tools/bmp-story.md. Template + rules in memory case-study-rewrite-plan (less is more, sticky notes, What is/What if/What wows/What works, video prototypes from her real BMP screens, paper sketches, light-ray hero video, less zoomed assets, CV-matching dates). Ask her for the real before/after transaction figures; never invent.
+
+## NEW-CHAT SUMMARY #6 (Thu 5 Nov 2026, ~11:45 WAT) — read this first
+Usage: weekly 64% when this chat ended, so today about 3–4 of 20% used. Say "today X of 20% used".
+ROUND 2 BUILT + pushed to intro-reel (preview only, not main): the hero headline "Don't wait for change. / Design it." replaces "Momo / Product Designer" at the same size (also in the intro typewriter, intro.js LINES, CPS 32); the sub line and buttons tuck up under it; a self-drawing doodle underline under "Design is where they meet." (.hx__dood/.hx__ul); Beyond the screens has a bold left heading per paragraph ("Beyond the screens" / "The Design Geeks Community"; the old .po__title is gone); momo-peek.png cropped to 341x206 (ledge removed), .fx__p--peek bottom 0; Momo's head tips up/down with the cursor (land.js NECK bend, goal.tilt = ny*4).
+She said: change only what's agreed, never the layout.
+NEXT: BroadMoney case study (story in _tools/bmp-story.md). Ask her first for the real before/after transaction figures and any company facts; never invent numbers.
+Local preview: launch config "round2" (port 5196) serves this chat's scratchpad copy; in a new chat rsync the repo to your own scratchpad/site and add a config.

@@ -79,7 +79,7 @@
        again as the page scrolls on. Hovering on her drawing itself (tap on a phone) makes her wave. */
     var hm = document.getElementById('hm'), cv = document.getElementById('hmCv');
     if (hm && cv) {
-      var W = 720, H = 1280, ELB = { x: 534, y: 745, top: 470 }, EYES = [[362, 300], [421, 288]], EYE_SPLIT = 392;
+      var W = 720, H = 1280, ELB = { x: 534, y: 745, top: 470 }, NECK = { x: 386, y: 580, top: 470 }, EYES = [[362, 300], [421, 288]], EYE_SPLIT = 392;
       var ctx = cv.getContext('2d', { willReadFrequently: true });
       var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var P = {}, left = 3;
@@ -88,7 +88,7 @@
         im.onload = function () { P[k] = im; if (!--left) { hm.classList.add('is-ready'); requestAnimationFrame(frame); if (!still) setTimeout(loadTurn, 400); } };
         im.src = 'momo/' + k + '.png';
       });
-      var st = { gx: 0, gy: 0, turn: 0, arm: 0, blink: 1 }, goal = { gx: 0, gy: 0, turn: 0 }, lastKey = '';
+      var st = { gx: 0, gy: 0, tilt: 0, turn: 0, arm: 0, blink: 1 }, goal = { gx: 0, gy: 0, tilt: 0, turn: 0 }, lastKey = '';
       var TURN = [], TN = 30, turnLeft = TN;
       var loadTurn = function () {   // after she's on screen, so the page itself isn't held up
         for (var i = 0; i < TN; i++) { var im = new Image(); im.onload = function () { turnLeft--; }; im.src = 'momo/turn/t' + (i < 10 ? '0' : '') + i + '.png'; TURN.push(im); }
@@ -98,13 +98,22 @@
         ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
         var f = frameNo();
         if (f) { ctx.drawImage(TURN[f], 0, 0, W, H); return; }   // turning: a frame of the turn
-        ctx.drawImage(P.base, 0, 0);
+        // her head tips up/down with the cursor: rigid above the neck, and the neck bends row by row so the line never breaks
+        var ht = st.tilt * Math.PI / 180;
+        var rot = function (a) { var c = Math.cos(a), sn = Math.sin(a); ctx.setTransform(c, sn, -sn, c, NECK.x - c * NECK.x + sn * NECK.y, NECK.y - sn * NECK.x - c * NECK.y); };
+        ctx.drawImage(P.base, 0, NECK.y, W, H - NECK.y, 0, NECK.y, W, H - NECK.y);
+        for (var ny = NECK.top; ny < NECK.y; ny += 2) {
+          var k = (NECK.y - ny) / (NECK.y - NECK.top); rot(ht * k * k * (3 - 2 * k));
+          ctx.drawImage(P.base, 0, ny, W, 2, 0, ny, W, 2);
+        }
+        rot(ht); ctx.drawImage(P.base, 0, 0, W, NECK.top, 0, 0, W, NECK.top);
         EYES.forEach(function (e, i) {   // each eye on its own, so it can squash shut round its own centre
           ctx.save(); ctx.beginPath();
           if (i) ctx.rect(EYE_SPLIT, 0, W - EYE_SPLIT, ELB.top); else ctx.rect(0, 0, EYE_SPLIT, ELB.top);
           ctx.clip(); ctx.translate(e[0] + st.gx, e[1] + st.gy); ctx.scale(1, st.blink); ctx.translate(-e[0], -e[1]);
           ctx.drawImage(P.eyes, 0, 0); ctx.restore();
         });
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.drawImage(P.arm, 0, ELB.y, W, H - ELB.y, 0, ELB.y, W, H - ELB.y);
         for (var y = ELB.top; y < ELB.y; y++) {
           var a = st.arm * Math.PI / 180 * Math.pow((ELB.y - y) / (ELB.y - ELB.top), 1.25), c = Math.cos(a), sn = Math.sin(a);
@@ -139,7 +148,7 @@
         if (e.pointerType !== 'mouse' || still) return;
         var r = cv.getBoundingClientRect(), fx = r.left + r.width * 0.5, fy = r.top + r.height * 0.23;
         var nx = clamp((e.clientX - fx) / (innerWidth * 0.4), -1, 1), ny = clamp((e.clientY - fy) / (innerHeight * 0.4), -1, 1);
-        goal.gx = nx * 6; goal.gy = ny * 9;                       // her eyes go first: left/right and clearly up/down too
+        goal.gx = nx * 6; goal.gy = ny * 9; goal.tilt = ny * 4;   // her eyes go first: left/right and clearly up/down too; her head tips with them (cursor above: she looks up)
         if (nx < -0.2) goal.turn = 1; else if (nx > -0.05) goal.turn = 0;   // cursor on her left: she turns to it; back in front or right: she turns back
         var now = onHer(e.clientX, e.clientY);
         if (now && !over) wave();
@@ -153,13 +162,14 @@
       var frame = function (now) {
         var on = heroP > 0 ? 0 : 1;   // once the page scrolls on, she faces right, towards the story
         st.gx += (goal.gx * on - st.gx) * 0.14; st.gy += (goal.gy * on - st.gy) * 0.14;   // eyes lead
+        st.tilt += (goal.tilt * on - st.tilt) * 0.07;                                         // her head follows, a little slower
         var tt = goal.turn * on, d = tt - st.turn;                                            // then she turns, all the way, never stopping
         st.turn = Math.abs(d) < 0.03 ? tt : st.turn + 0.03 * (d > 0 ? 1 : -1) * (0.45 + Math.sin(Math.PI * st.turn));   //   half-way; eased in and out
         var pr = clamp((heroP - 0.55) / 0.45, 0, 1); pr = pr * pr * (3 - 2 * pr);   // as she settles on the left, her arm reaches out
         st.arm = 0;                                                                    // she settles calmly (the presenting arm is gone)
         if (waveT0 >= 0) { var p = Math.min(1, (now - waveT0) / 1900); st.arm += angleAt(p); if (p >= 1) waveT0 = -1; }
         if (blinkT0 >= 0) { var q = (now - blinkT0) / (150 * blinks); if (q >= 1) { blinkT0 = -1; st.blink = 1; } else st.blink = 1 - 0.92 * Math.sin(Math.PI * ((q * blinks) % 1)); }
-        var key = [st.gx, st.gy, frameNo(), st.arm, st.blink].map(function (v) { return v.toFixed(2); }).join();
+        var key = [st.gx, st.gy, st.tilt, frameNo(), st.arm, st.blink].map(function (v) { return v.toFixed(2); }).join();
         if (key !== lastKey) { draw(); lastKey = key; }   // draw only when she has moved
         requestAnimationFrame(frame);
       };
