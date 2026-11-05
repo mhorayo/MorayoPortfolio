@@ -139,7 +139,7 @@
         if (e.pointerType !== 'mouse' || still) return;
         var r = cv.getBoundingClientRect(), fx = r.left + r.width * 0.5, fy = r.top + r.height * 0.23;
         var nx = clamp((e.clientX - fx) / (innerWidth * 0.4), -1, 1), ny = clamp((e.clientY - fy) / (innerHeight * 0.4), -1, 1);
-        goal.gx = nx * 4; goal.gy = ny * 3;                       // her eyes go first
+        goal.gx = nx * 6; goal.gy = ny * 9;                       // her eyes go first: left/right and clearly up/down too
         if (nx < -0.2) goal.turn = 1; else if (nx > -0.05) goal.turn = 0;   // cursor on her left: she turns to it; back in front or right: she turns back
         var now = onHer(e.clientX, e.clientY);
         if (now && !over) wave();
@@ -328,8 +328,8 @@
           if (v) { if (on && !reduce) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); }
         }
         if (!on) return;
-        var ang = k / n * Math.PI * 2 + turn;
-        it.style.transform = 'translate(' + Math.cos(ang) * r + 'px,' + Math.sin(ang) * r + 'px) rotate(calc(' + it.style.getPropertyValue('--t') + ' + ' + (ang * 57.3 + 90) + 'deg)) scale(' + clamp(g * 6, 0.15, 1) + ')';
+        var ang = k / n * Math.PI * 2 + turn, ph = vw <= 760, rr = r / r0;   // on a phone the ring is a tall oval round the words
+        it.style.transform = 'translate(' + Math.cos(ang) * (ph ? vw * 0.47 : r0) * rr + 'px,' + Math.sin(ang) * (ph ? vh * 0.37 : r0) * rr + 'px) rotate(calc(' + it.style.getPropertyValue('--t') + ' + ' + (ang * 57.3 + 90) + 'deg)) scale(' + clamp(g * 6, 0.15, 1) + ')';
       });
       if (ptitle) ptitle.style.opacity = clamp(open * 1.5 - 0.3, 0, 1) * (1 - out);
       pbeats.forEach(function (el, k) {

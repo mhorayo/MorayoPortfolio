@@ -236,3 +236,54 @@ html.lenis, html.lenis body { height: auto; }
 
 /* the contact button in the nav: a plain rectangle */
 .nav__cta { border-radius: 0 !important; }
+
+/* ---------- Final round (5 Nov): one button shape everywhere, the hover circle on work, story/about tweaks ---------- */
+/* every button is the navbar's plain rectangle */
+.hbtn, .nav__cta, .send { border-radius: 0 !important; }
+.hbtn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 22px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); font-size: 14px; line-height: 1; text-decoration: none; transition: background-color 0.3s var(--ease), color 0.3s var(--ease); }
+.hbtn:hover { background: #333; border-color: #333; color: var(--paper); }
+.hbtn--line { background: transparent; color: var(--ink); }
+.hbtn--line:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.hbtn--sm { padding: 11px 18px; font-size: 13px; }
+.jw__t .hbtn { align-self: flex-start; margin-top: 6px; }
+.wk__go.hbtn { border-bottom: 1px solid var(--ink); padding: 11px 18px; }
+
+/* hero: the belief as the headline, the line about her under it */
+.hx__lead { margin: 0 0 12px; font-size: clamp(22px, 1.9vw, 32px); font-weight: 500; line-height: 1.05; letter-spacing: -0.035em; color: var(--ink); }
+.hx__sub { margin: 0 0 22px; font-size: clamp(14px, 1.05vw, 16px); line-height: 1.45; color: var(--ink-soft); }
+.hx__ctas { gap: 12px; }
+.hx__body p { margin: 0 0 0.9em; }
+.hx__body p:last-child { margin-bottom: 0; }
+.hx__type { min-height: 0; }
+
+/* the hover circle on every work picture: a white disc with a thin arrow */
+.jw__m::after, .wk__img::after {
+  content: ""; position: absolute; left: 50%; top: 50%; z-index: 2; width: clamp(72px, 7vw, 116px); aspect-ratio: 1; border-radius: 50%;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='1.4'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E") center / 30% no-repeat;
+  transform: translate(-50%, -50%) scale(0.4); opacity: 0; pointer-events: none;
+  transition: opacity 0.35s var(--ease), transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.jw__m:hover::after, .wk__t:hover .wk__img::after { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+@media (hover: none) { .jw__m::after, .wk__img::after { display: none; } }
+
+/* Beyond the screens: the title sits inside the ring, above the words, so the pictures never run over it */
+.po__title { top: auto; bottom: calc(50% + clamp(78px, 7.5vw, 112px)); text-transform: none; font-size: clamp(32px, 3.3vw, 60px); line-height: 0.96; letter-spacing: -0.045em; }
+/* a little less space before About */
+.ab { padding-top: clamp(50px, 7vw, 110px); }
+
+/* footer: Momo's own drawn ledge hides under the footer's line, so she sits on one line */
+.fx__p--peek { bottom: -1.4%; }
+
+@media (max-width: 760px) {
+  .hx__more { display: block; position: static; width: auto; max-width: 30em; margin: 14px auto 0; text-align: center; }
+  .hx__sub, .hx__ctas { display: none; }
+  .hx__lead { margin: 0; font-size: 22px; }
+  .po__title { bottom: calc(50% + 120px); font-size: 34px; padding: 0 var(--pad); }
+}
+.hx__type .hx__ln { display: block; margin-bottom: 0.18em; }
+.hx__type { font-size: clamp(24px, 2.5vw, 46px); }
+@media (max-width: 760px) {
+  .po__it { width: 44px; margin: -29px 0 0 -22px; }
+  .po__title { font-size: 28px; bottom: calc(50% + 112px); }
+  .po__beats { width: 64vw; font-size: 15px; }
+}

@@ -1,0 +1,23 @@
+# Final round — agreed changes (started 5 Nov 2026)
+
+Build only after Momo says "ok finish" / "go ahead".
+
+## APPROVED
+- Hero headline: "Don't wait for change. Design it."
+  Sub: "I'm Morayo, a product designer born in Lagos. When something's broken, I don't complain. I redesign it, for money, AI and the everyday tools people rely on."
+- (Who I am), approved 5 Nov ("solid"):
+  - "Trained as an engineer. Born a designer."
+  - "Engineering gave me the logic. Lagos gave me the hustle. Design is where they meet."
+  - Body: "My real "aha" wasn't in Figma. It was in the analytics: watching real people tap from screen A to screen B exactly the way I'd planned. That's when design stopped being decoration and became proof. / Now I design fintech and AI products people trust with their money. I start where they get stuck, and I don't stop until the numbers move. At BroadMoney, first-transfer drop-off fell from 55% to 22%."
+  - Link: "See the proof →"
+- Buttons: every button has the same shape as the navbar Contact button (hero CTAs, View case study, etc.)
+
+## TO BUILD (agreed asks, copy pending her OK)
+- Selected work: "View case study →" link becomes a real button (navbar style).
+- Hover on work pictures (home + work.html and other work tiles): white circle with ↗ in the centre (ref: Puma × Juun.J image).
+- New copy: Doxflowy (keep "Thousands came for its free templates and left; I turned that traffic into accounts"), WeCare, OwnIt, Help2Pay. Drop the "My own product" phrase.
+- Story ring: title must not clash with the images; new title; title in the "Selected work" heading style; two new paragraphs that continue the story (Design Geeks, mentoring designers), not repeat it.
+- Less space between the story ring and About.
+- About: one paragraph fewer; new copy about who she is at her core.
+- Momo: hero looks a bit blue, make it neutral; nicer gestures; head/eyes follow the mouse up and down too, not only sideways.
+- Footer: Momo sits on a double line; she must sit on the footer's one line.
