@@ -152,7 +152,11 @@
 .bm-hv__in { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #8f877c; }
 .bm-hv__v { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .bm-hv__scr { position: absolute; left: 56.72%; top: 30.9%; width: 11.33%; height: auto; aspect-ratio: 390 / 844; border-radius: 12% / 5.6%; box-shadow: none; background: #fff; filter: brightness(0.97) contrast(1.02); }
-.bm-hv__scr img { transform: none !important; transition: opacity 0.6s var(--ease) !important; }
+/* screens slide in from the right like the real app; ones waiting off-screen snap back without crossing the screen */
+.bm-hv__scr img { opacity: 1 !important; transform: translateX(100%); transition: none !important; }
+.bm-hv__scr img.is-on { transform: none; z-index: 2; transition: transform 0.6s var(--ease) !important; }
+.bm-hv__scr img.is-off { transform: translateX(-30%); z-index: 1; filter: brightness(0.92); transition: transform 0.6s var(--ease), filter 0.6s !important; }
+@media (prefers-reduced-motion: reduce) { .bm-hv__scr img.is-on, .bm-hv__scr img.is-off { transition: none !important; } }
 .bm-hv__scr .bm-tap { width: 16%; margin: -8% 0 0 -8%; }
 .bm-hv__scr::after { content: ""; position: absolute; z-index: 4; left: 50%; top: 1.5%; width: 31%; height: 3.6%; margin-left: -15.5%; border-radius: 99px; background: #0b0b0c; }
 .bm-hv__scr::before { content: ""; position: absolute; z-index: 4; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(115deg, rgba(255, 255, 255, 0.10), transparent 35%), linear-gradient(to top, rgba(60, 45, 30, 0.10), transparent 30%); }
