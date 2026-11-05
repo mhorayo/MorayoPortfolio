@@ -61,7 +61,8 @@
 .ow-web .bm-steps li, .ow-web .bm-steps li::before { color: rgba(250, 250, 250, 0.45); }
 .ow-web .bm-steps li.is-now, .ow-web .bm-steps li.is-now::before { color: #FAFAFA; }
 .ow-web .bm-tap { width: 2.6%; margin: -1.3% 0 0 -1.3%; }
-.ow .cs__cover video { display: block; width: 100%; height: 115%; object-fit: cover; object-position: 50% 38%; }
+.ow-hero { position: relative; margin: 0 var(--pad); aspect-ratio: 2688 / 1520; overflow: hidden; background: #3a2416; }
+.ow-hero > img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ow-gap { height: clamp(40px, 7vh, 90px); }
 
 /* ---- the creative's desk: two windows ---- */
