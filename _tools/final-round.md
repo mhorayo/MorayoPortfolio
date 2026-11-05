@@ -35,3 +35,18 @@ Build only after Momo says "ok finish" / "go ahead".
 Story-led rewrite in case-broadmoney.html + bm.css + bm.js. PLACEHOLDERS to fill (red dashed .tbc in section 07): transfers a month before/after, £ moved, customers. Search "tbc" in case-broadmoney.html.
 CV facts used: Oct 2024–present, 150+ screens, Wise + Lemfi analysis, 8-person usability test (4 internal, 4 external), 15+ iterations, Clarity 54.75% pre-redesign drop-off, rage taps 0.17%→0.05%.
 Removed the old unconfirmed line "processes millions of pounds" (now a placeholder instead).
+
+## RENNCORA ROUND 2 (asked 5 Nov, she said "go ahead" — build in a new chat)
+1. Copy: there WAS an existing design; she redesigned it (remove "There was no Figma file").
+2. Add context: many users in Nigeria (rural especially) are on low-end devices and 2G/very poor networks.
+3. Splash onboarding story: she first designed splash screens with VIDEO, optimised to be very light so they load on low-end phones with bad networks; tested, it worked; the team then decided to convert to IMAGES. Show the full video splash prototype AND the static image splash prototype (Figma "Splash Screen Prototype" 388:501, Splash Screen 293:461 / 1529:2829; ren-demo-onboarding.mp4 may be the recording).
+4. Hero must be a real video (same method as BroadMoney: Seedance light-only loop from ren-hero-wide.jpg; screen/hearts can animate).
+5. Notes: make them look like real square sticky notes (curl, adhesive shadow), not chat bubbles; colours different from BroadMoney.
+6. Feed: show videos actually playing + swiping, not static images (ren-demo-feed.mp4, or Seedance-animate feed stills).
+7. Profile "after" is the wrong screen: get the most recent after profile from Figma (Profile Module sections 2185:15681 / 2306:8171 / 2214:16889).
+8. State and show she designed both light and dark mode.
+9. "What works": "−60%" is unclear; spell out "60% less visual clutter on the feed" and what it means.
+10. Live: show the live stream as video, the guy doing his thing with hearts/likes multiplying and gift emojis (ren-live.mp4 / Seedance + CSS hearts overlay).
+11. It's a video streaming app: wherever a screen shows video, play video.
+12. Profile row: before/after slider and the profile phone must be the SAME height.
+Rules: never invent metrics; bulk-brainstorm method; usage "today X of 20%" (weekly was 68% at end of 5 Nov morning chat ≈ 8 of 20 today).
