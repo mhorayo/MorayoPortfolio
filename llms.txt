@@ -10,7 +10,7 @@
 - Data-informed design: funnel analysis, session recordings, heatmaps and monthly UX audits presented to founders
 
 ## Selected case studies
-- [BroadMoney](https://morayoakinkunmi.com/case-broadmoney.html): Cross-border payments app (UK–Nigeria). Progressive KYC and a redesigned onboarding and send flow cut first-transfer drop-off from 55% to 22%, and new users made 2.3x as many transactions in their first month.
+- [BroadMoney](https://morayoakinkunmi.com/case-broadmoney.html): UK–Nigeria money transfer app (Oct 2024–present). After research (Clarity funnel data, Wise and Lemfi analysis, user interviews) and usability testing with 8 people, she made KYC skippable and tiered and moved the dashboard to one full balance card with currency pills. First-transfer drop-off fell from 55% to 22% and new users made 2.3x as many transactions in their first month. She owns all of BroadMoney's design: app, design system (WCAG AA), website, web app, brand, emails, social and video ads.
 - [Doxflowy](https://morayoakinkunmi.com/case-doxflowy.html): Document automation and e-signature SaaS. Clarity-led redesign: rage taps down 31%, sign-ups up 42% after email-gated template downloads and new messaging, session duration up 27%.
 - [Renncora](https://morayoakinkunmi.com/case-renncora.html): Live streaming and creator platform where she is Lead Product Designer. Includes Renncora AI, a voice-first assistant in Nigerian Pidgin and English designed around trust, and a design system built from scratch.
 - [Help2Pay](https://morayoakinkunmi.com/case-help2pay.html): Multi-currency, crypto-to-fiat payments across iOS, Android and web. Send-flow drop-off reduced by 40%.
@@ -21,7 +21,7 @@
 ## Leadership
 - Founder of The Design Geeks Community (since July 2026): design critiques, sessions and mentoring for product designers
 - Ran monthly UX audits and presented findings to founders at Doxflowy
-- Pushed back on founders with evidence, for example arguing for a full-width wallet balance card at BroadMoney, which shipped
+- Pushed back on a CTO with evidence, for example arguing for a full-width wallet balance card at BroadMoney and proposing usability testing to settle it; it shipped
 
 ## Contact
 - Portfolio: https://morayoakinkunmi.com/

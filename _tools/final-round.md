@@ -30,3 +30,8 @@ Build only after Momo says "ok finish" / "go ahead".
 - Momo: her whole head tilts up/down with the mouse, not only the eyes (eye movement isn't visible enough).
 - BroadMoney case: hero image too zoomed in -> a subtle video (soft moving light rays); other assets too zoomed in too. Full story-led rewrite (see chat); BMP story from her next.
 - Case studies: LESS IS MORE always. Show business problem / user needs / opportunities / metrics as cute sticky notes (hand-drawn, paper feel), not heavy tables.
+
+## BroadMoney case (built 5 Nov, pushed to preview)
+Story-led rewrite in case-broadmoney.html + bm.css + bm.js. PLACEHOLDERS to fill (red dashed .tbc in section 07): transfers a month before/after, £ moved, customers. Search "tbc" in case-broadmoney.html.
+CV facts used: Oct 2024–present, 150+ screens, Wise + Lemfi analysis, 8-person usability test (4 internal, 4 external), 15+ iterations, Clarity 54.75% pre-redesign drop-off, rage taps 0.17%→0.05%.
+Removed the old unconfirmed line "processes millions of pounds" (now a placeholder instead).
