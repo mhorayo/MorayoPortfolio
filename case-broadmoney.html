@@ -45,25 +45,26 @@
     <h1 class="cs__name rv">BroadMoney</h1>
     <p class="cs__sell rv">People signed up, then left. I redesigned the app until they stayed, sent money home and came back.</p>
     <dl class="cs__facts rv">
-      <div><dt class="k">Role</dt><dd>Product Designer, all of design</dd></div>
+      <div><dt class="k">Role</dt><dd>Senior Product Designer, all of design</dd></div>
       <div><dt class="k">Company</dt><dd>BroadMoney Payment, UK&ndash;Nigeria remittance</dd></div>
       <div><dt class="k">Platforms</dt><dd>iOS, Android, web and brand</dd></div>
       <div><dt class="k">Result</dt><dd>First-transfer drop-off 55% &rarr; 22%</dd></div>
     </dl>
   </section>
-  <div class="bm-stage rv" role="img" aria-label="Three BroadMoney app screens in soft moving sunlight: onboarding, the new dashboard and the KYC tiers">
-    <div class="bm-rays" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-    <div class="bm-ph"><img src="bmp-onboard-1.jpg" alt="" /></div>
-    <div class="bm-ph"><img src="bmp-home-gbp.jpg" alt="" /></div>
-    <div class="bm-ph"><img src="Tier.png" alt="" /></div>
-  </div>
+  <!-- the original photo, whole (no zoom): the sun through the window drifts across the stone like a quiet film -->
+  <figure class="bm-film rv" aria-label="The BroadMoney app on a phone, resting on a stone ledge as soft sunlight drifts across the wall">
+    <div class="bm-film__in">
+      <img src="bmp-tile.jpg" width="1194" height="1600" alt="The BroadMoney app on a phone, resting on a stone ledge in soft sunlight" />
+      <i class="bm-film__sun" aria-hidden="true"></i><i class="bm-film__sun bm-film__sun--2" aria-hidden="true"></i><i class="bm-film__dust" aria-hidden="true"></i>
+    </div>
+  </figure>
 
   <!-- 01 The problem -->
   <section class="cs__ch">
     <span class="k rv">01 &mdash; The problem</span>
     <div>
       <h2 class="cs__big rv">A good product that nobody was using.</h2>
-      <p class="cs__p rv">I joined BroadMoney in October 2024, alongside the senior product designer. The app already existed. The problem was easy to say and hard to fix: <strong>it wasn&rsquo;t converting.</strong> People signed up and never sent money, so the company had very few customers. It was a design problem and a marketing problem at once, and I took on both.</p>
+      <p class="cs__p rv">I joined BroadMoney in October 2024 as the senior product designer, working with the team. The app already existed. The problem was easy to say and hard to fix: <strong>it wasn&rsquo;t converting.</strong> People signed up and never sent money, so the company had very few customers. It was a design problem and a marketing problem at once, and I took on both.</p>
     </div>
   </section>
   <div class="bm-notes">
@@ -242,7 +243,22 @@
       <p class="cs__p rv" style="margin-top: 28px">In an agile team, side by side with marketing and the CTO: constant iteration, and a lot of ideas brought to the table. In my words, <strong>&ldquo;BMP has been a roller coaster.&rdquo;</strong></p>
     </div>
   </section>
-  <div class="cs__web rv"><img src="bmp-web-dashboard.jpg" alt="BroadMoney web app dashboard" loading="lazy" /></div>
+  <div class="bm-proto bm-proto--web rv" data-proto>
+    <div class="bm-web">
+      <div class="bm-web__bar" aria-hidden="true"><i></i><i></i><i></i><span>app.broadmoneypayment.com</span></div>
+      <div class="bm-ph">
+        <img src="bmp-web-dashboard.jpg" alt="Web dashboard: wallets, recent transactions and a Complete your KYC banner" data-step="0" data-tap="4.5 27" />
+        <img src="bmp-web-send.jpg" alt="Web: send money, choose amount and beneficiary" data-step="1" data-tap="4.5 41" />
+        <img src="bmp-wallets-web.jpg" alt="Web: all wallets in Naira, Pounds and Dollars" data-step="2" data-tap="34 44" />
+        <img src="bmp-topup-web.jpg" alt="Web: top up a wallet by bank transfer" data-step="3" data-tap="4.5 82" />
+        <img src="bmp-support-web.jpg" alt="Web: customer support by phone, email and chat" data-step="4" data-tap="4.5 18" />
+        <i class="bm-tap" aria-hidden="true"></i>
+      </div>
+    </div>
+    <ol class="bm-steps bm-steps--row">
+      <li>Dashboard</li><li>Send money</li><li>Wallets</li><li>Top up</li><li>Support</li>
+    </ol>
+  </div>
   <div class="cs__ds" style="margin-top: clamp(30px, 5vh, 60px)">
     <img class="rv" src="bmp-ds-colors.jpg" alt="BroadMoney design system: colours" loading="lazy" />
     <img class="rv" src="bmp-ds-typography.jpg" alt="BroadMoney design system: typography" loading="lazy" />
