@@ -216,3 +216,11 @@ ROUND 2 BUILT + pushed to intro-reel (preview only, not main): the hero headline
 She said: change only what's agreed, never the layout.
 NEXT: BroadMoney case study (story in _tools/bmp-story.md). Ask her first for the real before/after transaction figures and any company facts; never invent numbers.
 Local preview: launch config "round2" (port 5196) serves this chat's scratchpad copy; in a new chat rsync the repo to your own scratchpad/site and add a config.
+
+## NEW-CHAT SUMMARY #7 (Thu 5 Nov 2026, ~13:00 WAT) — read this first
+Usage: weekly ~66–67% at this point; today ≈ 7 of 20% used.
+BroadMoney (case-broadmoney.html + bm.css + bm.js): hero is now bmp-hero.mp4 (Higgsfield: GPT Image 2.5 widened bmp-tile.jpg to 16:9 = bmp-hero-wide.jpg, then Seedance 2.5 light-only 8s loop; phone stays still) with her real flow overlaid on the phone screen (.bm-hv__scr, left 56.72% top 30.9% width 11.33%). Role = Senior Product Designer. Placeholders replaced with CV-backed figures (8 testers, 54.75% old-site drop-off, dead clicks 9.19→8.70%); add real volume/£/customers later if she gives them.
+Renncora (case-renncora.html + ren.css, shares bm.css/bm.js): full story rewrite from her 5 Nov story. Solo Senior Product Designer, worked with CEO + CTO, Aug 2026–present. Chat-bubble notes, night sketchbook, before/after drag sliders (ren-before-*.jpg exported from Figma IDEATION 808:589 and Profile C 1979:4414), 7 motion flows (onboarding, feed swipe-up, profile, AI voice, AI video, live, communities). Hero: ren-hero-wide.jpg (Higgsfield widened) with CSS moving sun (no overlay: thumbs cover the screen).
+Figma file: VHRhePoFSU11zEJfiFFx1l (App Re-design page 188:14, IDEATION section 293:435).
+bm.js now also does swipe-up (data-dir="up", data-swipe), compare sliders (data-compare) and photo-phone perspective mapping (data-quad).
+Higgsfield account balance 338.8 credits after these jobs (she may have topped up; I didn't).

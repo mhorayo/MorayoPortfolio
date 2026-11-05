@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="v2.css?v=1793580000" />
 <link rel="stylesheet" href="home.css?v=1793602000" />
 <link rel="stylesheet" href="case.css?v=1793588000" />
-<link rel="stylesheet" href="bm.css?v=1793900000" />
+<link rel="stylesheet" href="bm.css?v=1793910000" />
 </head>
 <body class="land">
 <header class="nav" id="nav">
@@ -51,11 +51,19 @@
       <div><dt class="k">Result</dt><dd>First-transfer drop-off 55% &rarr; 22%</dd></div>
     </dl>
   </section>
-  <!-- the original photo, whole (no zoom): the sun through the window drifts across the stone like a quiet film -->
-  <figure class="bm-film rv" aria-label="The BroadMoney app on a phone, resting on a stone ledge as soft sunlight drifts across the wall">
-    <div class="bm-film__in">
-      <img src="bmp-tile.jpg" width="1194" height="1600" alt="The BroadMoney app on a phone, resting on a stone ledge in soft sunlight" />
-      <i class="bm-film__sun" aria-hidden="true"></i><i class="bm-film__sun bm-film__sun--2" aria-hidden="true"></i><i class="bm-film__dust" aria-hidden="true"></i>
+  <!-- the original photo, widened to full width (no zoom), as a quiet film: the sunlight shifts on the wall while the
+       phone plays her real BMP flow: the dashboard, switching currency, then KYC tiers -->
+  <figure class="bm-hv rv" data-proto data-hold="1900" aria-label="The BroadMoney app on a phone on a stone ledge in moving sunlight, playing the real flow: dashboard, currency switch and KYC tiers">
+    <div class="bm-hv__in">
+      <video class="bm-hv__v" src="bmp-hero.mp4" poster="bmp-hero-wide.jpg" autoplay muted loop playsinline preload="auto"></video>
+      <div class="bm-ph bm-hv__scr">
+        <img src="bmp-home-gbp.jpg" alt="" data-step="0" data-tap="47 43.8" />
+        <img src="bmp-home-ngn.jpg" alt="" data-step="1" data-tap="45 51" />
+        <img src="Tier.png" alt="" data-step="2" data-tap="32 37" />
+        <img src="Tier Requirement.png" alt="" data-step="3" data-tap="50 92.5" />
+        <img src="bmp-kyc-start.jpg" alt="" data-step="4" />
+        <i class="bm-tap" aria-hidden="true"></i>
+      </div>
     </div>
   </figure>
 
@@ -204,11 +212,11 @@
       <div class="rv"><strong>15+</strong><span>iterations, each one shaped by testing</span></div>
       <div class="rv"><strong>&minus;70%</strong><span>rage taps on the new website (0.17% &rarr; 0.05%, Clarity)</span></div>
     </div>
-    <!-- TBC: Momo to fill in the real figures, then remove the .tbc marks -->
+    <!-- Later: add real transfer volume, £ moved and customer count here when Momo has them (never invent). -->
     <div class="bm-nums">
-      <div class="rv"><strong><span class="tbc">[X]</span></strong><span>transfers a month, up from <span class="tbc">[X]</span> before the redesign</span></div>
-      <div class="rv"><strong><span class="tbc">&pound;[X]M</span></strong><span>moved between the UK and Nigeria</span></div>
-      <div class="rv"><strong><span class="tbc">[X]k</span></strong><span>customers sending money home</span></div>
+      <div class="rv"><strong>8</strong><span>people in usability testing: 4 inside the company, 4 outside</span></div>
+      <div class="rv"><strong>54.75%</strong><span>drop-off on the old website, the number that started the fix</span></div>
+      <div class="rv"><strong>9.19% &rarr; 8.70%</strong><span>dead clicks on the new website, while sessions got longer and people came back more</span></div>
     </div>
   </section>
 
@@ -292,7 +300,7 @@
   if (par && !reduce) window.addEventListener('scroll', function () { var r = par.parentNode.getBoundingClientRect(); par.style.transform = 'translateY(' + (-r.top * 0.12 - 40) + 'px)'; }, { passive: true });
 })();
 </script>
-<script src="bm.js?v=1793900000"></script>
+<script src="bm.js?v=1793910000"></script>
 <script src="type.js?v=1793584000"></script>
 <script src="v2.js?v=1793580000"></script>
 </body>

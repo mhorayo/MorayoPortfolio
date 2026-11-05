@@ -1,0 +1,89 @@
+/* Renncora case (5 Nov): same story method as BroadMoney, its own flavour. Notes are chat bubbles (it's a social app),
+   the paper sketches sit in a dark night sketchbook in chalk and magenta, before/after screens wipe with a slider,
+   and the feed prototype swipes up like the real thing. Shares the phone/prototype parts from bm.css. */
+.rn { --mag: #D61FCB; --vio: #5B2BE0; }
+
+/* hero: the widened photo, whole, with the sun breathing across it */
+.rn-film { position: relative; margin: 0 var(--pad); aspect-ratio: 1344 / 752; overflow: hidden; background: #6f7f99; }
+.rn-film img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: bm-cam 24s ease-in-out infinite alternate; transform-origin: 52% 45%; }
+.rn-film .bm-film__sun { mix-blend-mode: soft-light; }
+.rn-film .bm-film__sun { top: -10%; height: 30%; transform: rotate(-24deg); }
+.rn-film .bm-film__sun--2 { top: 50%; height: 20%; }
+
+/* phones: Renncora's screens are 412 x 917 */
+.rn .bm-ph { aspect-ratio: 412 / 917; border-radius: 8.5% / 3.8%; }
+.rn .bm-proto .bm-ph { width: min(290px, 100%); }
+.rn .bm-tap { background: rgba(214, 31, 203, 0.28); }
+/* the feed swipes up, like a real vertical feed */
+.bm-proto[data-dir="up"] .bm-ph img { transform: translateY(14%); }
+.bm-proto[data-dir="up"] .bm-ph img.is-on { transform: none; }
+.bm-proto[data-dir="up"] .bm-ph img.is-off { transform: translateY(-14%); }
+.bm-tap.is-swipe { animation: rn-swipe 0.62s var(--ease); }
+@keyframes rn-swipe { 0% { opacity: 0; transform: translateY(0) scale(1.2); } 25% { opacity: 1; transform: translateY(0) scale(0.9); } 100% { opacity: 0; transform: translateY(-360%) scale(0.9); } }
+
+/* two flows side by side (voice and video AI) */
+.rn-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 90px); margin: 0 var(--pad) 0 var(--col); max-width: 900px; }
+.rn-pair .bm-proto { margin: 0; grid-template-columns: 1fr; gap: 22px; }
+.rn-pair .bm-proto .bm-ph { width: min(260px, 100%); justify-self: start; }
+.rn-pair h3 { margin: 0 0 4px; font-weight: 500; font-size: 15px; }
+
+/* ---- chat-bubble notes ---- */
+.rn-bubs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 40px); margin: 0 var(--pad) 0 var(--col); max-width: 1000px; padding-bottom: 20px; }
+.rn-bub { position: relative; margin: 0; padding: 18px 18px 20px; border-radius: 24px 24px 24px 6px; background: var(--c); transform: rotate(var(--t)); box-shadow: 0 18px 30px -22px rgba(60, 20, 70, 0.55); transition: transform 0.6s cubic-bezier(0.34, 1.4, 0.64, 1); }
+.rn-bub:nth-child(even) { border-radius: 24px 24px 6px 24px; }
+.rn-bub:hover { transform: rotate(0deg) translateY(-5px); }
+.rn-bub::after { content: ""; position: absolute; bottom: -10px; left: 14px; width: 22px; height: 16px; background: var(--c); clip-path: polygon(0 0, 100% 0, 0 100%); }
+.rn-bub:nth-child(even)::after { left: auto; right: 14px; clip-path: polygon(0 0, 100% 0, 100% 100%); }
+.rn-bub b { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 11px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(17, 17, 17, 0.55); }
+.rn-bub b i { width: 22px; height: 22px; border-radius: 50%; background: rgba(255, 255, 255, 0.7); display: grid; place-items: center; font-style: normal; font-size: 12px; letter-spacing: 0; color: var(--ink); }
+.rn-bub p { margin: 0; font-family: "Caveat", cursive; font-size: clamp(22px, 1.75vw, 28px); line-height: 1.1; color: #1d1620; }
+.rn-bub:nth-child(1) { --c: #EADFFB; --t: -1.6deg; }
+.rn-bub:nth-child(2) { --c: #FBD6EE; --t: 1.4deg; }
+.rn-bub:nth-child(3) { --c: #FFE2CC; --t: -0.8deg; }
+.rn-bub:nth-child(4) { --c: #D4F0E2; --t: 1.8deg; }
+.rn-typing { display: inline-flex; gap: 4px; margin-top: 12px; }
+.rn-typing i { width: 6px; height: 6px; border-radius: 50%; background: rgba(17, 17, 17, 0.35); animation: rn-dot 1.2s infinite; }
+.rn-typing i:nth-child(2) { animation-delay: 0.15s; } .rn-typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes rn-dot { 0%, 60%, 100% { transform: none; opacity: 0.4; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+/* ---- night sketchbook: chalk on dark dot paper, magenta marker ---- */
+.rn-sketch { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(10px, 2vw, 30px); margin: 0 var(--pad) 0 var(--col); max-width: 900px; padding: clamp(22px, 3vw, 46px); border-radius: 6px; background-color: #1E1A24; background-image: radial-gradient(rgba(255, 255, 255, 0.13) 1px, transparent 1.2px); background-size: 18px 18px; box-shadow: 0 40px 70px -45px rgba(30, 10, 40, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.04); transform: rotate(0.5deg); }
+.rn-sketch figure { margin: 0; }
+.rn-sketch svg { display: block; width: 100%; height: auto; overflow: visible; }
+.rn-sketch .ch { fill: none; stroke: #F4EFE6; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: 0.92; }
+.rn-sketch .mg { fill: none; stroke: #FF4FD8; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.rn-sketch .glass { fill: rgba(255, 255, 255, 0.10); stroke: #F4EFE6; stroke-width: 1.6; }
+.rn-sketch .t { font-family: "Caveat", cursive; font-size: 22px; fill: #F4EFE6; }
+.rn-sketch .t.m { fill: #FF4FD8; }
+.rn-sketch figcaption { margin-top: 10px; text-align: center; font-family: "Caveat", cursive; font-size: 24px; color: #F4EFE6; }
+.rn-sketch .draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.5s cubic-bezier(0.65, 0, 0.35, 1); }
+.rn-sketch.is-in .draw { stroke-dashoffset: 0; }
+
+/* ---- before / after: drag to wipe ---- */
+.rn-cmp { --p: 50%; position: relative; width: min(300px, 70vw); aspect-ratio: 412 / 917; margin: 0 0 0 var(--col); border-radius: 8.5% / 3.8%; overflow: hidden; box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.08), 0 50px 90px -50px rgba(60, 20, 70, 0.5); user-select: none; touch-action: pan-y; }
+.rn-cmp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; pointer-events: none; }
+.rn-cmp .rn-cmp__a { clip-path: inset(0 0 0 var(--p)); }
+.rn-cmp__bar { position: absolute; top: 0; bottom: 0; left: var(--p); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.12); pointer-events: none; }
+.rn-cmp__bar::after { content: "\2039\00a0\203A"; position: absolute; top: 50%; left: 50%; width: 38px; height: 38px; margin: -19px 0 0 -19px; border-radius: 50%; background: #fff; color: var(--ink); display: grid; place-items: center; font-size: 16px; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); }
+.rn-cmp input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.rn-cmp__k { position: absolute; top: 12px; z-index: 2; padding: 4px 8px; border-radius: 99px; background: rgba(17, 17, 17, 0.6); color: #fff; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; pointer-events: none; }
+.rn-cmp__k--b { left: 12px; } .rn-cmp__k--a { right: 12px; }
+.rn-cmpw { display: flex; align-items: flex-end; gap: clamp(20px, 4vw, 60px); flex-wrap: wrap; }
+.rn-cmpw p { margin: 0; max-width: 16em; font-size: 14px; line-height: 1.45; color: var(--ink-soft); }
+
+@media (max-width: 760px) {
+  .rn-film { aspect-ratio: 4 / 3; }
+  .rn-film img { object-position: 52% 50%; }
+  .rn-bubs { grid-template-columns: 1fr 1fr; margin-left: var(--pad); }
+  .rn-sketch { grid-template-columns: 1fr 26px 1fr; gap: 6px; padding: 16px 12px; margin-left: var(--pad); }
+  .rn-sketch figcaption { font-size: 16px; }
+  .rn-pair { grid-template-columns: 1fr; margin-left: var(--pad); }
+  .rn-pair .bm-proto .bm-ph { width: 64vw; justify-self: center; }
+  .rn .bm-proto .bm-ph { width: 64vw; }
+  .rn-cmpw { margin-left: var(--pad); }
+  .rn-cmp { margin: 0 auto; width: 70vw; }
+}
+@media (prefers-reduced-motion: reduce) { .rn-film img { animation: none; } .rn-sketch .draw { transition: none; stroke-dashoffset: 0; } .rn-typing i { animation: none; } }
+.rn-cmpw { margin: 0 var(--pad) 0 var(--col); }
+.rn-cmpw .rn-cmp { margin: 0; }
+@media (max-width: 760px) { .rn-cmpw { margin-left: var(--pad); justify-content: center; } .rn-cmpw .rn-cmp { width: 70vw; } }
