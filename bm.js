@@ -5,17 +5,21 @@
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('[data-proto]').forEach(function (pr) {
-    var imgs = [].slice.call(pr.querySelectorAll('.bm-ph img')), tap = pr.querySelector('.bm-tap'), steps = [].slice.call(pr.querySelectorAll('.bm-steps li'));
+    var imgs = [].slice.call(pr.querySelectorAll('.bm-ph > [data-step]')), tap = pr.querySelector('.bm-tap'), steps = [].slice.call(pr.querySelectorAll('.bm-steps li'));
     var i = 0, timer = 0, live = false, HOLD = +(pr.dataset.hold || 2300);
     var show = function (n) {
-      imgs.forEach(function (im, k) { im.classList.toggle('is-on', k === n); im.classList.toggle('is-off', k !== n && k === i); });
+      imgs.forEach(function (im, k) {
+        im.classList.toggle('is-on', k === n); im.classList.toggle('is-off', k !== n && k === i);
+        var v = im.tagName === 'VIDEO' ? im : im.querySelector && im.querySelector('video');   // a screen that is video plays while it's on
+        if (v) { if (k === n && live) { try { v.currentTime = 0; } catch (e) {} var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); } else v.pause(); }
+      });
       steps.forEach(function (li, k) { li.classList.toggle('is-now', k === +imgs[n].dataset.step); });
       i = n;
     };
     var next = function () {
       if (!live) return;
       var t = imgs[i].dataset.tap, sw = imgs[i].dataset.swipe;
-      var go = function () { show((i + 1) % imgs.length); timer = setTimeout(next, HOLD); };
+      var go = function () { show((i + 1) % imgs.length); timer = setTimeout(next, +(imgs[i].dataset.hold || HOLD)); };
       if ((t || sw) && tap) {
         tap.classList.remove('is-tap', 'is-swipe'); void tap.offsetWidth;
         if (sw) { tap.style.left = sw + '%'; tap.style.top = '72%'; tap.classList.add('is-swipe'); timer = setTimeout(go, 520); }
@@ -26,10 +30,20 @@
     if (reduce) return;   // still: the first screen, the steps readable
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
-        if (e.isIntersecting && !live) { live = true; timer = setTimeout(next, HOLD); }
-        else if (!e.isIntersecting && live) { live = false; clearTimeout(timer); }
+        if (e.isIntersecting && !live) { live = true; show(i); timer = setTimeout(next, +(imgs[i].dataset.hold || HOLD)); }
+        else if (!e.isIntersecting && live) { live = false; clearTimeout(timer); show(i); }
       });
     }, { threshold: 0.35 }).observe(pr);
+  });
+  /* a real screen recording in the phone: it plays only while on screen, and the step beside it lights up at the
+     times in data-times ("0 3.5 9.5" seconds) */
+  document.querySelectorAll('[data-rec]').forEach(function (pr) {
+    var v = pr.querySelector('video'), steps = [].slice.call(pr.querySelectorAll('.bm-steps li'));
+    var ts = (v.dataset.times || '0').split(' ').map(Number);
+    var mark = function () { var t = v.currentTime, k = 0; ts.forEach(function (x, j) { if (t >= x) k = j; }); steps.forEach(function (li, j) { li.classList.toggle('is-now', j === k); }); };
+    v.addEventListener('timeupdate', mark); mark();
+    if (reduce) { v.removeAttribute('autoplay'); v.pause(); return; }
+    new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); } else v.pause(); }); }, { threshold: 0.3 }).observe(pr);
   });
   document.querySelectorAll('[data-compare]').forEach(function (c) {
     var r = c.querySelector('input[type=range]');

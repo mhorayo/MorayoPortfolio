@@ -25,6 +25,14 @@
 .bm-proto .bm-ph img { opacity: 0; transition: opacity 0.55s var(--ease), transform 0.7s var(--ease); transform: translateX(8%); }
 .bm-proto .bm-ph img.is-on { opacity: 1; transform: none; }
 .bm-proto .bm-ph img.is-off { opacity: 0; transform: translateX(-8%); }
+/* a step can be a video, or a screen built from layers (.bm-scr), not only an image */
+.bm-ph > video, .bm-ph > .bm-scr { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.bm-scr > img, .bm-scr > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.bm-proto .bm-ph > :is(video, .bm-scr) { opacity: 0; transition: opacity 0.55s var(--ease), transform 0.7s var(--ease); transform: translateX(8%); }
+.bm-proto .bm-ph > :is(video, .bm-scr).is-on { opacity: 1; transform: none; }
+.bm-proto .bm-ph > :is(video, .bm-scr).is-off { opacity: 0; transform: translateX(-8%); }
+/* a recording in the phone: always on */
+.bm-proto[data-rec] .bm-ph > video { opacity: 1; transform: none; }
 .bm-tap { position: absolute; z-index: 3; width: 13%; aspect-ratio: 1; margin: -6.5% 0 0 -6.5%; border-radius: 50%; background: rgba(17, 17, 17, 0.22); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9); opacity: 0; transform: scale(0.6); pointer-events: none; }
 .bm-tap.is-tap { animation: bm-tap 0.7s var(--ease); }
 @keyframes bm-tap { 0% { opacity: 0; transform: scale(1.4); } 35% { opacity: 1; transform: scale(0.85); } 100% { opacity: 0; transform: scale(1.1); } }

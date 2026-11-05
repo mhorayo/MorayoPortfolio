@@ -224,3 +224,21 @@ Renncora (case-renncora.html + ren.css, shares bm.css/bm.js): full story rewrite
 Figma file: VHRhePoFSU11zEJfiFFx1l (App Re-design page 188:14, IDEATION section 293:435).
 bm.js now also does swipe-up (data-dir="up", data-swipe), compare sliders (data-compare) and photo-phone perspective mapping (data-quad).
 Higgsfield account balance 338.8 credits after these jobs (she may have topped up; I didn't).
+
+## NEW-CHAT SUMMARY #8 (Thu 5 Nov 2026, ~14:00 WAT) — read this first
+Usage: weekly ~68%+ ; today ≈ 8+ of 20% at the start of this chat.
+BROADMONEY HERO FIX (her complaint: wrong flow, only clicks, screen not fitting): the phone now plays the real SEND-MONEY flow (bmp-home-gbp → bmp-send-money → bmp-recipient → bmp-transfer-options → bmp-pin → bmp-tx-summary), each screen SLIDING in from the right (.bm-hv__scr img rules in bm.css). Fit bug = the poster bmp-hero-wide.jpg has the phone ~30px lower/right than the video, so before playback the overlay floated; poster is now bmp-hero-poster.jpg = the video's own first frame. Overlay coords unchanged (they match the video to ~2px).
+RENNCORA ROUND 2 (all 12 items from _tools/final-round.md built):
+- Copy: existing design → she redesigned it (research heading, hero sell, meta, "1 designer: end to end"). Low-end phones / 2G / rural Nigeria context in research + a Constraint sticky note.
+- Splash story: video splash first (ren-v-splash.mp4 = ren-demo-onboarding.mp4 bezel-cropped, 30fps, 1.4 MB), made light, tested; team switched to images → image prototype from Figma 293:461 (ren-simg-1..5.jpg). Shown side by side (.rn-pair), then sign-up flow.
+- Hero: ren-hero.mp4 (Seedance 2.5, 6s 1080p light-only loop from ren-hero-wide.jpg, start=end frame), poster ren-hero-poster.jpg. CSS sun removed.
+- Sticky notes: .rn-notes/.rn-note square notes (adhesive band, lifted corner shadow, curl), lilac/mint/peach/sky/lime. Chat bubbles removed.
+- Feed: ren-v-feed.mp4 recording (videos playing + swipes + comments) in the phone; bm.js [data-rec] lights steps at data-times.
+- Profile after = Figma 2462:17582 "Creator Portfolio - Olivia Johnson" (ren-profile-after.jpg); dark = 2865:11733 (ren-profile-after-dark.jpg). Slider + phone same size (.rn-cmpw__ph).
+- Light & dark section: drag slider light ↔ dark profile.
+- What works: "60% less visual clutter" spelled out with what it means.
+- Live: step 3 is a video (.bm-scr.rn-live: ren-live-guy.mp4 from Seedance on ren-live-watching.jpg) + CSS hearts/likes/gifts pouring up (.rn-fly).
+- AI video call step plays ren-ai-call.mp4 (Seedance on ren-ai-video-call.jpg).
+- bm.js: any .bm-ph > [data-step] (img, video or .bm-scr layer) can be a step; videos play only while their step is on; per-step data-hold.
+Seedance tip: Renncora screens are 412x917, not 9:16 — pad to 9:16 with black bars first, then crop back, or Seedance reframes the UI.
+Preview: launch config "ren2" (port 5197) in ~/Documents/My Portfolio/.claude/launch.json serves this chat's scratchpad/site copy.
