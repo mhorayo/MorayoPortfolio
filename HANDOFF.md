@@ -242,3 +242,4 @@ RENNCORA ROUND 2 (all 12 items from _tools/final-round.md built):
 - bm.js: any .bm-ph > [data-step] (img, video or .bm-scr layer) can be a step; videos play only while their step is on; per-step data-hold.
 Seedance tip: Renncora screens are 412x917, not 9:16 — pad to 9:16 with black bars first, then crop back, or Seedance reframes the UI.
 Preview: launch config "ren2" (port 5197) in ~/Documents/My Portfolio/.claude/launch.json serves this chat's scratchpad/site copy.
+NEXT: DOXFLOWY case study rewrite. Brief, facts, sources and rules in _tools/dox-story.md (CV facts only; never mention layoffs; sharp true-colour screens). Build after her "go ahead". Never run Higgsfield without telling her the cost first and getting her yes.
