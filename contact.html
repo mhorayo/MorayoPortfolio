@@ -11,7 +11,7 @@
 <meta property="og:image" content="https://morayoakinkunmi.com/bmp-tile.jpg" />
 <link rel="stylesheet" href="v2.css?v=1794220000" />
 <link rel="stylesheet" href="home.css?v=1794210000" />
-<link rel="stylesheet" href="pages.css?v=1794210000" />
+<link rel="stylesheet" href="pages.css?v=1794230000" />
 </head>
 <body class="land">
 <header class="nav" id="nav">
@@ -49,8 +49,8 @@
       <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" required /></div>
       <div class="field"><label for="subject">About</label><select id="subject" name="subject"><option>A full-time role</option><option>A contract or freelance project</option><option>Mentoring or speaking</option><option>Something else</option></select></div>
       <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-      <button class="send" type="submit">Send message</button>
       <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
+      <button class="send" type="submit">Send message</button>
     </form>
     </div>
   </section>
@@ -103,21 +103,21 @@
     if (val('_honey')) { e.preventDefault(); return; }
     if (!f.checkValidity()) return;
     e.preventDefault();
-    btn.disabled = true; btn.textContent = 'Sending\u2026'; note.textContent = '';
+    var sent = false; btn.disabled = true; btn.textContent = 'Sending\u2026'; note.textContent = '';
     var data = {}; ['name', 'email', 'subject', 'message', '_subject'].forEach(function (k) { data[k] = val(k); }); data._captcha = 'false'; data._template = 'table';
     var ctl = window.AbortController ? new AbortController() : null, t = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
     fetch('https://formsubmit.co/ajax/' + TO, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data), signal: ctl ? ctl.signal : undefined })
       .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         clearTimeout(t);
-        if (res.ok && res.j && String(res.j.success) === 'true') { f.reset(); say('Thank you. Your message is on its way, and I&rsquo;ll reply soon.', true); }
+        if (res.ok && res.j && String(res.j.success) === 'true') { sent = true; f.reset(); say('Thank you. Your message is on its way, and I&rsquo;ll reply soon.', true); }
         else throw new Error('not sent');
       })
       .catch(function () {
         clearTimeout(t);
         say('The form couldn&rsquo;t send just now. <a href="' + mailto() + '">Send it from your email instead</a> (everything you typed is ready), or write to <a href="mailto:' + TO + '">' + TO + '</a>.', false);
       })
-      .then(function () { btn.disabled = false; btn.textContent = 'Send message'; });
+      .then(function () { btn.disabled = false; btn.textContent = sent ? 'Sent \u2713' : 'Send message'; if (sent) setTimeout(function () { btn.textContent = 'Send message'; }, 4000); });
   });
 })();
 </script>

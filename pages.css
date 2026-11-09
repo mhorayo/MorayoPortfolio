@@ -86,7 +86,7 @@
 @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .tw__caret { display: none; } }
 
 /* contact form status */
-.form__note { margin: 14px 0 0; min-height: 1.4em; font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
+.form__note { margin: 0; min-height: 0; font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
 .form__note.is-ok { color: #1f6b45; }
 .form__note.is-err { color: #a3342b; }
 .form__note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }

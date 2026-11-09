@@ -324,6 +324,6 @@ PREVIEW: launch config "dox" (port 5198) serves a scratchpad copy that may have 
 
 ## NEW-CHAT SUMMARY #15 (Mon 9 Nov 2026) — read this first
 SHIPPED: hamburger icon on all 15 pages (Menu code moved from land.js to v2.js, so it works everywhere); more phone spacing on home Who I Am, home Work, Work page; sideways scroll fixed on WeCare, Doxflowy, Renncora, Help2Pay.
-CONTACT FORM: first test sent 9 Nov; FormSubmit emailed "Activate Form" to teeakinkunmi@gmail.com. Next: she clicks it, then send a second test and confirm it lands. If that fails, go to Web3Forms (she gets the key).
+CONTACT FORM: DONE 9 Nov. FormSubmit activated; test delivered to teeakinkunmi@gmail.com. Status line now sits above the button and the button says "Sent". Text: --ink-soft is #3A3834 site-wide. Local previews cache HTML, so add ?x= when retesting.
 PREVIEW: python preview servers can't read the repo under ~/Documents (404). rsync the repo to the session scratchpad and add a launch config to the OUTER ~/Documents/My Portfolio/.claude/launch.json (that's the one preview_start reads).
 Other open items from #14 (Work page small changes, Doxflowy video blur, wording checks, Help2Pay 3x) still stand.
