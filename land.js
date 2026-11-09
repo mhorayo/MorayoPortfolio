@@ -13,20 +13,6 @@
     requestAnimationFrame(lraf);
   }
 
-  /* Navbar: a hairline once you scroll; on phones a Menu button opens the links */
-  var nav = document.getElementById('nav'), toggle = document.getElementById('navToggle');
-  if (nav) {
-    var onNav = function () { nav.classList.toggle('is-scrolled', window.scrollY > 10); };
-    window.addEventListener('scroll', onNav, { passive: true }); onNav();
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open); toggle.textContent = open ? 'Close' : 'Menu';
-    });
-    $$('.nav__links a', nav).forEach(function (a) {
-      a.addEventListener('click', function () { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.textContent = 'Menu'; });
-    });
-  }
-
   /* Hero + story, one pinned scene. Momo is already standing where the intro left her; the name rises behind her.
      Scrolling on, she grows and drifts to the left while the hero fades around her, and the story types out beside her. */
   var hero = document.getElementById('hero');
@@ -270,13 +256,14 @@
     var jmix = function (a, b, t) { return a + (b - a) * t; };
     var slots = function () {
       var vw = innerWidth, vh = innerHeight, phone = vw <= 760;
-      var H = phone ? Math.min(vh * 0.48, vw * 0.95) : Math.min(vh * 0.82, vw * 0.56), W = H * 0.8, g = phone ? 10 : Math.max(14, vw * 0.012);
+      if (phone) { jtext.style.left = 'var(--pad)'; jtext.style.right = 'var(--pad)'; jtext.style.width = 'auto'; }
+      var H = phone ? Math.max(150, Math.min(vh * 0.42, vw * 0.92, vh * 0.84 - 36 - jtext.offsetHeight - 76)) : Math.min(vh * 0.82, vw * 0.56), W = H * 0.8, g = phone ? 10 : Math.max(14, vw * 0.012);
       var x = phone ? (vw - W) / 2 : vw * 0.44 - W / 2, y = phone ? vh * 0.16 : (vh - H) / 2 + 24, tw = W * (phone ? 0.2 : 0.19), th = tw * 1.25;
       S = { W: W, H: H,
         big: [x, y, W], prev: [x - g - tw, y, tw], next: [x + W + g, y + H - th, tw],
         gone: [x - g - tw, y, 0.0001], soon: [x + W + g + tw, y + H, 0.0001] };
       jm.forEach(function (el) { el.style.width = W + 'px'; el.style.height = H + 'px'; });
-      if (phone) { jtext.style.left = 'var(--pad)'; jtext.style.right = 'var(--pad)'; jtext.style.top = (y + H + 22) + 'px'; jtext.style.width = 'auto'; }
+      if (phone) { jtext.style.left = 'var(--pad)'; jtext.style.right = 'var(--pad)'; jtext.style.top = (y + H + 36) + 'px'; jtext.style.width = 'auto'; }
       else { jtext.style.left = (x + W + g) + 'px'; jtext.style.top = (y + H * 0.1) + 'px'; jtext.style.width = Math.min(340, vw - (x + W + g) - 40) + 'px'; jtext.style.right = 'auto'; }
     };
     var slotAt = function (d) {                       // d: 0 middle, -1 top-left, +1 bottom-right, beyond: shrinking away
@@ -317,6 +304,7 @@
     window.addEventListener('scroll', renderJw, { passive: true });
     window.addEventListener('resize', function () { slots(); drawJw(); });
     slots(); renderJw(); jP = jT; drawJw();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { slots(); drawJw(); });
   }
 
   /* My story: twelve small pictures of the six projects on a ring (an oval, wider than tall) that grows in from the middle

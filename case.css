@@ -69,3 +69,8 @@
 @keyframes tw-blink { 50% { opacity: 0; } }
 .cs__arr { display: inline-block; margin-left: 0.15em; font-weight: 400; transition: transform 0.6s var(--ease); }
 .cs__next:hover .cs__arr { transform: translateX(0.12em); }
+
+/* phones: the next-project row always fits */
+.cs__next > * { min-width: 0; }
+.cs__next img { flex-shrink: 0; }
+@media (max-width: 420px) { .cs__next img { width: 92px; } .cs__next { gap: 16px; } }

@@ -308,3 +308,30 @@ html.lenis, html.lenis body { height: auto; }
 .hx__more { margin-top: calc(26px - 0.95 * clamp(36px, 5.2vw, 88px)); }
 @media (max-width: 760px) { .hx__more { margin-top: 14px; } }
 @media (max-width: 359px) { .hx .mi__text, #intro .mi__text { white-space: normal; } }
+
+/* ---------- Phone breathing room (9 Nov) ---------- */
+@media (max-width: 760px) {
+  .hx__story { gap: 30px; padding-top: 10svh; padding-bottom: 7svh; }
+  .hx__type { line-height: 1.14; }
+  .hx__type .hx__ln { margin-bottom: 0.32em; }
+  .hx__body { line-height: 1.62; }
+  .hx__body p { margin-bottom: 1.3em; }
+  .hx__slink { margin-top: 4px; }
+  .jw__t { gap: 16px; }
+  .jw__r { margin-top: 4px; }
+  .jw__t .hbtn { margin-top: 10px; }
+  .ab { gap: 40px; padding-top: 96px; padding-bottom: 104px; }
+  .ab__body { gap: 1.5em; line-height: 1.6; padding-top: 0; }
+  .mo__row { padding: 88px 0; }
+}
+
+/* phones: the Work headline is smaller so picture and words both fit; short phones drop the description and tighten the story */
+@media (max-width: 760px) {
+  .jw__h { font-size: 27px; line-height: 1.04; }
+}
+@media (max-width: 760px) and (max-height: 720px) {
+  .jw__b { display: none; }
+  .hx__story { gap: 20px; padding-top: 6svh; padding-bottom: 4svh; }
+  .hx__type { font-size: 22px; }
+  .hx__body { font-size: 14px; line-height: 1.55; }
+}

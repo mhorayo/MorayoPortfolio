@@ -91,3 +91,13 @@
 .form__note.is-err { color: #a3342b; }
 .form__note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .send:disabled { opacity: 0.6; cursor: progress; }
+
+/* ---------- Phone breathing room (9 Nov) ---------- */
+@media (max-width: 760px) {
+  .pg__hero { gap: 22px; padding-top: 92px; padding-bottom: 72px; }
+  .wk { row-gap: 96px; padding-bottom: 120px; }
+  .wk__t { gap: 12px; }
+  .wk__img { margin-bottom: 20px; }
+  .wk__res { line-height: 1.55; margin-top: 6px; }
+  .wk__go { margin-top: 12px; }
+}

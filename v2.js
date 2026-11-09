@@ -21,6 +21,24 @@
     setBar(); window.addEventListener('scroll', setBar, { passive: true });
   }
 
+  /* ---------- Top navbar, every page: a hairline once you scroll; on phones the hamburger opens the links ---------- */
+  var nav = document.getElementById('nav'), navToggle = document.getElementById('navToggle');
+  if (nav) {
+    var onNav = function () { nav.classList.toggle('is-scrolled', window.scrollY > 10); };
+    window.addEventListener('scroll', onNav, { passive: true }); onNav();
+  }
+  if (nav && navToggle) {
+    var setNav = function (open) {
+      nav.classList.toggle('is-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    navToggle.addEventListener('click', function () { setNav(!nav.classList.contains('is-open')); });
+    nav.querySelectorAll('.nav__links a').forEach(function (a) { a.addEventListener('click', function () { setNav(false); }); });
+    document.addEventListener('click', function (e) { if (nav.classList.contains('is-open') && !nav.contains(e.target)) setNav(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('is-open')) { setNav(false); navToggle.focus(); } });
+  }
+
   /* ---------- Menu ---------- */
   var menu = document.getElementById('menu'), menuBtn = document.getElementById('menuBtn');
   function openMenu() { if (!menu) return; menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('is-open'); }); menuBtn.setAttribute('aria-expanded', 'true'); document.getElementById('menuClose').focus(); }

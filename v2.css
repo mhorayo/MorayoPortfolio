@@ -435,7 +435,15 @@ a.row:hover { color: var(--ink-soft); padding-left: 10px; }
 .nav__links a:not(.nav__cta):hover { color: var(--ink-soft); }
 .nav__cta { padding: 9px 18px; border-radius: 999px; background: var(--ink); color: var(--paper); }
 .nav__cta:hover { background: #333; }
-.nav__toggle { display: none; font: inherit; font-size: 14px; background: none; border: 0; padding: 8px 0; color: var(--ink); cursor: pointer; }
+.nav__toggle { display: none; position: relative; width: 44px; height: 44px; margin-right: -11px; padding: 0; background: none; border: 0; color: var(--ink); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.nav__bars, .nav__bars::before, .nav__bars::after { position: absolute; width: 22px; height: 1.5px; border-radius: 2px; background: currentColor; }
+.nav__bars { left: 11px; top: 21px; transition: background-color 0.2s; }
+.nav__bars::before, .nav__bars::after { content: ""; left: 0; transition: transform 0.3s var(--ease); }
+.nav__bars::before { transform: translateY(-7px); }
+.nav__bars::after { transform: translateY(7px); }
+.nav.is-open .nav__bars { background: transparent; }
+.nav.is-open .nav__bars::before { background: var(--ink); transform: rotate(45deg); }
+.nav.is-open .nav__bars::after { background: var(--ink); transform: rotate(-45deg); }
 @media (max-width: 760px) {
   .nav__toggle { display: block; }
   .nav__links { position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 6px var(--pad) 18px; background: var(--paper); border-bottom: 1px solid rgba(17, 17, 17, 0.1); font-size: 22px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s 0.3s; }

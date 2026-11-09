@@ -126,3 +126,9 @@
   .wc-measure { grid-template-columns: 1fr 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { .wc-jr .ln, .wc-note svg .draw { transition: none; stroke-dashoffset: 0; } }
+
+/* phones: notes keep inside the page */
+@media (max-width: 760px) {
+  .wc-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wc-note { min-width: 0; aspect-ratio: auto; min-height: 42vw; }
+}

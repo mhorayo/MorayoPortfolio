@@ -145,3 +145,7 @@
   .h2-web .bm-ph { border-radius: 6px; }
 }
 @media (prefers-reduced-motion: reduce) { .h2-note svg .draw { transition: none; stroke-dashoffset: 0; } .h2-site img { animation: none; } }
+
+/* tablets and phones: the contrast table wraps inside its card */
+@media (max-width: 1024px) { .h2-wcag td { white-space: normal; } .h2-card { min-width: 0; } }
+@media (max-width: 760px) { .h2-ds { grid-template-columns: minmax(0, 1fr); } }

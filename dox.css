@@ -210,3 +210,10 @@
   .dx-scroll .dx-win__in img { animation: none; }
   .dx-ai__skel, .dx-load__sk i, .dx-load__brand i { animation: none; }
 }
+
+/* phones: notes keep inside the page */
+@media (max-width: 760px) {
+  .dx-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dx-note { min-width: 0; }
+  .dx-note b { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+}

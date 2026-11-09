@@ -321,3 +321,9 @@ OPEN, in order:
 5. Help2Pay phone screens are 1x. For sharp 3x, share the Figma file 3n0YxVWUITwJ7DYLgbpFrU with renncoraapp@gmail.com as an editor. Paper sketches on OwnIt and Help2Pay are drawn SVGs, not her real ones; swap in photos if she has them. Help2Pay hero stays the widened still (she declined the 30–75 credit video reframe).
 DEPLOY: push to main; Vercel auto-deploys (it stuck QUEUED once, on 5 Nov). A hand-made create_deployment worked twice and was then refused by the permission check, so if a deploy sticks, tell her rather than working around it. Never push without her yes. Don't add .hp as a prefix: v2.css hides .hp (form honeypot).
 PREVIEW: launch config "dox" (port 5198) serves a scratchpad copy that may have been cleared; rsync the repo there, or use launch config "portfolio" (port 5173), which serves the repo directly. Capture scripts lived in scratchpad and may be gone: cap.mjs = CDP steps at 2x/3x, with Animation.setPlaybackRate + time dilation for smooth screen recordings.
+
+## NEW-CHAT SUMMARY #15 (Mon 9 Nov 2026) — read this first
+SHIPPED: hamburger icon on all 15 pages (Menu code moved from land.js to v2.js, so it works everywhere); more phone spacing on home Who I Am, home Work, Work page; sideways scroll fixed on WeCare, Doxflowy, Renncora, Help2Pay.
+CONTACT FORM: first test sent 9 Nov; FormSubmit emailed "Activate Form" to teeakinkunmi@gmail.com. Next: she clicks it, then send a second test and confirm it lands. If that fails, go to Web3Forms (she gets the key).
+PREVIEW: python preview servers can't read the repo under ~/Documents (404). rsync the repo to the session scratchpad and add a launch config to the OUTER ~/Documents/My Portfolio/.claude/launch.json (that's the one preview_start reads).
+Other open items from #14 (Work page small changes, Doxflowy video blur, wording checks, Help2Pay 3x) still stand.
