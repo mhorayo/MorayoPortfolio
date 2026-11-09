@@ -24,7 +24,7 @@
 .wc-note svg path, .wc-note svg circle, .wc-note svg rect { fill: none; stroke: var(--co); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .wc-note svg .draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.2s; }
 .wc-note.is-in svg .draw { stroke-dashoffset: 0; }
-.wc-note b { display: block; margin-bottom: 4px; font-size: 10px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(17, 17, 17, 0.55); }
+.wc-note b { display: block; margin-bottom: 4px; font-size: 10px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(17, 17, 17, 0.8); }
 .wc-note p { margin: 0; font-family: "Caveat", cursive; font-size: clamp(17px, 1.3vw, 22px); line-height: 1.05; color: #141a2e; }
 .wc-note:nth-child(1) { --c: #FFF3B8; --t: -2deg; }
 .wc-note:nth-child(2) { --c: #DCEBFF; --t: 1.4deg; }
@@ -67,7 +67,7 @@
 .wc-p .tag.cw { background: #E7F6EC; color: #1C7A45; } .wc-p .tag.pt { background: #FFF2E2; color: #9A5B00; }
 .wc-p .say { margin: 4px 0 0; font-family: "Caveat", cursive; font-size: 21px; line-height: 1.08; color: #141a2e; }
 .wc-p dl { margin: 6px 0 0; display: grid; gap: 8px; }
-.wc-p dt { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(17, 17, 17, 0.5); }
+.wc-p dt { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(17, 17, 17, 0.8); }
 .wc-p dd { margin: 2px 0 0; font-size: 13px; line-height: 1.4; color: var(--ink); }
 .wc-cap { margin: 14px var(--pad) 0 var(--col); max-width: 1000px; font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
 
